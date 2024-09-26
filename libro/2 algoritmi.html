@@ -222,6 +222,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sistemi-basati-sulla-conoscenza" id="toc-sistemi-basati-sulla-conoscenza" class="nav-link" data-scroll-target="#sistemi-basati-sulla-conoscenza"><span class="header-section-number">3.1.4</span> Sistemi basati sulla conoscenza</a></li>
   <li><a href="#semplice-sistema-esperto-in-ambito-penale" id="toc-semplice-sistema-esperto-in-ambito-penale" class="nav-link" data-scroll-target="#semplice-sistema-esperto-in-ambito-penale"><span class="header-section-number">3.1.5</span> Semplice Sistema Esperto in ambito penale</a></li>
   </ul></li>
+  <li><a href="#inferenza-probabilistica" id="toc-inferenza-probabilistica" class="nav-link" data-scroll-target="#inferenza-probabilistica"><span class="header-section-number">3.2</span> Inferenza Probabilistica</a>
+  <ul class="collapse">
+  <li><a href="#inferenza-probabilistica-e-la-teoria-delle-probabilità" id="toc-inferenza-probabilistica-e-la-teoria-delle-probabilità" class="nav-link" data-scroll-target="#inferenza-probabilistica-e-la-teoria-delle-probabilità"><span class="header-section-number">3.2.1</span> Inferenza probabilistica e La teoria delle probabilità</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -619,6 +623,257 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="3.1.5.6" class="anchored" data-anchor-id="conclusione"><span class="header-section-number">3.1.5.6</span> Conclusione</h4>
 <p>Abbiamo visto come utilizzare SymPy per modellare un semplice sistema esperto nel campo del diritto penale. Questo esempio illustra come le regole legali e i fatti possono essere formalizzati utilizzando la logica proposizionale, permettendo al sistema di effettuare inferenze logiche.</p>
 <p>Ricorda che questo è un modello semplificato e che il diritto penale è complesso e richiede una comprensione approfondita per essere modellato accuratamente. Questo sistema può essere un punto di partenza per sviluppi più avanzati e per esplorare l’intersezione tra intelligenza artificiale e diritto.</p>
+</section>
+</section>
+</section>
+<section id="inferenza-probabilistica" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="inferenza-probabilistica"><span class="header-section-number">3.2</span> Inferenza Probabilistica</h2>
+<p>L’inferenza probabilistica utilizza la teoria delle probabilità per fare previsioni o inferenze basate su dati incompleti o incerti. Questo tipo di inferenza è particolarmente utile in tutti i contesti dove le informazioni possono essere incomplete o incerte.</p>
+<p>L’agente artificiale in situazioni di incertezza affronta la sfida di prendere decisioni razionali quando non si dispone di informazioni complete o quando le informazioni disponibili sono soggette a variabilità. In tali contesti, l’agente deve essere in grado di gestire e interpretare l’incertezza in modo efficace per agire in modo intelligente e adattivo.</p>
+<p>L’incertezza può derivare da diversi fattori, come la natura incompleta delle informazioni, la presenza di rumore nei dati, l’aleatorietà degli eventi o la complessità dei problemi da affrontare. Gli agenti artificiali, dotati di capacità di ragionamento probabilistico e di inferenza, sono in grado di valutare le conseguenze di diverse azioni in base alle probabilità associate agli eventi futuri e agli esiti attesi.</p>
+<p>L’inferenza probabilistica è una tecnica utilizzata nell’ambito dell’Intelligenza Artificiale per prendere decisioni o formulare previsioni basate su informazioni incerte o parziali. In pratica, ciò significa che invece di avere risposte binarie (vero o falso), lavoriamo con probabilità, cioè con il grado di certezza o incertezza riguardo a una determinata affermazione o evento.</p>
+<p><strong>Esempio in un contesto legale</strong></p>
+<p>Immagina un caso giuridico in cui una persona è accusata di un crimine. Nel sistema giuridico, la giuria deve prendere una decisione sulla colpevolezza o innocenza dell’imputato. Tuttavia, spesso non abbiamo prove definitive o testimonianze che garantiscono una certezza assoluta. In questo contesto, l’inferenza probabilistica può essere applicata. Invece di dire semplicemente “colpevole” o “innocente,” i giurati possono assegnare una probabilità alla colpevolezza dell’imputato. Ad esempio, potrebbero dire che ci sono il 70% di probabilità che l’imputato sia colpevole e il 30% di probabilità che sia innocente. Infine, una soglia sulla probabilità di colpevolezza potrebbe dare origine alla sentenza.</p>
+<p><strong>Esempio in un generico contesto di diagnosi</strong></p>
+<p>Nel caso di una diagnosi ( in qualunque settore) è necessario prendere una decisione con conoscenza incerta. Si è in una situazione di incertezza in quanto la lista di situazioni e cause da descrivere non può essere esaustiva (praticamente infinita per la mancanza di conoscenza universale). Non si può usare la logica del primo ordine per gestire la diagnosi perché: - è impossibile elencare l’insieme praticamente infinito di antecedenti e conseguenti per evitare eccezioni - è impossibile avere una conoscenza metodologica completa - è impossibile avere una conoscenza applicativa completa - L’agente non potrà mai agire con una piena consapevolezza di verità e correttezza, avrà solo un grado di credenza sulla bontà delle azioni da intraprendere e dei risultati.</p>
+<section id="inferenza-probabilistica-e-la-teoria-delle-probabilità" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="inferenza-probabilistica-e-la-teoria-delle-probabilità"><span class="header-section-number">3.2.1</span> Inferenza probabilistica e La teoria delle probabilità</h3>
+<p>Cosa è l’ inferenza probabilistica? È un processo di ragionamento che utilizza le probabilità per prendere decisioni o formulare previsioni in situazioni in cui le informazioni sono incomplete o incerte. L’inferenza probabilistica è fondamentale in vari campi, come la statistica, l’apprendimento automatico, la medicina, la finanza e molti altri. L’inferenza probabilistica è basata sulla teoria delle probabilità, che ci consente di quantificare la probabilità di eventi futuri o incerti. Utilizzando le probabilità, possiamo prendere decisioni informate e prevedere risultati basati sui dati disponibili.</p>
+<p>Il calcolo delle probabilità è una branca della matematica che si occupa di misurare e analizzare la probabilità di eventi casuali. La probabilità è una misura numerica che descrive la possibilità che un evento specifico accada.</p>
+<blockquote class="blockquote">
+<p>“Il concetto di probabilità è il più importante della scienza moderna, soprattutto perché nessuno ha la più pallida idea del suo significato.” (Bertrand Russel)</p>
+</blockquote>
+<p>La teoria della probabilità assume la stessa assunzione ontologica della logica: - i fatti del mondo sono: veri o falsi (con una certa probabilità) - Ogni possibile situazione in cui si trova il nostro agente è un mondo µ; Esempio: nel caso del gioco del Lotto, per la singola estrazione ci possono essere 90 mondi, uno per ogni numero che può essere estratto. - Ogni mondo µ è un insieme di fatti: - fatti veri (V) - fatti falsi (F) - fatti incerti (I)</p>
+<p>Tale teoria può essere formulata in diversi modi a seconda del tipo di assunzioni iniziali che si utilizzano. In questo testo si utilizza la teoria della probabilità basata sui cosiddetti assiomi di Kolmogorov e per questo detta <strong>Teoria Assiomatica della Probabilità</strong>.</p>
+<p>Gli assiomi di Kolmogorov costituiscono la base matematica della teoria delle probabilità, formulata dal matematico russo Andrey Kolmogorov nel suo lavoro “Grundbegriffe der Wahrscheinlichkeitsrechnung” nel 1933.</p>
+<p>Ecco una descrizione dei tre assiomi di Kolmogorov:</p>
+<ul>
+<li><strong>Primo Assioma (Non-negatività): </strong> La probabilità di un evento è sempre un numero reale non negativo: P(A)≥0 per ogni evento A. Per rappresentare la probabilità di un certo mondo si usa il simbolo P(µ), 0 &lt;= P(µ) &lt;= 1
+<ul>
+<li>P(µ) = 0 significa che il mondo µ non ha nessuna possibilità di verificarsi. Ad esempio la probabilità che al lotto venga estratto il numero 0 (zero)</li>
+<li>P(µ) = 1 significa che il mondo µ è certo. Ad esempio la probabilità che il risultato di una estrazione sia minore o uguale a 90 è 1 Più è «grande» P(µ) è più è verosimile che si verifichi il mondo µ.</li>
+</ul></li>
+<li><strong>Secondo Assioma (Normalizzazione): </strong> La somma delle probabilità di tutti gli eventi possibili nello spazio campione è uguale a 1: P(S) = 1, dove S rappresenta lo spazio campione. Ad esempio, la somma delle probabilità di estrazione di tutti i numeri del lotto è pari a 1</li>
+<li><strong>Terzo Assioma (Additività): </strong> Se A1, A2, A3, … sono eventi mutuamente esclusivi (cioè non possono accadere simultaneamente), allora la probabilità dell’unione di questi eventi è uguale alla somma delle loro probabilità individuarie: P(A1 ∪ A2 ∪ A3 ∪ …) = P(A1) + P(A2) + P(A3) + … Ad esempio, la probabilità di estrarre un numero pari al lotto è pari alla somma delle probabilità di estrarre i numeri pari da 2 a 90. ​</li>
+</ul>
+<p>Gli assiomi di Kolmogorov forniscono un fondamento rigoroso per definire le probabilità e garantiscono che le probabilità siano consistenti e soddisfino le proprietà chiave della teoria delle probabilità. Questi assiomi sono essenziali per lo studio formale della probabilità e vengono utilizzati per sviluppare e applicare concetti probabilistici in varie discipline, inclusi statistica, teoria dei giochi, intelligenza artificiale e molti altri campi scientifici.</p>
+<section id="cacolo-della-probabilità-incondizionata-o-a-priori" class="level4" data-number="3.2.1.1">
+<h4 data-number="3.2.1.1" class="anchored" data-anchor-id="cacolo-della-probabilità-incondizionata-o-a-priori"><span class="header-section-number">3.2.1.1</span> Cacolo della probabilità incondizionata o a priori</h4>
+<p><strong>calcolo della probabilità di estrazione di un numero x al lotto Usando i tre assiomi di Kolmogorov :</strong></p>
+<p>si può calcolare la probabilità di estrazione di un numero x al lotto. - Dal primo assionmato si ha che P(x) &gt;= 0. - Dal secondo assioma si ha che la somma di tutti i P(x), con x che va da 1 a 90, è pari a 1. - Dal terzo si evince che essendo le probabilità di estrazione di un numero x uguale a quella di estrarre un numero y, con x diverso da y, si ha che la probabilità di estrarre un numero x è pari a 1/90.</p>
+<p><strong>calcolo della probabilità del risultato x nel lancio di un dado Nel lancio di un dado a 6 facce:</strong></p>
+<p>la probabilità P(n) di ottenere il numero n è P(n) = 1/6 perché all’esito del lancio tutte le facce del dado hanno uguale probabilità.</p>
+<p><strong>calcolo della probabilità del risultato nel lancio di due dadi :</strong> Nell’esito del lancio di due dadi, dobbiamo considerare che i mondi possibili ed equiprobabili sono 6x6=36 e quindi la probabilità di uno di questi mondi è 1/36.</p>
+<p><strong>calcolo della probabilità del risultato x come somma dei valori nel lancio di due dadi :</strong> Nell’esito del lancio di due dadi, se vogliamo calcolare la probabilità che esca un certo valore x come somma dei valori dei due dadi dobbaimo considerare che i valori possibili di x [2,12] non sono equiprobabili. Infatti, per esempio, la probabilità di ottenere 2 è 1/36, mentre la probabilità di ottenere 7 è 6/36. Per calcolare la probabilità del valore x è sufficiente contare quanti sono i mondi in cui il valore x si ottiene come somma dei valori dei due dadi e poi dividere per il numero totale di mondi possibili. I possibili risultati del lancio di due dadi sono 36 :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;"><strong>1</strong></th>
+<th style="text-align: right;"><strong>2</strong></th>
+<th style="text-align: right;"><strong>3</strong></th>
+<th style="text-align: right;"><strong>4</strong></th>
+<th style="text-align: right;"><strong>5</strong></th>
+<th style="text-align: right;"><strong>6</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td><strong>4</strong></td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td><strong>5</strong></td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td><strong>6</strong></td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">12</td>
+</tr>
+</tbody>
+</table>
+<p>La probabilità di ottenere 2 è data dal numero di esiti favorevoli al risultato 2, in questo caso è solo uno, diviso il numero totale di esiti possibili, in questo caso 36. La possibilità di ottenere 3 è data dal numero di esiti favorevoli al risultato 3, in questo caso sono 2, diviso il numero totale di esiti possibili, in questo caso 36. … P(2)=1/36, P(3)=2/36, P(4)=3/36, P(5)=4/36, P(6)=5/36, P(7)=6/36, P(8)=5/36, P(9)=4/36, P(10)=3/36, P(11)=2/36, P(12)=1/36</p>
+</section>
+<section id="variabili-aleatorie" class="level4" data-number="3.2.1.2">
+<h4 data-number="3.2.1.2" class="anchored" data-anchor-id="variabili-aleatorie"><span class="header-section-number">3.2.1.2</span> Variabili aleatorie</h4>
+<p>Una variabile aleatoria nel calcolo delle probabilità è una variabile che può assumere uno dei possibili valori in un certo dominio: - La variabile lancio nel lancio di un dado può assumere uno dei valori nel dominio {1,2,3,4,5,6} - La variabile sentenza nel processo penale può assumere uno dei valori nel dominio {«Non luogo a procedere», «Proscioglimento», «Condanna»} - La variabile diagnosi in campo medico può assumere uno dei valori nel dominio {«Malattia», «Non malattia»}.</p>
+<p>Nell’inferenza probsbilistica si è interessati alla probabilità che una certa variabile aleatoria assuma un certo valore. Ad esempio, in un determinato processo penale si potrebbe avere:</p>
+<ul>
+<li>P(sentenza = «Non luogo a procedere») = 0,1</li>
+<li>P(sentenza = «Proscioglimento») = 0,1</li>
+<li>P(sentenza = «Condanna») = 0,8</li>
+</ul>
+<p>O, in breve, rappresentando l’insieme dei possibili risultati come un vettore: P(sentenza) = {0.1, 0.1, 0.8}</p>
+<p>Per codificare la variabile aleatoria “sentenza” in Python, si può utilizzare ad esempio la struttura dati dizionario che mappa i possibili esiti (“Non luogo a procedere”, “Proscioglimento”, “Condanna”) ai rispettivi valori numerici di probabilità. Ecco un esempio di come si potrebbe codificare la variabile aleatoria “sentenza” in Python utilizzando un dizionario:</p>
+<div id="cell-35" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definizione della variabile aleatoria sentenza con i suoi possibili valori</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sentenza <span class="op">=</span> {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Non luogo a procedere"</span>: <span class="fl">0.128</span>, <span class="co"># probabilità del 12.8% di non luogo a procedere</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Proscioglimento"</span>: <span class="fl">0.548</span>,       <span class="co"># probabilità del 54.8% di proscioglimento</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Condanna"</span>: <span class="fl">0.324</span>               <span class="co"># probabilità del 32.4% di condanna</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>somma <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> esito, probabilita <span class="kw">in</span> sentenza.items():</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"La probabilità di '</span><span class="sc">{</span>esito<span class="sc">}</span><span class="ss">' è: </span><span class="sc">{</span>probabilita<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    somma <span class="op">=</span> somma <span class="op">+</span> probabilita</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" la somma delle probabilità è pari a "</span>, somma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>La probabilità di 'Non luogo a procedere' è: 0.128
+La probabilità di 'Proscioglimento' è: 0.548
+La probabilità di 'Condanna' è: 0.324
+ la somma delle probabilità è pari a  1.0</code></pre>
+</div>
+</div>
+</section>
+<section id="distribuzioni-di-probabilità" class="level4" data-number="3.2.1.3">
+<h4 data-number="3.2.1.3" class="anchored" data-anchor-id="distribuzioni-di-probabilità"><span class="header-section-number">3.2.1.3</span> Distribuzioni di probabilità</h4>
+<p>le distribuzioni di probabilità sono funzioni che descrivono la probabilità di ogni possibile valore di una variabile aleatoria. Ad esempio, la distribuzione di probabilità della variabile aleatoria “sentenza” nel processo penale può essere rappresentata come segue: P(sentenza) = {0.1, 0.1, 0.8}. Nel seguito vedremo alcune distribuzioni di probabilità notevoli.</p>
+</section>
+<section id="probabilità-congiunta" class="level4" data-number="3.2.1.4">
+<h4 data-number="3.2.1.4" class="anchored" data-anchor-id="probabilità-congiunta"><span class="header-section-number">3.2.1.4</span> Probabilità congiunta</h4>
+<p>La probabilità congiunta è la probabilità che due eventi si verifichino contemporaneamente. Ad esempio, la probabilità che un processo penale porti a una condanna e che il condannato sia colpevole è data dalla probabilità congiunta di questi due eventi. Oppure, in ambito medico, la probabilità che un paziente abbia una certa patologia e che il test diagnostico sia positivo è data dalla probabilità congiunta di questi due eventi. Oppure, in ambito metereologico, la probabilità che sia nuvolo e che piova è la probabilità congiunta di questi due eventi:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Right</th>
+<th style="text-align: left;">Left</th>
+<th>Default</th>
+<th style="text-align: center;">Center</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">12</td>
+<td>12</td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">123</td>
+<td style="text-align: left;">123</td>
+<td>123</td>
+<td style="text-align: center;">123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">1</td>
+<td>1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>probabilità che sia nuvoloso:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">nuvoloso</th>
+<th style="text-align: center;">¬nuvoloso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">P(n)</td>
+<td style="text-align: center;">0,7</td>
+<td style="text-align: center;">0,3</td>
+</tr>
+</tbody>
+</table>
+<p>probabilità che piova:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">piove</th>
+<th style="text-align: center;">¬piove</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">P(p)</td>
+<td style="text-align: center;">0,2</td>
+<td style="text-align: center;">0,8</td>
+</tr>
+</tbody>
+</table>
+<p>probabilità che sia nuvoloso e piova: | P(p,n) | nuvoloso | ¬nuvoloso | | :-: | :-: | :-: | | piove | 0,55 | 0,05 | | ¬piove | 0,15 | 0,25 |</p>
+<p>3.2.1.5 Indipendenza delle variabili aleatorie L’indipendenza di due eventi indica che il verificarsi di uno non influenza il verificarsi dell’altro. Ad esempio: Lancio di due dadi. Il lancio del primo non influenza il secondo; Il contrario, la dipendenza, indica che il verificarsi di uno influenza il verificarsi dell’altro. Nel caso in cui due variabili aleatorie siano indipendenti si ha la seguente proprietà:</p>
+<p>P(a “∧” b)=P(a)*P(b)</p>
+<p>3.2.1.6 Negazione La negazione di un evento è l’evento che si verifica quando l’evento originale non si verifica. Ad esempio, la negazione dell’evento “piove” è “non piove”.</p>
+<p>image.png Se la probabilità che un evento è α, la probabilità che l’evento non si verifichi è 1 - α.</p>
+<p>P(A) = α, allora P(¬A) = 1 - α</p>
+<p>3.2.1.7 Inclusione P(a ∨ b) = P(a) + P(b) - P(a ∧ b).</p>
+<p>La probabilità che si verifichi l’evento a o l’evento b è uguale alla somma delle probabilità dei due eventi meno la probabilità congiunta. Si noti che se gli eventi sono incompatibili la probabilità congiunta è nulla! image-2.png</p>
+<p>3.2.1.8 Marginalizzazione La marginalizzazione è una tecnica utilizzata per calcolare la probabilità di un evento dato un insieme di eventi. Ad esempio, la probabilità che un processo penale porti a una condanna dato che il condannato è colpevole è data dalla marginalizzazione della probabilità congiunta di questi due eventi.</p>
+<p>P(a) = P(a, b) + P(a, ¬b).</p>
+<p>La probabilità che si verifichi b è disgiunta dalla probabilità che si verifichi ¬b. Quindi, quando si verifica a si ha b oppure ¬b ma non entrambi quindi se sommo le probabilità P(a, b) + P(a, ¬b) ottengo P(a)</p>
+<p>3.2.1.9 probabilità condizionata La probabilità condizionata è la probabilità che un evento si verifichi dato che un altro evento si è verificato. Ad esempio, la probabilità che un processo penale porti a una condanna dato che il sottoposto a giudizio è colpevole è data dalla probabilità condizionata di questi due eventi.</p>
+<p>E’ possibile fare inferenze a proposito della probabilità di una proposizione ignota A, data la prova B, calcolando P(A/B) (probabilità di A dato che tutto ciò che sappiamo è B) (inferenza probabilistica)</p>
+<p>Un’interrogazione ad un sistema di ragionamento probabilistico chiederà di calcolare il valore di una particolare probabilità condizionata.</p>
+<p>Fin qui abbiamo visto casi in cui il singolo evento non era condizionato da altro evento: - Prima estrazione del lotto; - Lancio di uno o due dati Cosa succede alla probabilità quando l’avverarsi di una proposizione è condizionata all’avverarsi di un’altra proposizione?</p>
+<p>P(a|b) = probabilità dell’evento a dato che noi sappiamo che l’evento b si è verificato. Oppure, “ la probabilità di a dato b” Possiamo chiederci: - Qual’è la probabilità che vinca la “ Roma” se ha vinto la “ Lazio”?, P(Roma/Lazio). - Qual’è la probabilità che arrivi il “38” se è arrivato il “52”?”, P(“38”/”52”). La formula per calcolare la probabilità condizionata di a dato b è la seguente:</p>
+<p>P(a/b) =(𝑃(𝑎 “∧” 𝑏) )/(𝑃(𝑏)); “siamo interessati agli eventi dove a e b sono vere, ma solo nei mondi dove b è vera!” P(a “∧” b)=P(b)P(a/b) P(a “∧” b)=P(b)P(a/b)</p>
+<p>Esercizio 1:Qual è la probabilità che ottenga una somma pari 9 lanciando due dadi se il primo dado è 6, P(9/6)? La risposta si ottiene direttamente dalla for,mula della probabilità condizionata e da quella della probabilità congiunta: p(9/6) = P(9 ∧ 6) / P(6) = 1/36 / 1/6 = 1/6 La proposizione a = «somma=9» si verifica con i seguenti lanci:</p>
+<p>a = {(6,3),(5,4),(4,5),(3,6)}  P(a) = 4/36</p>
+<p>La proposizione b = «primo dado=6» si verifica con i seguenti lanci:</p>
+<p>b = {(6,1),(6,2),(6,3),(6,4),(6,5),(6,6)}  P(b) = 6/36</p>
+<p>a “∧” b = {(6,3)}  P(a “∧” b) = 1/36</p>
+<p>P(a/b) =(𝑃(𝑎 “∧” 𝑏) )/(𝑃(𝑏))= (1/36)/(6/36)=1/6</p>
+<ul>
+<li>1 2 3 4 5 6 1 2 3 4 5 6 7 2 3 4 5 6 7 8 3 4 5 6 7 8 9 4 5 6 7 8 9 10 5 6 7 8 9 10 11 6 7 8 9 10 11 12 Ovvero, per risolvere l’esercizio dobbiamo osservare l’ ultima riga della tabella realtiva al lancio del primo dado con risultato 6. i casi favorevoli sono solo 1, mentre i casi possibili sono 6. Quindi la probabilità è 1/6.</li>
+</ul>
+<p>3.2.1.10 Condizionamento P(a) = P(a | b)P(b) + P(a | ¬b)P(¬b).</p>
+<p>Il condizionamento discende immediatamente dalla marginalizzazione. La probabilità che si verifichi a è data dalla marginalizzazione della probabilità congiunta di questi due eventi. La probabilità che si verifichi b è disgiunta dalla probabilità che si verifichi ¬b. Quindi, quando si verifica a si ha b oppure ¬b ma non entrambi quindi se sommo le probabilità P(a, b) + P(a, ¬b) ottengo P(a).</p>
+<p>Ecco due esempi di applicazioni della formula di condizionamento in Python, uno nel campo medico e uno nel campo giuridico penale:</p>
+<p>Campo medico Supponiamo di avere le seguenti informazioni:</p>
+<p>La probabilità che una persona sviluppi un certo effetto collaterale a seguito di un farmaco è P(Effetto collaterale) = 0.2. Si sa che se una persona sviluppa l’effetto collaterale, la probabilità che abbia assunto il farmaco è P(Farmaco|Effetto collaterale) = 0.9. D’altra parte, se una persona non mostra l’effetto collaterale, la probabilità che abbia comunque assunto il farmaco è P(Farmaco|¬Effetto collaterale) = 0.1. In questo caso, il condizionamento riguarda la probabilità di assunzione del farmaco date le informazioni sull’effetto collaterale senza coinvolgere il teorema di Bayes.</p>
+<p>Quindi, la probabilità di assunzione del farmaco è P(Farmaco) = P(Farmaco|Effetto collaterale)P(Effetto collaterale) + P(Farmaco|¬Effetto collaterale)P(¬Effetto collaterale). la codifica in Python è la seguente:</p>
+<p>#definizioni delle probaibilità P_effetto_collaterale = 0.2 P_farmaco_effetto_collaterale = 0.9 P_farmaco_non_effetto_collaterale = 0.1 P_farmaco = P_farmaco_effetto_collaterale * P_effetto_collaterale + P_farmaco_non_effetto_collaterale * (1 - P_effetto_collaterale) print(f”La probabilità che una pesona abbia assunto il farmaco è : {P_farmaco}“) La probabilità che una pesona abbia assunto il farmaco è : 0.26 Campo Giuridico Penale:</p>
+<p>Immaginiamo di avere le seguenti informazioni in un contesto giuridico penale:</p>
+<p>P(Condanna con prove schiaccianti) = 0.95 P(Condanna senza prove schiaccianti) = 0.2 P(Prove schiaccianti) = 0.3 Utilizziamo la formula di condizionamento per calcolare la probabilità di condanna: P(Condanna)=P(Condanna con prove schiaccianti)P(Prove schiaccianti)+P(Condanna senza prove schiaccianti)(1-P(Prove schiaccianti)) La codifica in Python è la seguente:</p>
+<p>prob_condanna_prove_schiaccianti = 0.95 prob_condanna_no_prove_schiaccianti = 0.2 prob_prove_schiaccianti = 0.3 prob_condanna = prob_condanna_prove_schiaccianti * prob_prove_schiaccianti + prob_condanna_no_prove_schiaccianti * (1 - prob_prove_schiaccianti) print(f”La probabilità che un imputato sia colpevole dato che ci sono prove schiaccianti è: {prob_condanna} La probabilità che un imputato sia colpevole dato che ci sono prove schiaccianti è: 0.42499999999999993 Questi due esempi illustrano come la formula di condizionamento possa essere applicata in contesti medici e giuridici penali per calcolare probabilità condizionate basate su informazioni specifiche relative agli eventi considerati.</p>
 
 
 </section>
