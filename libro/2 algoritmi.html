@@ -433,7 +433,8 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>Esempio di Implicazione: supponiamo di avere le seguenti proposizioni: - p: Il sole splende. - q: Faccio una passeggiata. - L’implicazione che possiamo formulare è: “Se il sole splende, allora faccio una passeggiata”, che si scrive come “p → q”. Dalla tabella della verità, possiamo vedere che in tre dei quattro casi l’implicazione “p → q” è vera. L’unico caso in cui l’implicazione è falsa è quando il sole splende (p è vero) ma non faccio una passeggiata (q è falso).</p>
+<p>Esempio di Implicazione: supponiamo di avere le seguenti proposizioni: - p: Il sole splende. - q: Faccio una passeggiata.</p>
+<p>L’implicazione che possiamo formulare è: “Se il sole splende, allora faccio una passeggiata”, che si scrive come “p → q”. Dalla tabella della verità, possiamo vedere che in tre dei quattro casi l’implicazione “p → q” è vera. L’unico caso in cui l’implicazione è falsa è quando il sole splende (p è vero) ma non faccio una passeggiata (q è falso).</p>
 <p>Quindi, in base alla logica dell’implicazione, se il sole splende, sto effettivamente facendo una passeggiata o potrei anche non farla (ad eccezione del caso in cui il sole splenda e io non faccia una passeggiata, in cui l’implicazione è falsa).</p>
 <p><strong>Implicazione Bilaterale (↔︎)</strong>: L’implicazione bilaterale è un’operazione logica che stabilisce che due proposizioni sono equivalenti, cioè che entrambe le proposizioni hanno lo stesso valore di verità. Si rappresenta con il simbolo “↔︎” e si legge come “se e solo se”. L’implicazione bilaterale è vera solo quando le proposizioni hanno lo stesso valore di verità, sia entrambe vere che entrambe false.</p>
 <table class="table-hover caption-top table">
@@ -1000,7 +1001,8 @@ P(a) = P(a/b)P(b) + P(a/¬b)P(¬b).
 \]</span> Il condizionamento discende immediatamente dalla marginalizzazione. La probabilità che si verifichi a è data dalla marginalizzazione della probabilità congiunta di questi due eventi. La probabilità che si verifichi b è disgiunta dalla probabilità che si verifichi ¬b. Quindi, quando si verifica a si ha b oppure ¬b ma non entrambi quindi se sommo le probabilità P(a, b) + P(a, ¬b) ottengo P(a).</p>
 <p>Vediamo due esempi di applicazioni della formula di condizionamento in Python, uno nel campo medico e uno nel campo giuridico penale:</p>
 <p><strong>Campo medico Supponiamo di avere le seguenti informazioni:</strong></p>
-<p>La probabilità che una persona sviluppi un certo effetto collaterale a seguito di un farmaco è <span class="math inline">\(P(Effetto collaterale) = 0.2\)</span>. Si sa che se una persona sviluppa l’effetto collaterale, la probabilità che abbia assunto il farmaco è <span class="math inline">\(P(Farmaco|Effetto collaterale) = 0.9\)</span>. D’altra parte, se una persona non mostra l’effetto collaterale, la probabilità che abbia comunque assunto il farmaco è <span class="math inline">\(P(Farmaco|¬Effetto collaterale) = 0.1\)</span>. In questo caso, il condizionamento riguarda la probabilità di assunzione del farmaco date le informazioni sull’effetto collaterale senza coinvolgere il teorema di Bayes.</p>
+<p>La probabilità che una persona sviluppi un certo effetto collaterale a seguito di un farmaco è <span class="math inline">\(P(Effetto collaterale) = 0.2\)</span>.</p>
+<p>Si sa che se una persona sviluppa l’effetto collaterale, la probabilità che abbia assunto il farmaco è <span class="math inline">\(P(Farmaco|Effetto collaterale) = 0.9\)</span>. D’altra parte, se una persona non mostra l’effetto collaterale, la probabilità che abbia comunque assunto il farmaco è <span class="math inline">\(P(Farmaco|¬Effetto collaterale) = 0.1\)</span>. In questo caso, il condizionamento riguarda la probabilità di assunzione del farmaco date le informazioni sull’effetto collaterale senza coinvolgere il teorema di Bayes.</p>
 <p>Quindi, la probabilità di assunzione del farmaco è <span class="math display">\[
 P(Farmaco) = P(Farmaco|Effetto collaterale)P(Effetto collaterale) + P(Farmaco|¬Effetto collaterale)P(¬Effetto collaterale).
 \]</span></p>
@@ -1021,7 +1023,7 @@ P(Farmaco) = P(Farmaco|Effetto collaterale)P(Effetto collaterale) + P(Farmaco|¬
 <p><span class="math inline">\(P(Prove schiaccianti) = 0.3\)</span></p>
 <p>Utilizziamo la formula di condizionamento per calcolare la probabilità di condanna:</p>
 <p><span class="math display">\[
-P(Condanna) =   P(Condanna con prove schiaccianti)P(Prove schiaccianti) + \\
+P(Condanna) =   P(Condanna con prove schiaccianti)P(Prove schiaccianti) +
                 P(Condanna senza prove schiaccianti)(1-P(Prove schiaccianti))
 \]</span></p>
 <p>La codifica in Python è la seguente:</p>
