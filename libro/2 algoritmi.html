@@ -265,6 +265,12 @@ window.Quarto = {
   <li><a href="#probabilità-condizionata" id="toc-probabilità-condizionata" class="nav-link" data-scroll-target="#probabilità-condizionata"><span class="header-section-number">3.2.10</span> probabilità condizionata</a></li>
   <li><a href="#condizionamento" id="toc-condizionamento" class="nav-link" data-scroll-target="#condizionamento"><span class="header-section-number">3.2.11</span> Condizionamento</a></li>
   </ul></li>
+  <li><a href="#inferenza-bayesiana" id="toc-inferenza-bayesiana" class="nav-link" data-scroll-target="#inferenza-bayesiana"><span class="header-section-number">3.3</span> Inferenza Bayesiana</a>
+  <ul class="collapse">
+  <li><a href="#il-teorema-di-bayes" id="toc-il-teorema-di-bayes" class="nav-link" data-scroll-target="#il-teorema-di-bayes"><span class="header-section-number">3.3.1</span> Il Teorema di Bayes</a></li>
+  <li><a href="#applicazioni-pratiche" id="toc-applicazioni-pratiche" class="nav-link" data-scroll-target="#applicazioni-pratiche"><span class="header-section-number">3.3.2</span> Applicazioni Pratiche</a></li>
+  <li><a href="#reti-di-bayes" id="toc-reti-di-bayes" class="nav-link" data-scroll-target="#reti-di-bayes"><span class="header-section-number">3.3.3</span> reti di Bayes</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1040,113 +1046,271 @@ P(Condanna) =   P(Condanna con prove schiaccianti)P(Prove schiaccianti) +
 <p><strong>Output atteso :</strong></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>La probabilità che un imputato sia colpevole dato che ci sono prove schiaccianti è: <span class="fl">0.42499999999999993</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Questi due esempi illustrano come la formula di condizionamento possa essere applicata in contesti medici e giuridici penali per calcolare probabilità condizionate basate su informazioni specifiche relative agli eventi considerati.</p>
-<section id="distribuzioni-di-probabilità-1" class="level4" data-number="3.2.11.1">
-<h4 data-number="3.2.11.1" class="anchored" data-anchor-id="distribuzioni-di-probabilità-1"><span class="header-section-number">3.2.11.1</span> Distribuzioni di probabilità</h4>
-<p>le distribuzioni di probabilità sono funzioni che descrivono la probabilità di ogni possibile valore di una variabile aleatoria. Ad esempio, la distribuzione di probabilità della variabile aleatoria “sentenza” nel processo penale può essere rappresentata come segue: P(sentenza) = {0.1, 0.1, 0.8}. Nel seguito vedremo alcune distribuzioni di probabilità notevoli.</p>
 </section>
-<section id="probabilità-congiunta-1" class="level4" data-number="3.2.11.2">
-<h4 data-number="3.2.11.2" class="anchored" data-anchor-id="probabilità-congiunta-1"><span class="header-section-number">3.2.11.2</span> Probabilità congiunta</h4>
-<p>La probabilità congiunta è la probabilità che due eventi si verifichino contemporaneamente. Ad esempio, la probabilità che un processo penale porti a una condanna e che il condannato sia colpevole è data dalla probabilità congiunta di questi due eventi. Oppure, in ambito medico, la probabilità che un paziente abbia una certa patologia e che il test diagnostico sia positivo è data dalla probabilità congiunta di questi due eventi. Oppure, in ambito metereologico, la probabilità che sia nuvolo e che piova è la probabilità congiunta di questi due eventi:</p>
-<p>probabilità che sia nuvoloso:</p>
+</section>
+<section id="inferenza-bayesiana" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="inferenza-bayesiana"><span class="header-section-number">3.3</span> Inferenza Bayesiana</h2>
+<blockquote class="blockquote">
+<p>“Mr.&nbsp;Bayes … design … was to find out a method by which we might judge concerning the probability that an event has to happen, in given circumstances, upon supposition that we know nothing concerning it but that, under the same circumstances, it has happened a certain number of times, and failed a certain other number of times.” - (Richard Price, presentando lo scritto dell’amico Thomas Bayes alla Royal Society of London)</p>
+</blockquote>
+<p>Il Teorema di Bayes, formalizzato dal reverendo Thomas Bayes nel XVIII secolo, è uno strumento fondamentale nell’ambito della statistica e dell’intelligenza artificiale che permette di aggiornare le nostre credenze riguardo ad un’ipotesi sulla base di nuove evidenze. Le tecniche di inferenza basate su questo teorema sono ampiamente utilizzate in diversi campi, dall’analisi dei dati alla diagnostica medica, dalla finanza alla progettazione di algoritmi di machine learning.</p>
+<section id="il-teorema-di-bayes" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="il-teorema-di-bayes"><span class="header-section-number">3.3.1</span> Il Teorema di Bayes</h3>
+<p>Il Teorema di Bayes fornisce un modo per calcolare la probabilità condizionata di un’ipotesi data l’evidenza osservata. Formalmente, il teorema può essere espresso come:</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+\]</span></p>
+<p>Dove: - P(A|B) è la probabilità dell’ipotesi A dato l’evidenza B. - P(B|A) è la probabilità dell’evidenza B dato l’ipotesi A. - P(A) è la probabilità a priori dell’ipotesi A. - P(B) è la probabilità dell’evidenza B.</p>
+</section>
+<section id="applicazioni-pratiche" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="applicazioni-pratiche"><span class="header-section-number">3.3.2</span> Applicazioni Pratiche</h3>
+<p><strong>Diagnostica Medica</strong></p>
+<p>Nel campo della diagnostica medica, il Teorema di Bayes è utilizzato per valutare la probabilità che un paziente abbia una certa malattia sulla base dei sintomi presentati e dei risultati dei test di laboratorio. Ad esempio, se la probabilità di un test positivo dato che il paziente ha la malattia e la probabilità che il paziente abbia effettivamente la malattia sono note, il teorema di Bayes può essere impiegato per calcolare la probabilità che il paziente abbia la malattia date le informazioni disponibili.</p>
+<p><strong>Finanza</strong></p>
+<p>Nel settore finanziario, il Teorema di Bayes viene adoperato per valutare il rischio e formulare previsioni basate su dati storici e informazioni di mercato. Ad esempio, il teorema può essere utilizzato per stimare la probabilità di un evento futuro, come un aumento dei tassi di interesse, sulla base di indicatori economici attuali.</p>
+<p><strong>Machine Learning</strong></p>
+<p>Nei modelli di machine learning, come le reti bayesiane, il Teorema di Bayes svolge un ruolo chiave nell’aggiornare le probabilità delle variabili all’interno del modello in risposta ai nuovi dati. Questo processo di apprendimento bayesiano consente ai modelli di essere più flessibili ed adattabili all’evoluzione dei dati nel tempo.</p>
+<p><strong>diritto penale</strong></p>
+<p>Dalle statistiche (false perché inventate da me :) di un certo tribunale o dal Ministero della Giustizia abbiamo che - 80% degli imputati condannati hanno precedenti penali P(precedenti/condanna) = 0,8; - 10% degli imputati sono condannati P(condanna) = 0,1 - 20% degli imputati hanno precedenti penali P(precedenti) = 0,2</p>
+<p>Applicando il teorema di Bayes abbiamo che la probabilità che un imputato con precedenti sia condannato è <span class="math display">\[
+P(condanna/precedenti) = P(condanna) \cdot \frac{P(precedenti/condanna)}{P(precedenti)} = 0,1 \cdot \frac{0,8}{0,2}= 0,4
+\]</span></p>
+<p>Si osservi che la probabilità di essere condannati era del 10%. Applicando il teorema di Bayes abbiamo scoperto che la probabilità di essere condannato è del 40% se sappiamo che la persona sottoposta a giudizio ha dei precedenti penali. Ovvero, la probabilità iniziale di essere condannati senza sapere se sono presenti o meno precedenti penali viene moltiplicata per 4 (il cosidetto fattore di Bayes).</p>
+<p>Le tecniche di inferenza basate sul Teorema di Bayes forniscono un approccio potente per il ragionamento probabilistico e l’aggiornamento delle credenze in base alle evidenze disponibili. Utilizzate in una vasta gamma di settori, queste tecniche consentono di prendere decisioni informate e di sfruttare al meglio le informazioni a disposizione. La comprensione e l’applicazione corretta del Teorema di Bayes sono cruciali per ottenere risultati accurati e significativi nelle analisi statistiche e nel machine learning.</p>
+</section>
+<section id="reti-di-bayes" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="reti-di-bayes"><span class="header-section-number">3.3.3</span> reti di Bayes</h3>
+<p>Una&nbsp;<a href="https://it.wikipedia.org/wiki/Rete_bayesiana">rete bayesiana</a>&nbsp;(BN,&nbsp;Bayesian network) è un modello grafico probabilistico che rappresenta un insieme di variabili stocastiche con le loro dipendenze condizionali attraverso l’uso di un&nbsp;<a href="https://it.wikipedia.org/wiki/Grafo_aciclico_diretto">grafo aciclico diretto&nbsp;(DAG)</a> . Per esempio una rete Bayesiana potrebbe rappresentare la relazione probabilistica esistente tra i sintomi e le malattie. Dati i sintomi, la rete può essere usata per calcolare la probabilità della presenza di diverse malattie. Le reti Bayesiane sono Grafi diretti. Ogni nodo rappresenta una variabile aleatoria e ogni freccia da X a Y indica che X è un genitore di Y. Ovvero, indica che la distribuzione probabilistica di Y dipende da X. Ogni nodo ha la distribuzione probabilistica P(X | Genitori(X)). Vediamo un esempio sui mezzi di trasporto (:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rete di Bayes treno.png" class="img-fluid figure-img"></p>
+<figcaption>Rete di Bayes puntualità treno</figcaption>
+</figure>
+</div>
+<p>Una rete bayesiana (di credenza) richiede che ogni nodo del grafo sia condizionatamente indipendente da qualsiasi sottoinsieme di nodi che non siano discendenti dei predecessori diretti del nodo stesso. Ci si affida ad un esperto di dominio per la definizione della topologia della rete di credenze (quali nodi e quali relazioni condizionali di dipendenza), poi si calcolano le influenze dirette e le conseguenti probabilità. Ciò equivale a definire la conoscenza del mondo in cui può avvenire un evento. Ovvero, la rete rappresenta le assunzioni che si possono fare su quel dominio. Le probabilità condizionate tra i nodi riassumono un insieme potenzialmente infinito di circostanze a noi ignote e che potrebbero influenzare l’evento. La topologia della rete è la base di conoscenza generale ed astratta dell’ambiente in cui si possono verificare gli eventi e rappresenta la struttura generale del processo causale nel dominio, piuttosto che fornire dettagli su un particolare elemento. Nelle reti bayesiane gli archi che connettono i nodi esprimono le relazioni causali dirette (causa -&gt; effetto). Una volta definita la topologia bisogna specificare la tabella delle probabilità condizionate associata ad ogni nodo. Ogni riga della tabella esprime la probabilità del valore di ogni nodo per un caso condizionante (combinazione di valori dei nodi genitori produttoria delle prob. condiz. Un nodo con nessun genitore è rappresentato dalla probabilità a priori.</p>
+<section id="esempio-di-rete-bayesiana-indagine-criminale" class="level4" data-number="3.3.3.1">
+<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="esempio-di-rete-bayesiana-indagine-criminale"><span class="header-section-number">3.3.3.1</span> Esempio di rete bayesiana: indagine criminale</h4>
+<p>Scriviamo il codice Python necessario per creare un modello di Rete Bayesiana per analizzare la probabilità di colpevolezza di un sospetto in un’indagine criminale. Il modello considera tre elementi di prova: la presenza di un’arma (Arma), un movente (Movente) e un alibi (Alibi), e come questi influenzano la probabilità di colpevolezza (Colpevolezza).</p>
+<p>Il codice non richiederà input diretti dall’utente. Invece, definisce la struttura della Rete Bayesiana e imposta le tabelle di probabilità per ciascun fattore basate su valori predefiniti che dovrebbero essere estrapolati da statistiche sulle indagini criminali.</p>
+<p><strong><em>Descrizione del codice</em></strong></p>
+<p>L’output di questo codice è: - un modello di Rete Bayesiana verificato; - la stampa del modello; - la stampa delle Distribuzioni di Probabilità Condizionata (CPD) per ogni variabile nella rete; - il grafo della rete Bayesiana.</p>
+<p>Inizialmente, definiamo la struttura della Rete Bayesiana, mostrando come i fattori di prova (Arma, Movente, Alibi) influenzano la colpevolezza (Colpevolezza). Quindi, definiamo le tabelle di probabilità per ciascun fattore. Ad esempio, la probabilità che un’arma sia presente sia presente sul luogo del delitto la poniamo pari al 70% (0.7) e la sua assenza al 30% (0.3). Più complessa è la definizione della tabella di probabilità per la colpevolezza, che considera tutte le possibili combinazioni dei fattori di prova. Tutte queste tabelle sono aggiunte al modello di Rete Bayesiana. Infine, verifichiamo se il modello è definito correttamente e stampiamo tutte le distribuzioni di probabilità.</p>
+<p>La logica chiave in questo codice è come esso rappresenta le relazioni tra diversi elementi di prova e la colpevolezza. Ad esempio, la presenza di un’arma, un movente e la mancanza di un alibi aumenterebbero la probabilità di colpevolezza, mentre la loro assenza la diminuirebbe. Questo è riflesso nella tabella di probabilità per ‘Colpevolezza’, che considera tutte le possibili combinazioni di prove:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">nuvoloso</th>
-<th style="text-align: center;">¬nuvoloso</th>
+<th>Arma</th>
+<th>Motive</th>
+<th>Alibi</th>
+<th>P(Non Colpevole)</th>
+<th>P(Colpevole)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">P(n)</td>
-<td style="text-align: center;">0,7</td>
-<td style="text-align: center;">0,3</td>
-</tr>
-</tbody>
-</table>
-<p>probabilità che piova:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">piove</th>
-<th style="text-align: center;">¬piove</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">P(p)</td>
-<td style="text-align: center;">0,2</td>
-<td style="text-align: center;">0,8</td>
-</tr>
-</tbody>
-</table>
-<p>probabilità che sia nuvoloso e piova:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">P(p,n)</th>
-<th style="text-align: center;">nuvoloso</th>
-<th style="text-align: center;">¬nuvoloso</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">piove</td>
-<td style="text-align: center;">0,55</td>
-<td style="text-align: center;">0,05</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0.1</td>
+<td>0.9</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">¬piove</td>
-<td style="text-align: center;">0,15</td>
-<td style="text-align: center;">0,25</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0.2</td>
+<td>0.8</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0.3</td>
+<td>0.7</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0.4</td>
+<td>0.6</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0.5</td>
+<td>0.5</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0.6</td>
+<td>0.4</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0.7</td>
+<td>0.3</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0.8</td>
+<td>0.2</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="indipendenza-delle-variabili-aleatorie-1" class="level4" data-number="3.2.11.3">
-<h4 data-number="3.2.11.3" class="anchored" data-anchor-id="indipendenza-delle-variabili-aleatorie-1"><span class="header-section-number">3.2.11.3</span> Indipendenza delle variabili aleatorie</h4>
-<p>L’indipendenza di due eventi indica che il verificarsi di uno non influenza il verificarsi dell’altro. Ad esempio: Lancio di due dadi. Il lancio del primo non influenza il secondo; Il contrario, la dipendenza, indica che il verificarsi di uno influenza il verificarsi dell’altro. Nel caso in cui due variabili aleatorie siano indipendenti si ha la seguente proprietà:</p>
-<p>P(a “∧” b)=P(a)*P(b)</p>
-</section>
-<section id="negazione-1" class="level4" data-number="3.2.11.4">
-<h4 data-number="3.2.11.4" class="anchored" data-anchor-id="negazione-1"><span class="header-section-number">3.2.11.4</span> Negazione</h4>
-<p>La negazione di un evento è l’evento che si verifica quando l’evento originale non si verifica. Ad esempio, la negazione dell’evento “piove” è “non piove”.</p>
-<p>Se la probabilità che un evento è α, la probabilità che l’evento non si verifichi è 1 - α.</p>
-<p>P(A) = α, allora P(¬A) = 1 - α</p>
-</section>
-<section id="inclusione-1" class="level4" data-number="3.2.11.5">
-<h4 data-number="3.2.11.5" class="anchored" data-anchor-id="inclusione-1"><span class="header-section-number">3.2.11.5</span> Inclusione</h4>
-<p>P(a ∨ b) = P(a) + P(b) - P(a ∧ b).</p>
-<p>La probabilità che si verifichi l’evento a o l’evento b è uguale alla somma delle probabilità dei due eventi meno la probabilità congiunta. Si noti che se gli eventi sono incompatibili la probabilità congiunta è nulla!</p>
-<p>3.2.1.8 Marginalizzazione La marginalizzazione è una tecnica utilizzata per calcolare la probabilità di un evento dato un insieme di eventi. Ad esempio, la probabilità che un processo penale porti a una condanna dato che il condannato è colpevole è data dalla marginalizzazione della probabilità congiunta di questi due eventi.</p>
-<p>P(a) = P(a, b) + P(a, ¬b).</p>
-<p>La probabilità che si verifichi b è disgiunta dalla probabilità che si verifichi ¬b. Quindi, quando si verifica a si ha b oppure ¬b ma non entrambi quindi se sommo le probabilità P(a, b) + P(a, ¬b) ottengo P(a)</p>
-<p>3.2.1.9 probabilità condizionata La probabilità condizionata è la probabilità che un evento si verifichi dato che un altro evento si è verificato. Ad esempio, la probabilità che un processo penale porti a una condanna dato che il sottoposto a giudizio è colpevole è data dalla probabilità condizionata di questi due eventi.</p>
-<p>E’ possibile fare inferenze a proposito della probabilità di una proposizione ignota A, data la prova B, calcolando P(A/B) (probabilità di A dato che tutto ciò che sappiamo è B) (inferenza probabilistica)</p>
-<p>Un’interrogazione ad un sistema di ragionamento probabilistico chiederà di calcolare il valore di una particolare probabilità condizionata.</p>
-<p>Fin qui abbiamo visto casi in cui il singolo evento non era condizionato da altro evento: - Prima estrazione del lotto; - Lancio di uno o due dati Cosa succede alla probabilità quando l’avverarsi di una proposizione è condizionata all’avverarsi di un’altra proposizione?</p>
-<p>P(a|b) = probabilità dell’evento a dato che noi sappiamo che l’evento b si è verificato. Oppure, “ la probabilità di a dato b” Possiamo chiederci: - Qual’è la probabilità che vinca la “ Roma” se ha vinto la “ Lazio”?, P(Roma/Lazio). - Qual’è la probabilità che arrivi il “38” se è arrivato il “52”?”, P(“38”/”52”). La formula per calcolare la probabilità condizionata di a dato b è la seguente:</p>
-<p>P(a/b) =(𝑃(𝑎 “∧” 𝑏) )/(𝑃(𝑏)); “siamo interessati agli eventi dove a e b sono vere, ma solo nei mondi dove b è vera!” P(a “∧” b)=P(b)P(a/b) P(a “∧” b)=P(b)P(a/b)</p>
-<p>Esercizio 1:Qual è la probabilità che ottenga una somma pari 9 lanciando due dadi se il primo dado è 6, P(9/6)? La risposta si ottiene direttamente dalla for,mula della probabilità condizionata e da quella della probabilità congiunta: p(9/6) = P(9 ∧ 6) / P(6) = 1/36 / 1/6 = 1/6 La proposizione a = «somma=9» si verifica con i seguenti lanci:</p>
-<p>a = {(6,3),(5,4),(4,5),(3,6)}  P(a) = 4/36</p>
-<p>La proposizione b = «primo dado=6» si verifica con i seguenti lanci:</p>
-<p>b = {(6,1),(6,2),(6,3),(6,4),(6,5),(6,6)}  P(b) = 6/36</p>
-<p>a “∧” b = {(6,3)}  P(a “∧” b) = 1/36</p>
-<p>P(a/b) =(𝑃(𝑎 “∧” 𝑏) )/(𝑃(𝑏))= (1/36)/(6/36)=1/6</p>
-<ul>
-<li>1 2 3 4 5 6 1 2 3 4 5 6 7 2 3 4 5 6 7 8 3 4 5 6 7 8 9 4 5 6 7 8 9 10 5 6 7 8 9 10 11 6 7 8 9 10 11 12 Ovvero, per risolvere l’esercizio dobbiamo osservare l’ ultima riga della tabella realtiva al lancio del primo dado con risultato 6. i casi favorevoli sono solo 1, mentre i casi possibili sono 6. Quindi la probabilità è 1/6.</li>
-</ul>
-<p>3.2.1.10 Condizionamento P(a) = P(a | b)P(b) + P(a | ¬b)P(¬b).</p>
-<p>Il condizionamento discende immediatamente dalla marginalizzazione. La probabilità che si verifichi a è data dalla marginalizzazione della probabilità congiunta di questi due eventi. La probabilità che si verifichi b è disgiunta dalla probabilità che si verifichi ¬b. Quindi, quando si verifica a si ha b oppure ¬b ma non entrambi quindi se sommo le probabilità P(a, b) + P(a, ¬b) ottengo P(a).</p>
-<p>Ecco due esempi di applicazioni della formula di condizionamento in Python, uno nel campo medico e uno nel campo giuridico penale:</p>
-<p>Campo medico Supponiamo di avere le seguenti informazioni:</p>
-<p>La probabilità che una persona sviluppi un certo effetto collaterale a seguito di un farmaco è P(Effetto collaterale) = 0.2. Si sa che se una persona sviluppa l’effetto collaterale, la probabilità che abbia assunto il farmaco è P(Farmaco|Effetto collaterale) = 0.9. D’altra parte, se una persona non mostra l’effetto collaterale, la probabilità che abbia comunque assunto il farmaco è P(Farmaco|¬Effetto collaterale) = 0.1. In questo caso, il condizionamento riguarda la probabilità di assunzione del farmaco date le informazioni sull’effetto collaterale senza coinvolgere il teorema di Bayes.</p>
-<p>Quindi, la probabilità di assunzione del farmaco è P(Farmaco) = P(Farmaco|Effetto collaterale)P(Effetto collaterale) + P(Farmaco|¬Effetto collaterale)P(¬Effetto collaterale). la codifica in Python è la seguente:</p>
-<p>#definizioni delle probaibilità P_effetto_collaterale = 0.2 P_farmaco_effetto_collaterale = 0.9 P_farmaco_non_effetto_collaterale = 0.1 P_farmaco = P_farmaco_effetto_collaterale * P_effetto_collaterale + P_farmaco_non_effetto_collaterale * (1 - P_effetto_collaterale) print(f”La probabilità che una pesona abbia assunto il farmaco è : {P_farmaco}“) La probabilità che una pesona abbia assunto il farmaco è : 0.26 Campo Giuridico Penale:</p>
-<p>Immaginiamo di avere le seguenti informazioni in un contesto giuridico penale:</p>
-<p>P(Condanna con prove schiaccianti) = 0.95 P(Condanna senza prove schiaccianti) = 0.2 P(Prove schiaccianti) = 0.3 Utilizziamo la formula di condizionamento per calcolare la probabilità di condanna: P(Condanna)=P(Condanna con prove schiaccianti)P(Prove schiaccianti)+P(Condanna senza prove schiaccianti)(1-P(Prove schiaccianti)) La codifica in Python è la seguente:</p>
-<p>prob_condanna_prove_schiaccianti = 0.95 prob_condanna_no_prove_schiaccianti = 0.2 prob_prove_schiaccianti = 0.3 prob_condanna = prob_condanna_prove_schiaccianti * prob_prove_schiaccianti + prob_condanna_no_prove_schiaccianti * (1 - prob_prove_schiaccianti) print(f”La probabilità che un imputato sia colpevole dato che ci sono prove schiaccianti è: {prob_condanna} La probabilità che un imputato sia colpevole dato che ci sono prove schiaccianti è: 0.42499999999999993 Questi due esempi illustrano come la formula di condizionamento possa essere applicata in contesti medici e giuridici penali per calcolare probabilità condizionate basate su informazioni specifiche relative agli eventi considerati.</p>
+<p>In questa tabella:</p>
+<p>0 rappresenta l’assenza (di arma, movente o alibi) 1 rappresenta la presenza Le ultime due colonne mostrano le probabilità di non colpevolezza e colpevolezza per ogni combinazione di evidenze</p>
+<p>Questa Rete Bayesiana può essere utilizzata per calcolare la probabilità di colpevolezza dato uno scenario di prove, aiutando gli investigatori a quantificare e ragionare sull’incertezza nei casi criminali.</p>
+<div id="cell-43" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.models <span class="im">import</span> BayesianNetwork</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.factors.discrete <span class="im">import</span> TabularCPD</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definizione del modello</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> BayesianNetwork([(<span class="st">'Arma'</span>, <span class="st">'Colpevolezza'</span>),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                       (<span class="st">'Movente'</span>, <span class="st">'Colpevolezza'</span>),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                       (<span class="st">'Alibi'</span>, <span class="st">'Colpevolezza'</span>)])</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Definizione delle probabilità condizionate</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>cpd_arma <span class="op">=</span> TabularCPD(variable<span class="op">=</span><span class="st">'Arma'</span>, variable_card<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>                      values<span class="op">=</span>[[<span class="fl">0.7</span>], [<span class="fl">0.3</span>]])</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>cpd_Movente <span class="op">=</span> TabularCPD(variable<span class="op">=</span><span class="st">'Movente'</span>, variable_card<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>                        values<span class="op">=</span>[[<span class="fl">0.6</span>], [<span class="fl">0.4</span>]])</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>cpd_alibi <span class="op">=</span> TabularCPD(variable<span class="op">=</span><span class="st">'Alibi'</span>, variable_card<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>                       values<span class="op">=</span>[[<span class="fl">0.5</span>], [<span class="fl">0.5</span>]])</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>cpd_colpevolezza <span class="op">=</span> TabularCPD(variable<span class="op">=</span><span class="st">'Colpevolezza'</span>, variable_card<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>                              values<span class="op">=</span>[[<span class="fl">0.9</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>],</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>                                      [<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>]],</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>                              evidence<span class="op">=</span>[<span class="st">'Arma'</span>, <span class="st">'Movente'</span>, <span class="st">'Alibi'</span>],</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>                              evidence_card<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>])</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co"># cpd_colpevolezza = TabularCPD(variable='Colpevolezza', variable_card=2,</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="co">#                               values=[[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="co">#                                       [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2]],</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a><span class="co">#                               evidence=['Arma', 'Movente', 'Alibi'],</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="co">#                               evidence_card=[2, 2, 2])</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggiunta delle probabilità condizionate al modello</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>model.add_cpds(cpd_arma, cpd_Movente, cpd_alibi, cpd_colpevolezza)</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Verifica del modello</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Il modello è corretto: "</span>, model.check_model())</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Stampa del modello</span></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cpd <span class="kw">in</span> model.get_cpds():</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"CPD di </span><span class="sc">{variable}</span><span class="st">:"</span>.<span class="bu">format</span>(variable<span class="op">=</span>cpd.variable))</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(cpd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Il modello è corretto:  True
+CPD di Arma:
++---------+-----+
+| Arma(0) | 0.7 |
++---------+-----+
+| Arma(1) | 0.3 |
++---------+-----+
+CPD di Movente:
++------------+-----+
+| Movente(0) | 0.6 |
++------------+-----+
+| Movente(1) | 0.4 |
++------------+-----+
+CPD di Alibi:
++----------+-----+
+| Alibi(0) | 0.5 |
++----------+-----+
+| Alibi(1) | 0.5 |
++----------+-----+
+CPD di Colpevolezza:
++-----------------+------------+-----+------------+------------+
+| Arma            | Arma(0)    | ... | Arma(1)    | Arma(1)    |
++-----------------+------------+-----+------------+------------+
+| Movente         | Movente(0) | ... | Movente(1) | Movente(1) |
++-----------------+------------+-----+------------+------------+
+| Alibi           | Alibi(0)   | ... | Alibi(0)   | Alibi(1)   |
++-----------------+------------+-----+------------+------------+
+| Colpevolezza(0) | 0.9        | ... | 0.3        | 0.1        |
++-----------------+------------+-----+------------+------------+
+| Colpevolezza(1) | 0.1        | ... | 0.7        | 0.9        |
++-----------------+------------+-----+------------+------------+</code></pre>
+</div>
+</div>
+<div id="cell-44" class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assumendo che 'model' sia il tuo BayesianNetwork già definito</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.DiGraph()</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(model.edges())</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>nx.draw(G, pos, with_labels<span class="op">=</span><span class="va">True</span>, node_color<span class="op">=</span><span class="st">'lightblue'</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>        node_size<span class="op">=</span><span class="dv">3000</span>, arrowsize<span class="op">=</span><span class="dv">20</span>, font_size<span class="op">=</span><span class="dv">12</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Rete di Bayes per l'Analisi della Colpevolezza"</span>)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2 algoritmi_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Infine, una volta costruita la rete di Bayes possiamo interrogarla per avere una stima della probabilità di un determinato evento. Qual è la probabiltà che un indagato senza alibi, senza movente e in assenza di arma del delitto sia colpevole?</p>
+<div id="cell-46" class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.inference <span class="im">import</span> VariableElimination</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creiamo un oggetto per l'inferenza</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>inference <span class="op">=</span> VariableElimination(model)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Definiamo l'evidenza per la situazione descritta</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>evidence <span class="op">=</span> {</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Alibi'</span>: <span class="dv">0</span>,  <span class="co"># 0 rappresenta l'assenza di alibi</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Movente'</span>: <span class="dv">0</span>, <span class="co"># 0 rappresenta l'assenza di motivo</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Arma'</span>: <span class="dv">0</span>    <span class="co"># 0 rappresenta che l'arma non è stata trovata</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcoliamo la probabilità di colpevolezza dato l'evidenza</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> inference.query([<span class="st">'Colpevolezza'</span>], evidence<span class="op">=</span>evidence)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Stampiamo il risultato</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Probabilità di colpevolezza:"</span>)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Probabilità di colpevolezza:
+[0.9 0.1]</code></pre>
+</div>
+</div>
+<div id="cell-47" class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.inference <span class="im">import</span> VariableElimination</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creiamo un oggetto per l'inferenza</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>inference <span class="op">=</span> VariableElimination(model)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Definiamo l'evidenza per la situazione descritta</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>evidence <span class="op">=</span> {</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Alibi'</span>: <span class="dv">1</span>,  <span class="co"># 0 rappresenta l'assenza di alibi</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Movente'</span>: <span class="dv">0</span>, <span class="co"># 0 rappresenta l'assenza di motivo</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Arma'</span>: <span class="dv">0</span>    <span class="co"># 0 rappresenta che l'arma non è stata trovata</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcoliamo la probabilità di colpevolezza dato l'evidenza</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> inference.query([<span class="st">'Colpevolezza'</span>], evidence<span class="op">=</span>evidence)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Stampiamo il risultato</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Probabilità di colpevolezza:"</span>)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Probabilità di colpevolezza:
+[0.7 0.3]</code></pre>
+</div>
+</div>
 
 
 </section>
