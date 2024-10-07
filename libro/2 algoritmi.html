@@ -266,6 +266,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#il-teorema-di-bayes" id="toc-il-teorema-di-bayes" class="nav-link" data-scroll-target="#il-teorema-di-bayes">Il Teorema di Bayes</a></li>
   <li><a href="#applicazioni-pratiche" id="toc-applicazioni-pratiche" class="nav-link" data-scroll-target="#applicazioni-pratiche">Applicazioni Pratiche</a></li>
+  <li><a href="#verifica-diretta-dai-dati-del-dataset" id="toc-verifica-diretta-dai-dati-del-dataset" class="nav-link" data-scroll-target="#verifica-diretta-dai-dati-del-dataset"><strong>Verifica Diretta dai Dati del Dataset</strong></a></li>
+  <li><a href="#interpretazione" id="toc-interpretazione" class="nav-link" data-scroll-target="#interpretazione"><strong>Interpretazione</strong></a></li>
+  <li><a href="#considerazioni" id="toc-considerazioni" class="nav-link" data-scroll-target="#considerazioni"><strong>Considerazioni</strong></a></li>
+  <li><a href="#conclusione-1" id="toc-conclusione-1" class="nav-link" data-scroll-target="#conclusione-1"><strong>Conclusione</strong></a></li>
   <li><a href="#reti-di-bayes" id="toc-reti-di-bayes" class="nav-link" data-scroll-target="#reti-di-bayes">reti di Bayes</a></li>
   </ul></li>
   </ul>
@@ -909,7 +913,9 @@ P(a ∧ b)=P(b)P(a/b)
 \]</span> <span class="math display">\[
 P(a ∧ b)=P(b)P(a/b)
 \]</span></p>
-<p><strong>Esercizio 1:</strong> Qual è la probabilità che si ottenga una somma pari 9 lanciando due dadi se il primo dado è 6, P(9/6)? La risposta si ottiene direttamente dalla formula della probabilità condizionata e da quella della probabilità congiunta: p(9/6) = P(9 ∧ 6) / P(6) = 1/36 / 1/6 = 1/6</p>
+<section id="sec-CPC-lancio-due-dadi" class="level4">
+<h4 class="anchored" data-anchor-id="sec-CPC-lancio-due-dadi">calcolo della probabilità condizionata: lancio di due dadi</h4>
+<p>Qual è la probabilità che si ottenga una somma pari 9 lanciando due dadi se il primo dado è 6, P(9/6)? La risposta si ottiene direttamente dalla formula della probabilità condizionata e da quella della probabilità congiunta: p(9/6) = P(9 ∧ 6) / P(6) = 1/36 / 1/6 = 1/6</p>
 <p>La proposizione a = «somma=9» si verifica con i seguenti lanci:</p>
 <p>a = {(6,3),(5,4),(4,5),(3,6)}  P(a) = 4/36</p>
 <p>La proposizione b = «primo dado=6» si verifica con i seguenti lanci:</p>
@@ -996,6 +1002,115 @@ P(a ∧ b)=P(b)P(a/b)
 </tbody>
 </table>
 <p>Ovvero, per risolvere l’esercizio dobbiamo osservare l’ ultima riga della tabella realtiva al lancio del primo dado con risultato 6. i casi favorevoli sono solo 1, mentre i casi possibili sono 6. Quindi la probabilità è 1/6.</p>
+<p><strong>Esercizio 2:</strong></p>
+<p>Supponiamo di avere un dataset di 1.000 casi penali. Per ogni caso, raccogliamo le seguenti informazioni:</p>
+<ul>
+<li><strong>Alibi</strong> del sospettato (Sì/No)</li>
+<li><strong>Testimone oculare</strong> presente (Sì/No)</li>
+<li><strong>Condanna</strong> del sospettato (Sì/No)</li>
+</ul>
+</section>
+<section id="sec-CPC-caso-penale" class="level4">
+<h4 class="anchored" data-anchor-id="sec-CPC-caso-penale">calcolo della probabilità condizionata: caso penale</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Alibi</th>
+<th style="text-align: center;">Testimone Oculare</th>
+<th style="text-align: center;">Condanna</th>
+<th style="text-align: right;">Numero di Casi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Sì</td>
+<td style="text-align: center;">Sì</td>
+<td style="text-align: center;">Sì</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Sì</td>
+<td style="text-align: center;">Sì</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Sì</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Sì</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Sì</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Sì</td>
+<td style="text-align: center;">Sì</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Sì</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Sì</td>
+<td style="text-align: right;">150</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: right;">400</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>totale</strong></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: right;"><strong>1.000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Questo dataset può essere utilizzato per calcolare varie probabilità condizionate.</p>
+<p><strong>Esercizio 2.1: Probabilità di condanna dato che il sospettato non ha un alibi e c’è un testimone oculare.</strong></p>
+<ul>
+<li><strong>Formula:</strong> <span class="math inline">\(P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}, \text{Testimone} = \text{Sì})\)</span></li>
+<li><strong>Calcolo:</strong>
+<ul>
+<li>Numero di casi con Alibi = No, Testimone = Sì, Condanna = Sì: 200</li>
+<li>Numero totale di casi con Alibi = No, Testimone = Sì: 200 + 50 = 250</li>
+<li><span class="math inline">\(P = \frac{200}{250} = 0{,}8  (80\%)\)</span></li>
+</ul></li>
+</ul>
+<p><strong>Esercizio 2.2: Probabilità che ci sia un testimone oculare dato che il sospettato è stato condannato.</strong></p>
+<ul>
+<li><strong>Formula:</strong> <span class="math inline">\(P(\text{Testimone} = \text{Sì} \mid \text{Condanna} = \text{Sì})\)</span></li>
+<li><strong>Calcolo:</strong>
+<ul>
+<li>Numero di casi con Testimone = Sì, Condanna = Sì: 50 + 200 = 250</li>
+<li>Numero totale di casi con Condanna = Sì: 50 + 30 + 200 + 150 = 430</li>
+<li>$ P = 581 (58,1%)$</li>
+</ul></li>
+</ul>
+<p><strong>Esercizio 2.3: Probabilità che un sospettato non abbia un alibi dato che non è stato condannato.</strong></p>
+<ul>
+<li><strong>Formula:</strong> $P( = = ) $</li>
+<li><strong>Calcolo:</strong>
+<ul>
+<li>Numero di casi con Alibi = No, Condanna = No: 50 + 400 = 450</li>
+<li>Numero totale di casi con Condanna = No: 20 + 100 + 50 + 400 = 570</li>
+<li><span class="math inline">\(P = \frac{450}{570} \approx 0{,}789  (78,9\%)\)</span></li>
+</ul></li>
+</ul>
+<p>Questo dataset consente di esplorare come diverse variabili influenzino le probabilità di determinati esiti nel contesto del diritto penale. Può essere utilizzato per analisi statistiche, studi accademici o simulazioni di casi giudiziari.</p>
+</section>
 </section>
 <section id="condizionamento" class="level3">
 <h3 class="anchored" data-anchor-id="condizionamento">Condizionamento</h3>
@@ -1010,7 +1125,7 @@ P(a) = P(a/b)P(b) + P(a/¬b)P(¬b).
 P(Farmaco) = P(Farmaco|Effetto collaterale)P(Effetto collaterale) + P(Farmaco|¬Effetto collaterale)P(¬Effetto collaterale).
 \]</span></p>
 <p>la codifica in Python è la seguente:</p>
-<div id="cell-38" class="cell">
+<div id="cell-40" class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#definizioni delle probaibilità</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>P_effetto_collaterale <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>P_farmaco_effetto_collaterale <span class="op">=</span> <span class="fl">0.9</span></span>
@@ -1030,7 +1145,7 @@ P(Condanna) =   P(Condanna con prove schiaccianti)P(Prove schiaccianti) +
                 P(Condanna senza prove schiaccianti)(1-P(Prove schiaccianti))
 \]</span></p>
 <p>La codifica in Python è la seguente:</p>
-<div id="cell-40" class="cell" data-execution_count="1">
+<div id="cell-42" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>prob_condanna_prove_schiaccianti <span class="op">=</span> <span class="fl">0.95</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>prob_condanna_no_prove_schiaccianti <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>prob_prove_schiaccianti <span class="op">=</span> <span class="fl">0.3</span></span>
@@ -1074,6 +1189,86 @@ P(condanna/precedenti) = P(condanna) \cdot \frac{P(precedenti/condanna)}{P(prece
 \]</span></p>
 <p>Si osservi che la probabilità di essere condannati era del 10%. Applicando il teorema di Bayes abbiamo scoperto che la probabilità di essere condannato è del 40% se sappiamo che la persona sottoposta a giudizio ha dei precedenti penali. Ovvero, la probabilità iniziale di essere condannati senza sapere se sono presenti o meno precedenti penali viene moltiplicata per 4 (il cosidetto fattore di Bayes).</p>
 <p>Le tecniche di inferenza basate sul Teorema di Bayes forniscono un approccio potente per il ragionamento probabilistico e l’aggiornamento delle credenze in base alle evidenze disponibili. Utilizzate in una vasta gamma di settori, queste tecniche consentono di prendere decisioni informate e di sfruttare al meglio le informazioni a disposizione. La comprensione e l’applicazione corretta del Teorema di Bayes sono cruciali per ottenere risultati accurati e significativi nelle analisi statistiche e nel machine learning.</p>
+<section id="sec-TB-caso-penale" class="level4">
+<h4 class="anchored" data-anchor-id="sec-TB-caso-penale">Applicazione del Teorema di Bayes: caso penale</h4>
+<p>Applicazione del teorema di Bayes al data set del caso pratico <a href="#sec-CPC-caso-penale" class="quarto-xref"><span class="quarto-unresolved-ref">sec-CPC-caso-penale</span></a> il Teorema di Bayes per calcolare la probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong>, cioè ( P( = = ) ). Questo ci permette di comprendere meglio l’impatto dell’assenza di un alibi sulla probabilità di condanna.</p>
+<p><strong>Obiettivo:</strong> Calcolare $ P( = = ) $.</p>
+<p><strong>Teorema di Bayes:</strong></p>
+<p><span class="math display">\[
+P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{P(\text{Alibi} = \text{No} \mid \text{Condanna} = \text{Sì}) \times P(\text{Condanna} = \text{Sì})}{P(\text{Alibi} = \text{No})}
+\]</span></p>
+<p><strong>Passo 1:</strong> Calcolare $ P( = = ) $</p>
+<ul>
+<li><p><strong>Numero totale di casi con Condanna = Sì:</strong><br>
+$ 50 + 30 + 200 + 150 = 430 $ casi.</p></li>
+<li><p><strong>Numero di casi con Alibi = No e Condanna = Sì:</strong><br>
+$ 200 + 150 = 350 $ casi.</p></li>
+<li><p><strong>Calcolo:</strong><br>
+<span class="math display">\[
+P(\text{Alibi} = \text{No} \mid \text{Condanna} = \text{Sì}) = \frac{350}{430} \approx 0{,}8139 \ (81{,}39\%)
+\]</span></p></li>
+</ul>
+<p><strong>Passo 2:</strong> Calcolare $ P( = )$</p>
+<ul>
+<li><p><strong>Numero totale di casi con Condanna = Sì:</strong> $ 430 $ (come sopra).</p></li>
+<li><p><strong>Numero totale di casi:</strong> £ 1.000 $.</p></li>
+<li><p><strong>Calcolo:</strong><br>
+<span class="math display">\[
+P(\text{Condanna} = \text{Sì}) = \frac{430}{1.000} = 0{,}43 \ (43\%)
+\]</span></p></li>
+</ul>
+<p><strong>Passo 3:</strong> Calcolare $ P( = ) $</p>
+<ul>
+<li><p><strong>Numero totale di casi con Alibi = No:</strong><br>
+$ 200 + 50 + 150 + 400 = 800 $ casi.</p></li>
+<li><p><strong>Numero totale di casi:</strong> $ 1.000 $.</p></li>
+<li><p><strong>Calcolo:</strong><br>
+<span class="math display">\[
+P(\text{Alibi} = \text{No}) = \frac{800}{1.000} = 0{,}8 \ (80\%)
+\]</span></p></li>
+</ul>
+<p><strong>Passo 4: Applicare il Teorema di Bayes</strong></p>
+<p><span class="math display">\[
+P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{0{,}8139 \times 0{,}43}{0{,}8} = \frac{0{,}349977}{0{,}8} = 0{,}4375 \ (43{,}75\%)
+\]</span></p>
+<p><strong>Risultato:</strong></p>
+<p>La probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong> è circa <strong>43,75%</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="verifica-diretta-dai-dati-del-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="verifica-diretta-dai-dati-del-dataset"><strong>Verifica Diretta dai Dati del Dataset</strong></h3>
+<p>Per confermare il risultato, possiamo calcolare direttamente $ P( = = ) $:</p>
+<ul>
+<li><p><strong>Numero di casi con Alibi = No:</strong> $ 800 $ (come calcolato sopra).</p></li>
+<li><p><strong>Numero di casi con Alibi = No e Condanna = Sì:</strong> $ 200 + 150 = 350 $.</p></li>
+<li><p><strong>Calcolo diretto:</strong><br>
+<span class="math display">\[
+P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{350}{800} = 0{,}4375 \ (43{,}75\%)
+\]</span></p></li>
+</ul>
+<p>Il risultato conferma il calcolo effettuato tramite il Teorema di Bayes.</p>
+<hr>
+</section>
+<section id="interpretazione" class="level3">
+<h3 class="anchored" data-anchor-id="interpretazione"><strong>Interpretazione</strong></h3>
+<p>Questo risultato indica che, secondo i dati del dataset:</p>
+<ul>
+<li><p><strong>Se un sospettato non ha un alibi</strong>, ha una probabilità del <strong>43,75%</strong> di essere condannato.</p></li>
+<li><p>L’assenza di un alibi aumenta significativamente la probabilità di condanna rispetto alla probabilità generale di condanna nel dataset, che è del <strong>43%</strong>.</p></li>
+</ul>
+</section>
+<section id="considerazioni" class="level3">
+<h3 class="anchored" data-anchor-id="considerazioni"><strong>Considerazioni</strong></h3>
+<ul>
+<li><p><strong>Importanza dell’Alibi:</strong> L’alibi sembra essere un fattore importante nel determinare l’esito di un caso. Avere un alibi può ridurre la probabilità di condanna.</p></li>
+<li><p><strong>Utilizzo del Teorema di Bayes:</strong> Questo esempio illustra come il Teorema di Bayes possa essere utilizzato per aggiornare le probabilità in base a informazioni nuove o specifiche, nel contesto del diritto penale.</p></li>
+</ul>
+<hr>
+</section>
+<section id="conclusione-1" class="level3">
+<h3 class="anchored" data-anchor-id="conclusione-1"><strong>Conclusione</strong></h3>
+<p>Applicare il Teorema di Bayes per calcolare ( P( = = ) ) fornisce una comprensione più significativa dell’impatto dell’assenza di un alibi sulla probabilità di condanna. Grazie ancora per aver suggerito di rivedere l’esempio per renderlo più pertinente.</p>
 </section>
 <section id="reti-di-bayes" class="level3">
 <h3 class="anchored" data-anchor-id="reti-di-bayes">reti di Bayes</h3>
@@ -1167,7 +1362,7 @@ P(condanna/precedenti) = P(condanna) \cdot \frac{P(precedenti/condanna)}{P(prece
 <p>In questa tabella:</p>
 <p>0 rappresenta l’assenza (di arma, movente o alibi) 1 rappresenta la presenza Le ultime due colonne mostrano le probabilità di non colpevolezza e colpevolezza per ogni combinazione di evidenze</p>
 <p>Questa Rete Bayesiana può essere utilizzata per calcolare la probabilità di colpevolezza dato uno scenario di prove, aiutando gli investigatori a quantificare e ragionare sull’incertezza nei casi criminali.</p>
-<div id="cell-43" class="cell">
+<div id="cell-47" class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.models <span class="im">import</span> BayesianNetwork</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.factors.discrete <span class="im">import</span> TabularCPD</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1238,7 +1433,7 @@ CPD di Colpevolezza:
 +-----------------+------------+-----+------------+------------+</code></pre>
 </div>
 </div>
-<div id="cell-44" class="cell">
+<div id="cell-48" class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1262,7 +1457,7 @@ CPD di Colpevolezza:
 </div>
 </div>
 <p>Infine, una volta costruita la rete di Bayes possiamo interrogarla per avere una stima della probabilità di un determinato evento. Qual è la probabiltà che un indagato senza alibi, senza movente e in assenza di arma del delitto sia colpevole?</p>
-<div id="cell-46" class="cell">
+<div id="cell-50" class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.inference <span class="im">import</span> VariableElimination</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creiamo un oggetto per l'inferenza</span></span>
@@ -1286,7 +1481,7 @@ CPD di Colpevolezza:
 [0.9 0.1]</code></pre>
 </div>
 </div>
-<div id="cell-47" class="cell">
+<div id="cell-51" class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.inference <span class="im">import</span> VariableElimination</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creiamo un oggetto per l'inferenza</span></span>
