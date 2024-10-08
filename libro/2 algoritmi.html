@@ -1186,18 +1186,18 @@ P(condanna/precedenti) = P(condanna) \cdot \frac{P(precedenti/condanna)}{P(prece
 <p>Le tecniche di inferenza basate sul Teorema di Bayes forniscono un approccio potente per il ragionamento probabilistico e l’aggiornamento delle credenze in base alle evidenze disponibili. Utilizzate in una vasta gamma di settori, queste tecniche consentono di prendere decisioni informate e di sfruttare al meglio le informazioni a disposizione. La comprensione e l’applicazione corretta del Teorema di Bayes sono cruciali per ottenere risultati accurati e significativi nelle analisi statistiche e nel machine learning.</p>
 <section id="sec-TB-caso-penale" class="level4">
 <h4 class="anchored" data-anchor-id="sec-TB-caso-penale">Applicazione del Teorema di Bayes: caso penale</h4>
-<p>Applicazione del teorema di Bayes al data set del caso pratico <a href="#sec-CPC-caso-penale" class="quarto-xref"><span>calcolo della probabilità condizionata: caso penale</span></a> il Teorema di Bayes per calcolare la probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong>, cioè ( P( = = ) ). Questo ci permette di comprendere meglio l’impatto dell’assenza di un alibi sulla probabilità di condanna.</p>
-<p><strong>Obiettivo:</strong> Calcolare $ P( = = ) $.</p>
+<p>Applicazione del teorema di Bayes al data set del caso pratico <a href="#sec-CPC-caso-penale" class="quarto-xref"><span>calcolo della probabilità condizionata: caso penale</span></a> il Teorema di Bayes per calcolare la probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong>, cioè <span class="math inline">\(P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No})\)</span>. Questo ci permette di comprendere meglio l’impatto dell’assenza di un alibi sulla probabilità di condanna.</p>
+<p><strong>Obiettivo:</strong> Calcolare <span class="math inline">\(P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No})\)</span>.</p>
 <p><strong>Teorema di Bayes:</strong></p>
 <p><span class="math display">\[
 P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{P(\text{Alibi} = \text{No} \mid \text{Condanna} = \text{Sì}) \times P(\text{Condanna} = \text{Sì})}{P(\text{Alibi} = \text{No})}
 \]</span></p>
-<p><strong>Passo 1:</strong> Calcolare $ P( = = ) $</p>
+<p><strong>Passo 1:</strong> Calcolare <span class="math inline">\(P(\text{Alibi} = \text{No} \mid \text{Condanna} = \text{Sì})\)</span></p>
 <ul>
 <li><p><strong>Numero totale di casi con Condanna = Sì:</strong><br>
-$ 50 + 30 + 200 + 150 = 430 $ casi.</p></li>
+<span class="math inline">\(50 + 30 + 200 + 150 = 430\)</span> casi.</p></li>
 <li><p><strong>Numero di casi con Alibi = No e Condanna = Sì:</strong><br>
-$ 200 + 150 = 350 $ casi.</p></li>
+<span class="math inline">\(200 + 150 = 350\)</span> casi.</p></li>
 <li><p><strong>Calcolo:</strong><br>
 <span class="math display">\[
 P(\text{Alibi} = \text{No} \mid \text{Condanna} = \text{Sì}) = \frac{350}{430} \approx 0{,}8139 \ (81{,}39\%)
@@ -1206,17 +1206,17 @@ P(\text{Alibi} = \text{No} \mid \text{Condanna} = \text{Sì}) = \frac{350}{430} 
 <p><strong>Passo 2:</strong> Calcolare $ P( = )$</p>
 <ul>
 <li><p><strong>Numero totale di casi con Condanna = Sì:</strong> $ 430 $ (come sopra).</p></li>
-<li><p><strong>Numero totale di casi:</strong> £ 1.000 $.</p></li>
+<li><p><strong>Numero totale di casi:</strong> <span class="math inline">\(1.000\)</span>.</p></li>
 <li><p><strong>Calcolo:</strong><br>
 <span class="math display">\[
 P(\text{Condanna} = \text{Sì}) = \frac{430}{1.000} = 0{,}43 \ (43\%)
 \]</span></p></li>
 </ul>
-<p><strong>Passo 3:</strong> Calcolare $ P( = ) $</p>
+<p><strong>Passo 3:</strong> Calcolare <span class="math inline">\(P(\text{Alibi} = \text{No})\)</span></p>
 <ul>
 <li><p><strong>Numero totale di casi con Alibi = No:</strong><br>
-$ 200 + 50 + 150 + 400 = 800 $ casi.</p></li>
-<li><p><strong>Numero totale di casi:</strong> $ 1.000 $.</p></li>
+<span class="math inline">\(200 + 50 + 150 + 400 = 800\)</span> casi.</p></li>
+<li><p><strong>Numero totale di casi:</strong> <span class="math inline">\(1.000\)</span>.</p></li>
 <li><p><strong>Calcolo:</strong><br>
 <span class="math display">\[
 P(\text{Alibi} = \text{No}) = \frac{800}{1.000} = 0{,}8 \ (80\%)
@@ -1230,10 +1230,10 @@ P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{0{,}8139 \
 <p>La probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong> è circa <strong>43,75%</strong>.</p>
 <hr>
 <p><strong>Verifica Diretta dai Dati del Dataset</strong></p>
-<p>Per confermare il risultato, possiamo calcolare direttamente $ P( = = ) $:</p>
+<p>Per confermare il risultato, possiamo calcolare direttamente <span class="math inline">\(P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No})\)</span>:</p>
 <ul>
-<li><p><strong>Numero di casi con Alibi = No:</strong> $ 800 $ (come calcolato sopra).</p></li>
-<li><p><strong>Numero di casi con Alibi = No e Condanna = Sì:</strong> $ 200 + 150 = 350 $.</p></li>
+<li><p><strong>Numero di casi con Alibi = No:</strong> <span class="math inline">\(800\)</span> (come calcolato sopra).</p></li>
+<li><p><strong>Numero di casi con Alibi = No e Condanna = Sì:</strong> <span class="math inline">\(200 + 150 = 350\)</span>.</p></li>
 <li><p><strong>Calcolo diretto:</strong><br>
 <span class="math display">\[
 P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{350}{800} = 0{,}4375 \ (43{,}75\%)
