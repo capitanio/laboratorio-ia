@@ -266,10 +266,6 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#il-teorema-di-bayes" id="toc-il-teorema-di-bayes" class="nav-link" data-scroll-target="#il-teorema-di-bayes">Il Teorema di Bayes</a></li>
   <li><a href="#applicazioni-pratiche" id="toc-applicazioni-pratiche" class="nav-link" data-scroll-target="#applicazioni-pratiche">Applicazioni Pratiche</a></li>
-  <li><a href="#verifica-diretta-dai-dati-del-dataset" id="toc-verifica-diretta-dai-dati-del-dataset" class="nav-link" data-scroll-target="#verifica-diretta-dai-dati-del-dataset"><strong>Verifica Diretta dai Dati del Dataset</strong></a></li>
-  <li><a href="#interpretazione" id="toc-interpretazione" class="nav-link" data-scroll-target="#interpretazione"><strong>Interpretazione</strong></a></li>
-  <li><a href="#considerazioni" id="toc-considerazioni" class="nav-link" data-scroll-target="#considerazioni"><strong>Considerazioni</strong></a></li>
-  <li><a href="#conclusione-1" id="toc-conclusione-1" class="nav-link" data-scroll-target="#conclusione-1"><strong>Conclusione</strong></a></li>
   <li><a href="#reti-di-bayes" id="toc-reti-di-bayes" class="nav-link" data-scroll-target="#reti-di-bayes">reti di Bayes</a></li>
   </ul></li>
   </ul>
@@ -1002,16 +998,15 @@ P(a ∧ b)=P(b)P(a/b)
 </tbody>
 </table>
 <p>Ovvero, per risolvere l’esercizio dobbiamo osservare l’ ultima riga della tabella realtiva al lancio del primo dado con risultato 6. i casi favorevoli sono solo 1, mentre i casi possibili sono 6. Quindi la probabilità è 1/6.</p>
-<p><strong>Esercizio 2:</strong></p>
+</section>
+<section id="sec-CPC-caso-penale" class="level4">
+<h4 class="anchored" data-anchor-id="sec-CPC-caso-penale">calcolo della probabilità condizionata: caso penale</h4>
 <p>Supponiamo di avere un dataset di 1.000 casi penali. Per ogni caso, raccogliamo le seguenti informazioni:</p>
 <ul>
 <li><strong>Alibi</strong> del sospettato (Sì/No)</li>
 <li><strong>Testimone oculare</strong> presente (Sì/No)</li>
 <li><strong>Condanna</strong> del sospettato (Sì/No)</li>
 </ul>
-</section>
-<section id="sec-CPC-caso-penale" class="level4">
-<h4 class="anchored" data-anchor-id="sec-CPC-caso-penale">calcolo della probabilità condizionata: caso penale</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1094,9 +1089,9 @@ P(a ∧ b)=P(b)P(a/b)
 <li><strong>Formula:</strong> <span class="math inline">\(P(\text{Testimone} = \text{Sì} \mid \text{Condanna} = \text{Sì})\)</span></li>
 <li><strong>Calcolo:</strong>
 <ul>
-<li>Numero di casi con Testimone = Sì, Condanna = Sì: 50 + 200 = 250</li>
-<li>Numero totale di casi con Condanna = Sì: 50 + 30 + 200 + 150 = 430</li>
-<li>$ P = 581 (58,1%)$</li>
+<li>Numero di casi con Testimone = Sì, Condanna = Sì: <span class="math inline">\(50 + 200 = 250\)</span></li>
+<li>Numero totale di casi con Condanna = Sì: <span class="math inline">\(50 + 30 + 200 + 150 = 430\)</span></li>
+<li><span class="math inline">\(P = \frac{250}{430} \approx 0{,}581  (58,1\%)\)</span></li>
 </ul></li>
 </ul>
 <p><strong>Esercizio 2.3: Probabilità che un sospettato non abbia un alibi dato che non è stato condannato.</strong></p>
@@ -1191,7 +1186,7 @@ P(condanna/precedenti) = P(condanna) \cdot \frac{P(precedenti/condanna)}{P(prece
 <p>Le tecniche di inferenza basate sul Teorema di Bayes forniscono un approccio potente per il ragionamento probabilistico e l’aggiornamento delle credenze in base alle evidenze disponibili. Utilizzate in una vasta gamma di settori, queste tecniche consentono di prendere decisioni informate e di sfruttare al meglio le informazioni a disposizione. La comprensione e l’applicazione corretta del Teorema di Bayes sono cruciali per ottenere risultati accurati e significativi nelle analisi statistiche e nel machine learning.</p>
 <section id="sec-TB-caso-penale" class="level4">
 <h4 class="anchored" data-anchor-id="sec-TB-caso-penale">Applicazione del Teorema di Bayes: caso penale</h4>
-<p>Applicazione del teorema di Bayes al data set del caso pratico <a href="#sec-CPC-caso-penale" class="quarto-xref"><span class="quarto-unresolved-ref">sec-CPC-caso-penale</span></a> il Teorema di Bayes per calcolare la probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong>, cioè ( P( = = ) ). Questo ci permette di comprendere meglio l’impatto dell’assenza di un alibi sulla probabilità di condanna.</p>
+<p>Applicazione del teorema di Bayes al data set del caso pratico <a href="#sec-CPC-caso-penale" class="quarto-xref"><span>calcolo della probabilità condizionata: caso penale</span></a> il Teorema di Bayes per calcolare la probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong>, cioè ( P( = = ) ). Questo ci permette di comprendere meglio l’impatto dell’assenza di un alibi sulla probabilità di condanna.</p>
 <p><strong>Obiettivo:</strong> Calcolare $ P( = = ) $.</p>
 <p><strong>Teorema di Bayes:</strong></p>
 <p><span class="math display">\[
@@ -1234,10 +1229,7 @@ P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{0{,}8139 \
 <p><strong>Risultato:</strong></p>
 <p>La probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong> è circa <strong>43,75%</strong>.</p>
 <hr>
-</section>
-</section>
-<section id="verifica-diretta-dai-dati-del-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="verifica-diretta-dai-dati-del-dataset"><strong>Verifica Diretta dai Dati del Dataset</strong></h3>
+<p><strong>Verifica Diretta dai Dati del Dataset</strong></p>
 <p>Per confermare il risultato, possiamo calcolare direttamente $ P( = = ) $:</p>
 <ul>
 <li><p><strong>Numero di casi con Alibi = No:</strong> $ 800 $ (come calcolato sopra).</p></li>
@@ -1247,28 +1239,14 @@ P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{0{,}8139 \
 P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{350}{800} = 0{,}4375 \ (43{,}75\%)
 \]</span></p></li>
 </ul>
-<p>Il risultato conferma il calcolo effettuato tramite il Teorema di Bayes.</p>
-<hr>
-</section>
-<section id="interpretazione" class="level3">
-<h3 class="anchored" data-anchor-id="interpretazione"><strong>Interpretazione</strong></h3>
-<p>Questo risultato indica che, secondo i dati del dataset:</p>
+<p>Il risultato conferma il calcolo effettuato tramite il Teorema di Bayes. Questo risultato indica che, secondo i dati del dataset:</p>
 <ul>
 <li><p><strong>Se un sospettato non ha un alibi</strong>, ha una probabilità del <strong>43,75%</strong> di essere condannato.</p></li>
-<li><p>L’assenza di un alibi aumenta significativamente la probabilità di condanna rispetto alla probabilità generale di condanna nel dataset, che è del <strong>43%</strong>.</p></li>
-</ul>
-</section>
-<section id="considerazioni" class="level3">
-<h3 class="anchored" data-anchor-id="considerazioni"><strong>Considerazioni</strong></h3>
-<ul>
-<li><p><strong>Importanza dell’Alibi:</strong> L’alibi sembra essere un fattore importante nel determinare l’esito di un caso. Avere un alibi può ridurre la probabilità di condanna.</p></li>
+<li><p>L’assenza di un alibi non aumenta significativamente la probabilità di condanna rispetto alla probabilità generale di condanna nel dataset, che è del <strong>43%</strong>.</p></li>
+<li><p><strong>Importanza dell’Alibi:</strong> In questo dadaset, l’alibi non sembra essere un fattore importante nel determinare l’esito di un caso. Avere un alibi può ridurre la probabilità di condanna.</p></li>
 <li><p><strong>Utilizzo del Teorema di Bayes:</strong> Questo esempio illustra come il Teorema di Bayes possa essere utilizzato per aggiornare le probabilità in base a informazioni nuove o specifiche, nel contesto del diritto penale.</p></li>
 </ul>
-<hr>
 </section>
-<section id="conclusione-1" class="level3">
-<h3 class="anchored" data-anchor-id="conclusione-1"><strong>Conclusione</strong></h3>
-<p>Applicare il Teorema di Bayes per calcolare ( P( = = ) ) fornisce una comprensione più significativa dell’impatto dell’assenza di un alibi sulla probabilità di condanna. Grazie ancora per aver suggerito di rivedere l’esempio per renderlo più pertinente.</p>
 </section>
 <section id="reti-di-bayes" class="level3">
 <h3 class="anchored" data-anchor-id="reti-di-bayes">reti di Bayes</h3>
