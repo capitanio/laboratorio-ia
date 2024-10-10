@@ -1257,10 +1257,12 @@ P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{350}{800} 
 <figcaption>Rete di Bayes puntualità treno</figcaption>
 </figure>
 </div>
+<p><a href="https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/2 sistema esperto inferenza logica.ipynb" target="_blank" rel="noopener noreferrer"><img align="left" src="https://colab.research.google.com/assets/colab-badge.svg" alt="Esegui in Colab" title="Apri e esegui in Google Colaboratory">Rete Bayesiana treno.ipynb</a> <br></p>
+<p>(click-ando su questo pulsante aprirete il quaderno all’interno di COLAB di Google dove potrete eseguire il quaderno online senza bisogno di avere un ambiente Python sulla vostra macchina.)</p>
 <p>Una rete bayesiana (di credenza) richiede che ogni nodo del grafo sia condizionatamente indipendente da qualsiasi sottoinsieme di nodi che non siano discendenti dei predecessori diretti del nodo stesso. Ci si affida ad un esperto di dominio per la definizione della topologia della rete di credenze (quali nodi e quali relazioni condizionali di dipendenza), poi si calcolano le influenze dirette e le conseguenti probabilità. Ciò equivale a definire la conoscenza del mondo in cui può avvenire un evento. Ovvero, la rete rappresenta le assunzioni che si possono fare su quel dominio. Le probabilità condizionate tra i nodi riassumono un insieme potenzialmente infinito di circostanze a noi ignote e che potrebbero influenzare l’evento. La topologia della rete è la base di conoscenza generale ed astratta dell’ambiente in cui si possono verificare gli eventi e rappresenta la struttura generale del processo causale nel dominio, piuttosto che fornire dettagli su un particolare elemento. Nelle reti bayesiane gli archi che connettono i nodi esprimono le relazioni causali dirette (causa -&gt; effetto). Una volta definita la topologia bisogna specificare la tabella delle probabilità condizionate associata ad ogni nodo. Ogni riga della tabella esprime la probabilità del valore di ogni nodo per un caso condizionante (combinazione di valori dei nodi genitori produttoria delle prob. condiz.) Un nodo con nessun genitore è rappresentato dalla probabilità a priori.</p>
 <section id="esempio-di-rete-bayesiana-indagine-criminale" class="level4">
 <h4 class="anchored" data-anchor-id="esempio-di-rete-bayesiana-indagine-criminale">Esempio di rete bayesiana: indagine criminale</h4>
-<p><a href="https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/2 sistema esperto inferenza logica.ipynb" target="_blank" rel="noopener noreferrer"><img align="left" src="https://colab.research.google.com/assets/colab-badge.svg" alt="Esegui in Colab" title="Apri e esegui in Google Colaboratory"></a> <br></p>
+<p><a href="https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/2 Rete Bayesiana indagine criminale.ipynb" target="_blank" rel="noopener noreferrer"><img align="left" src="https://colab.research.google.com/assets/colab-badge.svg" alt="Esegui in Colab" title="Apri e esegui in Google Colaboratory"></a> <br></p>
 <p>(click-ando su questo pulsante aprirete il quaderno all’interno di COLAB di Google dove potrete eseguire il quaderno online senza bisogno di avere un ambiente Python sulla vostra macchina.)</p>
 <p>Scriviamo il codice Python necessario per creare un modello di Rete Bayesiana per analizzare la probabilità di colpevolezza di un sospetto in un’indagine criminale. Il modello considera tre elementi di prova: la presenza di un’arma (Arma), un movente (Movente) e un alibi (Alibi), e come questi influenzano la probabilità di colpevolezza (Colpevolezza).</p>
 <p>Il codice non richiederà input diretti dall’utente. Invece, definisce la struttura della Rete Bayesiana e imposta le tabelle di probabilità per ciascun fattore basate su valori predefiniti che dovrebbero essere estrapolati da statistiche sulle indagini criminali.</p>
@@ -1340,7 +1342,7 @@ P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No}) = \frac{350}{800} 
 <p>In questa tabella:</p>
 <p>0 rappresenta l’assenza (di arma, movente o alibi) 1 rappresenta la presenza Le ultime due colonne mostrano le probabilità di non colpevolezza e colpevolezza per ogni combinazione di evidenze</p>
 <p>Questa Rete Bayesiana può essere utilizzata per calcolare la probabilità di colpevolezza dato uno scenario di prove, aiutando gli investigatori a quantificare e ragionare sull’incertezza nei casi criminali.</p>
-<div id="cell-47" class="cell">
+<div id="cell-48" class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.models <span class="im">import</span> BayesianNetwork</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.factors.discrete <span class="im">import</span> TabularCPD</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1411,7 +1413,7 @@ CPD di Colpevolezza:
 +-----------------+------------+-----+------------+------------+</code></pre>
 </div>
 </div>
-<div id="cell-48" class="cell">
+<div id="cell-49" class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1435,7 +1437,7 @@ CPD di Colpevolezza:
 </div>
 </div>
 <p>Infine, una volta costruita la rete di Bayes possiamo interrogarla per avere una stima della probabilità di un determinato evento. Qual è la probabiltà che un indagato senza alibi, senza movente e in assenza di arma del delitto sia colpevole?</p>
-<div id="cell-50" class="cell">
+<div id="cell-51" class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.inference <span class="im">import</span> VariableElimination</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creiamo un oggetto per l'inferenza</span></span>
@@ -1459,7 +1461,7 @@ CPD di Colpevolezza:
 [0.9 0.1]</code></pre>
 </div>
 </div>
-<div id="cell-51" class="cell">
+<div id="cell-52" class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pgmpy.inference <span class="im">import</span> VariableElimination</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creiamo un oggetto per l'inferenza</span></span>
