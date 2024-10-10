@@ -70,10 +70,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -194,6 +196,7 @@ window.Quarto = {
           </li>
       </ul>
     </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -267,6 +270,14 @@ window.Quarto = {
   <li><a href="#il-teorema-di-bayes" id="toc-il-teorema-di-bayes" class="nav-link" data-scroll-target="#il-teorema-di-bayes">Il Teorema di Bayes</a></li>
   <li><a href="#applicazioni-pratiche" id="toc-applicazioni-pratiche" class="nav-link" data-scroll-target="#applicazioni-pratiche">Applicazioni Pratiche</a></li>
   <li><a href="#reti-di-bayes" id="toc-reti-di-bayes" class="nav-link" data-scroll-target="#reti-di-bayes">reti di Bayes</a></li>
+  </ul></li>
+  <li><a href="#algoritmi-di-ricerca" id="toc-algoritmi-di-ricerca" class="nav-link" data-scroll-target="#algoritmi-di-ricerca">Algoritmi di Ricerca</a>
+  <ul class="collapse">
+  <li><a href="#glossario-della-ricerca" id="toc-glossario-della-ricerca" class="nav-link" data-scroll-target="#glossario-della-ricerca">Glossario della ricerca</a></li>
+  <li><a href="#problemi-di-ricerca" id="toc-problemi-di-ricerca" class="nav-link" data-scroll-target="#problemi-di-ricerca">Problemi di ricerca</a></li>
+  <li><a href="#algoritmo-generale-di-ricerca" id="toc-algoritmo-generale-di-ricerca" class="nav-link" data-scroll-target="#algoritmo-generale-di-ricerca">Algoritmo “generale” di ricerca</a></li>
+  <li><a href="#strategie-di-ricerca-non-informate" id="toc-strategie-di-ricerca-non-informate" class="nav-link" data-scroll-target="#strategie-di-ricerca-non-informate">Strategie di ricerca non informate</a></li>
+  <li><a href="#algoritmi-di-ricerca-informati" id="toc-algoritmi-di-ricerca-informati" class="nav-link" data-scroll-target="#algoritmi-di-ricerca-informati">Algoritmi di ricerca informati</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1186,7 +1197,7 @@ P(condanna/precedenti) = P(condanna) \cdot \frac{P(precedenti/condanna)}{P(prece
 <p>Le tecniche di inferenza basate sul Teorema di Bayes forniscono un approccio potente per il ragionamento probabilistico e l’aggiornamento delle credenze in base alle evidenze disponibili. Utilizzate in una vasta gamma di settori, queste tecniche consentono di prendere decisioni informate e di sfruttare al meglio le informazioni a disposizione. La comprensione e l’applicazione corretta del Teorema di Bayes sono cruciali per ottenere risultati accurati e significativi nelle analisi statistiche e nel machine learning.</p>
 <section id="sec-TB-caso-penale" class="level4">
 <h4 class="anchored" data-anchor-id="sec-TB-caso-penale">Applicazione del Teorema di Bayes: caso penale</h4>
-<p>Applicazione del teorema di Bayes al data set del caso pratico <a href="#sec-CPC-caso-penale" class="quarto-xref"><span>calcolo della probabilità condizionata: caso penale</span></a> il Teorema di Bayes per calcolare la probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong>, cioè <span class="math inline">\(P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No})\)</span>. Questo ci permette di comprendere meglio l’impatto dell’assenza di un alibi sulla probabilità di condanna.</p>
+<p>Applicazione del teorema di Bayes al data set del caso pratico <a href="#sec-CPC-caso-penale" class="quarto-xref"><span class="quarto-unresolved-ref">sec-CPC-caso-penale</span></a> il Teorema di Bayes per calcolare la probabilità che un sospettato venga <strong>condannato dato che non ha un alibi</strong>, cioè <span class="math inline">\(P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No})\)</span>. Questo ci permette di comprendere meglio l’impatto dell’assenza di un alibi sulla probabilità di condanna.</p>
 <p><strong>Obiettivo:</strong> Calcolare <span class="math inline">\(P(\text{Condanna} = \text{Sì} \mid \text{Alibi} = \text{No})\)</span>.</p>
 <p><strong>Teorema di Bayes:</strong></p>
 <p><span class="math display">\[
@@ -1485,6 +1496,402 @@ CPD di Colpevolezza:
 [0.7 0.3]</code></pre>
 </div>
 </div>
+</section>
+</section>
+</section>
+<section id="algoritmi-di-ricerca" class="level2">
+<h2 class="anchored" data-anchor-id="algoritmi-di-ricerca">Algoritmi di Ricerca</h2>
+<p>Gli algoritmi di ricerca sono utilizzati per esplorare spazi di soluzione vasti e complessi. Nel contesto legale, possono essere utilizzati per trovare precedenti giuridici o per esplorare possibili risultati di un caso. In generale, i problemi di ricerca coinvolgono un agente a cui viene assegnato uno stato iniziale e uno stato obiettivo e restituisce una soluzione su come passare dal primo al secondo.</p>
+<p>Gli algoritmi di ricerca sono usati in molte applicazioni della intelligenza artificiale, tra cui:</p>
+<ul>
+<li><strong>Problemi di pianificazione</strong>: trovare una sequenza di azioni per raggiungere un obiettivo.</li>
+<li><strong>Risoluzione di puzzle e giochi</strong>: come il cubo di Rubik, gli scacchi o il gioco del 15.</li>
+<li><strong>Navigazione e percorsi</strong>: trovare il percorso migliore in mappe o reti stradali.</li>
+<li><strong>Ottimizzazione di processi</strong>: trovare la configurazione ottimale in problemi complessi.</li>
+<li><strong>Scheduling</strong>: organizzare attività o risorse in modo efficiente.</li>
+<li><strong>Riconoscimento di pattern</strong>: identificare strutture o sequenze in dati complessi.</li>
+<li><strong>Diagnosi medica</strong>: identificare possibili malattie basandosi su sintomi.</li>
+<li><strong>Elaborazione del linguaggio naturale</strong>: analisi sintattica e semantica.</li>
+<li><strong>Visione artificiale</strong>: riconoscimento di oggetti e scene in immagini.</li>
+<li><strong>Robotica</strong>: pianificazione del movimento e navigazione autonoma.</li>
+</ul>
+<p>Questi algoritmi sono versatili e possono essere adattati a molti altri domini, rendendo la ricerca un’area fondamentale dell’intelligenza artificiale.</p>
+<section id="glossario-della-ricerca" class="level3">
+<h3 class="anchored" data-anchor-id="glossario-della-ricerca">Glossario della ricerca</h3>
+<ul>
+<li><strong>agente</strong>: Una entità che percepisce e agisce nel suo ambiente.</li>
+<li><strong>stato</strong>: Una configurazione di un agente nel suo ambiente.</li>
+<li><strong>stato iniziale</strong>: Lo stato iniziale di un agente.</li>
+<li><strong>stato finale</strong>: Lo stato obiettivo di un agente.</li>
+<li><strong>azioni</strong>: Le azioni che un agente può eseguire da un determinato stato</li>
+<li><strong>modello di transizione di stato</strong>: Un modello che descrive come un agente può cambiare lo stato in seguito a un’azione.</li>
+<li><strong>spazio degli stati</strong>: L’insieme di tutti gli stati raggiungibili da uno stato iniziale.</li>
+<li><strong>costo</strong> di un cammino o percorso: La somma dei costi delle azioni lungo un percorso.</li>
+<li><strong>soluzione</strong>: Un percorso che porta da uno stato iniziale a uno stato finale. Se ha un costo minimo, è una soluzpoon ottima.</li>
+<li><strong>algoritmo di ricerca</strong>: Un algoritmo che cerca di trovare una soluzione.</li>
+</ul>
+</section>
+<section id="problemi-di-ricerca" class="level3">
+<h3 class="anchored" data-anchor-id="problemi-di-ricerca">Problemi di ricerca</h3>
+<p>I problemi che si possono affrontare con gli algoritmi di ricerca sono generalmente caratterizzati da una struttura specifica:</p>
+<ol type="1">
+<li><strong>Stato iniziale</strong>: Questo rappresenta la condizione o la configurazione di partenza del problema.</li>
+<li><strong>Azioni o operatori</strong>: Questi rappresentano le possibili mosse o le transizioni che possono essere effettuate a partire da uno stato.</li>
+<li><strong>Test obiettivo (goal test)</strong>: Questo è un criterio che determina se uno stato specifico risolve il problema.</li>
+<li><strong>Funzione costo</strong>: Questa associa un costo a ogni operatore o azione. Il costo può rappresentare, ad esempio, il tempo, lo sforzo o le risorse necessarie per eseguire un’azione.</li>
+</ol>
+<p>A seconda della natura del problema, lo stato iniziale può essere un singolo stato o un insieme di stati. Inoltre, i problemi possono essere classificati in base alla conoscenza che l’agente ha sullo stato in cui si trova e sulle azioni.</p>
+<p>Una volta definito il problema in questi termini, l’algoritmo di ricerca può essere utilizzato per esplorare lo spazio degli stati e trovare una soluzione, che è una sequenza di azioni che porta dallo stato iniziale a uno stato che soddisfa il test obiettivo¹.</p>
+<p><strong>esempio di problema di ricerca</strong></p>
+<p>Un esempio classico di problema che segue questa struttura: il problema del commesso viaggiatore (Travelling Salesman Problem, TSP).</p>
+<ol type="1">
+<li><p><strong>Stato iniziale</strong>: Il commesso viaggiatore si trova in una città specifica (ad esempio, Roma) e deve visitare tutte le altre città una sola volta e tornare alla città di partenza.</p></li>
+<li><p><strong>Azioni o operatori</strong>: Il commesso viaggiatore può scegliere di viaggiare da una città all’altra. Ogni possibile percorso da una città all’altra rappresenta un’azione.</p></li>
+<li><p><strong>Test obiettivo (goal test)</strong>: Il test obiettivo verifica se tutte le città sono state visitate una sola volta e se il commesso viaggiatore è tornato alla città di partenza.</p></li>
+<li><p><strong>Funzione costo</strong>: Il costo di un percorso può essere la distanza totale percorsa o il tempo totale impiegato per il viaggio.</p></li>
+</ol>
+<p>L’obiettivo del problema del commesso viaggiatore è trovare il percorso più breve (o il percorso che minimizza il tempo di viaggio) che visita tutte le città una sola volta e ritorna alla città di partenza. Gli algoritmi di ricerca possono essere utilizzati per esplorare lo spazio degli stati (cioè, tutti i possibili percorsi) e trovare la soluzione ottimale.</p>
+</section>
+<section id="algoritmo-generale-di-ricerca" class="level3">
+<h3 class="anchored" data-anchor-id="algoritmo-generale-di-ricerca">Algoritmo “generale” di ricerca</h3>
+<p>In ogni istante l’agente si troverà davanti un insieme di stati possibili da esplorare. Questo insieme di stati è noto come la «frontiera» (Come nel far west :). Abbiamo bisogno di una struttura dati in grado di contenere gli stati della frontiera che l’agente può esplorare.Vedremo almeno due implementazioni. Lo pseudocodice dell’algoritmo “generale” di ricerca è il seguente:</p>
+<pre><code>1 Se la Frontiera è vuota, Finito!.&nbsp;Si tratta di un problema insolubile!.
+2 Rimuovi un nodo dalla frontiera e consideralo come candidato.
+3    Se il nodo contiene lo stato finale, Restituisci la soluzione. Finito!
+4    Altrimenti
+5        Cerca tutti i nodi raggiungibili dal nodo corrente e aggiungili alla frontiera.
+6        Aggiungi il nodo corrente all’insieme dei nodi visitati.
+7 Torna al passo 1.</code></pre>
+<p>L’algoritmo di ricerca generale è un approccio generale per risolvere problemi di ricerca. Nella descrizione di questo algoritmo è stato omesso un passo fondamentale: come si fa a scegliere il nodo da rimuovere dalla frontiera? La scelta del nodo da rimuovere dalla frontiera è un passo cruciale nell’algoritmo di ricerca. Questa scelta è basata su una strategia di ricerca, che determina l’ordine in cui i nodi vengono esplorati. L’implementazione della frontierà è quindi legata alla strategia di ricerca. Le struttre dati usate per la frontiera sono le seguenti: - <strong>Stack</strong>: L’ultimo nodo inserito è il primo estratto (LIFO = Last In First Out) –&gt; Algoritmo Depth First search (<strong>DFS</strong>) - <strong>Queue</strong>: Il primo nodo inserito è il primo estratto (FIFO = First In First Out) –&gt; Algoritmo Breadth First Search (<strong>BFS</strong>) - <strong>Priority Queue</strong>: Il nodo con il valore di prirità più alto è il primo estratto –&gt; Algoritmo Best First Search (<strong>BFS</strong>) - <strong>Set</strong>: L’elemento con il valore di costo più basso è il primo estratto –&gt; Algoritmo A* (<strong>A*</strong>)</p>
+<pre><code>def ricerca_generale(problema, strategia):
+    frontiera = Strategia(problema)
+    while not frontiera.vuota():
+        nodo = frontiera.rimuovi_nodo()
+        if problema.test_obiettivo(nodo.stato):
+            return nodo
+        frontiera.aggiungi_nodi(nodo.genera_successori())
+    return None</code></pre>
+</section>
+<section id="strategie-di-ricerca-non-informate" class="level3">
+<h3 class="anchored" data-anchor-id="strategie-di-ricerca-non-informate">Strategie di ricerca non informate</h3>
+<blockquote class="blockquote">
+<p>Nelle strategie di ricerca non informate l’agente non vede e non sente se non il proprio stato.</p>
+</blockquote>
+<p>Le strategie di ricerca non informate sono un tipo di algoritmo di ricerca che non utilizza alcuna conoscenza specifica o informazione aggiuntiva sul problema da risolvere. Questi algoritmi utilizzano solo la struttura del problema e la definizione di stato e azione per esplorare lo spazio degli stati. Esempi di strategie di ricerca non informate: 1. <strong>Ricerca in profondità (Depth-First Search, DFS)</strong>: Questa strategia esplora lo spazio degli stati andando in profondità prima di esplorare i nodi adiacenti. È una strategia ricorsiva che inizia dallo stato iniziale e procede fino a quando non raggiunge uno stato finale o non può più espandere ulteriormente. 2. <strong>Ricerca in ampiezza (Breadth-First Search, BFS)</strong>: Questa strategia esplora lo spazio degli stati espandendo prima i nodi adiacenti allo stato iniziale, quindi i nodi adiacenti ai nodi adiacenti, e così via. È una strategia che esplora lo spazio degli stati in modo uniforme, garantendo che vengano esplorati prima i nodi più vicini allo stato iniziale. 3. …</p>
+<section id="ricerca-in-profondità-depth-first-search-dfs" class="level4">
+<h4 class="anchored" data-anchor-id="ricerca-in-profondità-depth-first-search-dfs">Ricerca in profondità (Depth-First Search, DFS)</h4>
+<p>La ricerca in profondità (Depth-First Search, DFS) è una strategia di ricerca che esplora lo spazio degli stati andando in profondità prima di esplorare i nodi adiacenti. È una strategia ricorsiva che inizia dallo stato iniziale e procede fino a quando non raggiunge uno stato finale o non può più espandere ulteriormente. Questo algoritmo si basa sull’adozione di una struttura dati a coda per implementare la frontiera.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif" title="DFS" class="img-fluid figure-img"></p>
+<figcaption>Depth-First Search, DFS</figcaption>
+</figure>
+</div>
+</section>
+<section id="ricerca-in-ampiezza-breadth-first-search-bfs" class="level4">
+<h4 class="anchored" data-anchor-id="ricerca-in-ampiezza-breadth-first-search-bfs">Ricerca in ampiezza (Breadth-First Search, BFS)</h4>
+<p>La ricerca in ampiezza (Breadth-First Search, BFS) è una strategia di ricerca che esplora lo spazio degli stati espandendo prima i nodi adiacenti allo stato iniziale, quindi i nodi adiacenti ai nodi adiacenti, e così via. È una strategia che esplora lo spazio degli stati in modo uniforme, garantendo che vengano esplorati prima i nodi più vicini allo stato iniziale. Questo algoritmo si basa sull’adozione di una struttura dati a pila per implementare la frontiera.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif" title="BFS" class="img-fluid figure-img"></p>
+<figcaption>Breadth-First Search, BFS</figcaption>
+</figure>
+</div>
+</section>
+<section id="dfs-e-bfs-in-python" class="level4">
+<h4 class="anchored" data-anchor-id="dfs-e-bfs-in-python">DFS e BFS in Python</h4>
+<p>Usando l’algoritmo generico di ricerca che abbiamo visto fin qui si possono risolvere diversi problemi. Ad esempio, con l’agente AI fin qui sviluppata possiamo risolvere il problema di trovare il percorso in un labirinto. Per fare questo dobbiamo solo codificare lo spazio degli stati di questo problema e applicare la nostra AI a qualche caso reale.</p>
+<p><strong>struttura dati per i nodi</strong></p>
+<p>La struttura dati per memorizzare il generico nodo del grafo dei possibili stati è</p>
+<div id="cell-54" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Nodo():</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stato, genitore, azione):</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.stato <span class="op">=</span> stato</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.genitore <span class="op">=</span> genitore</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.azione <span class="op">=</span> azione</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Struttura dati per la frontiera</strong></p>
+<p>L’altra struttura dati di cui abbiamo bisogno è una struttura dati per la Frontiera. Come abbiamo visto ci sono due tipo di struttura dati che possiamo usare per la frontiera.</p>
+<ul>
+<li>Struttura dati “pila” per la frontiera Depth First Search (DFS). La pila è una struttura dati che adotta una logica Last In First Out (l’ultimo a entrare è il primo ad uscire come accade per una pila, appunto, di piatti :)</li>
+<li>Struttura dati “coda” per la frontiera Breadth First Search (BFS). La coda è una struttura dati che adotta una logica First In First Out (l’elemento che entra per primo è l’elemento che esce per primo come accade nella coda ad uno sportello :)</li>
+</ul>
+<div id="cell-56" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FrontieraPila():</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.frontiera <span class="op">=</span> []</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> aggiungiStato(<span class="va">self</span>, nodo):</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.frontiera.append(nodo)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> contieneStato(<span class="va">self</span>, stato):</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">any</span>(nodo.stato <span class="op">==</span> stato <span class="cf">for</span> nodo <span class="kw">in</span> <span class="va">self</span>.frontiera)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> eVuota(<span class="va">self</span>):</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.frontiera) <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rimuoviStato(<span class="va">self</span>):</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.eVuota():</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Frontiera vuota"</span>)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>            nodo <span class="op">=</span> <span class="va">self</span>.frontiera[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.frontiera <span class="op">=</span> <span class="va">self</span>.frontiera[:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> nodo</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FrontieraCoda(FrontieraPila):</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> rimuoviStato(<span class="va">self</span>):</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.eVuota():</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Frontiera vuota"</span>)</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>            nodo <span class="op">=</span> <span class="va">self</span>.frontiera[<span class="dv">0</span>]</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.frontiera <span class="op">=</span> <span class="va">self</span>.frontiera[<span class="dv">1</span>:]</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> nodo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Possiamo valutare il funzionamento delle due strutture dati introdptte con una semplice simulazione. Memorizziamo 3 stati A,B e C nelle due strutture dati e osserviamo quale stato è estratto dal metodo rimuoviStato:</p>
+<div id="cell-58" class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>pila <span class="op">=</span> FrontieraPila()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>pila.aggiungiStato(<span class="st">"A"</span>) <span class="co"># pila = ["A"]</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>pila.aggiungiStato(<span class="st">"B"</span>) <span class="co"># pila = ["A", "B"]</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>pila.aggiungiStato(<span class="st">"C"</span>) <span class="co"># pila = ["A", "B", "C"]</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>pila.rimuoviStato()     <span class="co"># pila = ["A", "B"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-59" class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>coda <span class="op">=</span> FrontieraCoda()</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>coda.aggiungiStato(<span class="st">"A"</span>) <span class="co"># coda = ["A"]</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>coda.aggiungiStato(<span class="st">"B"</span>) <span class="co"># coda = ["A", "B"]</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>coda.aggiungiStato(<span class="st">"C"</span>) <span class="co"># coda = ["A", "B", "C"]</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>coda.rimuoviStato() <span class="co"># coda = ["B", "C"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Per descrivere un labirinto useremo un semplice formato testuale come il seguente:</p>
+<pre><code>#####B#
+##### #
+A     #
+#### ##
+     ##
+#######</code></pre>
+<p>Dove il simbolo # rappresenta una parete, il simbolo A un punto di partenza, il simbolo B un punto di arrivo e lo spazio una cella libera. Il labirinto sarà memorizzato in un file testuale (.txt) e sarà “passato” al risolutore di labirinti. La classe Python che si definirà qui di seguito si occupa del caricamento del labirinto da file di tipo testuale, della sua rappresentazione grafica e della sua risoluzione.</p>
+<div id="cell-61" class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Labirinto():</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nomeFile):</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># legge il file del labirinto e imposta altezza e larghezza del labirinto</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(nomeFile) <span class="im">as</span> f:</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>            contenuti <span class="op">=</span> f.read()</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Verifica che il file contenga almeno uno stato iniziale (= un ingresso) e uno finale (= una uscita)</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> contenuti.count(<span class="st">"A"</span>) <span class="op">!=</span> <span class="dv">1</span>:</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Un labirinto deve avere esattamente un punto di partenza"</span>)</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> contenuti.count(<span class="st">"B"</span>) <span class="op">!=</span> <span class="dv">1</span>:</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Un labirinto deve avere esattamente un obiettivo"</span>)</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calcola l'altezza e la larghezza del labirinto</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>        contenuti <span class="op">=</span> contenuti.splitlines()</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.altezza <span class="op">=</span> <span class="bu">len</span>(contenuti)</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.larghezza <span class="op">=</span> <span class="bu">max</span>(<span class="bu">len</span>(line) <span class="cf">for</span> line <span class="kw">in</span> contenuti)</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tiene traccia dei muri del labirinto</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.muri <span class="op">=</span> []</span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.altezza):</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>            riga <span class="op">=</span> []</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.larghezza):</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span>:</span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> contenuti[i][j] <span class="op">==</span> <span class="st">"A"</span>:</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>                        <span class="va">self</span>.start <span class="op">=</span> (i, j)</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">False</span>)</span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> contenuti[i][j] <span class="op">==</span> <span class="st">"B"</span>:</span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>                        <span class="va">self</span>.goal <span class="op">=</span> (i, j)</span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">False</span>)</span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> contenuti[i][j] <span class="op">==</span> <span class="st">" "</span>:</span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">False</span>)</span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span>:</span>
+<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">True</span>)</span>
+<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>                <span class="cf">except</span> <span class="pp">IndexError</span>:</span>
+<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a>                    riga.append(<span class="va">False</span>)</span>
+<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.muri.append(riga)</span>
+<span id="cb40-39"><a href="#cb40-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-40"><a href="#cb40-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.soluzione <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb40-41"><a href="#cb40-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-42"><a href="#cb40-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-43"><a href="#cb40-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-44"><a href="#cb40-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> nodiVicini(<span class="va">self</span>, stato):</span>
+<span id="cb40-45"><a href="#cb40-45" aria-hidden="true" tabindex="-1"></a>        riga, col <span class="op">=</span> stato</span>
+<span id="cb40-46"><a href="#cb40-46" aria-hidden="true" tabindex="-1"></a>        candidati <span class="op">=</span> [</span>
+<span id="cb40-47"><a href="#cb40-47" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"su"</span>, (riga <span class="op">-</span> <span class="dv">1</span>, col)),</span>
+<span id="cb40-48"><a href="#cb40-48" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"giu"</span>, (riga <span class="op">+</span> <span class="dv">1</span>, col)),</span>
+<span id="cb40-49"><a href="#cb40-49" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"sin"</span>, (riga, col <span class="op">-</span> <span class="dv">1</span>)),</span>
+<span id="cb40-50"><a href="#cb40-50" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"des"</span>, (riga, col <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb40-51"><a href="#cb40-51" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb40-52"><a href="#cb40-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-53"><a href="#cb40-53" aria-hidden="true" tabindex="-1"></a>        risultato <span class="op">=</span> []</span>
+<span id="cb40-54"><a href="#cb40-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> azione, (r, c) <span class="kw">in</span> candidati:</span>
+<span id="cb40-55"><a href="#cb40-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> r <span class="op">&lt;</span> <span class="va">self</span>.altezza <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> c <span class="op">&lt;</span> <span class="va">self</span>.larghezza <span class="kw">and</span> <span class="kw">not</span> <span class="va">self</span>.muri[r][c]:</span>
+<span id="cb40-56"><a href="#cb40-56" aria-hidden="true" tabindex="-1"></a>                risultato.append((azione, (r, c)))</span>
+<span id="cb40-57"><a href="#cb40-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> risultato</span>
+<span id="cb40-58"><a href="#cb40-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-59"><a href="#cb40-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-60"><a href="#cb40-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> risolvi(<span class="va">self</span>,frontiera):</span>
+<span id="cb40-61"><a href="#cb40-61" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Trova una soluzione al labirinto, se ne esiste una!"""</span></span>
+<span id="cb40-62"><a href="#cb40-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-63"><a href="#cb40-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># contiene il conteggio degli stati esplorati</span></span>
+<span id="cb40-64"><a href="#cb40-64" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.numeroStatiEsplorati <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb40-65"><a href="#cb40-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-66"><a href="#cb40-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Inizializziamo la frontiera con lo stato iniziale</span></span>
+<span id="cb40-67"><a href="#cb40-67" aria-hidden="true" tabindex="-1"></a>        start <span class="op">=</span> Nodo(stato<span class="op">=</span><span class="va">self</span>.start, genitore<span class="op">=</span><span class="va">None</span>, azione<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb40-68"><a href="#cb40-68" aria-hidden="true" tabindex="-1"></a>        frontiera.aggiungiStato(start)</span>
+<span id="cb40-69"><a href="#cb40-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-70"><a href="#cb40-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Inizializzazione di un set di stati esplorati al momento vuoto</span></span>
+<span id="cb40-71"><a href="#cb40-71" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.statiEsplorati <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb40-72"><a href="#cb40-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-73"><a href="#cb40-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Continua a eseguire in ciclo finché non si trova una soluzione o il problema non è risolvibile</span></span>
+<span id="cb40-74"><a href="#cb40-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb40-75"><a href="#cb40-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-76"><a href="#cb40-76" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Se non c'è nulla nella frontiera vuol dire che il problema non è risolvibile.</span></span>
+<span id="cb40-77"><a href="#cb40-77" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Ovvero, non c'è un cammino tra start e goal!</span></span>
+<span id="cb40-78"><a href="#cb40-78" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> frontiera.eVuota():</span>
+<span id="cb40-79"><a href="#cb40-79" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Non esiste una soluzione"</span>)</span>
+<span id="cb40-80"><a href="#cb40-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-81"><a href="#cb40-81" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Sceglie un nodo dalla froniera</span></span>
+<span id="cb40-82"><a href="#cb40-82" aria-hidden="true" tabindex="-1"></a>            nodo <span class="op">=</span> frontiera.rimuoviStato()</span>
+<span id="cb40-83"><a href="#cb40-83" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.numeroStatiEsplorati <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb40-84"><a href="#cb40-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-85"><a href="#cb40-85" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Se il nodo estratto è il nodo goal allora abbiamo trovato il nodo di arrivo e risolto il problema</span></span>
+<span id="cb40-86"><a href="#cb40-86" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> nodo.stato <span class="op">==</span> <span class="va">self</span>.goal:</span>
+<span id="cb40-87"><a href="#cb40-87" aria-hidden="true" tabindex="-1"></a>                azioni <span class="op">=</span> []</span>
+<span id="cb40-88"><a href="#cb40-88" aria-hidden="true" tabindex="-1"></a>                celle <span class="op">=</span> []</span>
+<span id="cb40-89"><a href="#cb40-89" aria-hidden="true" tabindex="-1"></a>                <span class="co"># ripercorre il cammino al contrario dal goal verso lo stato start per creare il cammino</span></span>
+<span id="cb40-90"><a href="#cb40-90" aria-hidden="true" tabindex="-1"></a>                <span class="co"># che porta dallo start al goal. Ovvero, la soluzione.</span></span>
+<span id="cb40-91"><a href="#cb40-91" aria-hidden="true" tabindex="-1"></a>                <span class="cf">while</span> nodo.genitore <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb40-92"><a href="#cb40-92" aria-hidden="true" tabindex="-1"></a>                    azioni.append(nodo.azione)</span>
+<span id="cb40-93"><a href="#cb40-93" aria-hidden="true" tabindex="-1"></a>                    celle.append(nodo.stato)</span>
+<span id="cb40-94"><a href="#cb40-94" aria-hidden="true" tabindex="-1"></a>                    nodo <span class="op">=</span> nodo.genitore</span>
+<span id="cb40-95"><a href="#cb40-95" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Siccome ha costruito il cammino soluzione in direzione inversa, ovvero da goal a start</span></span>
+<span id="cb40-96"><a href="#cb40-96" aria-hidden="true" tabindex="-1"></a>                <span class="co"># per avere il cammino orientato in modo corretto deve invertire sia la lista degli stati</span></span>
+<span id="cb40-97"><a href="#cb40-97" aria-hidden="true" tabindex="-1"></a>                <span class="co"># che quella delle azioni</span></span>
+<span id="cb40-98"><a href="#cb40-98" aria-hidden="true" tabindex="-1"></a>                azioni.reverse()</span>
+<span id="cb40-99"><a href="#cb40-99" aria-hidden="true" tabindex="-1"></a>                celle.reverse()</span>
+<span id="cb40-100"><a href="#cb40-100" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Quindi memorizza la lista degli stati e la lista delle azioni da intraprendere nell'attributo</span></span>
+<span id="cb40-101"><a href="#cb40-101" aria-hidden="true" tabindex="-1"></a>                <span class="co"># soluzione della classe Labirinto</span></span>
+<span id="cb40-102"><a href="#cb40-102" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.soluzione <span class="op">=</span> (azioni, celle)</span>
+<span id="cb40-103"><a href="#cb40-103" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
+<span id="cb40-104"><a href="#cb40-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-105"><a href="#cb40-105" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Altrimenti marchiamo il nodo estratto come esplorato</span></span>
+<span id="cb40-106"><a href="#cb40-106" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.statiEsplorati.add(nodo.stato)</span>
+<span id="cb40-107"><a href="#cb40-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-108"><a href="#cb40-108" aria-hidden="true" tabindex="-1"></a>            <span class="co"># E aggiungiamo i nodi vicini alla frontiera</span></span>
+<span id="cb40-109"><a href="#cb40-109" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> azione, stato <span class="kw">in</span> <span class="va">self</span>.nodiVicini(nodo.stato):</span>
+<span id="cb40-110"><a href="#cb40-110" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> frontiera.contieneStato(stato) <span class="kw">and</span> stato <span class="kw">not</span> <span class="kw">in</span> <span class="va">self</span>.statiEsplorati:</span>
+<span id="cb40-111"><a href="#cb40-111" aria-hidden="true" tabindex="-1"></a>                    child <span class="op">=</span> Nodo(stato<span class="op">=</span>stato, genitore<span class="op">=</span>nodo, azione<span class="op">=</span>azione)</span>
+<span id="cb40-112"><a href="#cb40-112" aria-hidden="true" tabindex="-1"></a>                    frontiera.aggiungiStato(child)</span>
+<span id="cb40-113"><a href="#cb40-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-114"><a href="#cb40-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-115"><a href="#cb40-115" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> stampaLabirinto(<span class="va">self</span>, mostraSoluzione<span class="op">=</span><span class="va">True</span>, mostraStatiEsplorati<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb40-116"><a href="#cb40-116" aria-hidden="true" tabindex="-1"></a>        soluzione <span class="op">=</span> <span class="va">self</span>.soluzione[<span class="dv">1</span>] <span class="cf">if</span> <span class="va">self</span>.soluzione <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb40-117"><a href="#cb40-117" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>()</span>
+<span id="cb40-118"><a href="#cb40-118" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, riga <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.muri):</span>
+<span id="cb40-119"><a href="#cb40-119" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j, col <span class="kw">in</span> <span class="bu">enumerate</span>(riga):</span>
+<span id="cb40-120"><a href="#cb40-120" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> col:</span>
+<span id="cb40-121"><a href="#cb40-121" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"█"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb40-122"><a href="#cb40-122" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> (i, j) <span class="op">==</span> <span class="va">self</span>.start:</span>
+<span id="cb40-123"><a href="#cb40-123" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"A"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb40-124"><a href="#cb40-124" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> (i, j) <span class="op">==</span> <span class="va">self</span>.goal:</span>
+<span id="cb40-125"><a href="#cb40-125" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"B"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb40-126"><a href="#cb40-126" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> soluzione <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> mostraSoluzione <span class="kw">and</span> (i, j) <span class="kw">in</span> soluzione:</span>
+<span id="cb40-127"><a href="#cb40-127" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"*"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb40-128"><a href="#cb40-128" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Stati esplorati</span></span>
+<span id="cb40-129"><a href="#cb40-129" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> soluzione <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> mostraStatiEsplorati <span class="kw">and</span> (i, j) <span class="kw">in</span> <span class="va">self</span>.statiEsplorati:</span>
+<span id="cb40-130"><a href="#cb40-130" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"o"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb40-131"><a href="#cb40-131" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>:</span>
+<span id="cb40-132"><a href="#cb40-132" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">" "</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb40-133"><a href="#cb40-133" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>()</span>
+<span id="cb40-134"><a href="#cb40-134" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Possiamo caricare un labirinto e vedere la sua stampa a video:</p>
+<div id="cell-63" class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> Labirinto(<span class="st">"labirinto2.txt"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Labirinto:"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>l.stampaLabirinto(<span class="va">False</span>,<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Adesso, usando il metodo risolvi della classe labirinto appena definita possiamo risolvere il labirinto. La prima soluzione la cerchiamo con l’algoritmo DFS passando al risolutore una frontiera a pila</p>
+<div id="cell-65" class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> timedelta</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sto cercando una soluzione con una frontiera pila (DFS)..."</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>tempoIniziale <span class="op">=</span> time.time_ns()</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>l.risolvi(FrontieraPila())</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Numero di stati esplorati : "</span>, l.numeroStatiEsplorati)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>tempoImpiegato <span class="op">=</span> time.time_ns() <span class="op">-</span> tempoIniziale</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> <span class="st">"L'esecuzione del codice ha richiesto : </span><span class="sc">%s</span><span class="st"> microsecondi (Wall clock time)"</span> <span class="op">%</span> timedelta(microseconds<span class="op">=</span><span class="bu">round</span>(tempoImpiegato<span class="op">/</span><span class="dv">1000</span>))</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(msg)</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Soluzione trovata : "</span>)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>l.stampaLabirinto(mostraStatiEsplorati<span class="op">=</span><span class="va">True</span>,mostraSoluzione<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Quindi, cerchiamo con l’algoritmo BFS passando al risolutore una frontiera a coda</p>
+<div id="cell-67" class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sto cercando una soluzione con una frontiera a coda (BFS)..."</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>tempoIniziale <span class="op">=</span> time.time_ns()</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>l.risolvi(FrontieraCoda())</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Numero di stati esplorati : "</span>, l.numeroStatiEsplorati)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>tempoImpiegato <span class="op">=</span> time.time_ns() <span class="op">-</span> tempoIniziale</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> <span class="st">"L'esecuzione del codice ha richiesto : </span><span class="sc">%s</span><span class="st"> microsecondi (Wall clock time)"</span> <span class="op">%</span> timedelta(microseconds<span class="op">=</span><span class="bu">round</span>(tempoImpiegato<span class="op">/</span><span class="dv">1000</span>))</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(msg)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Soluzione trovata : "</span>)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>l.stampaLabirinto(mostraStatiEsplorati<span class="op">=</span><span class="va">True</span>,mostraSoluzione<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Osserviamo dai risultati ottenuti che per questo labirinto l’algoritmo di ricerca più veloce è il BFS perché ha trovato la soluzione visitando 77 nodi mentre l’algoritmo DFS ha visitato 194 nodi per arrivare alla stessa soluzione.</p>
+</section>
+</section>
+<section id="algoritmi-di-ricerca-informati" class="level3">
+<h3 class="anchored" data-anchor-id="algoritmi-di-ricerca-informati">Algoritmi di ricerca informati</h3>
+<p>Gli algoritmi di ricerca informati sono una classe di algoritmi di ricerca che utilizzano una funzione euristica per guidare la ricerca verso la soluzione in modo più efficiente rispetto agli algoritmi di ricerca non informati come BFS e DFS. Questi algoritmi sfruttano informazioni aggiuntive sul problema, come la distanza stimata dalla soluzione, per esplorare in modo intelligente lo spazio di ricerca.</p>
+<p>Uno degli algoritmi di ricerca informati più noti è l’algoritmo A* (pronunciato “A star”). Esso combina in modo bilanciato le informazioni sulla distanza già percorsa e una stima della distanza rimanente dalla soluzione, utilizzando una funzione euristica. L’algoritmo A* è completo, ovvero garantisce di trovare una soluzione se esiste, ed è anche ottimale, cioè trova il percorso più breve verso la soluzione se la funzione euristica è ammissibile.</p>
+<p>Altri algoritmi di ricerca informati includono la ricerca di best-first, che espande sempre il nodo più promettente in base alla funzione euristica, e la ricerca greedy, che si basa esclusivamente sulla stima euristica senza considerare il costo del percorso già fatto. Questi algoritmi possono essere più veloci dell’A* in alcuni casi, ma non garantiscono necessariamente di trovare la soluzione ottimale.</p>
+<p>Gli algoritmi di ricerca informati trovano applicazione in numerosi campi, come l’intelligenza artificiale, la robotica, la pianificazione di percorsi e la risoluzione di problemi di ottimizzazione. La scelta dell’algoritmo più appropriato dipende dalle caratteristiche del problema, come la complessità dello spazio di ricerca, la disponibilità di informazioni euristiche accurate e i requisiti di ottimalità della soluzione.</p>
+<section id="funzioni-euristiche" class="level4">
+<h4 class="anchored" data-anchor-id="funzioni-euristiche">Funzioni euristiche</h4>
+<p>Le funzioni euristiche svolgono un ruolo cruciale negli algoritmi di ricerca informati, fornendo una stima della distanza o del costo rimanente per raggiungere la soluzione. Queste funzioni sono progettate per guidare la ricerca in modo intelligente, evitando di esplorare percorsi poco promettenti e concentrandosi sulle regioni dello spazio di ricerca più vicine alla soluzione.</p>
+<p>Una buona funzione euristica dovrebbe essere ammissibile, ovvero non sovrastimare mai il costo effettivo per raggiungere la soluzione. Ciò garantisce che l’algoritmo di ricerca, come A*, trovi una soluzione ottimale se esiste. Inoltre, una funzione euristica accurata e informativa può accelerare notevolmente la ricerca, riducendo il numero di nodi esplorati prima di trovare la soluzione.</p>
+<p>Nella risoluzione di labirinti, una funzione euristica comune è la distanza di Manhattan o la distanza euclidea tra la posizione corrente e l’uscita del labirinto. Queste funzioni forniscono una stima della distanza minima rimanente, ignorando gli ostacoli presenti nel labirinto. Tuttavia, funzioni euristiche più sofisticate possono tenere conto di ulteriori informazioni, come la disposizione degli ostacoli o la topologia del labirinto, per ottenere stime più accurate.</p>
+<p>La progettazione di funzioni euristiche efficaci è spesso una sfida cruciale nell’applicazione degli algoritmi di ricerca informati a problemi complessi del mondo reale.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="attachment:image.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
+</div>
+<p><strong><em>Distanza euclidea</em></strong> La distanza euclidea, anche nota come distanza in linea retta, è una misura della distanza tra due punti in uno spazio euclideo, come il piano cartesiano o lo spazio tridimensionale. Essa rappresenta la lunghezza del segmento di retta che congiunge i due punti.</p>
+<p>La formula per calcolare la distanza euclidea tra due punti <span class="math inline">\(A=(x_A, y_A)\)</span> e <span class="math inline">\(B=(x_B, y_B)\)</span> in un piano cartesiano bidimensionale è:</p>
+<p><span class="math display">\[d_{euclide}=\sqrt{(x_B-x_A)^2+(y_B-Y_A)^2}\]</span></p>
+<p>La distanza euclidea è ampiamente utilizzata come funzione euristica negli algoritmi di ricerca informati, come l’algoritmo A*, per stimare la distanza rimanente dalla soluzione. Essa fornisce una stima ammissibile (non sovrastima) della distanza effettiva, soddisfacendo così i requisiti per garantire l’ottimalità dell’algoritmo di ricerca.</p>
+<p>Tuttavia, la distanza euclidea può essere una stima poco accurata in alcuni contesti, come nei labirinti o in presenza di ostacoli, poiché non tiene conto degli impedimenti lungo il percorso. In questi casi, possono essere utilizzate funzioni euristiche più sofisticate per ottenere stime più precise.</p>
+<p><strong><em>Distanza di Manhattan</em></strong> La distanza di Manhattan, anche nota come distanza city-block o distanza tassista, è una metrica utilizzata per calcolare la distanza tra due punti in uno spazio a coordinate cartesiane. Essa prende il nome dalla griglia di strade di Manhattan, dove i percorsi possibili sono limitati a spostamenti orizzontali e verticali.</p>
+<p>La formula per calcolare la distanza di Manhattan tra due punti <span class="math inline">\(A=(x_A, y_A)\)</span> e <span class="math inline">\(B=(x_B, y_B)\)</span> in un piano cartesiano bidimensionale è:</p>
+<p><span class="math display">\[d_{Manhattan}=(x_B-x_A)+(y_B-Y_A)\]</span></p>
+<p>Essenzialmente, la distanza di Manhattan è la somma delle differenze assolute delle coordinate x e y dei due punti.</p>
+<p>La distanza di Manhattan è spesso utilizzata come funzione euristica negli algoritmi di ricerca informati, come l’algoritmo A*, per risolvere problemi di ricerca su griglie o labirinti. Essa fornisce una stima ammissibile della distanza effettiva, garantendo così l’ottimalità dell’algoritmo di ricerca.</p>
+<p>Rispetto alla distanza euclidea, la distanza di Manhattan può essere una stima più accurata in contesti come i labirinti, poiché tiene conto delle restrizioni di movimento lungo le direzioni orizzontali e verticali. Tuttavia, può sottostimare la distanza effettiva in situazioni in cui sono possibili percorsi diagonali.</p>
+<p>La scelta tra la distanza euclidea e la distanza di Manhattan come funzione euristica dipende dalle caratteristiche specifiche del problema di ricerca e dalle proprietà dello spazio di ricerca.</p>
+</section>
+<section id="algoritmo-di-ricerca-informato-greedy-best-first-search" class="level4">
+<h4 class="anchored" data-anchor-id="algoritmo-di-ricerca-informato-greedy-best-first-search">3.4.5.2 Algoritmo di ricerca informato Greedy Best-First Search</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="attachment:image-3.png" class="img-fluid figure-img"></p>
+<figcaption>image-3.png</figcaption>
+</figure>
+</div>
+<p>Quando l’algoritmo si trova nella cella colorata di azzurro deve scegliere se proseguire nella cella a distanza 9 o in quella a distanza 11 dal goal. Quale scegliere? GBF sceglie la cella con distanza 9 dall’obiettivo. È una buona scelta? Direi di no! Il cammino scelto è il più lungo. Forse, si può fare di meglio? Se esaminiamo le cella a e b notiamo l’euristica che ci ha portato in b con GBS è minore dell’ euristica in a. Ma, che cosa succede se oltre a considerare la distanza dall’obbiettivo aggiungo il cammino fatto all’euristica h? Ovvero: <span class="math display">\[H = distanza da percorrere + distanza percorsa\]</span> Entra l’algoritmo informato A*</p>
+</section>
+<section id="algoritmo-di-ricerca-informato-a" class="level4">
+<h4 class="anchored" data-anchor-id="algoritmo-di-ricerca-informato-a">3.4.5.3 Algoritmo di ricerca informato A*</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="attachment:image-2.png" class="img-fluid figure-img"></p>
+<figcaption>image-2.png</figcaption>
+</figure>
+</div>
+<p>L’algoritmo A* è un algoritmo di ricerca informato che utilizza una funzione di valutazione per guidare la ricerca verso la soluzione ottimale. La funzione di valutazione, nota come funzione di costo <span class="math inline">\(h(n)\)</span>, è composta da due componenti: 1. <strong>Costo del cammino</strong>: <span class="math inline">\(g(n)\)</span>, che rappresenta il costo del cammino per raggiungere il nodo <span class="math inline">\(n\)</span> dalla radice. 2. <strong>Stima del costo rimanente</strong>: <span class="math inline">\(f(n)\)</span>, che rappresenta una stima del costo rimanente per raggiungere la soluzione ottimale partendo dal nodo <span class="math inline">\(n\)</span>. La funzione di valutazione <span class="math inline">\(h(n)\)</span> è definita come: <span class="math display">\[h(n) = g(n) + f(n)\]</span> L’algoritmo A* utilizza una coda di priorità per mantenere i nodi da esplorare in base al valore della funzione di valutazione <span class="math inline">\(f(n)\)</span>. I nodi con il valore più basso di <span class="math inline">\(h(n)\)</span> vengono estratti dalla coda e esplorati prima. Nel caso in figura, con questa nuova euristica vediamo che a è una scelta migliore di b perché ha una euristica minore.</p>
 
 
 </section>
@@ -1512,6 +1919,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
