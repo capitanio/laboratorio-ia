@@ -279,6 +279,28 @@ window.Quarto = {
   <li><a href="#strategie-di-ricerca-non-informate" id="toc-strategie-di-ricerca-non-informate" class="nav-link" data-scroll-target="#strategie-di-ricerca-non-informate">Strategie di ricerca non informate</a></li>
   <li><a href="#algoritmi-di-ricerca-informati" id="toc-algoritmi-di-ricerca-informati" class="nav-link" data-scroll-target="#algoritmi-di-ricerca-informati">Algoritmi di ricerca informati</a></li>
   </ul></li>
+  <li><a href="#algoritmi-equitativi" id="toc-algoritmi-equitativi" class="nav-link" data-scroll-target="#algoritmi-equitativi">Algoritmi Equitativi</a>
+  <ul class="collapse">
+  <li><a href="#agenti-partecipanti" id="toc-agenti-partecipanti" class="nav-link" data-scroll-target="#agenti-partecipanti">agenti partecipanti</a></li>
+  <li><a href="#beni" id="toc-beni" class="nav-link" data-scroll-target="#beni">beni</a></li>
+  <li><a href="#regole-e-assunzioni" id="toc-regole-e-assunzioni" class="nav-link" data-scroll-target="#regole-e-assunzioni">Regole e assunzioni</a></li>
+  <li><a href="#matematica-elementare-per-algoritmi-di-ripartizione-equa" id="toc-matematica-elementare-per-algoritmi-di-ripartizione-equa" class="nav-link" data-scroll-target="#matematica-elementare-per-algoritmi-di-ripartizione-equa">Matematica elementare per algoritmi di ripartizione equa</a></li>
+  <li><a href="#algoritmi-di-ripartizione-equitativa" id="toc-algoritmi-di-ripartizione-equitativa" class="nav-link" data-scroll-target="#algoritmi-di-ripartizione-equitativa">Algoritmi di Ripartizione Equitativa</a></li>
+  <li><a href="#gli-algoritmi-di-divisione-equa-in-letteratura" id="toc-gli-algoritmi-di-divisione-equa-in-letteratura" class="nav-link" data-scroll-target="#gli-algoritmi-di-divisione-equa-in-letteratura">Gli algoritmi di divisione equa in letteratura</a></li>
+  </ul></li>
+  <li><a href="#algoritmi-predittivi" id="toc-algoritmi-predittivi" class="nav-link" data-scroll-target="#algoritmi-predittivi">Algoritmi Predittivi</a>
+  <ul class="collapse">
+  <li><a href="#definizione-del-problema" id="toc-definizione-del-problema" class="nav-link" data-scroll-target="#definizione-del-problema">Definizione del Problema</a></li>
+  <li><a href="#raccolta-dei-dati" id="toc-raccolta-dei-dati" class="nav-link" data-scroll-target="#raccolta-dei-dati">Raccolta dei Dati</a></li>
+  <li><a href="#pre-elaborazione-dei-dati" id="toc-pre-elaborazione-dei-dati" class="nav-link" data-scroll-target="#pre-elaborazione-dei-dati">Pre-elaborazione dei Dati</a></li>
+  <li><a href="#divisione-dei-dati" id="toc-divisione-dei-dati" class="nav-link" data-scroll-target="#divisione-dei-dati">Divisione dei Dati</a></li>
+  <li><a href="#scelta-dell-algoritmo" id="toc-scelta-dell-algoritmo" class="nav-link" data-scroll-target="#scelta-dell-algoritmo">Scelta dell’ algoritmo</a></li>
+  <li><a href="#addestramento-del-modello" id="toc-addestramento-del-modello" class="nav-link" data-scroll-target="#addestramento-del-modello">Addestramento del modello</a></li>
+  <li><a href="#valutazione-del-modello" id="toc-valutazione-del-modello" class="nav-link" data-scroll-target="#valutazione-del-modello">Valutazione del modello</a></li>
+  <li><a href="#ottimizzazione-degli-iperparametri" id="toc-ottimizzazione-degli-iperparametri" class="nav-link" data-scroll-target="#ottimizzazione-degli-iperparametri">Ottimizzazione degli iperparametri</a></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">Deployment</a></li>
+  <li><a href="#monitoraggio-e-manutenzione" id="toc-monitoraggio-e-manutenzione" class="nav-link" data-scroll-target="#monitoraggio-e-manutenzione">Monitoraggio e manutenzione</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1543,7 +1565,8 @@ CPD di Colpevolezza:
 <p>A seconda della natura del problema, lo stato iniziale può essere un singolo stato o un insieme di stati. Inoltre, i problemi possono essere classificati in base alla conoscenza che l’agente ha sullo stato in cui si trova e sulle azioni.</p>
 <p>Una volta definito il problema in questi termini, l’algoritmo di ricerca può essere utilizzato per esplorare lo spazio degli stati e trovare una soluzione, che è una sequenza di azioni che porta dallo stato iniziale a uno stato che soddisfa il test obiettivo¹.</p>
 <p><strong>esempio di problema di ricerca</strong></p>
-<p>Un esempio classico di problema che segue questa struttura: il problema del commesso viaggiatore (Travelling Salesman Problem, TSP).</p>
+<p>Un esempio classico di problema che segue questa struttura: il problema del commesso viaggiatore (<a href="[https://](https://it.wikipedia.org/wiki/Problema_del_commesso_viaggiatore)">Travelling Salesman Problem</a>, TSP).</p>
+<p>Dato un insieme di città, e note le distanze tra ciascuna coppia di esse, trovare il tragitto di minima percorrenza che un commesso viaggiatore deve seguire per visitare tutte le città una ed una sola volta e ritornare alla città di partenza</p>
 <ol type="1">
 <li><p><strong>Stato iniziale</strong>: Il commesso viaggiatore si trova in una città specifica (ad esempio, Roma) e deve visitare tutte le altre città una sola volta e tornare alla città di partenza.</p></li>
 <li><p><strong>Azioni o operatori</strong>: Il commesso viaggiatore può scegliere di viaggiare da una città all’altra. Ogni possibile percorso da una città all’altra rappresenta un’azione.</p></li>
@@ -1562,7 +1585,13 @@ CPD di Colpevolezza:
 5        Cerca tutti i nodi raggiungibili dal nodo corrente e aggiungili alla frontiera.
 6        Aggiungi il nodo corrente all’insieme dei nodi visitati.
 7 Torna al passo 1.</code></pre>
-<p>L’algoritmo di ricerca generale è un approccio generale per risolvere problemi di ricerca. Nella descrizione di questo algoritmo è stato omesso un passo fondamentale: come si fa a scegliere il nodo da rimuovere dalla frontiera? La scelta del nodo da rimuovere dalla frontiera è un passo cruciale nell’algoritmo di ricerca. Questa scelta è basata su una strategia di ricerca, che determina l’ordine in cui i nodi vengono esplorati. L’implementazione della frontierà è quindi legata alla strategia di ricerca. Le struttre dati usate per la frontiera sono le seguenti: - <strong>Stack</strong>: L’ultimo nodo inserito è il primo estratto (LIFO = Last In First Out) –&gt; Algoritmo Depth First search (<strong>DFS</strong>) - <strong>Queue</strong>: Il primo nodo inserito è il primo estratto (FIFO = First In First Out) –&gt; Algoritmo Breadth First Search (<strong>BFS</strong>) - <strong>Priority Queue</strong>: Il nodo con il valore di prirità più alto è il primo estratto –&gt; Algoritmo Best First Search (<strong>BFS</strong>) - <strong>Set</strong>: L’elemento con il valore di costo più basso è il primo estratto –&gt; Algoritmo A* (<strong>A*</strong>)</p>
+<p>L’algoritmo di ricerca generale è un approccio generale per risolvere problemi di ricerca. Nella descrizione di questo algoritmo è stato omesso un passo fondamentale: come si fa a scegliere il nodo da rimuovere dalla frontiera? La scelta del nodo da rimuovere dalla frontiera è un passo cruciale nell’algoritmo di ricerca. Questa scelta è basata su una strategia di ricerca, che determina l’ordine in cui i nodi vengono esplorati. L’implementazione della frontierà è quindi legata alla strategia di ricerca. Le struttre dati usate per la frontiera sono le seguenti:</p>
+<ul>
+<li><strong>Stack</strong>: L’ultimo nodo inserito è il primo estratto (LIFO = Last In First Out) –&gt; Algoritmo Depth First search (<strong>DFS</strong>)</li>
+<li><strong>Queue</strong>: Il primo nodo inserito è il primo estratto (FIFO = First In First Out) –&gt; Algoritmo Breadth First Search (<strong>BFS</strong>)</li>
+<li><strong>Priority Queue</strong>: Il nodo con il valore di prirità più alto è il primo estratto –&gt; Algoritmo Best First Search (<strong>BFS</strong>)</li>
+<li><strong>Set</strong>: L’elemento con il valore di costo più basso è il primo estratto –&gt; Algoritmo A* (<strong>A*</strong>)</li>
+</ul>
 <pre><code>def ricerca_generale(problema, strategia):
     frontiera = Strategia(problema)
     while not frontiera.vuota():
@@ -1577,7 +1606,12 @@ CPD di Colpevolezza:
 <blockquote class="blockquote">
 <p>Nelle strategie di ricerca non informate l’agente non vede e non sente se non il proprio stato.</p>
 </blockquote>
-<p>Le strategie di ricerca non informate sono un tipo di algoritmo di ricerca che non utilizza alcuna conoscenza specifica o informazione aggiuntiva sul problema da risolvere. Questi algoritmi utilizzano solo la struttura del problema e la definizione di stato e azione per esplorare lo spazio degli stati. Esempi di strategie di ricerca non informate: 1. <strong>Ricerca in profondità (Depth-First Search, DFS)</strong>: Questa strategia esplora lo spazio degli stati andando in profondità prima di esplorare i nodi adiacenti. È una strategia ricorsiva che inizia dallo stato iniziale e procede fino a quando non raggiunge uno stato finale o non può più espandere ulteriormente. 2. <strong>Ricerca in ampiezza (Breadth-First Search, BFS)</strong>: Questa strategia esplora lo spazio degli stati espandendo prima i nodi adiacenti allo stato iniziale, quindi i nodi adiacenti ai nodi adiacenti, e così via. È una strategia che esplora lo spazio degli stati in modo uniforme, garantendo che vengano esplorati prima i nodi più vicini allo stato iniziale. 3. …</p>
+<p>Le strategie di ricerca non informate sono un tipo di algoritmo di ricerca che non utilizza alcuna conoscenza specifica o informazione aggiuntiva sul problema da risolvere. Questi algoritmi utilizzano solo la struttura del problema e la definizione di stato e azione per esplorare lo spazio degli stati. Esempi di strategie di ricerca non informate:</p>
+<ol type="1">
+<li><strong>Ricerca in profondità (Depth-First Search, DFS)</strong>: Questa strategia esplora lo spazio degli stati andando in profondità prima di esplorare i nodi adiacenti. È una strategia ricorsiva che inizia dallo stato iniziale e procede fino a quando non raggiunge uno stato finale o non può più espandere ulteriormente.</li>
+<li><strong>Ricerca in ampiezza (Breadth-First Search, BFS)</strong>: Questa strategia esplora lo spazio degli stati espandendo prima i nodi adiacenti allo stato iniziale, quindi i nodi adiacenti ai nodi adiacenti, e così via. È una strategia che esplora lo spazio degli stati in modo uniforme, garantendo che vengano esplorati prima i nodi più vicini allo stato iniziale.</li>
+<li>…</li>
+</ol>
 <section id="ricerca-in-profondità-depth-first-search-dfs" class="level4">
 <h4 class="anchored" data-anchor-id="ricerca-in-profondità-depth-first-search-dfs">Ricerca in profondità (Depth-First Search, DFS)</h4>
 <p>La ricerca in profondità (Depth-First Search, DFS) è una strategia di ricerca che esplora lo spazio degli stati andando in profondità prima di esplorare i nodi adiacenti. È una strategia ricorsiva che inizia dallo stato iniziale e procede fino a quando non raggiunge uno stato finale o non può più espandere ulteriormente. Questo algoritmo si basa sull’adozione di una struttura dati a coda per implementare la frontiera.</p>
@@ -1603,7 +1637,7 @@ CPD di Colpevolezza:
 <p>Usando l’algoritmo generico di ricerca che abbiamo visto fin qui si possono risolvere diversi problemi. Ad esempio, con l’agente AI fin qui sviluppata possiamo risolvere il problema di trovare il percorso in un labirinto. Per fare questo dobbiamo solo codificare lo spazio degli stati di questo problema e applicare la nostra AI a qualche caso reale.</p>
 <p><strong>struttura dati per i nodi</strong></p>
 <p>La struttura dati per memorizzare il generico nodo del grafo dei possibili stati è</p>
-<div id="cell-54" class="cell">
+<div id="cell-54" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Nodo():</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, stato, genitore, azione):</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.stato <span class="op">=</span> stato</span>
@@ -1616,7 +1650,7 @@ CPD di Colpevolezza:
 <li>Struttura dati “pila” per la frontiera Depth First Search (DFS). La pila è una struttura dati che adotta una logica Last In First Out (l’ultimo a entrare è il primo ad uscire come accade per una pila, appunto, di piatti :)</li>
 <li>Struttura dati “coda” per la frontiera Breadth First Search (BFS). La coda è una struttura dati che adotta una logica First In First Out (l’elemento che entra per primo è l’elemento che esce per primo come accade nella coda ad uno sportello :)</li>
 </ul>
-<div id="cell-56" class="cell">
+<div id="cell-56" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FrontieraPila():</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.frontiera <span class="op">=</span> []</span>
@@ -1648,19 +1682,25 @@ CPD di Colpevolezza:
 <span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> nodo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Possiamo valutare il funzionamento delle due strutture dati introdptte con una semplice simulazione. Memorizziamo 3 stati A,B e C nelle due strutture dati e osserviamo quale stato è estratto dal metodo rimuoviStato:</p>
-<div id="cell-58" class="cell">
+<div id="cell-58" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>pila <span class="op">=</span> FrontieraPila()</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>pila.aggiungiStato(<span class="st">"A"</span>) <span class="co"># pila = ["A"]</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>pila.aggiungiStato(<span class="st">"B"</span>) <span class="co"># pila = ["A", "B"]</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>pila.aggiungiStato(<span class="st">"C"</span>) <span class="co"># pila = ["A", "B", "C"]</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>pila.rimuoviStato()     <span class="co"># pila = ["A", "B"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>'C'</code></pre>
 </div>
-<div id="cell-59" class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>coda <span class="op">=</span> FrontieraCoda()</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>coda.aggiungiStato(<span class="st">"A"</span>) <span class="co"># coda = ["A"]</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>coda.aggiungiStato(<span class="st">"B"</span>) <span class="co"># coda = ["A", "B"]</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>coda.aggiungiStato(<span class="st">"C"</span>) <span class="co"># coda = ["A", "B", "C"]</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>coda.rimuoviStato() <span class="co"># coda = ["B", "C"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-59" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>coda <span class="op">=</span> FrontieraCoda()</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>coda.aggiungiStato(<span class="st">"A"</span>) <span class="co"># coda = ["A"]</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>coda.aggiungiStato(<span class="st">"B"</span>) <span class="co"># coda = ["A", "B"]</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>coda.aggiungiStato(<span class="st">"C"</span>) <span class="co"># coda = ["A", "B", "C"]</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>coda.rimuoviStato() <span class="co"># coda = ["B", "C"]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>'A'</code></pre>
+</div>
 </div>
 <p>Per descrivere un labirinto useremo un semplice formato testuale come il seguente:</p>
 <pre><code>#####B#
@@ -1670,174 +1710,243 @@ A     #
      ##
 #######</code></pre>
 <p>Dove il simbolo # rappresenta una parete, il simbolo A un punto di partenza, il simbolo B un punto di arrivo e lo spazio una cella libera. Il labirinto sarà memorizzato in un file testuale (.txt) e sarà “passato” al risolutore di labirinti. La classe Python che si definirà qui di seguito si occupa del caricamento del labirinto da file di tipo testuale, della sua rappresentazione grafica e della sua risoluzione.</p>
-<div id="cell-61" class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Labirinto():</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nomeFile):</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># legge il file del labirinto e imposta altezza e larghezza del labirinto</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(nomeFile) <span class="im">as</span> f:</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>            contenuti <span class="op">=</span> f.read()</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Verifica che il file contenga almeno uno stato iniziale (= un ingresso) e uno finale (= una uscita)</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> contenuti.count(<span class="st">"A"</span>) <span class="op">!=</span> <span class="dv">1</span>:</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Un labirinto deve avere esattamente un punto di partenza"</span>)</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> contenuti.count(<span class="st">"B"</span>) <span class="op">!=</span> <span class="dv">1</span>:</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Un labirinto deve avere esattamente un obiettivo"</span>)</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calcola l'altezza e la larghezza del labirinto</span></span>
-<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>        contenuti <span class="op">=</span> contenuti.splitlines()</span>
-<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.altezza <span class="op">=</span> <span class="bu">len</span>(contenuti)</span>
-<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.larghezza <span class="op">=</span> <span class="bu">max</span>(<span class="bu">len</span>(line) <span class="cf">for</span> line <span class="kw">in</span> contenuti)</span>
-<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tiene traccia dei muri del labirinto</span></span>
-<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.muri <span class="op">=</span> []</span>
-<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.altezza):</span>
-<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>            riga <span class="op">=</span> []</span>
-<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.larghezza):</span>
-<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span>:</span>
-<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> contenuti[i][j] <span class="op">==</span> <span class="st">"A"</span>:</span>
-<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>                        <span class="va">self</span>.start <span class="op">=</span> (i, j)</span>
-<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">False</span>)</span>
-<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> contenuti[i][j] <span class="op">==</span> <span class="st">"B"</span>:</span>
-<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>                        <span class="va">self</span>.goal <span class="op">=</span> (i, j)</span>
-<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">False</span>)</span>
-<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> contenuti[i][j] <span class="op">==</span> <span class="st">" "</span>:</span>
-<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">False</span>)</span>
-<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span>:</span>
-<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">True</span>)</span>
-<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>                <span class="cf">except</span> <span class="pp">IndexError</span>:</span>
-<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a>                    riga.append(<span class="va">False</span>)</span>
-<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.muri.append(riga)</span>
-<span id="cb40-39"><a href="#cb40-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-40"><a href="#cb40-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.soluzione <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb40-41"><a href="#cb40-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-42"><a href="#cb40-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-43"><a href="#cb40-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-44"><a href="#cb40-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> nodiVicini(<span class="va">self</span>, stato):</span>
-<span id="cb40-45"><a href="#cb40-45" aria-hidden="true" tabindex="-1"></a>        riga, col <span class="op">=</span> stato</span>
-<span id="cb40-46"><a href="#cb40-46" aria-hidden="true" tabindex="-1"></a>        candidati <span class="op">=</span> [</span>
-<span id="cb40-47"><a href="#cb40-47" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"su"</span>, (riga <span class="op">-</span> <span class="dv">1</span>, col)),</span>
-<span id="cb40-48"><a href="#cb40-48" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"giu"</span>, (riga <span class="op">+</span> <span class="dv">1</span>, col)),</span>
-<span id="cb40-49"><a href="#cb40-49" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"sin"</span>, (riga, col <span class="op">-</span> <span class="dv">1</span>)),</span>
-<span id="cb40-50"><a href="#cb40-50" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"des"</span>, (riga, col <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb40-51"><a href="#cb40-51" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb40-52"><a href="#cb40-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-53"><a href="#cb40-53" aria-hidden="true" tabindex="-1"></a>        risultato <span class="op">=</span> []</span>
-<span id="cb40-54"><a href="#cb40-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> azione, (r, c) <span class="kw">in</span> candidati:</span>
-<span id="cb40-55"><a href="#cb40-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> r <span class="op">&lt;</span> <span class="va">self</span>.altezza <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> c <span class="op">&lt;</span> <span class="va">self</span>.larghezza <span class="kw">and</span> <span class="kw">not</span> <span class="va">self</span>.muri[r][c]:</span>
-<span id="cb40-56"><a href="#cb40-56" aria-hidden="true" tabindex="-1"></a>                risultato.append((azione, (r, c)))</span>
-<span id="cb40-57"><a href="#cb40-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> risultato</span>
-<span id="cb40-58"><a href="#cb40-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-59"><a href="#cb40-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-60"><a href="#cb40-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> risolvi(<span class="va">self</span>,frontiera):</span>
-<span id="cb40-61"><a href="#cb40-61" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Trova una soluzione al labirinto, se ne esiste una!"""</span></span>
-<span id="cb40-62"><a href="#cb40-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-63"><a href="#cb40-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># contiene il conteggio degli stati esplorati</span></span>
-<span id="cb40-64"><a href="#cb40-64" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.numeroStatiEsplorati <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb40-65"><a href="#cb40-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-66"><a href="#cb40-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Inizializziamo la frontiera con lo stato iniziale</span></span>
-<span id="cb40-67"><a href="#cb40-67" aria-hidden="true" tabindex="-1"></a>        start <span class="op">=</span> Nodo(stato<span class="op">=</span><span class="va">self</span>.start, genitore<span class="op">=</span><span class="va">None</span>, azione<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb40-68"><a href="#cb40-68" aria-hidden="true" tabindex="-1"></a>        frontiera.aggiungiStato(start)</span>
-<span id="cb40-69"><a href="#cb40-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-70"><a href="#cb40-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Inizializzazione di un set di stati esplorati al momento vuoto</span></span>
-<span id="cb40-71"><a href="#cb40-71" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.statiEsplorati <span class="op">=</span> <span class="bu">set</span>()</span>
-<span id="cb40-72"><a href="#cb40-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-73"><a href="#cb40-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Continua a eseguire in ciclo finché non si trova una soluzione o il problema non è risolvibile</span></span>
-<span id="cb40-74"><a href="#cb40-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb40-75"><a href="#cb40-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-76"><a href="#cb40-76" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Se non c'è nulla nella frontiera vuol dire che il problema non è risolvibile.</span></span>
-<span id="cb40-77"><a href="#cb40-77" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Ovvero, non c'è un cammino tra start e goal!</span></span>
-<span id="cb40-78"><a href="#cb40-78" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> frontiera.eVuota():</span>
-<span id="cb40-79"><a href="#cb40-79" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Non esiste una soluzione"</span>)</span>
-<span id="cb40-80"><a href="#cb40-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-81"><a href="#cb40-81" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Sceglie un nodo dalla froniera</span></span>
-<span id="cb40-82"><a href="#cb40-82" aria-hidden="true" tabindex="-1"></a>            nodo <span class="op">=</span> frontiera.rimuoviStato()</span>
-<span id="cb40-83"><a href="#cb40-83" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.numeroStatiEsplorati <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb40-84"><a href="#cb40-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-85"><a href="#cb40-85" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Se il nodo estratto è il nodo goal allora abbiamo trovato il nodo di arrivo e risolto il problema</span></span>
-<span id="cb40-86"><a href="#cb40-86" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> nodo.stato <span class="op">==</span> <span class="va">self</span>.goal:</span>
-<span id="cb40-87"><a href="#cb40-87" aria-hidden="true" tabindex="-1"></a>                azioni <span class="op">=</span> []</span>
-<span id="cb40-88"><a href="#cb40-88" aria-hidden="true" tabindex="-1"></a>                celle <span class="op">=</span> []</span>
-<span id="cb40-89"><a href="#cb40-89" aria-hidden="true" tabindex="-1"></a>                <span class="co"># ripercorre il cammino al contrario dal goal verso lo stato start per creare il cammino</span></span>
-<span id="cb40-90"><a href="#cb40-90" aria-hidden="true" tabindex="-1"></a>                <span class="co"># che porta dallo start al goal. Ovvero, la soluzione.</span></span>
-<span id="cb40-91"><a href="#cb40-91" aria-hidden="true" tabindex="-1"></a>                <span class="cf">while</span> nodo.genitore <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb40-92"><a href="#cb40-92" aria-hidden="true" tabindex="-1"></a>                    azioni.append(nodo.azione)</span>
-<span id="cb40-93"><a href="#cb40-93" aria-hidden="true" tabindex="-1"></a>                    celle.append(nodo.stato)</span>
-<span id="cb40-94"><a href="#cb40-94" aria-hidden="true" tabindex="-1"></a>                    nodo <span class="op">=</span> nodo.genitore</span>
-<span id="cb40-95"><a href="#cb40-95" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Siccome ha costruito il cammino soluzione in direzione inversa, ovvero da goal a start</span></span>
-<span id="cb40-96"><a href="#cb40-96" aria-hidden="true" tabindex="-1"></a>                <span class="co"># per avere il cammino orientato in modo corretto deve invertire sia la lista degli stati</span></span>
-<span id="cb40-97"><a href="#cb40-97" aria-hidden="true" tabindex="-1"></a>                <span class="co"># che quella delle azioni</span></span>
-<span id="cb40-98"><a href="#cb40-98" aria-hidden="true" tabindex="-1"></a>                azioni.reverse()</span>
-<span id="cb40-99"><a href="#cb40-99" aria-hidden="true" tabindex="-1"></a>                celle.reverse()</span>
-<span id="cb40-100"><a href="#cb40-100" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Quindi memorizza la lista degli stati e la lista delle azioni da intraprendere nell'attributo</span></span>
-<span id="cb40-101"><a href="#cb40-101" aria-hidden="true" tabindex="-1"></a>                <span class="co"># soluzione della classe Labirinto</span></span>
-<span id="cb40-102"><a href="#cb40-102" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.soluzione <span class="op">=</span> (azioni, celle)</span>
-<span id="cb40-103"><a href="#cb40-103" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
-<span id="cb40-104"><a href="#cb40-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-105"><a href="#cb40-105" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Altrimenti marchiamo il nodo estratto come esplorato</span></span>
-<span id="cb40-106"><a href="#cb40-106" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.statiEsplorati.add(nodo.stato)</span>
-<span id="cb40-107"><a href="#cb40-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-108"><a href="#cb40-108" aria-hidden="true" tabindex="-1"></a>            <span class="co"># E aggiungiamo i nodi vicini alla frontiera</span></span>
-<span id="cb40-109"><a href="#cb40-109" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> azione, stato <span class="kw">in</span> <span class="va">self</span>.nodiVicini(nodo.stato):</span>
-<span id="cb40-110"><a href="#cb40-110" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> frontiera.contieneStato(stato) <span class="kw">and</span> stato <span class="kw">not</span> <span class="kw">in</span> <span class="va">self</span>.statiEsplorati:</span>
-<span id="cb40-111"><a href="#cb40-111" aria-hidden="true" tabindex="-1"></a>                    child <span class="op">=</span> Nodo(stato<span class="op">=</span>stato, genitore<span class="op">=</span>nodo, azione<span class="op">=</span>azione)</span>
-<span id="cb40-112"><a href="#cb40-112" aria-hidden="true" tabindex="-1"></a>                    frontiera.aggiungiStato(child)</span>
-<span id="cb40-113"><a href="#cb40-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-114"><a href="#cb40-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-115"><a href="#cb40-115" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> stampaLabirinto(<span class="va">self</span>, mostraSoluzione<span class="op">=</span><span class="va">True</span>, mostraStatiEsplorati<span class="op">=</span><span class="va">False</span>):</span>
-<span id="cb40-116"><a href="#cb40-116" aria-hidden="true" tabindex="-1"></a>        soluzione <span class="op">=</span> <span class="va">self</span>.soluzione[<span class="dv">1</span>] <span class="cf">if</span> <span class="va">self</span>.soluzione <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> <span class="va">None</span></span>
-<span id="cb40-117"><a href="#cb40-117" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>()</span>
-<span id="cb40-118"><a href="#cb40-118" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, riga <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.muri):</span>
-<span id="cb40-119"><a href="#cb40-119" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j, col <span class="kw">in</span> <span class="bu">enumerate</span>(riga):</span>
-<span id="cb40-120"><a href="#cb40-120" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> col:</span>
-<span id="cb40-121"><a href="#cb40-121" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"█"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
-<span id="cb40-122"><a href="#cb40-122" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> (i, j) <span class="op">==</span> <span class="va">self</span>.start:</span>
-<span id="cb40-123"><a href="#cb40-123" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"A"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
-<span id="cb40-124"><a href="#cb40-124" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> (i, j) <span class="op">==</span> <span class="va">self</span>.goal:</span>
-<span id="cb40-125"><a href="#cb40-125" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"B"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
-<span id="cb40-126"><a href="#cb40-126" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> soluzione <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> mostraSoluzione <span class="kw">and</span> (i, j) <span class="kw">in</span> soluzione:</span>
-<span id="cb40-127"><a href="#cb40-127" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"*"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
-<span id="cb40-128"><a href="#cb40-128" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Stati esplorati</span></span>
-<span id="cb40-129"><a href="#cb40-129" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> soluzione <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> mostraStatiEsplorati <span class="kw">and</span> (i, j) <span class="kw">in</span> <span class="va">self</span>.statiEsplorati:</span>
-<span id="cb40-130"><a href="#cb40-130" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"o"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
-<span id="cb40-131"><a href="#cb40-131" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>:</span>
-<span id="cb40-132"><a href="#cb40-132" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">" "</span>, end<span class="op">=</span><span class="st">""</span>)</span>
-<span id="cb40-133"><a href="#cb40-133" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>()</span>
-<span id="cb40-134"><a href="#cb40-134" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-61" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Labirinto():</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, nomeFile):</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># legge il file del labirinto e imposta altezza e larghezza del labirinto</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(nomeFile) <span class="im">as</span> f:</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>            contenuti <span class="op">=</span> f.read()</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Verifica che il file contenga almeno uno stato iniziale (= un ingresso) e uno finale (= una uscita)</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> contenuti.count(<span class="st">"A"</span>) <span class="op">!=</span> <span class="dv">1</span>:</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Un labirinto deve avere esattamente un punto di partenza"</span>)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> contenuti.count(<span class="st">"B"</span>) <span class="op">!=</span> <span class="dv">1</span>:</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Un labirinto deve avere esattamente un obiettivo"</span>)</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calcola l'altezza e la larghezza del labirinto</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>        contenuti <span class="op">=</span> contenuti.splitlines()</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.altezza <span class="op">=</span> <span class="bu">len</span>(contenuti)</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.larghezza <span class="op">=</span> <span class="bu">max</span>(<span class="bu">len</span>(line) <span class="cf">for</span> line <span class="kw">in</span> contenuti)</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># tiene traccia dei muri del labirinto</span></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.muri <span class="op">=</span> []</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.altezza):</span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>            riga <span class="op">=</span> []</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.larghezza):</span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span>:</span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> contenuti[i][j] <span class="op">==</span> <span class="st">"A"</span>:</span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>                        <span class="va">self</span>.start <span class="op">=</span> (i, j)</span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">False</span>)</span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> contenuti[i][j] <span class="op">==</span> <span class="st">"B"</span>:</span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>                        <span class="va">self</span>.goal <span class="op">=</span> (i, j)</span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">False</span>)</span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> contenuti[i][j] <span class="op">==</span> <span class="st">" "</span>:</span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">False</span>)</span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span>:</span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>                        riga.append(<span class="va">True</span>)</span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>                <span class="cf">except</span> <span class="pp">IndexError</span>:</span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>                    riga.append(<span class="va">False</span>)</span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.muri.append(riga)</span>
+<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.soluzione <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> nodiVicini(<span class="va">self</span>, stato):</span>
+<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a>        riga, col <span class="op">=</span> stato</span>
+<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a>        candidati <span class="op">=</span> [</span>
+<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"su"</span>, (riga <span class="op">-</span> <span class="dv">1</span>, col)),</span>
+<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"giu"</span>, (riga <span class="op">+</span> <span class="dv">1</span>, col)),</span>
+<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"sin"</span>, (riga, col <span class="op">-</span> <span class="dv">1</span>)),</span>
+<span id="cb42-50"><a href="#cb42-50" aria-hidden="true" tabindex="-1"></a>            (<span class="st">"des"</span>, (riga, col <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb42-51"><a href="#cb42-51" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb42-52"><a href="#cb42-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-53"><a href="#cb42-53" aria-hidden="true" tabindex="-1"></a>        risultato <span class="op">=</span> []</span>
+<span id="cb42-54"><a href="#cb42-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> azione, (r, c) <span class="kw">in</span> candidati:</span>
+<span id="cb42-55"><a href="#cb42-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> r <span class="op">&lt;</span> <span class="va">self</span>.altezza <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> c <span class="op">&lt;</span> <span class="va">self</span>.larghezza <span class="kw">and</span> <span class="kw">not</span> <span class="va">self</span>.muri[r][c]:</span>
+<span id="cb42-56"><a href="#cb42-56" aria-hidden="true" tabindex="-1"></a>                risultato.append((azione, (r, c)))</span>
+<span id="cb42-57"><a href="#cb42-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> risultato</span>
+<span id="cb42-58"><a href="#cb42-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-59"><a href="#cb42-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-60"><a href="#cb42-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> risolvi(<span class="va">self</span>,frontiera):</span>
+<span id="cb42-61"><a href="#cb42-61" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Trova una soluzione al labirinto, se ne esiste una!"""</span></span>
+<span id="cb42-62"><a href="#cb42-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-63"><a href="#cb42-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># contiene il conteggio degli stati esplorati</span></span>
+<span id="cb42-64"><a href="#cb42-64" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.numeroStatiEsplorati <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb42-65"><a href="#cb42-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-66"><a href="#cb42-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Inizializziamo la frontiera con lo stato iniziale</span></span>
+<span id="cb42-67"><a href="#cb42-67" aria-hidden="true" tabindex="-1"></a>        start <span class="op">=</span> Nodo(stato<span class="op">=</span><span class="va">self</span>.start, genitore<span class="op">=</span><span class="va">None</span>, azione<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb42-68"><a href="#cb42-68" aria-hidden="true" tabindex="-1"></a>        frontiera.aggiungiStato(start)</span>
+<span id="cb42-69"><a href="#cb42-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-70"><a href="#cb42-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Inizializzazione di un set di stati esplorati al momento vuoto</span></span>
+<span id="cb42-71"><a href="#cb42-71" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.statiEsplorati <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb42-72"><a href="#cb42-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-73"><a href="#cb42-73" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Continua a eseguire in ciclo finché non si trova una soluzione o il problema non è risolvibile</span></span>
+<span id="cb42-74"><a href="#cb42-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb42-75"><a href="#cb42-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-76"><a href="#cb42-76" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Se non c'è nulla nella frontiera vuol dire che il problema non è risolvibile.</span></span>
+<span id="cb42-77"><a href="#cb42-77" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Ovvero, non c'è un cammino tra start e goal!</span></span>
+<span id="cb42-78"><a href="#cb42-78" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> frontiera.eVuota():</span>
+<span id="cb42-79"><a href="#cb42-79" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">"Non esiste una soluzione"</span>)</span>
+<span id="cb42-80"><a href="#cb42-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-81"><a href="#cb42-81" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Sceglie un nodo dalla froniera</span></span>
+<span id="cb42-82"><a href="#cb42-82" aria-hidden="true" tabindex="-1"></a>            nodo <span class="op">=</span> frontiera.rimuoviStato()</span>
+<span id="cb42-83"><a href="#cb42-83" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.numeroStatiEsplorati <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb42-84"><a href="#cb42-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-85"><a href="#cb42-85" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Se il nodo estratto è il nodo goal allora abbiamo trovato il nodo di arrivo e risolto il problema</span></span>
+<span id="cb42-86"><a href="#cb42-86" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> nodo.stato <span class="op">==</span> <span class="va">self</span>.goal:</span>
+<span id="cb42-87"><a href="#cb42-87" aria-hidden="true" tabindex="-1"></a>                azioni <span class="op">=</span> []</span>
+<span id="cb42-88"><a href="#cb42-88" aria-hidden="true" tabindex="-1"></a>                celle <span class="op">=</span> []</span>
+<span id="cb42-89"><a href="#cb42-89" aria-hidden="true" tabindex="-1"></a>                <span class="co"># ripercorre il cammino al contrario dal goal verso lo stato start per creare il cammino</span></span>
+<span id="cb42-90"><a href="#cb42-90" aria-hidden="true" tabindex="-1"></a>                <span class="co"># che porta dallo start al goal. Ovvero, la soluzione.</span></span>
+<span id="cb42-91"><a href="#cb42-91" aria-hidden="true" tabindex="-1"></a>                <span class="cf">while</span> nodo.genitore <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb42-92"><a href="#cb42-92" aria-hidden="true" tabindex="-1"></a>                    azioni.append(nodo.azione)</span>
+<span id="cb42-93"><a href="#cb42-93" aria-hidden="true" tabindex="-1"></a>                    celle.append(nodo.stato)</span>
+<span id="cb42-94"><a href="#cb42-94" aria-hidden="true" tabindex="-1"></a>                    nodo <span class="op">=</span> nodo.genitore</span>
+<span id="cb42-95"><a href="#cb42-95" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Siccome ha costruito il cammino soluzione in direzione inversa, ovvero da goal a start</span></span>
+<span id="cb42-96"><a href="#cb42-96" aria-hidden="true" tabindex="-1"></a>                <span class="co"># per avere il cammino orientato in modo corretto deve invertire sia la lista degli stati</span></span>
+<span id="cb42-97"><a href="#cb42-97" aria-hidden="true" tabindex="-1"></a>                <span class="co"># che quella delle azioni</span></span>
+<span id="cb42-98"><a href="#cb42-98" aria-hidden="true" tabindex="-1"></a>                azioni.reverse()</span>
+<span id="cb42-99"><a href="#cb42-99" aria-hidden="true" tabindex="-1"></a>                celle.reverse()</span>
+<span id="cb42-100"><a href="#cb42-100" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Quindi memorizza la lista degli stati e la lista delle azioni da intraprendere nell'attributo</span></span>
+<span id="cb42-101"><a href="#cb42-101" aria-hidden="true" tabindex="-1"></a>                <span class="co"># soluzione della classe Labirinto</span></span>
+<span id="cb42-102"><a href="#cb42-102" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.soluzione <span class="op">=</span> (azioni, celle)</span>
+<span id="cb42-103"><a href="#cb42-103" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
+<span id="cb42-104"><a href="#cb42-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-105"><a href="#cb42-105" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Altrimenti marchiamo il nodo estratto come esplorato</span></span>
+<span id="cb42-106"><a href="#cb42-106" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.statiEsplorati.add(nodo.stato)</span>
+<span id="cb42-107"><a href="#cb42-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-108"><a href="#cb42-108" aria-hidden="true" tabindex="-1"></a>            <span class="co"># E aggiungiamo i nodi vicini alla frontiera</span></span>
+<span id="cb42-109"><a href="#cb42-109" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> azione, stato <span class="kw">in</span> <span class="va">self</span>.nodiVicini(nodo.stato):</span>
+<span id="cb42-110"><a href="#cb42-110" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> frontiera.contieneStato(stato) <span class="kw">and</span> stato <span class="kw">not</span> <span class="kw">in</span> <span class="va">self</span>.statiEsplorati:</span>
+<span id="cb42-111"><a href="#cb42-111" aria-hidden="true" tabindex="-1"></a>                    child <span class="op">=</span> Nodo(stato<span class="op">=</span>stato, genitore<span class="op">=</span>nodo, azione<span class="op">=</span>azione)</span>
+<span id="cb42-112"><a href="#cb42-112" aria-hidden="true" tabindex="-1"></a>                    frontiera.aggiungiStato(child)</span>
+<span id="cb42-113"><a href="#cb42-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-114"><a href="#cb42-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-115"><a href="#cb42-115" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> stampaLabirinto(<span class="va">self</span>, mostraSoluzione<span class="op">=</span><span class="va">True</span>, mostraStatiEsplorati<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb42-116"><a href="#cb42-116" aria-hidden="true" tabindex="-1"></a>        soluzione <span class="op">=</span> <span class="va">self</span>.soluzione[<span class="dv">1</span>] <span class="cf">if</span> <span class="va">self</span>.soluzione <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb42-117"><a href="#cb42-117" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>()</span>
+<span id="cb42-118"><a href="#cb42-118" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, riga <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.muri):</span>
+<span id="cb42-119"><a href="#cb42-119" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j, col <span class="kw">in</span> <span class="bu">enumerate</span>(riga):</span>
+<span id="cb42-120"><a href="#cb42-120" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> col:</span>
+<span id="cb42-121"><a href="#cb42-121" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"█"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb42-122"><a href="#cb42-122" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> (i, j) <span class="op">==</span> <span class="va">self</span>.start:</span>
+<span id="cb42-123"><a href="#cb42-123" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"A"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb42-124"><a href="#cb42-124" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> (i, j) <span class="op">==</span> <span class="va">self</span>.goal:</span>
+<span id="cb42-125"><a href="#cb42-125" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"B"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb42-126"><a href="#cb42-126" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> soluzione <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> mostraSoluzione <span class="kw">and</span> (i, j) <span class="kw">in</span> soluzione:</span>
+<span id="cb42-127"><a href="#cb42-127" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"*"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb42-128"><a href="#cb42-128" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Stati esplorati</span></span>
+<span id="cb42-129"><a href="#cb42-129" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> soluzione <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="kw">and</span> mostraStatiEsplorati <span class="kw">and</span> (i, j) <span class="kw">in</span> <span class="va">self</span>.statiEsplorati:</span>
+<span id="cb42-130"><a href="#cb42-130" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"o"</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb42-131"><a href="#cb42-131" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span>:</span>
+<span id="cb42-132"><a href="#cb42-132" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">" "</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb42-133"><a href="#cb42-133" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>()</span>
+<span id="cb42-134"><a href="#cb42-134" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Possiamo caricare un labirinto e vedere la sua stampa a video:</p>
-<div id="cell-63" class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> Labirinto(<span class="st">"labirinto2.txt"</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Labirinto:"</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>l.stampaLabirinto(<span class="va">False</span>,<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-63" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> Labirinto(<span class="st">"labirinto2.txt"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Labirinto:"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>l.stampaLabirinto(<span class="va">False</span>,<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Labirinto:
+
+███                 █████████
+█   ███████████████████   █ █
+█ ████                █ █ █ █
+█ ███████████████████ █ █ █ █
+█                     █ █ █ █
+█████████████████████ █ █ █ █
+█   ██                █ █ █ █
+█ █ ██ ███ ██ █████████ █ █ █
+█ █    █   ██B█         █ █ █
+█ █ ██ ████████████████ █ █ █
+███ ██             ████ █ █ █
+███ ██████████████ ██ █ █ █ █
+███             ██    █ █ █ █
+██████ ████████ ███████ █ █ █
+██████ ████             █   █
+A      ██████████████████████
+</code></pre>
+</div>
 </div>
 <p>Adesso, usando il metodo risolvi della classe labirinto appena definita possiamo risolvere il labirinto. La prima soluzione la cerchiamo con l’algoritmo DFS passando al risolutore una frontiera a pila</p>
-<div id="cell-65" class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> timedelta</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sto cercando una soluzione con una frontiera pila (DFS)..."</span>)</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>tempoIniziale <span class="op">=</span> time.time_ns()</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>l.risolvi(FrontieraPila())</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Numero di stati esplorati : "</span>, l.numeroStatiEsplorati)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>tempoImpiegato <span class="op">=</span> time.time_ns() <span class="op">-</span> tempoIniziale</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> <span class="st">"L'esecuzione del codice ha richiesto : </span><span class="sc">%s</span><span class="st"> microsecondi (Wall clock time)"</span> <span class="op">%</span> timedelta(microseconds<span class="op">=</span><span class="bu">round</span>(tempoImpiegato<span class="op">/</span><span class="dv">1000</span>))</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(msg)</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Soluzione trovata : "</span>)</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>l.stampaLabirinto(mostraStatiEsplorati<span class="op">=</span><span class="va">True</span>,mostraSoluzione<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-65" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> timedelta</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sto cercando una soluzione con una frontiera pila (DFS)..."</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>tempoIniziale <span class="op">=</span> time.time_ns()</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>l.risolvi(FrontieraPila())</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Numero di stati esplorati : "</span>, l.numeroStatiEsplorati)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>tempoImpiegato <span class="op">=</span> time.time_ns() <span class="op">-</span> tempoIniziale</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> <span class="st">"L'esecuzione del codice ha richiesto : </span><span class="sc">%s</span><span class="st"> microsecondi (Wall clock time)"</span> <span class="op">%</span> timedelta(microseconds<span class="op">=</span><span class="bu">round</span>(tempoImpiegato<span class="op">/</span><span class="dv">1000</span>))</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(msg)</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Soluzione trovata : "</span>)</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>l.stampaLabirinto(mostraStatiEsplorati<span class="op">=</span><span class="va">True</span>,mostraSoluzione<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sto cercando una soluzione con una frontiera pila (DFS)...
+Numero di stati esplorati :  194
+L'esecuzione del codice ha richiesto : 0:00:00.000809 microsecondi (Wall clock time)
+Soluzione trovata : 
+
+███ooooooooooooooooo█████████
+█ooo███████████████████ooo█o█
+█o████oooooooooooooooo█o█o█o█
+█o███████████████████o█o█o█o█
+█ooooooooooooooooooooo█o█o█o█
+█████████████████████o█o█o█o█
+█   ██********oooooooo█o█o█o█
+█ █ ██*███ ██*█████████o█o█o█
+█ █****█   ██B█ooooooooo█o█o█
+█ █*██o████████████████o█o█o█
+███*██ooooooooooooo████o█o█o█
+███*██████████████o██o█o█o█o█
+███****ooooooooo██oooo█o█o█o█
+██████*████████o███████o█o█o█
+██████*████ooooooooooooo█ooo█
+A******██████████████████████
+</code></pre>
+</div>
 </div>
 <p>Quindi, cerchiamo con l’algoritmo BFS passando al risolutore una frontiera a coda</p>
-<div id="cell-67" class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sto cercando una soluzione con una frontiera a coda (BFS)..."</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>tempoIniziale <span class="op">=</span> time.time_ns()</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>l.risolvi(FrontieraCoda())</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Numero di stati esplorati : "</span>, l.numeroStatiEsplorati)</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>tempoImpiegato <span class="op">=</span> time.time_ns() <span class="op">-</span> tempoIniziale</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> <span class="st">"L'esecuzione del codice ha richiesto : </span><span class="sc">%s</span><span class="st"> microsecondi (Wall clock time)"</span> <span class="op">%</span> timedelta(microseconds<span class="op">=</span><span class="bu">round</span>(tempoImpiegato<span class="op">/</span><span class="dv">1000</span>))</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(msg)</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Soluzione trovata : "</span>)</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>l.stampaLabirinto(mostraStatiEsplorati<span class="op">=</span><span class="va">True</span>,mostraSoluzione<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-67" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sto cercando una soluzione con una frontiera a coda (BFS)..."</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>tempoIniziale <span class="op">=</span> time.time_ns()</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>l.risolvi(FrontieraCoda())</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Numero di stati esplorati : "</span>, l.numeroStatiEsplorati)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>tempoImpiegato <span class="op">=</span> time.time_ns() <span class="op">-</span> tempoIniziale</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> <span class="st">"L'esecuzione del codice ha richiesto : </span><span class="sc">%s</span><span class="st"> microsecondi (Wall clock time)"</span> <span class="op">%</span> timedelta(microseconds<span class="op">=</span><span class="bu">round</span>(tempoImpiegato<span class="op">/</span><span class="dv">1000</span>))</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(msg)</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Soluzione trovata : "</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>l.stampaLabirinto(mostraStatiEsplorati<span class="op">=</span><span class="va">True</span>,mostraSoluzione<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sto cercando una soluzione con una frontiera a coda (BFS)...
+Numero di stati esplorati :  77
+L'esecuzione del codice ha richiesto : 0:00:00 microsecondi (Wall clock time)
+Soluzione trovata : 
+
+███                 █████████
+█   ███████████████████   █ █
+█ ████                █ █ █ █
+█ ███████████████████ █ █ █ █
+█                     █ █ █ █
+█████████████████████ █ █ █ █
+█ooo██********o       █ █ █ █
+█o█o██*███o██*█████████ █ █ █
+█o█****█ooo██B█         █ █ █
+█o█*██o████████████████ █ █ █
+███*██ooooooooo    ████ █ █ █
+███*██████████████ ██ █ █ █ █
+███****ooooooooo██    █ █ █ █
+██████*████████o███████o█ █ █
+██████*████ooooooooooooo█   █
+A******██████████████████████
+</code></pre>
+</div>
 </div>
 <p>Osserviamo dai risultati ottenuti che per questo labirinto l’algoritmo di ricerca più veloce è il BFS perché ha trovato la soluzione visitando 77 nodi mentre l’algoritmo DFS ha visitato 194 nodi per arrivare alla stessa soluzione.</p>
 </section>
@@ -1856,11 +1965,11 @@ A     #
 <p>La progettazione di funzioni euristiche efficaci è spesso una sfida cruciale nell’applicazione degli algoritmi di ricerca informati a problemi complessi del mondo reale.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="attachment:image.png" class="img-fluid figure-img"></p>
-<figcaption>image.png</figcaption>
+<p><img src="distanze.png" class="img-fluid figure-img"></p>
+<figcaption>Distanze euclidee e di Manhattan</figcaption>
 </figure>
 </div>
-<p><strong><em>Distanza euclidea</em></strong> La distanza euclidea, anche nota come distanza in linea retta, è una misura della distanza tra due punti in uno spazio euclideo, come il piano cartesiano o lo spazio tridimensionale. Essa rappresenta la lunghezza del segmento di retta che congiunge i due punti.</p>
+<p><strong>Distanza euclidea</strong> La distanza euclidea, anche nota come distanza in linea retta, è una misura della distanza tra due punti in uno spazio euclideo, come il piano cartesiano o lo spazio tridimensionale. Essa rappresenta la lunghezza del segmento di retta che congiunge i due punti.</p>
 <p>La formula per calcolare la distanza euclidea tra due punti <span class="math inline">\(A=(x_A, y_A)\)</span> e <span class="math inline">\(B=(x_B, y_B)\)</span> in un piano cartesiano bidimensionale è:</p>
 <p><span class="math display">\[d_{euclide}=\sqrt{(x_B-x_A)^2+(y_B-Y_A)^2}\]</span></p>
 <p>La distanza euclidea è ampiamente utilizzata come funzione euristica negli algoritmi di ricerca informati, come l’algoritmo A*, per stimare la distanza rimanente dalla soluzione. Essa fornisce una stima ammissibile (non sovrastima) della distanza effettiva, soddisfacendo così i requisiti per garantire l’ottimalità dell’algoritmo di ricerca.</p>
@@ -1877,8 +1986,8 @@ A     #
 <h4 class="anchored" data-anchor-id="algoritmo-di-ricerca-informato-greedy-best-first-search">3.4.5.2 Algoritmo di ricerca informato Greedy Best-First Search</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="attachment:image-3.png" class="img-fluid figure-img"></p>
-<figcaption>image-3.png</figcaption>
+<p><img src="ricerca informata.png" class="img-fluid figure-img"></p>
+<figcaption>ricerca informata</figcaption>
 </figure>
 </div>
 <p>Quando l’algoritmo si trova nella cella colorata di azzurro deve scegliere se proseguire nella cella a distanza 9 o in quella a distanza 11 dal goal. Quale scegliere? GBF sceglie la cella con distanza 9 dall’obiettivo. È una buona scelta? Direi di no! Il cammino scelto è il più lungo. Forse, si può fare di meglio? Se esaminiamo le cella a e b notiamo l’euristica che ci ha portato in b con GBS è minore dell’ euristica in a. Ma, che cosa succede se oltre a considerare la distanza dall’obbiettivo aggiungo il cammino fatto all’euristica h? Ovvero: <span class="math display">\[H = distanza da percorrere + distanza percorsa\]</span> Entra l’algoritmo informato A*</p>
@@ -1892,9 +2001,894 @@ A     #
 </figure>
 </div>
 <p>L’algoritmo A* è un algoritmo di ricerca informato che utilizza una funzione di valutazione per guidare la ricerca verso la soluzione ottimale. La funzione di valutazione, nota come funzione di costo <span class="math inline">\(h(n)\)</span>, è composta da due componenti: 1. <strong>Costo del cammino</strong>: <span class="math inline">\(g(n)\)</span>, che rappresenta il costo del cammino per raggiungere il nodo <span class="math inline">\(n\)</span> dalla radice. 2. <strong>Stima del costo rimanente</strong>: <span class="math inline">\(f(n)\)</span>, che rappresenta una stima del costo rimanente per raggiungere la soluzione ottimale partendo dal nodo <span class="math inline">\(n\)</span>. La funzione di valutazione <span class="math inline">\(h(n)\)</span> è definita come: <span class="math display">\[h(n) = g(n) + f(n)\]</span> L’algoritmo A* utilizza una coda di priorità per mantenere i nodi da esplorare in base al valore della funzione di valutazione <span class="math inline">\(f(n)\)</span>. I nodi con il valore più basso di <span class="math inline">\(h(n)\)</span> vengono estratti dalla coda e esplorati prima. Nel caso in figura, con questa nuova euristica vediamo che a è una scelta migliore di b perché ha una euristica minore.</p>
-
-
 </section>
+</section>
+</section>
+<section id="algoritmi-equitativi" class="level2">
+<h2 class="anchored" data-anchor-id="algoritmi-equitativi">Algoritmi Equitativi</h2>
+<p>L’avvento dell’Intelligenza Artificiale e il progresso nella capacità computazionale delle moderne macchine hanno rivoluzionato molteplici aspetti della nostra vita quotidiana. Tra le numerose applicazioni dell’IA, gli algoritmi predittivi e gli algoritmi di ripartizione equitativa si distinguono per il loro potenziale straordinario e per le sfide etiche che presentano.</p>
+<p>Gli algoritmi predittivi, capaci di effettuare previsioni estremamente accurate in svariati scenari, sono diventati strumenti essenziali in settori cruciali come quello giudiziario, creditizio, assicurativo e sanitario. Questi algoritmi analizzano enormi quantità di dati per prendere decisioni che possono avere un impatto significativo sulla vita delle persone. Tuttavia, il loro crescente impiego ha sollevato una preoccupazione fondamentale: l’equità.</p>
+<p>L’equità negli algoritmi si riferisce alla loro capacità di trattare in modo imparziale tutti i gruppi di persone, indipendentemente da attributi sensibili come etnia, genere, età o stato socioeconomico. Senza adeguate misure di equità, gli algoritmi rischiano di perpetuare o addirittura amplificare disuguaglianze sociali ed economiche esistenti, poiché i dati utilizzati per il loro addestramento possono contenere pregiudizi storici e sistemici.</p>
+<p>Parallelamente, gli algoritmi di ripartizione equitativa giocano un ruolo cruciale nella distribuzione giusta e bilanciata di risorse o beni tra più parti. Questi algoritmi trovano applicazione in scenari diversi, dalla divisione dei beni durante un divorzio alla distribuzione di fondi di emergenza in situazioni di crisi.</p>
+<p>Per affrontare le sfide legate all’equità, sono stati sviluppati vari approcci e metodologie. Tra questi, la pre-elaborazione dei dati mira a correggere i bias presenti nei dati prima dell’addestramento degli algoritmi. Durante lo sviluppo, si possono includere vincoli di equità nei processi di ottimizzazione per evitare che l’algoritmo favorisca ingiustamente un gruppo rispetto a un altro. Il post-processamento dei risultati permette di aggiustare le previsioni per eliminare disparità tra gruppi diversi.</p>
+<p>La trasparenza e la spiegabilità degli algoritmi sono essenziali per affrontare le questioni etiche correlate. Spesso, gli algoritmi più avanzati sono percepiti come “scatole nere”, rendendo difficile comprendere i processi decisionali e attribuire responsabilità in caso di errori. Questo solleva importanti questioni di responsabilità e trasparenza.</p>
+<p>L’implementazione di algoritmi equitativi può avere impatti significativi in vari settori. Nel sistema giudiziario, strumenti equi possono promuovere la fiducia nel sistema legale. Nei processi di assunzione, possono garantire valutazioni basate sulle competenze piuttosto che su caratteristiche personali. Nel campo sanitario, possono migliorare l’accesso e la qualità delle cure per tutte le popolazioni.</p>
+<p>In conclusione, l’equità nell’IA è un aspetto cruciale che richiede attenzione e considerazione. Mentre gli algoritmi predittivi e gli algoritmi di ripartizione equitativa rivestono un ruolo fondamentale nella nostra vita quotidiana, è essenziale garantire che siano sviluppati e utilizzati in modo equo e trasparente. Solo così possiamo trarre il massimo beneficio dalla potenza dell’IA senza incorrere in potenziali disuguaglianze e pregiudizi. In questo paragrafo, esploreremo gli algoritmi di ripartizione equitativa, che sono essenziali per garantire che le risorse o i beni siano distribuiti in modo equo tra le parti interessate. Questi algoritmi trovano applicazione in scenari diversi, dalla divisione dei beni durante un divorzio alla distribuzione di fondi di emergenza in situazioni di crisi.</p>
+<section id="agenti-partecipanti" class="level3">
+<h3 class="anchored" data-anchor-id="agenti-partecipanti">agenti partecipanti</h3>
+<p>In generale, si ha a che fare con un insieme N di agenti o partecipanti o giocatori. Questi agenti hanno la necessità di mettersi d’accordo sulla divisione di un certo numero M di beni, risorse, oggetti, ecc.</p>
+</section>
+<section id="beni" class="level3">
+<h3 class="anchored" data-anchor-id="beni">beni</h3>
+<p>Gli algoritmi di suddivisione equa possono essere applicati a diversi tipi di beni, ciascuno con caratteristiche specifiche che influenzano il modo in cui la suddivisione deve essere effettuata. Questi beni possono essere classificati in diverse categorie:</p>
+<p><strong>Beni Divisibili</strong> I beni divisibili sono quelli che possono essere suddivisi in parti più piccole senza perdere il loro valore intrinseco. Esempi includono:</p>
+<ul>
+<li><strong>Cibo</strong>: come una torta o una pizza, che possono essere tagliati in fette.</li>
+<li><strong>Terreni</strong>: una proprietà terriera può essere suddivisa in appezzamenti più piccoli.</li>
+<li><strong>Denaro</strong>: che può essere facilmente diviso in unità più piccole.</li>
+</ul>
+<p><strong>Beni Indivisibili</strong> I beni indivisibili non possono essere suddivisi senza perdere il loro valore o funzionalità. Esempi includono:</p>
+<ul>
+<li><strong>Oggetti fisici unici</strong>: come una macchina, un’opera d’arte o un elettrodomestico.</li>
+<li><strong>Ruoli o incarichi</strong>: come una posizione lavorativa o un incarico specifico in un progetto.</li>
+</ul>
+<p><strong>Beni Combinati</strong> Alcuni beni possono essere considerati una combinazione di elementi divisibili e indivisibili. Ad esempio:</p>
+<ul>
+<li><strong>Pacchetti di beni</strong>: come un set di mobili dove ogni pezzo è indivisibile, ma il set complessivo può essere suddiviso.</li>
+<li><strong>Progetti con compiti specifici</strong>: dove i singoli compiti possono essere indivisibili, ma l’intero progetto può essere suddiviso tra diversi partecipanti.</li>
+</ul>
+<p><strong>Beni con Valore Soggettivo</strong> Alcuni beni hanno un valore che varia a seconda delle preferenze individuali dei partecipanti. Esempi includono:</p>
+<ul>
+<li><strong>Oggetti con valore sentimentale</strong>: come regali o ricordi di famiglia.</li>
+<li><strong>Elementi artistici o culturali</strong>: come quadri o libri, il cui valore può dipendere dal gusto personale.</li>
+</ul>
+<p><strong>Beni Temporanei</strong> Questi sono beni che possono essere utilizzati per un certo periodo di tempo e poi riassegnati. Esempi includono:</p>
+<ul>
+<li><strong>Uso di risorse comuni</strong>: come una sala conferenze, un campo sportivo o un’attrezzatura condivisa.</li>
+<li><strong>Servizi o turni di lavoro</strong>: dove il tempo di servizio o il turno può essere diviso tra più persone.</li>
+</ul>
+<p><strong>Beni Digitali</strong> I beni digitali possono essere suddivisi e duplicati senza perdere valore. Esempi includono:</p>
+<ul>
+<li><strong>Software</strong>: che può essere concesso in licenza a più utenti.</li>
+<li><strong>Contenuti digitali</strong>: come e-book, musica o video, che possono essere condivisi tra più persone. Per affrontare questi problemi, gli algoritmi di suddivisione equa utilizzano criteri diversi, come la proporzionalità, l’efficienza, l’equita, l’invidia-zero (nessun partecipante dovrebbe invidiare la parte degli altri) e altre nozioni di giustizia.</li>
+</ul>
+<p><strong>Esempi di criteri di equità</strong></p>
+<ol type="1">
+<li><strong>Proporzionalità</strong>: Ogni partecipante riceve una quota proporzionale alle proprie pretese o contributi.</li>
+<li><strong>Invidia-zero</strong>: Nessun partecipante deve preferire la parte assegnata a un altro partecipante alla propria parte.</li>
+<li><strong>Efficienza Pareto</strong>: Non è possibile riassegnare le risorse in modo che qualcuno sia in una situazione migliore senza che qualcun altro sia in una situazione peggiore.</li>
+<li><strong>Equità equitativa</strong>: Ogni partecipante percepisce di aver ricevuto una parte equa in base a criteri specifici.</li>
+</ol>
+<p>Gli algoritmi di suddivisione equa cercano di trovare soluzioni che bilancino questi criteri, a seconda delle specifiche esigenze del contesto in cui vengono applicati.</p>
+</section>
+<section id="regole-e-assunzioni" class="level3">
+<h3 class="anchored" data-anchor-id="regole-e-assunzioni">Regole e assunzioni</h3>
+<p><strong>Regole</strong> Affinché la divisione di un bene S sia equa: - i giocatori devono essere partecipanti volontari e accettare le regole del gioco come vincolanti.</p>
+<ul>
+<li><p>I giocatori devono agire razionalmente secondo il loro sistema di credenze.</p></li>
+<li><p>Le regole della matematica si applicano quando si assegnano valori agli oggetti in S.</p></li>
+<li><p>Solo i giocatori sono coinvolti nel gioco, non ci sono agenti esterni come avvocati o altri intermediari.</p></li>
+</ul>
+<p>Se i giocatori seguono le regole, il gioco terminerà dopo un numero finito di mosse dei giocatori e risulterà in una divisione di S.</p>
+<p><strong>Assunzioni</strong></p>
+<p>Gli algoritmi si basano sulle seguenti assunzionimere quanto segue:</p>
+<ul>
+<li><p>Tutti i giocatori giocano in modo corretto.</p></li>
+<li><p>Non hanno informazioni precedenti sui gusti o le avversioni degli altri giocatori.</p></li>
+<li><p>Non assegnano valori in modo da manipolare il gioco.</p></li>
+<li><p>Tutti i giocatori hanno uguali diritti nella condivisione dell’insieme S. In altre parole, se ci sono tre giocatori, ogni giocatore ha diritto ad almeno 1/3 di S.</p></li>
+</ul>
+<p>Se queste assunzioni non sono soddisfatte, la divisione potrebbe non essere completamente equa.</p>
+</section>
+<section id="matematica-elementare-per-algoritmi-di-ripartizione-equa" class="level3">
+<h3 class="anchored" data-anchor-id="matematica-elementare-per-algoritmi-di-ripartizione-equa">Matematica elementare per algoritmi di ripartizione equa</h3>
+<ul>
+<li><strong>Percentuale</strong>: Una percentuale è una frazione con un denominatore di 100. Ad esempio, il 50% è la metà, il 25% è un quarto e il 100% è l’intero.</li>
+<li><strong>Percentuale di un numero</strong>: Per trovare la percentuale di un numero, moltiplica il numero per la percentuale come decimale. Ad esempio, il 25% di 80 è 0,25 x 80 = 20.</li>
+<li><strong>Percentuale di un numero n1 rispetto a un numero n2</strong>: Per calcolare la percentuale di un numero n1 rispetto a un numero n2, dividi n1 per n2 e moltiplica per 100. Ad esempio, se 20 è una parte di 80, si ha che 20 è il (20/80) x 100 di 80 o il 25% di 80.</li>
+</ul>
+<p>esempio: 1. Alice e Bob hanno un sacchetto di 100 monete. Alice ha 60 monete, mentre Bob ha 40 monete. Qual è la percentuale di monete di Alice rispetto a Bob? Soluzione: - La percentuale di monete di Alice rispetto a Bob: (60/40) x 100 = 150%. - Quindi, Alice ha il 150% delle monete di Bob.</p>
+<ol start="2" type="1">
+<li>Alice, Bob, Claudia e Daniele hanno una torta. Alice ha 2 fette, Bob ha 3 fette, Claudia ha 4 fette e Daniele ha 1 fetta. Qual è la percentuale di fette di Alice rispetto a Bob? Soluzione:</li>
+</ol>
+<ul>
+<li>La percentuale di fette di Alice rispetto a Bob: (2/3) x 100 = 66,67%. Qual è la percentuale di torta che ha Alice? Soluuzione:</li>
+<li>La percentuale di torta che ha Alice: (2/10) x 100 = 20%.</li>
+</ul>
+</section>
+<section id="algoritmi-di-ripartizione-equitativa" class="level3">
+<h3 class="anchored" data-anchor-id="algoritmi-di-ripartizione-equitativa">Algoritmi di Ripartizione Equitativa</h3>
+<p>Un problema tipico di ripartizione equa può essere formulato come segue: Alice, Bruno, Carla e Davide hanno una torta. La torta è divisa in 4 parti non necessariamente uguali e non con la stessa farcitura e/o copertura. Ognuno dei 4 partecipanti ha una sua preferenza per ognuna delle quattro parti. Le preferenze sono riassunte nella seguente tabella:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td>50%</td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>30%</td>
+<td>30%</td>
+<td>10%</td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>40%</td>
+<td>20%</td>
+<td>20%</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>La domanda che ci si pone è: Quale porzione di torta considererebbe equa ogni giocatore? È importante ricordare che un algoritmo di ripartizione equa si basa sulle assunzioni del paragrafo 3.5.3. Pertanto, ogni giocatore ha espresso la propria preferenza senza conoscere le preferenze degli altri partecipanti. La soluzione, in questo caso, è illustrata nella tabella seguente, dove è evidenziata la porzione assegnata a ciascun giocatore, rispettando le preferenze manifestate.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td><strong>50%</strong></td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>30%</td>
+<td>30%</td>
+<td>10%</td>
+<td><strong>30%</strong></td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td><strong>40%</strong></td>
+<td>20%</td>
+<td>20%</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td><strong>25%</strong></td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>L’implementazione dell’algorimo usato per ottenere la soluzione è riportata nella prossima sezione</p>
+<div id="cell-70" class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> divisione_equa(preferenze):</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. **Inizializzazione** : Converti il dizionario delle preferenze in una lista di tuple per una gestione più semplice</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    partecipanti <span class="op">=</span> <span class="bu">list</span>(preferenze.keys())</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    valori_preferenze <span class="op">=</span> <span class="bu">list</span>(preferenze.values())</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Numero di partecipanti e porzioni</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    num_partecipanti <span class="op">=</span> <span class="bu">len</span>(partecipanti)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    num_porzioni <span class="op">=</span> <span class="bu">len</span>(valori_preferenze[<span class="dv">0</span>])</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inizializza la lista di allocazione</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    allocazione <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> num_partecipanti</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>    porzioni_usate <span class="op">=</span> [<span class="va">False</span>] <span class="op">*</span> num_porzioni</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. **Funzione `trova_preferenza_massima`** : Funzione per trovare il partecipante con la preferenza più alta per una data porzione</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> trova_preferenza_massima(porzione):</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>        preferenza_massima <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>        indice_partecipante <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_partecipanti):</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> valori_preferenze[i][porzione] <span class="op">&gt;</span> preferenza_massima <span class="kw">and</span> allocazione[i] <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>:</span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>                preferenza_massima <span class="op">=</span> valori_preferenze[i][porzione]</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>                indice_partecipante <span class="op">=</span> i</span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> indice_partecipante</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. **Assegnazione delle Porzioni** : Assegna le porzioni ai partecipanti</span></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> porzione <span class="kw">in</span> <span class="bu">range</span>(num_porzioni):</span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>        indice_partecipante <span class="op">=</span> trova_preferenza_massima(porzione)</span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>        allocazione[indice_partecipante] <span class="op">=</span> porzione</span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>        porzioni_usate[porzione] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. **Creazione del Risultato** : Crea un dizionario di risultato per mappare i partecipanti alle loro porzioni allocate</span></span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>    risultato <span class="op">=</span> {partecipanti[i]: <span class="ss">f"porzione </span><span class="sc">{</span>allocazione[i] <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_partecipanti)}</span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> risultato</span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. **Esecuzione del Codice**: Esegui il codice con le preferenze fornite</span></span>
+<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Preferenze dei partecipanti</span></span>
+<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a>preferenze <span class="op">=</span> {</span>
+<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Alice'</span>: [<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">30</span>, <span class="dv">10</span>],  <span class="co"># Preferenze per le porzioni 1, 2, 3, e 4</span></span>
+<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bruno'</span>: [<span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">10</span>, <span class="dv">30</span>],</span>
+<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Carla'</span>: [<span class="dv">40</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>],</span>
+<span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Davide'</span>: [<span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">25</span>]</span>
+<span id="cb49-43"><a href="#cb49-43" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb49-44"><a href="#cb49-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-45"><a href="#cb49-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Trova la divisione equa delle porzioni</span></span>
+<span id="cb49-46"><a href="#cb49-46" aria-hidden="true" tabindex="-1"></a>allocazione <span class="op">=</span> divisione_equa(preferenze)</span>
+<span id="cb49-47"><a href="#cb49-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-48"><a href="#cb49-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Stampa il risultato</span></span>
+<span id="cb49-49"><a href="#cb49-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Una divisione equa delle porzioni è la seguente:"</span>)</span>
+<span id="cb49-50"><a href="#cb49-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> partecipante, porzione <span class="kw">in</span> allocazione.items():</span>
+<span id="cb49-51"><a href="#cb49-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>partecipante<span class="sc">}</span><span class="ss"> riceve </span><span class="sc">{</span>porzione<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Una divisione equa delle porzioni è la seguente:
+Alice riceve porzione 2
+Bruno riceve porzione 4
+Carla riceve porzione 1
+Davide riceve porzione 3</code></pre>
+</div>
+</div>
+<p>Il semplice codice Python proposto implementa un algoritmpo di divisione equa nel seguente modo:</p>
+<ol type="1">
+<li><strong>Inizializzazione</strong>:
+<ul>
+<li>Convertiamo il dizionario delle preferenze in una lista di tuple per una gestione più semplice.</li>
+<li>Otteniamo i nomi dei partecipanti e le loro preferenze.</li>
+<li>Inizializziamo le liste <code>allocazione</code> e <code>porzioni_usate</code> per tenere traccia delle porzioni assegnate e delle porzioni già utilizzate.</li>
+</ul></li>
+<li><strong>Funzione <code>trova_preferenza_massima</code></strong>:
+<ul>
+<li>Questa funzione trova il partecipante con la preferenza più alta per una data porzione che non ha ancora ricevuto una porzione.</li>
+<li>Scorre tutti i partecipanti e confronta le loro preferenze per la porzione corrente, restituendo l’indice del partecipante con la preferenza massima.</li>
+</ul></li>
+<li><strong>Assegnazione delle Porzioni</strong>:
+<ul>
+<li>Per ogni porzione, troviamo il partecipante con la preferenza più alta utilizzando la funzione <code>trova_preferenza_massima</code>.</li>
+<li>Assegniamo la porzione a quel partecipante e segniamo la porzione come utilizzata.</li>
+</ul></li>
+<li><strong>Creazione del Risultato</strong>:
+<ul>
+<li>Creiamo un dizionario <code>risultato</code> che mappa i partecipanti alle loro porzioni assegnate.</li>
+<li>Restituiamo il dizionario <code>risultato</code>.</li>
+</ul></li>
+<li><strong>Esecuzione del Codice</strong>:
+<ul>
+<li>Definiamo le preferenze dei partecipanti.</li>
+<li>Chiamiamo la funzione <code>divisione_equa</code> per ottenere la divisione delle porzioni.</li>
+<li>Stampiamo il risultato.</li>
+</ul></li>
+</ol>
+<p>Evidentemente, l’algoritmo proposto non è l’unica soluzione possibile e può dare origine a situazioni di iniquità o di conflitti. Ad esempio se le preferenze dei partecipanti sono:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td>50%</td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>30%</td>
+<td>30%</td>
+<td>10%</td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>20%</td>
+<td>40%</td>
+<td>20%</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>Si noti il conflitto tra Alice e Carla per la porzione 2. La soluzione a cui arriva l’algoritmo visto è:</p>
+<div id="cell-72" class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>preferenze <span class="op">=</span> {</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Alice'</span>: [<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">30</span>, <span class="dv">10</span>],  <span class="co"># Preferenze per le porzioni 1, 2, 3, e 4</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bruno'</span>: [<span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">10</span>, <span class="dv">30</span>],</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Carla'</span>: [<span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">20</span>, <span class="dv">20</span>],</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Davide'</span>: [<span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">25</span>]</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Trova la divisione equa delle porzioni</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>allocazione <span class="op">=</span> divisione_equa(preferenze)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Stampa il risultato</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Una divisione equa delle porzioni è la seguente:"</span>)</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> partecipante, porzione <span class="kw">in</span> allocazione.items():</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>partecipante<span class="sc">}</span><span class="ss"> riceve </span><span class="sc">{</span>porzione<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Una divisione equa delle porzioni è la seguente:
+Alice riceve porzione 2
+Bruno riceve porzione 1
+Carla riceve porzione 4
+Davide riceve porzione 3</code></pre>
+</div>
+</div>
+<p>In questo caso, Carla riceve una porzione per la quale ha espresso un interesse minore e potrebbe invidiare Alice, che ha ottenuto proprio la porzione che lei avrebbe preferito. Tuttavia, non ci si può fare niente. La soluzione proposta è la migliore possibile date le preferenze espresse e i beni indivisibili disponibili.</p>
+<p><strong>Valore soggettivo di un bene</strong></p>
+<p>Prima di trattare l’argomento dell’invidia, c’è un altro aspetto interessante da approfondire: il valore soggettivo del bene. Ad esempio, nella suddivisione esaminata, se la torta costa 18 €, quale sarebbe il valore economico di ogni porzione di torta per ciascun partecipante?</p>
+<p>Tememdo conto che le preferenze sono le seguenti:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td>50%</td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>30%</td>
+<td>30%</td>
+<td>10%</td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>40%</td>
+<td>20%</td>
+<td>20%</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>Alice ha il 50% di prefernenze per la porzione 2 quindi per lei la porzione 2 vale il 50% di 18€ = 9€ e così via. La tabella dei valori delle singole perzioni per ogni partecipante è la seguente:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>1,80€</td>
+<td>9,00€</td>
+<td>5,40€</td>
+<td>1,80€</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>5,40€</td>
+<td>5,40€</td>
+<td>1,80€</td>
+<td>5,40€</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>7,20€</td>
+<td>3,60€</td>
+<td>3,60€</td>
+<td>3,60€</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>4,50€</td>
+<td>4,50€</td>
+<td>4,50€</td>
+<td>4,50€</td>
+</tr>
+</tbody>
+</table>
+<p>Vediamo un altro esempio di calcolo del valore soggettivo di un bene. Alice vede una torta che costa 18€ di cui una metà al cioccolato e l’altra al pistacchio. Alice ama il cioccolato e non ama il pistacchio. Alice valuta la porzione al cioccolato al 90% e la porzione al pistacchio al 10%. Quindi Alice valuta la metà al cioccolato al 90% di 18€ = 16,20€ e la metà al pistacchio al 10% di 18€ = 1,80€.</p>
+<p>In generale, il valore soggettivo di un bene può essere influenzato da una varietà di fattori, che riflettono le percezioni individuali e le circostanze specifiche. Ecco alcuni degli aspetti principali che possono influenzare il valore soggettivo:</p>
+<ul>
+<li><em>Scarsità</em>: Un bene raro o difficile da reperire tende ad avere un valore soggettivo più elevato1. Domanda: La popolarità o la desiderabilità di un bene possono aumentarne il valore percepito1.</li>
+<li><em>Preferenze personali</em>: Gli interessi, i gusti e le preferenze individuali giocano un ruolo significativo nel determinare il valore di un bene per una persona1.</li>
+<li><em>Significato culturale</em>: Il valore di un bene può essere influenzato dal suo significato o dalla sua importanza in una determinata cultura.</li>
+<li><em>Circostanze situazionali</em>: Eventi specifici o situazioni particolari possono alterare il valore di un bene. Ad esempio, l’acqua potrebbe avere un valore molto più alto in un deserto rispetto a una città2.</li>
+<li><em>Affinità personale</em>: Il legame emotivo o la storia personale con un bene possono aumentarne il valore per un individuo2.</li>
+<li><em>Incertezza e mancanza di conoscenza</em>: A volte le persone possono valutare l’importanza di un bene in modo non conforme alla sua reale importanza a causa dell’incertezza o della mancanza di informazioni.</li>
+</ul>
+<p>Questi fattori dimostrano che il valore di un bene non è fisso o intrinseco, ma è piuttosto determinato dalle percezioni e dalle circostanze individuali. La teoria del valore soggettivo sostiene che il valore di un bene dipende dall’ambiente e dalle persone che lo percepiscono, piuttosto che dai costi di produzione o dal lavoro necessario per crearlo1.</p>
+<p><strong>Mitigazione dell’invidia</strong></p>
+<p>Come anticipato, è necessario approfondire il problema della divisione equa senza invidia. Immaginiamo due amici, Alice e Bruno, che devono dividersi una serie di oggetti di valore in modo che nessuno dei due si senta invidioso dell’altro. Ad esempio, supponiamo che Alice e Bruno debbano dividersi i seguenti beni con le rispettive valutazioni:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Oggetto</th>
+<th>Alice</th>
+<th>Bruno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>orologio</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>libro</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>penna</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>quadro</td>
+<td>2</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Nwl seguito si porpone una implementazione dell’algoritmo envy free in Python:</p>
+<div id="cell-74" class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> allocazione_senza_invidia(beni, valutazioni): <span class="co"># 1. **Definizione della Funzione**</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Algoritmo di Envy-Free per la divisione di beni indivisibili tra due persone.</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="co">    beni: lista di beni da dividere</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="co">    valutazioni: dizionario con le valutazioni dei beni per ciascun partecipante</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. **Inizializzazione delle Assegnazioni**:</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>    assegnazione <span class="op">=</span> {<span class="st">'Alice'</span>: [], <span class="st">'Bob'</span>: []}</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>    valori_totali <span class="op">=</span> {<span class="st">'Alice'</span>: <span class="dv">0</span>, <span class="st">'Bob'</span>: <span class="dv">0</span>}</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. **Ordinamento dei Beni**: Ordina gli oggetti in base alla somma delle valutazioni</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>    beni_ordinati <span class="op">=</span> <span class="bu">sorted</span>(beni, key<span class="op">=</span><span class="kw">lambda</span> x: valutazioni[<span class="st">'Alice'</span>][x] <span class="op">+</span> valutazioni[<span class="st">'Bob'</span>][x], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. **Assegnazione dei Beni**: Assegna gli oggetti in modo da bilanciare i valori totali</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bene <span class="kw">in</span> beni_ordinati:</span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> valori_totali[<span class="st">'Alice'</span>] <span class="op">&lt;=</span> valori_totali[<span class="st">'Bob'</span>]:</span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>            assegnazione[<span class="st">'Alice'</span>].append(bene)</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>            valori_totali[<span class="st">'Alice'</span>] <span class="op">+=</span> valutazioni[<span class="st">'Alice'</span>][bene]</span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>            assegnazione[<span class="st">'Bob'</span>].append(bene)</span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>            valori_totali[<span class="st">'Bob'</span>] <span class="op">+=</span> valutazioni[<span class="st">'Bob'</span>][bene]</span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. **Verifica e Correzione delle Invidie**: Verifica e corregge eventuali invidie</span></span>
+<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bene <span class="kw">in</span> beni_ordinati:</span>
+<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> valutazioni[<span class="st">'Alice'</span>][bene] <span class="op">&gt;</span> valutazioni[<span class="st">'Bob'</span>][bene] <span class="kw">and</span> bene <span class="kw">in</span> assegnazione[<span class="st">'Bob'</span>]:</span>
+<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> valori_totali[<span class="st">'Alice'</span>] <span class="op">&lt;</span> valori_totali[<span class="st">'Bob'</span>]:</span>
+<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>                assegnazione[<span class="st">'Bob'</span>].remove(bene)</span>
+<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a>                assegnazione[<span class="st">'Alice'</span>].append(bene)</span>
+<span id="cb53-30"><a href="#cb53-30" aria-hidden="true" tabindex="-1"></a>                valori_totali[<span class="st">'Alice'</span>] <span class="op">+=</span> valutazioni[<span class="st">'Alice'</span>][bene]</span>
+<span id="cb53-31"><a href="#cb53-31" aria-hidden="true" tabindex="-1"></a>                valori_totali[<span class="st">'Bob'</span>] <span class="op">-=</span> valutazioni[<span class="st">'Bob'</span>][bene]</span>
+<span id="cb53-32"><a href="#cb53-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> valutazioni[<span class="st">'Bob'</span>][bene] <span class="op">&gt;</span> valutazioni[<span class="st">'Alice'</span>][bene] <span class="kw">and</span> bene <span class="kw">in</span> assegnazione[<span class="st">'Alice'</span>]:</span>
+<span id="cb53-33"><a href="#cb53-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> valori_totali[<span class="st">'Bob'</span>] <span class="op">&lt;</span> valori_totali[<span class="st">'Alice'</span>]:</span>
+<span id="cb53-34"><a href="#cb53-34" aria-hidden="true" tabindex="-1"></a>                assegnazione[<span class="st">'Alice'</span>].remove(bene)</span>
+<span id="cb53-35"><a href="#cb53-35" aria-hidden="true" tabindex="-1"></a>                assegnazione[<span class="st">'Bob'</span>].append(bene)</span>
+<span id="cb53-36"><a href="#cb53-36" aria-hidden="true" tabindex="-1"></a>                valori_totali[<span class="st">'Bob'</span>] <span class="op">+=</span> valutazioni[<span class="st">'Bob'</span>][bene]</span>
+<span id="cb53-37"><a href="#cb53-37" aria-hidden="true" tabindex="-1"></a>                valori_totali[<span class="st">'Alice'</span>] <span class="op">-=</span> valutazioni[<span class="st">'Alice'</span>][bene]</span>
+<span id="cb53-38"><a href="#cb53-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-39"><a href="#cb53-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> assegnazione <span class="co"># 6. **Ritorno delle Assegnazioni**:</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Il funzionamento del codice è il seguente:</p>
+<ol type="1">
+<li><strong>Definizione della Funzione</strong>: <code>python     def allocazione_senza_invidia(beni, valutazioni):</code>
+<ul>
+<li>Definisce una funzione chiamata <code>allocazione_senza_invidia</code> che prende due parametri: <code>beni</code> (lista di beni da dividere) e <code>valutazioni</code> (dizionario con le valutazioni dei beni per ciascun partecipante).</li>
+</ul></li>
+<li><strong>Inizializzazione delle Assegnazioni</strong>: <code>python     assegnazione = {'Alice': [], 'Bob': []}     valori_totali = {'Alice': 0, 'Bob': 0}</code>
+<ul>
+<li>Inizializza due dizionari: <code>assegnazione</code> per tenere traccia dei beni assegnati a ciascun partecipante e <code>valori_totali</code> per tenere traccia del valore totale dei beni assegnati a ciascun partecipante.</li>
+</ul></li>
+<li><strong>Ordinamento dei Beni</strong>: <code>python     beni_ordinati = sorted(beni, key=lambda x: valutazioni['Alice'][x] + valutazioni['Bob'][x], reverse=True)</code>
+<ul>
+<li>Ordina i beni in base alla somma delle valutazioni di Alice e Bob, in ordine decrescente.</li>
+</ul></li>
+<li><strong>Assegnazione dei Beni</strong>: <code>python     for bene in beni_ordinati:         if valori_totali['Alice'] &lt;= valori_totali['Bob']:             assegnazione['Alice'].append(bene)             valori_totali['Alice'] += valutazioni['Alice'][bene]         else:             assegnazione['Bob'].append(bene)             valori_totali['Bob'] += valutazioni['Bob'][bene]</code>
+<ul>
+<li>Assegna i beni in modo da bilanciare i valori totali tra Alice e Bob. Se il valore totale di Alice è minore o uguale a quello di Bob, il bene viene assegnato ad Alice, altrimenti a Bob.</li>
+</ul></li>
+<li><strong>Verifica e Correzione delle Invidie</strong>: <code>python     for bene in beni_ordinati:         if valutazioni['Alice'][bene] &gt; valutazioni['Bob'][bene] and bene in assegnazione['Bob']:             if valori_totali['Alice'] &lt; valori_totali['Bob']:                 assegnazione['Bob'].remove(bene)                 assegnazione['Alice'].append(bene)                 valori_totali['Alice'] += valutazioni['Alice'][bene]                 valori_totali['Bob'] -= valutazioni['Bob'][bene]         elif valutazioni['Bob'][bene] &gt; valutazioni['Alice'][bene] and bene in assegnazione['Alice']:             if valori_totali['Bob'] &lt; valori_totali['Alice']:                 assegnazione['Alice'].remove(bene)                 assegnazione['Bob'].append(bene)                 valori_totali['Bob'] += valutazioni['Bob'][bene]                 valori_totali['Alice'] -= valutazioni['Alice'][bene]</code>
+<ul>
+<li>Verifica se ci sono invidie e corregge le assegnazioni di conseguenza. Se Alice valuta un bene più di Bob e il bene è assegnato a Bob, viene riassegnato ad Alice se il valore totale di Alice è inferiore a quello di Bob, e viceversa.</li>
+</ul></li>
+<li><strong>Ritorno delle Assegnazioni</strong>: <code>python     return assegnazione</code>
+<ul>
+<li>Ritorna il dizionario delle assegnazioni finali.</li>
+</ul></li>
+</ol>
+<p><strong>Caso d’Uso Reale</strong></p>
+<p>Divisione di una serie di oggetti di valore tra Alice e Bruno, in modo che nessuno dei due si senta invidioso dell’altro. Ad esempio, supponiamo che Alice e Bruno debbano dividersi i seguenti beni con le rispettive valutazioni personali:</p>
+<div id="cell-76" class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>beni <span class="op">=</span> [<span class="st">'orologio'</span>, <span class="st">'libro'</span>, <span class="st">'penna'</span>]</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>valutazioni <span class="op">=</span> {</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Alice'</span>: {<span class="st">'orologio'</span>: <span class="dv">10</span>, <span class="st">'libro'</span>: <span class="dv">5</span>, <span class="st">'penna'</span>: <span class="dv">1</span>},</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bob'</span>: {<span class="st">'orologio'</span>: <span class="dv">8</span>, <span class="st">'libro'</span>: <span class="dv">7</span>, <span class="st">'penna'</span>: <span class="dv">2</span>}</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Utilizzando la funzione <code>allocazione_senza_invidia</code>, possiamo ottenere una divisione equa:</p>
+<div id="cell-78" class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>assegnazione <span class="op">=</span> allocazione_senza_invidia(beni, valutazioni)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(assegnazione)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Alice': ['orologio'], 'Bob': ['libro', 'penna']}</code></pre>
+</div>
+</div>
+<p>In questo caso, Alice riceve l’orologio, mentre Bob riceve il libro e la penna, garantendo che nessuno dei due si senta invidioso dell’altro.</p>
+</section>
+<section id="gli-algoritmi-di-divisione-equa-in-letteratura" class="level3">
+<h3 class="anchored" data-anchor-id="gli-algoritmi-di-divisione-equa-in-letteratura">Gli algoritmi di divisione equa in letteratura</h3>
+<p>Gli algoritmi di ripartizione equa sono un insieme di metodi utilizzati per distribuire risorse limitate tra più utenti o gruppi in modo equo e imparziale. Questi algoritmi mirano a garantire che ogni utente o gruppo riceva una quota equa delle risorse, tenendo conto di fattori come le esigenze individuali, le priorità e le limitazioni. Esistono diversi tipi di algoritmi di ripartizione equa, tra questi si citano:</p>
+<p><strong>1. Metodi per la Divisione Equa tra Due Partecipanti</strong> - <strong>Adjusted Winner (AW)</strong>: Algoritmo per la divisione equa di oggetti tra due partecipanti. - Citazione: Brams, S. J., &amp; Taylor, A. D. (1996). <em>Fair Division: From Cake-Cutting to Dispute Resolution</em>. Cambridge University Press.</p>
+<ul>
+<li><strong>Divide and Choose</strong>: Metodo classico per la divisione equa tra due partecipanti.
+<ul>
+<li>Citazione: Steinhaus, H. (1948). <em>The problem of fair division</em>. Econometrica, 16(1), 101-104.</li>
+</ul></li>
+<li><strong>Last Diminisher</strong>: Estensione del metodo Divide and Choose per più partecipanti.
+<ul>
+<li>Citazione: Steinhaus, H. (1948). <em>The problem of fair division</em>. Econometrica, 16(1), 101-104.</li>
+</ul></li>
+</ul>
+<p><strong>Metodi per la Divisione Equa tra Tre O Più Partecipanti</strong> - <strong>Algoritmo di Selfridge-Conway</strong>: Metodo per la divisione equa di una torta tra tre partecipanti. - Citazione: Robertson, J., &amp; Webb, W. (1998). <em>Cake-cutting algorithms: Be fair if you can</em>. AK Peters/CRC Press.</p>
+<ul>
+<li><strong>Algoritmo di Dubins-Spanier</strong>: Metodo per la divisione equa di una risorsa continua tra n partecipanti.
+<ul>
+<li>Citazione: Dubins, L. E., &amp; Spanier, E. H. (1961). <em>How to cut a cake fairly</em>. The American Mathematical Monthly, 68(1), 1-17.</li>
+</ul></li>
+<li><strong>Algoritmo di Stromquist</strong>: Metodo per la divisione envy-free tra tre partecipanti usando un numero finito di tagli.
+<ul>
+<li>Citazione: Stromquist, W. (1980). <em>How to cut a cake fairly</em>. The American Mathematical Monthly, 87(8), 640-644.</li>
+</ul></li>
+<li><strong>Algoritmo di Austin</strong>: Metodo per la divisione envy-free tra quattro o più partecipanti.
+<ul>
+<li>Citazione: Austin, A. K. (1982). <em>Sharing a cake</em>. The Mathematical Gazette, 66(437), 212-215.</li>
+</ul></li>
+<li><strong>Algoritmo di Brams-Taylor-Zwicker</strong>: Metodo per la divisione equa tra più di tre partecipanti.
+<ul>
+<li>Citazione: Brams, S. J., Taylor, A. D., &amp; Zwicker, W. S. (1997). <em>A moving-knife solution to the four-person envy-free cake-division problem</em>. Proceedings of the American Mathematical Society, 125(2), 547-554.</li>
+</ul></li>
+<li><strong>Algoritmo di Brams-Taylor per n partecipanti</strong>: Metodo per la divisione envy-free tra n partecipanti.
+<ul>
+<li>Citazione: Brams, S. J., &amp; Taylor, A. D. (1995). <em>An envy-free cake division protocol</em>. The American Mathematical Monthly, 102(1), 9-18.</li>
+</ul></li>
+</ul>
+<p><strong>Metodi di Allocazione Proporzionale</strong> - <strong>Proportional Allocation</strong>: Metodi per allocare risorse in modo proporzionale alle richieste o ai diritti delle parti. - Citazione: Young, H. P. (1994). <em>Equity: In Theory and Practice</em>. Princeton University Press.</p>
+<ul>
+<li><strong>Maximin Share Allocation</strong>: Concetto di equità per l’allocazione di beni indivisibili.
+<ul>
+<li>Citazione: Budish, E. (2011). <em>The combinatorial assignment problem: Approximate competitive equilibrium from equal incomes</em>. Journal of Political Economy, 119(6), 1061-1103.</li>
+</ul></li>
+<li><strong>Competitive Equilibrium from Equal Incomes (CEEI)</strong>: Meccanismo per l’allocazione equa di risorse divisibili.
+<ul>
+<li>Citazione: Varian, H. R. (1974). <em>Equity, envy, and efficiency</em>. Journal of Economic Theory, 9(1), 63-91.</li>
+</ul></li>
+</ul>
+<p><strong>Metodi di Assegnazione Casuale</strong> - <strong>Random Priority (RP)</strong>: Meccanismo di assegnazione casuale utilizzato in vari contesti, come l’assegnazione di dormitori universitari. - Citazione: Abdulkadiroğlu, A., &amp; Sönmez, T. (1998). <em>Random serial dictatorship and the core from random endowments in house allocation problems</em>. Econometrica, 66(3), 689-701.</p>
+<ul>
+<li><strong>Probabilistic Serial (PS)</strong>: Meccanismo di assegnazione con garanzie di efficienza ordinale.
+<ul>
+<li>Citazione: Bogomolnaia, A., &amp; Moulin, H. (2001). <em>A new solution to the random assignment problem</em>. Journal of Economic Theory, 100(2), 295-328.</li>
+</ul></li>
+</ul>
+<p><strong>Metodi Vari</strong> - <strong>Undercut Procedure</strong>: Metodo per la divisione equa di beni indivisibili. - Citazione: Brams, S. J., &amp; Taylor, A. D. (1999). <em>The Win-Win Solution: Guaranteeing Fair Shares to Everybody</em>. W. W. Norton &amp; Company.</p>
+<ul>
+<li><strong>Picking Sequence Protocols</strong>: Metodi di divisione basati su sequenze di scelte.
+<ul>
+<li>Citazione: Bouveret, S., &amp; Lang, J. (2011). <em>A general elicitation-free protocol for allocating indivisible goods</em>. In <em>Twenty-Second International Joint Conference on Artificial Intelligence</em>.</li>
+</ul></li>
+<li><strong>Algoritmo di Robertson-Webb</strong>: Framework per misurare la complessità degli algoritmi di cake-cutting.
+<ul>
+<li>Citazione: Robertson, J., &amp; Webb, W. (1998). <em>Cake-cutting algorithms: Be fair if you can</em>. AK Peters/CRC Press.</li>
+</ul></li>
+</ul>
+<p>Per chi vuole provare ad applicare gli algoritmi equitativi in casi reali su una piattaforma online si segnala l’interessante sito: <a href="http://www.spliddit.org/"><strong>Spliddit Algorithms</strong></a>: Suite di algoritmi equitativi implementati sulla piattaforma web Spliddit (Goldman, J., &amp; Procaccia, A. D. (2014). <em>Spliddit: Unleashing fair division algorithms</em>. ACM SIGecom Exchanges, 13(2), 41-46).</p>
+<div id="cell-80" class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adjusted_winner(items, alice_values, bob_values, max_iterations<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(items)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    alice_items <span class="op">=</span> []</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    bob_items <span class="op">=</span> []</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fase 1: Assegnazione iniziale</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> alice_values[i] <span class="op">&gt;=</span> bob_values[i]:</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>            alice_items.append(items[i])</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>            bob_items.append(items[i])</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fase 2: Calcolo dei punteggi</span></span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>    alice_score <span class="op">=</span> <span class="bu">sum</span>(alice_values[items.index(item)] <span class="cf">for</span> item <span class="kw">in</span> alice_items)</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>    bob_score <span class="op">=</span> <span class="bu">sum</span>(bob_values[items.index(item)] <span class="cf">for</span> item <span class="kw">in</span> bob_items)</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fase 3: Aggiustamento</span></span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>    iterations <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="bu">abs</span>(alice_score <span class="op">-</span> bob_score) <span class="op">&gt;</span> <span class="fl">0.001</span> <span class="kw">and</span> iterations <span class="op">&lt;</span> max_iterations:</span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> alice_score <span class="op">&gt;</span> bob_score:</span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>            item_to_transfer <span class="op">=</span> <span class="bu">max</span>(alice_items, key<span class="op">=</span><span class="kw">lambda</span> x: bob_values[items.index(x)] <span class="op">/</span> alice_values[items.index(x)])</span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>            alice_items.remove(item_to_transfer)</span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>            bob_items.append(item_to_transfer)</span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>            alice_score <span class="op">-=</span> alice_values[items.index(item_to_transfer)]</span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>            bob_score <span class="op">+=</span> bob_values[items.index(item_to_transfer)]</span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a>            item_to_transfer <span class="op">=</span> <span class="bu">max</span>(bob_items, key<span class="op">=</span><span class="kw">lambda</span> x: alice_values[items.index(x)] <span class="op">/</span> bob_values[items.index(x)])</span>
+<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>            bob_items.remove(item_to_transfer)</span>
+<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a>            alice_items.append(item_to_transfer)</span>
+<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a>            bob_score <span class="op">-=</span> bob_values[items.index(item_to_transfer)]</span>
+<span id="cb57-32"><a href="#cb57-32" aria-hidden="true" tabindex="-1"></a>            alice_score <span class="op">+=</span> alice_values[items.index(item_to_transfer)]</span>
+<span id="cb57-33"><a href="#cb57-33" aria-hidden="true" tabindex="-1"></a>        iterations <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb57-34"><a href="#cb57-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-35"><a href="#cb57-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> alice_items, bob_items, alice_score, bob_score, iterations</span>
+<span id="cb57-36"><a href="#cb57-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-37"><a href="#cb57-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-38"><a href="#cb57-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Esempio di utilizzo</span></span>
+<span id="cb57-39"><a href="#cb57-39" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>]</span>
+<span id="cb57-40"><a href="#cb57-40" aria-hidden="true" tabindex="-1"></a>alice_values <span class="op">=</span> [<span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">35</span>, <span class="dv">10</span>]</span>
+<span id="cb57-41"><a href="#cb57-41" aria-hidden="true" tabindex="-1"></a>bob_values <span class="op">=</span> [<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">25</span>]</span>
+<span id="cb57-42"><a href="#cb57-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-43"><a href="#cb57-43" aria-hidden="true" tabindex="-1"></a>alice_final, bob_final, alice_final_score, bob_final_score, iterations_final <span class="op">=</span> adjusted_winner(items, alice_values, bob_values)</span>
+<span id="cb57-44"><a href="#cb57-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Iterazioni necessarie:"</span>, iterations_final)</span>
+<span id="cb57-45"><a href="#cb57-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Alice riceve:"</span>, alice_final)</span>
+<span id="cb57-46"><a href="#cb57-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bob riceve:"</span>, bob_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Iterazioni necessarie: 1000
+Alice riceve: ['A', 'C']
+Bob riceve: ['B', 'D']</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="algoritmi-predittivi" class="level2">
+<h2 class="anchored" data-anchor-id="algoritmi-predittivi">Algoritmi Predittivi</h2>
+<p>Gli algoritmi di predizione sono usati per creare modelli basati sull’ apprendedimento dei dati misurati o prodotti in un certo dominio applicativo al fine di fare previsioni su eventi futuri. Questi algoritmi possono essere classificati in diverse categorie in base al tipo di apprendimento, al tipo di output, e alle tecniche utilizzate:</p>
+<p><strong>Classificazione Basata sul Tipo di Apprendimento:</strong> 1. <strong>Apprendimento Supervisionato</strong>: Gli algoritmi di apprendimento supervisionato richiedono un set di dati etichettato per l’addestramento. Utilizzano queste etichette per apprendere una funzione che mappa gli input agli output desiderati. Esempi includono la regressione lineare, gli alberi decisionali e le reti neurali¹. 2. <strong>Apprendimento Non Supervisionato</strong>: Questi algoritmi scoprono pattern nascosti o strutture nei dati non etichettati. Tecniche comuni sono la clusterizzazione e la riduzione della dimensionalità¹. 3. <strong>Apprendimento Semi-supervisionato e Rinforzato</strong>: Combinano elementi dei primi due tipi, utilizzando un piccolo set di dati etichettati insieme a una grande quantità di dati non etichettati, o apprendendo attraverso il rinforzo da un ambiente¹.</p>
+<p><strong>Classificazione Basata sul Tipo di Output:</strong> 1. <strong>Classificazione</strong>: Quando l’output è una categoria, come “spam” o “non spam” in un filtro di posta elettronica, si parla di classificazione. Gli algoritmi di classificazione assegnano un’etichetta discreta a un’istanza di input¹. 2. <strong>Regressione</strong>: Se l’output è un valore continuo, come il prezzo di una casa, si utilizza la regressione. Gli algoritmi di regressione prevedono un valore numerico basato sugli input¹. 3. <strong>Ranking</strong>: Alcuni algoritmi ordinano gli elementi in base alla probabilità di appartenenza a una certa categoria o valore¹.</p>
+<p><strong>Classificazione Basata sulle Tecniche Utilizzate:</strong> 1. <strong>Alberi Decisionali</strong>: Suddividono i dati in modo gerarchico basandosi su attributi specifici. Sono semplici da interpretare ma possono soffrire di overfitting². 2. <strong>Random Forest</strong>: Una collezione di alberi decisionali che riduce il rischio di overfitting e gestisce meglio le variabili non correlate². 3. <strong>Support Vector Machine (SVM)</strong>: Trovano il miglior iperpiano che separa i dati in classi. Sono efficaci in spazi ad alta dimensionalità². 4. <strong>K-Nearest Neighbors (K-NN)</strong>: Classificano i nuovi dati in base alla classe più comune tra i vicini più prossimi. Sono semplici da implementare ma computazionalmente costosi². 5. <strong>Reti Neurali</strong>: Sono modelli ispirati al funzionamento del cervello umano e possono catturare relazioni complesse nei dati¹.</p>
+<p>Ogni algoritmo ha i suoi vantaggi e svantaggi, e la scelta dipende da vari fattori come la dimensione e la natura del dataset, la velocità richiesta, la trasparenza del modello e la capacità di gestire dati non lineari o mancanti. Ad esempio, gli alberi decisionali sono facili da interpretare ma possono soffrire di overfitting, mentre le SVM sono efficaci con dataset di piccole dimensioni ma meno efficienti con dataset molto grandi².</p>
+<p>L’agente deve imparare a riconoscere alcune configurazioni del suo percepito sulla base di un esperienza fatta su casi detti di training e deve essere in grado di riconoscere un nuovo percepito mai visto prima.</p>
+<p>Il percepito dell’agente è composto da dati, caratteristiche, che possono essere di tipo continuo (es. temperatura) o categoriali (es. colore rosso). I dati categoriali possono essere ordinabili (es. scarso, insufficiente, …) o non ordinabili (es. sesso)</p>
+<p>All’agente può essere chiesto di predire un dato continuo, nel qual caso si tratta di predizione o regressione, oppure può essere chiesto di predire un dato categoriale, nel qual caso si tratta di classificazione.</p>
+<p>Il processo di predizione segue il seguente flusso:</p>
+<ol type="1">
+<li><strong>Definizione del Problema</strong>
+<ul>
+<li>Identificare il tipo di problema (classificazione, regressione, clustering)</li>
+</ul></li>
+<li><strong>Raccolta dei Dati</strong>
+<ul>
+<li>Ottenere dati rilevanti e di qualità</li>
+</ul></li>
+<li><strong>Pre-elaborazione dei Dati</strong>
+<ul>
+<li>Pulizia dei dati</li>
+<li>Gestione dei valori mancanti</li>
+<li>Normalizzazione</li>
+<li>Riduzione della dimensionalità</li>
+</ul></li>
+<li><strong>Divisione dei Dati</strong>
+<ul>
+<li>Creare set di addestramento e di test</li>
+</ul></li>
+<li><strong>Scelta dell’Algoritmo</strong>
+<ul>
+<li>Selezionare l’algoritmo adatto al problema</li>
+</ul></li>
+<li><strong>Addestramento del Modello</strong>
+<ul>
+<li>Imparare dai dati di addestramento</li>
+</ul></li>
+<li><strong>Valutazione del Modello</strong>
+<ul>
+<li>Testare il modello con il set di test</li>
+</ul></li>
+<li><strong>Ottimizzazione</strong>
+<ul>
+<li>Regolare i parametri per migliorare le prestazioni</li>
+</ul></li>
+<li><strong>Deployment</strong>
+<ul>
+<li>Implementare il modello in produzione</li>
+</ul></li>
+<li><strong>Monitoraggio e Manutenzione</strong>
+<ul>
+<li>Aggiornare e ottimizzare il modello nel tempo</li>
+</ul></li>
+</ol>
+<p>Nei prossimi paragrafi si presenterà una descrizione di ognuno di questi passi con un esempio concreto.</p>
+<section id="definizione-del-problema" class="level3">
+<h3 class="anchored" data-anchor-id="definizione-del-problema">Definizione del Problema</h3>
+<p>Questp è il primo passo nel processo di predizione nell’intelligenza artificiale. Questa fase richiede una comprensione chiara e precisa dell’obiettivo che si desidera raggiungere con l’algoritmo di predizione. Che si tratti di prevedere il comportamento del consumatore, di diagnosticare malattie o di identificare frodi, è fondamentale stabilire parametri chiari e misurabili. La definizione del problema guida tutte le fasi successive, dalla raccolta dei dati alla scelta dell’algoritmo più adatto, assicurando che l’intero processo sia allineato con l’obiettivo finale. Un’accurata definizione del problema è la base per un modello predittivo efficace e funzionale.</p>
+<p><strong>esempio pratico</strong>:</p>
+<p>Un esempio pratico di definizione del problema nel contesto del processo di predizione potrebbe essere il seguente scenario nel settore della vendita al dettaglio:</p>
+<p><strong>Scenario</strong>: Un’azienda di e-commerce ha notato un aumento del tasso di abbandono del carrello da parte dei clienti durante il processo di checkout.</p>
+<p><strong>Definizione del Problema</strong>: - <strong>Obiettivo</strong>: Ridurre il tasso di abbandono del carrello e aumentare il tasso di conversione delle vendite. - <strong>Dati Necessari</strong>: Dati di navigazione del sito web, transazioni completate e abbandonate, feedback dei clienti, dati demografici e comportamentali degli utenti. - <strong>Ipotesi</strong>: Si ipotizza che l’abbandono del carrello possa essere dovuto a fattori quali costi di spedizione inaspettati, complessità del processo di checkout, mancanza di opzioni di pagamento, o problemi tecnici del sito. - <strong>Metodologia</strong>: Utilizzare algoritmi di machine learning per analizzare i pattern di abbandono e identificare i punti critici nel processo di checkout. - <strong>Soluzione Attesa</strong>: Implementare miglioramenti mirati nel processo di checkout basati sui risultati dell’analisi predittiva, come la semplificazione delle procedure, l’aggiunta di più opzioni di pagamento, o la trasparenza dei costi di spedizione.</p>
+<p>In questo esempio, la definizione del problema è ben strutturata e orientata all’obiettivo di migliorare l’esperienza dell’utente e ottimizzare il processo di vendita. L’analisi predittiva aiuterà l’azienda a comprendere le cause dell’abbandono del carrello e a formulare interventi efficaci per risolvere il problema.</p>
+</section>
+<section id="raccolta-dei-dati" class="level3">
+<h3 class="anchored" data-anchor-id="raccolta-dei-dati">Raccolta dei Dati</h3>
+<p>Si tratta di acquisire informazioni rilevanti per il problema da risolvere. Questo processo non si limita alla mera acquisizione di dati grezzi; è una pratica strategica che trasforma questi dati in insights preziosi, capaci di guidare decisioni informate. I dati possono essere raccolti da fonti interne come database aziendali, o esterne come social media, sensori IoT (Internet of Things), o registri pubblici. La raccolta deve essere sistematica e organizzata, assicurando che i dati siano accurati, completi e aggiornati. È fondamentale anche considerare la privacy e la sicurezza dei dati durante la raccolta e l’elaborazione.</p>
+<p><strong>Esempio Pratico</strong>: Un ospedale vuole sviluppare un sistema di predizione per identificare i pazienti a rischio di riammissione entro 30 giorni dalla dimissione. La raccolta dei dati inizia con l’identificazione delle informazioni necessarie, che includono dati demografici dei pazienti, diagnosi, trattamenti ricevuti, durata del soggiorno ospedaliero e dati storici sulle riammissioni. Questi dati vengono poi raccolti da cartelle cliniche elettroniche, registri ospedalieri e interviste con il personale sanitario. Una volta raccolti, i dati sono puliti e preparati per l’analisi, rimuovendo eventuali errori o duplicazioni e assicurando che siano in un formato utilizzabile per l’addestramento dell’algoritmo di predizione. Questo processo permette all’ospedale di costruire un modello predittivo che può aiutare a migliorare la qualità delle cure e ridurre i costi associati alle riammissioni non necessarie.</p>
+</section>
+<section id="pre-elaborazione-dei-dati" class="level3">
+<h3 class="anchored" data-anchor-id="pre-elaborazione-dei-dati">Pre-elaborazione dei Dati</h3>
+<p>Si prepara il dataset per garantire che l’algoritmo di machine learning funzioni in modo ottimale. Questo passo include diverse attività chiave:</p>
+<ul>
+<li><p><strong>Pulizia dei dati</strong>: correzione o rimozione di dati errati, corrotti, duplicati o non pertinenti. La pulizia assicura che il modello non apprenda da informazioni fuorvianti o irrilevanti.</p></li>
+<li><p><strong>Gestione dei valori mancanti</strong>: I dati incompleti sono comuni in molti dataset. La gestione dei valori mancanti può includere tecniche come l’imputazione, dove i valori mancanti sono sostituiti con stime, o l’eliminazione delle righe o colonne con dati mancanti.</p></li>
+<li><p><strong>Normalizzazione</strong>: scalatura dei dati in modo che attributi con ampi intervalli di valori non dominino quelli con intervalli più stretti. La normalizzazione è essenziale per algoritmi che sono sensibili alle scale dei dati, come la regressione lineare o le reti neurali.</p></li>
+<li><p><strong>Riduzione della dimensionalità</strong>: Tecniche come l’Analisi delle Componenti Principali (PCA) sono utilizzate per ridurre il numero di variabili nel dataset, mantenendo solo quelle più informative. Questo non solo semplifica il modello, ma può anche migliorare le prestazioni riducendo il rischio di overfitting.</p></li>
+</ul>
+<p><strong>Esempio Pratico</strong>: Immaginiamo di avere un dataset di immagini per un sistema di riconoscimento facciale. La pulizia dei dati potrebbe comportare la rimozione di immagini sfocate o non riconoscibili. Per gestire i valori mancanti, potremmo utilizzare tecniche di imputazione per completare le caratteristiche facciali parzialmente occluse. La normalizzazione potrebbe essere applicata per assicurare che le variazioni di luminosità siano tutte uguali in modo da non influenzino il riconoscimento. Infine, si procede a uniformare il formato file e le dimensioni. Ad esempio, formato file jpg e dimensioni 128x128 pizel.</p>
+</section>
+<section id="divisione-dei-dati" class="level3">
+<h3 class="anchored" data-anchor-id="divisione-dei-dati">Divisione dei Dati</h3>
+<p>Si separa il dataset in due o più gruppi per diversi scopi: addestramento, validazione e test. Questa divisione serve per avere dati per valutare l’efficacia e la generalizzabilità del modello predittivo. Il set di addestramento è utilizzato per insegnare all’algoritmo a riconoscere i pattern nei dati. Il set di validazione, quando presente, aiuta a ottimizzare i parametri del modello e a prevenire l’overfitting. Infine, il set di test serve a valutare le prestazioni del modello su dati non visti durante l’addestramento, fornendo una stima dell’errore di generalizzazione.</p>
+<p>La proporzione della divisione può variare, ma una suddivisione comune è 70% per l’addestramento, 15% per la validazione e 15% per il test. È importante che la divisione dei dati sia rappresentativa dell’intero dataset, quindi tecniche come il campionamento stratificato possono essere utilizzate per mantenere la stessa distribuzione delle classi in ciascun set.</p>
+<p><strong>Esempio Pratico</strong>: Un’azienda di telecomunicazioni vuole prevedere quali clienti potrebbero lasciare l’azienda (churn). Il dataset include variabili come l’uso dei servizi, la durata del contratto, e la soddisfazione del cliente. Dopo la pre-elaborazione, il dataset di 1000 clienti viene diviso in 700 per l’addestramento, 150 per la validazione e 150 per il test. Questa divisione permette all’azienda di addestrare il modello sul set di addestramento, ottimizzarlo sul set di validazione e infine valutare la sua capacità di prevedere il churn sul set di test.</p>
+<p>Il <strong>training set</strong>, il <strong>validation set</strong> e il <strong>test set</strong> sono tre sottoinsiemi di dati utilizzati nel processo di machine learning per sviluppare e valutare modelli predittivi. Ecco a cosa servono:</p>
+<ul>
+<li><p><strong>Training Set</strong>: È il sottoinsieme di dati utilizzato per addestrare il modello. Il modello apprende a riconoscere i pattern e le relazioni tra i dati in modo che possa fare previsioni o prendere decisioni. Tipicamente, è il più grande dei tre set e fornisce la base su cui il modello costruisce la sua comprensione del problema.</p></li>
+<li><p><strong>Validation Set</strong>: Viene utilizzato per fornire una valutazione imparziale delle prestazioni del modello durante la fase di addestramento. Questo set è cruciale per il tuning dei parametri del modello, come la scelta del numero di strati in una rete neurale o il valore di regolarizzazione in una regressione. Aiuta a prevenire l’overfitting, che si verifica quando un modello è troppo complesso e si adatta troppo bene ai dati di addestramento, perdendo la capacità di generalizzare su nuovi dati.</p></li>
+<li><p><strong>Test Set</strong>: Dopo che il modello è stato addestrato e validato, il test set viene utilizzato per valutare le prestazioni finali del modello. Questo set non è mai stato visto dal modello durante l’addestramento e simula dati del mondo reale su cui il modello dovrà operare. Fornisce una misura oggettiva di quanto bene il modello possa aspettarsi di esibirsi in pratica.</p></li>
+</ul>
+<p><strong>Esempio Pratico</strong>: Immaginiamo di voler studiare il problema della previsione dei prezzi delle case basato su caratteristiche come la posizione, la dimensione e l’anno di costruzione. Il training set potrebbe includere migliaia di esempi di case vendute negli ultimi anni. Il validation set potrebbe essere usato per regolare i parametri del modello, come la complessità del modello stesso. Infine, il test set, che consiste in dati recenti di vendite di case, verrebbe utilizzato per valutare quanto accuratamente il modello può prevedere i prezzi delle case in condizioni attuali di mercato.</p>
+</section>
+<section id="scelta-dell-algoritmo" class="level3">
+<h3 class="anchored" data-anchor-id="scelta-dell-algoritmo">Scelta dell’ algoritmo</h3>
+<p>La scelta dell’algoritmo determina l’approccio con cui il modello analizzerà i dati e farà previsioni. La selezione dell’algoritmo dipende da vari fattori, tra cui il tipo di problema (classificazione, regressione, clustering), la natura dei dati, la dimensione del dataset e le risorse computazionali disponibili. Ad esempio, per problemi di classificazione, algoritmi come le reti neurali, le macchine a vettori di supporto (SVM) e gli alberi decisionali sono spesso utilizzati. Per la regressione, si possono considerare algoritmi come la regressione lineare, la regressione polinomiale o le reti neurali. È importante anche considerare la complessità dell’algoritmo: algoritmi più complessi possono offrire maggiore accuratezza, ma richiedono più tempo e risorse per l’addestramento.</p>
+<p><strong>Esempio Pratico</strong>: Nell’ esempio della predizione del prezzo delle case introdotto nel precedente paragrafo, se si dispone di un dataset con caratteristiche come la dimensione della casa, il numero di stanze, la posizione, ecc., si potrebbe scegliere un algoritmo di regressione lineare per iniziare, poiché è semplice e offre una buona interpretabilità. Tuttavia, se i dati mostrano relazioni non lineari, si potrebbe passare a un algoritmo più complesso come una rete neurale per migliorare la precisione delle previsioni.</p>
+</section>
+<section id="addestramento-del-modello" class="level3">
+<h3 class="anchored" data-anchor-id="addestramento-del-modello">Addestramento del modello</h3>
+<p>L’addestramento di un modello di machine learning è un processo iterativo che consiste nell’esporre un algoritmo a un ampio dataset di apprendimento, con l’obiettivo di insegnargli a riconoscere pattern e a fare predizioni accurate su nuovi dati. La qualità e l’efficacia di un modello dipendono fortemente dalla scelta dell’algoritmo, dalla qualità dei dati e dalle tecniche di addestramento utilizzate.</p>
+<p><strong>Modalità di apprendimento</strong> Esistono diverse modalità di apprendimento:</p>
+<ul>
+<li><strong>Apprendimento supervisionato</strong>: Il modello viene addestrato su un dataset etichettato, dove ogni esempio è associato a una risposta corretta. L’obiettivo è insegnare al modello a mappare nuovi input alle loro rispettive etichette.</li>
+<li><strong>Apprendimento non supervisionato</strong>: Il modello lavora con dati non etichettati, cercando di scoprire strutture nascoste nei dati, come gruppi di dati simili (clustering).</li>
+<li><strong>Apprendimento semi-supervisionato</strong>: Combina elementi dei due approcci precedenti, utilizzando sia dati etichettati che non etichettati.</li>
+</ul>
+<p><strong>Hardware e software</strong></p>
+<p>L’addestramento di modelli complessi richiede risorse computazionali significative. Le GPU e le TPU sono hardware specializzati che accelerano i calcoli necessari per l’addestramento di reti neurali profonde. Inoltre, sono necessari software specifici per definire le architetture delle reti neurali e gestire il processo di addestramento.</p>
+<p><strong>Overfitting e underfitting</strong> Durante l’addestramento, è fondamentale evitare due problemi comuni: l’overfitting e l’underfitting.</p>
+<p><strong>Overfitting</strong>: Si verifica quando il modello si adatta troppo ai dati di addestramento, perdendo la capacità di generalizzare a nuovi dati. In questo caso, il modello memorizza i dettagli specifici dei dati di addestramento invece di apprendere le caratteristiche generali. <strong>Underfitting</strong>: Si verifica quando il modello è troppo semplice per catturare la complessità dei dati. In questo caso, il modello non è in grado di apprendere le relazioni significative tra le variabili.</p>
+<p><strong>Implicazioni etiche</strong></p>
+<p>L’addestramento di modelli di machine learning solleva importanti questioni etiche. È fondamentale utilizzare dataset rappresentativi e bilanciati per evitare bias e discriminazioni. Inoltre, è necessario considerare le potenziali conseguenze negative dell’utilizzo di modelli in contesti reali, come la privacy e la sicurezza dei dati.</p>
+</section>
+<section id="valutazione-del-modello" class="level3">
+<h3 class="anchored" data-anchor-id="valutazione-del-modello">Valutazione del modello</h3>
+<p>La valutazione del modello è una fase cruciale nel processo di sviluppo di un modello di machine learning, poiché consente di misurare la capacità del modello addestrato di generalizzare a nuovi dati, ovvero di fare predizioni accurate su esempi che non ha mai visto durante l’addestramento.</p>
+<p><strong>Metriche di valutazione</strong></p>
+<p>Le metriche di valutazione variano a seconda del tipo di problema. Nei <strong>problemi di classificazione</strong>, ad esempio, si utilizzano metriche come:</p>
+<ul>
+<li><strong>Accuratezza</strong>: misura la percentuale di casi classificati correttamente.</li>
+<li><strong>Precisione</strong>: misura la percentuale di veri positivi (cioè quei casi che effettivamente appartengono alla classe positiva) tra i casi classificati come positivi.</li>
+<li><strong>Richiamo</strong>: misura la percentuale di veri positivi tra tutti i casi positivi reali.</li>
+<li><strong>F1-score</strong>: misura la media armonica tra precisione e richiamo.</li>
+<li><strong>Curva ROC</strong> (Receiver Operating Characteristic) con l’area sotto la curva (AUC): misura la capacità del modello di distinguere correttamente tra le classi.</li>
+</ul>
+<p>Nei <strong>problemi di regressione</strong>, invece, si utilizzano metriche come:</p>
+<ul>
+<li><strong>Errore quadratico medio (MSE)</strong>: misura la differenza media quadratica tra i valori predetti dal modello e i valori reali.</li>
+<li><strong>Coefficiente di determinazione (R²)</strong>: misura la percentuale di variazione dei valori predetti rispetto ai valori reali.</li>
+</ul>
+<p>Spero che queste correzioni siano utili! Hai altre domande o c’è qualcos’altro su cui posso aiutarti? 😊 <strong>Analisi dei risultati</strong></p>
+<p>L’analisi dei risultati della valutazione permette di identificare eventuali problemi come l’overfitting o l’underfitting. L’overfitting si verifica quando il modello si adatta troppo ai dati di addestramento, perdendo la capacità di generalizzare a nuovi dati. L’underfitting si verifica quando il modello è troppo semplice e non riesce a catturare la complessità dei dati.</p>
+<p><strong>Esempio pratico</strong>: Consideriamo un modello di machine learning addestrato per predire la probabilità di ricidività di un reo in base ai dati raccolti su di lui. Dopo l’addestramento, il modello viene valutato su un dataset di test che contiene informazioni su nuovi reati. Utilizzando la Cross-validation, calcolando metriche come l’accuratezza e il richiamo, possiamo valutare l’affidabilità delle predizioni del modello. Un’alta accuratezza indica che il modello è generalmente corretto nelle sue previsioni, mentre un alto richiamo indica che il modello è bravo a identificare i reati che effettivamente si sono verificati.</p>
+</section>
+<section id="ottimizzazione-degli-iperparametri" class="level3">
+<h3 class="anchored" data-anchor-id="ottimizzazione-degli-iperparametri">Ottimizzazione degli iperparametri</h3>
+<p>L’<strong>ottimizzazione degli iperparametri</strong> è un processo iterativo che consiste nel regolare i parametri esterni al modello che non vengono appresi durante l’addestramento, ma che influenzano significativamente le sue prestazioni. Esempi di iperparametri includono il tasso di apprendimento, la profondità di un albero decisionale o il numero di neuroni in una rete neurale.</p>
+<p>L’obiettivo dell’ottimizzazione è individuare la combinazione di iperparametri che massimizza le prestazioni del modello su un dataset di valutazione indipendente. Per raggiungere questo obiettivo, si utilizzano diverse tecniche, tra cui:</p>
+<ul>
+<li><strong>Ricerca a griglia:</strong> Esplora sistematicamente tutte le possibili combinazioni di iperparametri all’interno di un intervallo specificato.</li>
+<li><strong>Ricerca casuale:</strong> Seleziona casualmente combinazioni di iperparametri, potendo essere più efficiente della ricerca a griglia in spazi di ricerca ampi.</li>
+<li><strong>Ottimizzazione bayesiana:</strong> Utilizza modelli probabilistici per guidare la ricerca verso le regioni dello spazio degli iperparametri più promettenti.</li>
+</ul>
+<p>Per valutare l’efficacia delle diverse combinazioni di iperparametri, si ricorre alla <strong>validazione incrociata</strong>. Questa tecnica consiste nel suddividere il dataset in più parti, addestrando il modello su una parte e valutandolo sulle altre. Ripetendo questo processo multiple volte, si ottiene una stima più robusta delle prestazioni del modello.</p>
+<p>Tecniche come l’<strong>early stopping</strong> possono essere utilizzate per migliorare ulteriormente il processo di ottimizzazione. L’early stopping consiste nell’interrompere l’addestramento quando le prestazioni del modello sul dataset di convalida iniziano a peggiorare, evitando così l’overfitting.</p>
+<p><strong>Esempio pratico:</strong> Consideriamo un modello di rete neurale convoluzionale (CNN) addestrato per classificare immagini di cani e gatti. Per ottimizzare le prestazioni del modello, potremmo variare i seguenti iperparametri: il numero di strati convoluzionali, il numero di filtri per strato, il tasso di apprendimento e la funzione di attivazione. Utilizzando la ricerca a griglia e la validazione incrociata, possiamo identificare la combinazione di iperparametri che porta alle migliori prestazioni. Inoltre, possiamo utilizzare l’early stopping per evitare di addestrare eccessivamente il modello.</p>
+</section>
+<section id="deployment" class="level3">
+<h3 class="anchored" data-anchor-id="deployment">Deployment</h3>
+<p>Il deployment è la fase finale del processo di predizione, in cui il modello addestrato e ottimizzato viene messo in produzione per essere utilizzato in applicazioni reali. Questa fase implica la preparazione del modello per l’integrazione con sistemi esistenti, garantendo che sia scalabile, affidabile e sicuro. Il deployment può avvenire su diverse piattaforme, come server locali, cloud o dispositivi edge (dispositivi periferici che elaborano i dati vicino alla fonte, riducendo la latenza e il carico sui server centrali), a seconda delle esigenze dell’applicazione. È importante notare che l’hardware necessario per il deployment è diverso da quello utilizzato per l’addestramento. Durante l’addestramento, sono necessarie risorse computazionali elevate, come GPU o TPU, per gestire i complessi calcoli e l’ottimizzazione dei parametri del modello. Tuttavia, una volta che il modello è addestrato, il deployment richiede meno potenza computazionale, poiché il modello deve solo eseguire previsioni basate sui dati in ingresso. Questo permette di utilizzare hardware meno potente e più economico per il deployment, riducendo i costi operativi.</p>
+<p><strong>Sfide del deployment:</strong> * <strong>Scalabilità:</strong> Il sistema di deployment deve essere in grado di gestire un aumento del carico di lavoro e di scalare in modo elastico per soddisfare le esigenze dell’applicazione. * <strong>Affidabilità:</strong> Il modello deve essere disponibile e funzionante in modo continuo, minimizzando i tempi di fermo e garantendo la qualità delle previsioni. * <strong>Sicurezza:</strong> È fondamentale proteggere il modello e i dati sensibili da accessi non autorizzati e attacchi informatici.</p>
+<p><strong>esempio pratico</strong>: Un esempio pratico di deployment è l’implementazione di un modello di raccomandazione per un sito di e-commerce. Supponiamo di avere un modello che suggerisce prodotti agli utenti basato sul loro comportamento di navigazione e acquisto. Dopo aver addestrato e ottimizzato il modello utilizzando hardware potente come GPU, il passo successivo è integrarlo con il sistema del sito web. Questo può comportare la creazione di API (Application Programming Interfaces, interfacce che permettono a diverse applicazioni di comunicare tra loro) che permettono al sito di inviare dati al modello e ricevere raccomandazioni in tempo reale. Una volta implementato, il modello può analizzare i dati degli utenti e fornire suggerimenti personalizzati, migliorando l’esperienza dell’utente e potenzialmente aumentando le vendite. Per garantire prestazioni elevate, il modello può essere deployato su un server cloud scalabile, come <strong>AWS</strong> (Amazon Web Services) o <strong>GCP</strong> (Google Cloud Platform).Monitorando le prestazioni del modello, è possibile fare aggiustamenti e aggiornamenti per mantenere alta la qualità delle raccomandazioni.</p>
+</section>
+<section id="monitoraggio-e-manutenzione" class="level3">
+<h3 class="anchored" data-anchor-id="monitoraggio-e-manutenzione">Monitoraggio e manutenzione</h3>
+<p>Il monitoraggio e la manutenzione sono attività cruciali nel ciclo di vita di un modello di predizione, volte a garantire che il modello rimanga accurato e affidabile nel tempo. Dopo il deployment, è essenziale monitorare continuamente le prestazioni del modello per rilevare eventuali degradi dovuti a cambiamenti nei dati o nel contesto operativo. Questo può includere il monitoraggio di indicatori di degrado come:</p>
+<ol type="1">
+<li><p><strong>Aumento dell’errore di previsione</strong>: Se il modello inizia a fare più errori nelle previsioni rispetto a prima, potrebbe essere un segnale di degrado. Questo può essere misurato attraverso metriche come l’errore quadratico medio (MSE) per i modelli di regressione o l’accuratezza per i modelli di classificazione.</p></li>
+<li><p><strong>Diminuzione dell’accuratezza</strong>: Un calo nell’accuratezza complessiva del modello indica che le previsioni non sono più affidabili come in passato.</p></li>
+<li><p><strong>Aumento dei falsi positivi/negativi</strong>: Per i modelli di classificazione, un aumento dei falsi positivi (previsioni errate di eventi positivi) o dei falsi negativi (previsioni errate di eventi negativi) può indicare che il modello non sta più funzionando correttamente.</p></li>
+<li><p><strong>Cambiamenti nelle distribuzioni dei dati</strong>: Se i dati in ingresso cambiano significativamente rispetto ai dati su cui il modello è stato addestrato, il modello potrebbe non essere più in grado di generalizzare correttamente. Questo può essere monitorato attraverso tecniche di drift detection.</p></li>
+<li><p><strong>Aumento del tempo di risposta</strong>: Se il modello impiega più tempo per fare previsioni, potrebbe essere un segnale che qualcosa non va, come un sovraccarico computazionale o inefficienze nel codice.</p></li>
+</ol>
+<p>La manutenzione del modello può comportare aggiornamenti periodici, riaddestramento con nuovi dati e ottimizzazioni per adattarsi a nuove condizioni. Inoltre, è importante implementare sistemi di allerta per notificare tempestivamente eventuali problemi. La manutenzione preventiva e correttiva aiuta a mantenere il modello efficiente e a evitare errori significativi che potrebbero influenzare le decisioni basate sulle sue previsioni.</p>
+<p><strong>Esempio pratico</strong>: Un esempio pratico di monitoraggio e manutenzione è l’uso di un modello di rilevamento delle frodi in una banca. Dopo il deployment, il modello analizza le transazioni in tempo reale per identificare attività sospette. Il team di data science monitora costantemente le prestazioni del modello, verificando che mantenga un alto tasso di rilevamento delle frodi e un basso tasso di falsi positivi. Se il modello inizia a mostrare segni di degrado, come un aumento dei falsi positivi, il team può riaddestrarlo utilizzando dati più recenti o aggiustare i parametri per migliorare la sua accuratezza. Questo processo continuo garantisce che il modello rimanga efficace nel proteggere la banca dalle frodi.</p>
+<p><strong>Esempio di algoritmo predittivo in Python:</strong></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dati storici dei casi (caratteristiche e risultati)</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">25</span>, <span class="dv">1</span>], [<span class="dv">45</span>, <span class="dv">0</span>], [<span class="dv">35</span>, <span class="dv">1</span>], [<span class="dv">50</span>, <span class="dv">0</span>]])  <span class="co"># Età e tipo di crimine</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>])  <span class="co"># Risultato del caso (1 = colpevole, 0 = innocente)</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Addestramento del modello predittivo</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression()</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>model.fit(X, y)</span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Previsione di un nuovo caso</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>new_case <span class="op">=</span> np.array([[<span class="dv">30</span>, <span class="dv">1</span>]])  <span class="co"># Nuovo caso: 30 anni, tipo di crimine 1</span></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> model.predict(new_case)</span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Previsione del nuovo caso: </span><span class="sc">{</span><span class="st">'colpevole'</span> <span class="cf">if</span> prediction[<span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'innocente'</span><span class="sc">}</span><span class="ss">."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In questo capitolo, abbiamo esplorato vari algoritmi utilizzati nell’intelligenza artificiale, con esempi pratici applicati alla giurisprudenza. Questi algoritmi sono strumenti potenti che possono aiutare a migliorare l’efficienza e l’equità nel contesto legale.</p>
+
+
 </section>
 </section>
 
