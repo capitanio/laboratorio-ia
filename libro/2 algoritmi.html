@@ -1,15 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-  <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VNK2YDR2HZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-  gtag('config', 'G-VNK2YDR2HZ');
-</script>
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 
@@ -1186,7 +1177,10 @@ P(a) = P(a/b)P(b) + P(a/¬b)P(¬b).
 <p>La probabilità che una persona sviluppi un certo effetto collaterale a seguito di un farmaco è <span class="math inline">\(P(Effetto collaterale) = 0.2\)</span>.</p>
 <p>Si sa che se una persona sviluppa l’effetto collaterale, la probabilità che abbia assunto il farmaco è <span class="math inline">\(P(Farmaco|Effetto collaterale) = 0.9\)</span>. D’altra parte, se una persona non mostra l’effetto collaterale, la probabilità che abbia comunque assunto il farmaco è <span class="math inline">\(P(Farmaco|¬Effetto collaterale) = 0.1\)</span>. In questo caso, il condizionamento riguarda la probabilità di assunzione del farmaco date le informazioni sull’effetto collaterale senza coinvolgere il teorema di Bayes.</p>
 <p>Quindi, la probabilità di assunzione del farmaco è <span class="math display">\[
-P(Farmaco) = P(Farmaco|Effetto collaterale)P(Effetto collaterale) + \\allowbreak P(Farmaco|¬Effetto collaterale)P(¬Effetto collaterale).
+\begin{split}
+P(Farmaco) = P(Farmaco|Effetto collaterale)P(Effetto collaterale) + \\
+P(Farmaco|¬Effetto collaterale)P(¬Effetto collaterale).
+\end{split}
 \]</span></p>
 <p>la codifica in Python è la seguente:</p>
 <div id="cell-40" class="cell">
