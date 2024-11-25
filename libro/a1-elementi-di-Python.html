@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VNK2YDR2HZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VNK2YDR2HZ');
+</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Luciano Capitanio">
-<meta name="dcterms.date" content="2024-11-25">
 
-<title>Laboratorio di Intelligenza Artificiale</title>
+<title>Appendix A — Elementi di Python – Laboratorio di Intelligenza Artificiale</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +30,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -32,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./0-introduzione.html" rel="next">
+<link href="./3-machine learning.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -84,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Benvenuti</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1-elementi-di-Python.html">Appendices</a></li><li class="breadcrumb-item"><a href="./a1-elementi-di-Python.html"><span class="chapter-title">Elementi di Python</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Benvenuti</span></a>
   </div>
 </li>
@@ -189,7 +251,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./a1-elementi-di-Python.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Elementi di Python</span></a>
+  <a href="./a1-elementi-di-Python.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Elementi di Python</span></a>
   </div>
 </li>
       </ul>
@@ -204,37 +266,36 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#benvenuti" id="toc-benvenuti" class="nav-link active" data-scroll-target="#benvenuti">Benvenuti</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  <li><a href="#perché-python-è-utile-in-ambito-giuridico" id="toc-perché-python-è-utile-in-ambito-giuridico" class="nav-link active" data-scroll-target="#perché-python-è-utile-in-ambito-giuridico">Perché Python è utile in ambito giuridico?</a></li>
+  <li><a href="#introduzione-alla-sintassi-di-python" id="toc-introduzione-alla-sintassi-di-python" class="nav-link" data-scroll-target="#introduzione-alla-sintassi-di-python">Introduzione alla sintassi di Python</a>
+  <ul class="collapse">
+  <li><a href="#variabili-e-tipi-di-dati" id="toc-variabili-e-tipi-di-dati" class="nav-link" data-scroll-target="#variabili-e-tipi-di-dati">1. Variabili e Tipi di Dati</a></li>
+  <li><a href="#condizioni-prendere-decisioni" id="toc-condizioni-prendere-decisioni" class="nav-link" data-scroll-target="#condizioni-prendere-decisioni">2. Condizioni: Prendere Decisioni</a></li>
+  <li><a href="#cicli-ripetere-azioni" id="toc-cicli-ripetere-azioni" class="nav-link" data-scroll-target="#cicli-ripetere-azioni">3. Cicli: Ripetere Azioni</a></li>
+  <li><a href="#gestione-degli-errori" id="toc-gestione-degli-errori" class="nav-link" data-scroll-target="#gestione-degli-errori">4. Gestione degli Errori</a></li>
+  <li><a href="#strutture-dati-utili" id="toc-strutture-dati-utili" class="nav-link" data-scroll-target="#strutture-dati-utili">5. Strutture Dati Utili</a></li>
+  </ul></li>
+  <li><a href="#applicazioni-pratiche" id="toc-applicazioni-pratiche" class="nav-link" data-scroll-target="#applicazioni-pratiche">Applicazioni Pratiche</a>
+  <ul class="collapse">
+  <li><a href="#creazione-di-moduli-personalizzati" id="toc-creazione-di-moduli-personalizzati" class="nav-link" data-scroll-target="#creazione-di-moduli-personalizzati">Creazione di Moduli Personalizzati</a></li>
+  </ul></li>
+  <li><a href="#conclusione" id="toc-conclusione" class="nav-link" data-scroll-target="#conclusione">Conclusione</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./a1-elementi-di-Python.html">Appendices</a></li><li class="breadcrumb-item"><a href="./a1-elementi-di-Python.html"><span class="chapter-title">Elementi di Python</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Laboratorio di Intelligenza Artificiale</h1>
-<p class="subtitle lead">Elementi di Intelligenza Artificiale in Python</p>
+<h1 class="title"><span id="sec-appendix-elementi-python" class="quarto-section-identifier">Appendix A — Elementi di Python</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Luciano Capitanio </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">November 25, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -244,18 +305,125 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-
-<section id="benvenuti" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="benvenuti">Benvenuti</h2><p><img src="stanza cinese intera.jpg" title="Laboratorio di Intelligenza Artificiale" class="quarto-cover-image img-fluid"></p>
-<p>Questo sito è la versione web del libro “Laboratorio di Intelligenza Artificiale in Python” che vuole essere una guida pratica pensata per professionisti legali senza esperienza di programmazione. Il libro introduce in modo semplice l’uso di Python per applicazioni nell’ambito giuridico, aiutando a comprendere come l’intelligenza artificiale può trasformare il settore legale.</p>
+<p>Python è un linguaggio di programmazione versatile e potente, ampiamente utilizzato in diversi ambiti, inclusi quelli legali e accademici. La sua sintassi semplice e leggibile lo rende ideale per chiunque si avvicini alla programmazione per la prima volta <span class="citation" data-cites="Lutz2013 VanRossum2016">(<a href="#ref-Lutz2013" role="doc-biblioref">Lutz 2013</a>; <a href="#ref-VanRossum2016" role="doc-biblioref">Rossum and Drake 2016</a>)</span>.</p>
+<p>In questo capitolo, imparerai le basi di Python, con esempi pratici tratti dal mondo giuridico, come la gestione di fascicoli, il calcolo delle pene e l’elaborazione di dati legali.</p>
+<section id="perché-python-è-utile-in-ambito-giuridico" class="level2">
+<h2 class="anchored" data-anchor-id="perché-python-è-utile-in-ambito-giuridico">Perché Python è utile in ambito giuridico?</h2>
+<p>Python è particolarmente utile per automatizzare compiti ripetitivi, analizzare grandi quantità di dati (ad esempio, sentenze giudiziarie) e sviluppare strumenti personalizzati per supportare il lavoro legale. Con poche righe di codice, è possibile:</p>
+<ul>
+<li>Analizzare documenti legali.</li>
+<li>Calcolare sanzioni o durate delle pene.</li>
+<li>Automatizzare la creazione di report <span class="citation" data-cites="Srinath2017">(<a href="#ref-Srinath2017" role="doc-biblioref">Srinath 2017</a>)</span>.</li>
+</ul>
 </section>
-<section id="license" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="license">License</h2>
-<p>L’uso di questo sito è <strong>gratuito</strong> ed i suoi contenuti sono sottoposto a una licenza <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivs 4.0</a>. Se vuoi avere una <strong>copia fisica</strong> o una <strong>versione e-book</strong> del libro puoi ordinarlo da …; è stato pubblicato il …</p>
-<p>Se vuoi contribuire, è gradito ogni commento e correzione di refusi, puoi farlo su <a href="https://github.com/capitanio/laboratorio-ia">github.com/capitanio/laboratorio-ia</a>.</p>
-<p><a href="https://capitanio.github.io/">Luciano Capitanio</a></p>
+<section id="introduzione-alla-sintassi-di-python" class="level2">
+<h2 class="anchored" data-anchor-id="introduzione-alla-sintassi-di-python">Introduzione alla sintassi di Python</h2>
+<section id="variabili-e-tipi-di-dati" class="level3">
+<h3 class="anchored" data-anchor-id="variabili-e-tipi-di-dati">1. Variabili e Tipi di Dati</h3>
+<p>Le <strong>variabili</strong> sono contenitori per dati. Ad esempio, puoi salvare il nome di un giudice o il numero di un fascicolo:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>giudice <span class="op">=</span> <span class="st">"Mario Rossi"</span>  <span class="co"># Nome del giudice</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>fascicolo <span class="op">=</span> <span class="dv">2024112345</span>   <span class="co"># Numero del fascicolo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Python riconosce automaticamente il tipo di dato (stringhe, numeri, ecc.). Non serve dichiararlo <span class="citation" data-cites="VanRossum2016">(<a href="#ref-VanRossum2016" role="doc-biblioref">Rossum and Drake 2016</a>)</span>.</p>
+</section>
+<section id="condizioni-prendere-decisioni" class="level3">
+<h3 class="anchored" data-anchor-id="condizioni-prendere-decisioni">2. Condizioni: Prendere Decisioni</h3>
+<p>Con Python, puoi verificare condizioni e decidere quale azione intraprendere. Ad esempio, puoi controllare se un fascicolo è chiuso:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fascicolo_chiuso <span class="op">=</span> <span class="va">False</span>  <span class="co"># Il fascicolo non è ancora chiuso</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> fascicolo_chiuso:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Il fascicolo è chiuso."</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Il fascicolo è ancora aperto."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Nota:</strong> Il codice è sensibile all’indentazione (spazi all’inizio di una riga). Assicurati di rispettare la struttura <span class="citation" data-cites="Lutz2013">(<a href="#ref-Lutz2013" role="doc-biblioref">Lutz 2013</a>)</span>!</p>
+</section>
+<section id="cicli-ripetere-azioni" class="level3">
+<h3 class="anchored" data-anchor-id="cicli-ripetere-azioni">3. Cicli: Ripetere Azioni</h3>
+<p>I <strong>cicli</strong> permettono di eseguire azioni ripetitive. Ad esempio, puoi stampare l’elenco di testimoni da interrogare:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>testimoni <span class="op">=</span> [<span class="st">"Testimone A"</span>, <span class="st">"Testimone B"</span>, <span class="st">"Testimone C"</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> testimone <span class="kw">in</span> testimoni:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Interrogare </span><span class="sc">{</span>testimone<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Output:</strong></p>
+<pre><code>Interrogare Testimone A  
+Interrogare Testimone B  
+Interrogare Testimone C</code></pre>
+</section>
+<section id="gestione-degli-errori" class="level3">
+<h3 class="anchored" data-anchor-id="gestione-degli-errori">4. Gestione degli Errori</h3>
+<p>Python permette di gestire gli errori con eleganza. Ad esempio, se provi ad aprire un file di sentenze che non esiste:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"sentenze.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        contenuto <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Errore: Il file non è stato trovato."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Output:</strong></p>
+<pre><code>Errore: Il file non è stato trovato.</code></pre>
+</section>
+<section id="strutture-dati-utili" class="level3">
+<h3 class="anchored" data-anchor-id="strutture-dati-utili">5. Strutture Dati Utili</h3>
+<section id="liste" class="level4">
+<h4 class="anchored" data-anchor-id="liste">Liste</h4>
+<p>Le <strong>liste</strong> sono utili per memorizzare più elementi. Ad esempio, un elenco di articoli di legge:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>articoli <span class="op">=</span> [<span class="st">"Art. 1"</span>, <span class="st">"Art. 2"</span>, <span class="st">"Art. 3"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>articoli.append(<span class="st">"Art. 4"</span>)  <span class="co"># Aggiungi un articolo</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(articoli)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dizionari" class="level4">
+<h4 class="anchored" data-anchor-id="dizionari">Dizionari</h4>
+<p>I <strong>dizionari</strong> memorizzano dati in coppie chiave-valore. Ad esempio, puoi salvare i dettagli di un fascicolo:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fascicolo <span class="op">=</span> {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"numero"</span>: <span class="st">"2024/12345"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"giudice"</span>: <span class="st">"Mario Rossi"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"stato"</span>: <span class="st">"aperto"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fascicolo[<span class="st">"giudice"</span>])  <span class="co"># Stampa: Mario Rossi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="applicazioni-pratiche" class="level2">
+<h2 class="anchored" data-anchor-id="applicazioni-pratiche">Applicazioni Pratiche</h2>
+<p>Con Python, puoi creare funzioni per automatizzare calcoli giuridici. Ad esempio:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcola_pena(reato_grave):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> reato_grave:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">10</span>  <span class="co"># Anni di reclusione per reato grave</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">2</span>  <span class="co"># Anni per reati meno gravi</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>pena <span class="op">=</span> calcola_pena(<span class="va">True</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Anni di reclusione: </span><span class="sc">{</span>pena<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Output:</strong></p>
+<pre><code>Anni di reclusione: 10</code></pre>
+<section id="creazione-di-moduli-personalizzati" class="level3">
+<h3 class="anchored" data-anchor-id="creazione-di-moduli-personalizzati">Creazione di Moduli Personalizzati</h3>
+<p>Puoi creare file Python con funzioni personalizzate, utili per compiti specifici. Ad esempio, un modulo <code>calcoli_legali.py</code> potrebbe contenere:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcola_sanzione(sanzione_base, giorni_ritardo, mora<span class="op">=</span><span class="dv">50</span>):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sanzione_base <span class="op">+</span> giorni_ritardo <span class="op">*</span> mora</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>E poi importarlo nel tuo programma:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> calcoli_legali</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>sanzione <span class="op">=</span> calcoli_legali.calcola_sanzione(<span class="dv">500</span>, <span class="dv">10</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La sanzione totale è di </span><span class="sc">{</span>sanzione<span class="sc">}</span><span class="ss"> euro."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="conclusione" class="level2">
+<h2 class="anchored" data-anchor-id="conclusione">Conclusione</h2>
+<p>Con una conoscenza di base di Python, puoi affrontare problemi complessi in modo semplice ed efficiente, rendendo il tuo lavoro legale più rapido e preciso <span class="citation" data-cites="PythonCommunity">(<a href="#ref-PythonCommunity" role="doc-biblioref">Foundation 2024</a>)</span>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-PythonCommunity" class="csl-entry" role="listitem">
+Foundation, Python Software. 2024. <span>“Python Official Documentation.”</span> <a href="https://docs.python.org/3/">https://docs.python.org/3/</a>.
+</div>
+<div id="ref-Lutz2013" class="csl-entry" role="listitem">
+Lutz, Mark. 2013. <em>Learning Python</em>. 5th ed. O’Reilly Media.
+</div>
+<div id="ref-VanRossum2016" class="csl-entry" role="listitem">
+Rossum, Guido Van, and Fred L. Drake. 2016. <em>The Python Language Reference Manual</em>. Python Software Foundation. <a href="https://docs.python.org/3/reference/">https://docs.python.org/3/reference/</a>.
+</div>
+<div id="ref-Srinath2017" class="csl-entry" role="listitem">
+Srinath, R. 2017. <span>“Applications of Python Programming in Legal Practice.”</span> <em>Journal of Legal Technology</em> 12: 34–45.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -825,11 +993,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./3-machine learning.html" class="pagination-link" aria-label="Machine learning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Machine learning</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./0-introduzione.html" class="pagination-link" aria-label="Introduzione">
-        <span class="nav-page-text">Introduzione</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

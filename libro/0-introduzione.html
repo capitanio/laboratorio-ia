@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
+        <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VNK2YDR2HZ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -30,7 +30,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -40,7 +60,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./1 elementi di Python.html" rel="next">
+<link href="./1-Turing-vs-Searle.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -93,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0 introduzione.html"><span class="chapter-title">Introduzione</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0-introduzione.html">Introduzione</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -163,58 +183,60 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Prefazione</span></a>
+ <span class="menu-text">Benvenuti</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./0 introduzione.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Introduzione</span></a>
+  <a href="./0-introduzione.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introduzione</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1 elementi di Python.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Elementi di Python</span></a>
+  <a href="./1-Turing-vs-Searle.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Turing vs Searle: Un’Analisi del Pensiero Computazionale e della Coscienza</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2 algoritmi.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Algoritmi</span></a>
+  <a href="./2-algoritmi.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Algoritmi</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3 machine learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Machine learning</span></a>
+  <a href="./3-machine learning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Machine learning</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./a1-elementi-di-Python.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Elementi di Python</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#touring-vs-searle-unanalisi-del-pensiero-computazionale-e-della-coscienza" id="toc-touring-vs-searle-unanalisi-del-pensiero-computazionale-e-della-coscienza" class="nav-link active" data-scroll-target="#touring-vs-searle-unanalisi-del-pensiero-computazionale-e-della-coscienza">Touring vs Searle: Un’Analisi del Pensiero Computazionale e della Coscienza</a>
-  <ul class="collapse">
-  <li><a href="#alan-turing-e-il-test-di-turing" id="toc-alan-turing-e-il-test-di-turing" class="nav-link" data-scroll-target="#alan-turing-e-il-test-di-turing">Alan Turing e il Test di Turing</a></li>
-  <li><a href="#john-searle-e-largomento-della-stanza-cinese" id="toc-john-searle-e-largomento-della-stanza-cinese" class="nav-link" data-scroll-target="#john-searle-e-largomento-della-stanza-cinese">John Searle e l’Argomento della Stanza Cinese</a></li>
-  <li><a href="#simulazione-vs.-comprensione" id="toc-simulazione-vs.-comprensione" class="nav-link" data-scroll-target="#simulazione-vs.-comprensione">Simulazione vs.&nbsp;Comprensione</a></li>
-  </ul></li>
-  <li><a href="#prospettive-sul-futuro-dellintelligenza-artificiale" id="toc-prospettive-sul-futuro-dellintelligenza-artificiale" class="nav-link" data-scroll-target="#prospettive-sul-futuro-dellintelligenza-artificiale">Prospettive sul Futuro dell’Intelligenza Artificiale</a></li>
-  <li><a href="#alan-turing-pioniere-dellinformatica" id="toc-alan-turing-pioniere-dellinformatica" class="nav-link" data-scroll-target="#alan-turing-pioniere-dellinformatica">Alan Turing: Pioniere dell’Informatica</a></li>
-  <li><a href="#john-searle-filosofia-della-mente-e-coscienza" id="toc-john-searle-filosofia-della-mente-e-coscienza" class="nav-link" data-scroll-target="#john-searle-filosofia-della-mente-e-coscienza">John Searle: Filosofia della Mente e Coscienza</a></li>
-  <li><a href="#conclusione" id="toc-conclusione" class="nav-link" data-scroll-target="#conclusione">Conclusione</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Introduzione</span></h1>
+<h1 class="title">Introduzione</h1>
 </div>
 
 
@@ -231,83 +253,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>L’Intelligenza Artificiale (IA) è un campo di studio che si concentra sulla creazione di macchine e software in grado di esibire comportamenti intelligenti. Questa disciplina è è stata definito per la prima volta da John McCarthy nel 1955 come “la scienza e l’ingegneria della produzione di macchine intelligenti” (McCarthy, J., Minsky, M., Rochester, N., &amp; Shannon, C. E. (1955). A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence).</p>
+<p>L’Intelligenza Artificiale (IA) è un campo di studio che si occupa della creazione di macchine e software in grado di mostrare comportamenti intelligenti. Questa disciplina è stata definita per la prima volta da John McCarthy nel 1955 come “la scienza e l’ingegneria della costruzione di macchine intelligenti” <span class="citation" data-cites="McCarthy1955">(<a href="#ref-McCarthy1955" role="doc-biblioref">McCarthy et al. 1955</a>)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="intro AI.jpg" class="img-fluid figure-img" alt="IA è una disciplina di confine" width="600"></p>
 <figcaption>IA è una disciplina di confine</figcaption>
 </figure>
 </div>
-<p>L’AI è contemporaneamente scienza e tecnica, disciplina di frontiera nella quale s’incontrano diversi domini del sapere. Tra questi i più riòlevanti sono : l’Informatica, la Statistica e le Scienze cognitive.</p>
-<p>L’IA può essere suddivisa in due categorie principali: l’IA debole e l’IA forte. L’IA debole si riferisce a sistemi che sono progettati per eseguire compiti specifici, come il riconoscimento vocale o la guida autonoma. D’altra parte, l’IA forte si riferisce a sistemi che possiedono una coscienza e un’intelligenza simili a quelle umane (Searle, J. R. (1980). Minds, brains, and programs).</p>
-<p>L’IA sta avendo un impatto significativo su vari settori, tra cui l’assistenza sanitaria, l’istruzione, il trasporto e l’industria. Ad esempio, nell’assistenza sanitaria, l’IA può aiutare i medici a diagnosticare malattie e a sviluppare piani di trattamento personalizzati (Jiang, F., Jiang, Y., Zhi, H., Dong, Y., Li, H., Ma, S., … &amp; Wang, Y. (2017). Artificial intelligence in healthcare: past, present and future).</p>
-<p>Nonostante i progressi, l’IA presenta numerose sfide. Queste includono questioni etiche, come la privacy dei dati e l’impiego, e problemi tecnici, come la comprensione del linguaggio naturale e la creazione di algoritmi di apprendimento automatico efficaci (Russell, S., &amp; Norvig, P. (2016). Artificial intelligence: a modern approach).</p>
-<p>In conclusione, l’IA è un campo in rapida evoluzione che ha il potenziale per rivoluzionare la società. Tuttavia, è importante affrontare le sfide che presenta per garantire che i suoi benefici siano realizzati in modo etico e sostenibile.</p>
-<p><strong>Riferimenti Bibliografici</strong> 1. McCarthy, J., Minsky, M., Rochester, N., &amp; Shannon, C. E. (1955). A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence. 2. Searle, J. R. (1980). Minds, brains, and programs. 3. Jiang, F., Jiang, Y., Zhi, H., Dong, Y., Li, H., Ma, S., … &amp; Wang, Y. (2017). Artificial intelligence in healthcare: past, present and future. 4. Russell, S., &amp; Norvig, P. (2016). Artificial intelligence: a modern approach.</p>
-<section id="touring-vs-searle-unanalisi-del-pensiero-computazionale-e-della-coscienza" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="touring-vs-searle-unanalisi-del-pensiero-computazionale-e-della-coscienza">Touring vs Searle: Un’Analisi del Pensiero Computazionale e della Coscienza</h2>
-<p>Alan Turing e John Searle sono due figure chiave nella filosofia della mente e nello studio dell’AI. Sebbene entrambi abbiano contribuito significativamente al campo, le loro teorie e approcci si differenziano notevolmente. Turing, con il suo famoso “Test di Turing”, si concentrava sulla capacità delle macchine di simulare il comportamento umano, mentre Searle, con il suo “Argomento della Stanza Cinese”, sfidava la nozione che una macchina potesse effettivamente comprendere o essere cosciente. In questo capitolo esploreremo le differenze fondamentali tra i due, analizzando le loro posizioni sul pensiero computazionale e la coscienza.</p>
-<section id="alan-turing-e-il-test-di-turing" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="alan-turing-e-il-test-di-turing">Alan Turing e il Test di Turing</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Turing Test.jpg" class="img-fluid figure-img" alt="immagine generata da DALL-E del Test di Touring" width="600"></p>
-<figcaption>immagine generata da DALL-E del Test di Touring</figcaption>
-</figure>
-</div>
-<p>Alan Turing, matematico britannico e pioniere dell’informatica, è noto per aver proposto quello che oggi è conosciuto come il “Test di Turing” nel suo articolo del 1950 “Computing Machinery and Intelligence”. L’idea di base del test è semplice: una macchina può essere considerata “intelligente” se un essere umano, interagendo con essa attraverso una tastiera e uno schermo, non riesce a distinguere tra le risposte della macchina e quelle di un altro essere umano. Il test non richiede che la macchina pensi o capisca nel senso umano del termine, ma solo che simuli il comportamento umano in modo convincente.</p>
-<p>Per Turing, la domanda “Le macchine possono pensare?” è mal posta. Egli suggerisce che dovremmo piuttosto chiedere se le macchine possano esibire comportamenti che noi interpretiamo come pensiero. L’enfasi, quindi, è sulla <strong>simulazione</strong> dell’intelligenza piuttosto che sull’esperienza cosciente.</p>
-</section>
-<section id="john-searle-e-largomento-della-stanza-cinese" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="john-searle-e-largomento-della-stanza-cinese">John Searle e l’Argomento della Stanza Cinese</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Stanza cinese.jpg" class="img-fluid figure-img" alt="immagine generata da DALL-E della stanza cinese di Searle" width="600"></p>
-<figcaption>immagine generata da DALL-E della stanza cinese di Searle</figcaption>
-</figure>
-</div>
-<p>John Searle, filosofo statunitense, ha formulato nel 1980 l’ormai famoso “Argomento della Stanza Cinese” come risposta critica al Test di Turing e alle nozioni di “intelligenza artificiale forte”. Searle distingue tra intelligenza artificiale “debole”, che descrive sistemi che simulano l’intelligenza, e intelligenza artificiale “forte”, che sostiene che una macchina può avere una mente, una coscienza e una comprensione reale del mondo.</p>
-<p>Nel suo esperimento mentale, Searle immagina una persona che non conosce il cinese chiusa in una stanza con una serie di istruzioni per manipolare simboli cinesi (input) e fornire risposte (output) in modo che chi osserva dall’esterno creda che la persona capisca il cinese. Tuttavia, sostiene Searle, la persona non comprende affatto il cinese; sta semplicemente seguendo delle regole per manipolare simboli. L’argomento di Searle dimostra che una macchina potrebbe eseguire compiti simili a quelli di una mente cosciente, ma senza effettivamente <strong>comprendere</strong> il significato di ciò che sta facendo.</p>
-</section>
-<section id="simulazione-vs.-comprensione" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="simulazione-vs.-comprensione">Simulazione vs.&nbsp;Comprensione</h3>
-<p>La differenza principale tra Turing e Searle risiede nel modo in cui concepiscono l’intelligenza e la coscienza. Per Turing, l’intelligenza è essenzialmente una questione di comportamento osservabile: se una macchina può agire in modo che un osservatore la confonda con un essere umano, allora quella macchina è, in un certo senso, “intelligente”. Non importa se la macchina capisce realmente o meno ciò che sta facendo; ciò che conta è che sembri farlo.</p>
-<p>Searle, d’altra parte, sostiene che il <strong>comportamento esterno</strong> non è sufficiente per definire l’intelligenza o la comprensione. Anche se una macchina può sembrare intelligente, essa manca di una qualità essenziale: la comprensione <strong>interna</strong> o la coscienza. Secondo Searle, seguire delle regole o manipolare simboli non equivale a comprendere il significato di quei simboli. L’intelligenza artificiale “forte”, quindi, sarebbe un’illusione: le macchine possono simulare l’intelligenza, ma non possono mai possedere una coscienza o una vera comprensione.</p>
-</section>
-</section>
-<section id="prospettive-sul-futuro-dellintelligenza-artificiale" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="prospettive-sul-futuro-dellintelligenza-artificiale">Prospettive sul Futuro dell’Intelligenza Artificiale</h2>
-<p>Il dibattito tra Turing e Searle ha implicazioni profonde per il futuro dell’intelligenza artificiale e per la filosofia della mente. Le visioni di Turing hanno alimentato lo sviluppo di AI sempre più sofisticate, capaci di eseguire compiti complessi come la traduzione automatica, il riconoscimento delle immagini e la diagnosi medica. Tuttavia, gli argomenti di Searle ci ricordano che anche le macchine più avanzate potrebbero non “capire” veramente cosa stanno facendo, sollevando interrogativi su cosa significhi davvero “pensare” e se la coscienza possa mai emergere da un sistema puramente computazionale.</p>
-</section>
-<section id="alan-turing-pioniere-dellinformatica" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="alan-turing-pioniere-dellinformatica">Alan Turing: Pioniere dell’Informatica</h2>
-<p><strong>Biografia</strong></p>
-<p>Alan Mathison Turing nacque il 23 giugno 1912 a Londra, Regno Unito. Fu un matematico, logico e crittografo britannico, riconosciuto come uno dei fondatori dell’informatica moderna. Durante la Seconda Guerra Mondiale, lavorò presso Bletchley Park, il centro di crittoanalisi britannico, dove contribuì in modo decisivo alla decrittazione del codice Enigma, utilizzato dalle forze tedesche. Questo lavoro ha accelerato la fine del conflitto, salvando probabilmente milioni di vite.</p>
-<p>Turing morì tragicamente l’8 giugno 1954 a Wilmslow, Regno Unito, in circostanze sospette, che furono ufficialmente dichiarate come suicidio. La sua morte sollevò interrogativi sulla discriminazione di cui fu vittima a causa della sua omosessualità, che all’epoca era illegale nel Regno Unito.</p>
-<p><strong>Contributi e Onorificenze</strong></p>
-<p>Turing è celebre per il Modello di Turing, un concetto teorico che ha gettato le basi per i computer programmabili. Nel suo celebre articolo del 1936, “On Computable Numbers”, Turing introdusse la nozione di “Macchina di Turing”, una macchina teorica che potesse eseguire calcoli seguendo una serie di istruzioni codificate. Questo concetto ha fondato la teoria dell’informatica.</p>
-<p>Oltre ai suoi contributi nel campo della logica e della computazione, il suo Test di Turing (1950) è un punto di riferimento nello studio dell’intelligenza artificiale. Il test pone la questione se una macchina possa essere considerata intelligente se non è possibile distinguerla da un essere umano durante una conversazione.</p>
-<p><strong>Riconoscimenti Postumi</strong></p>
-<p>Nonostante la sua vita sia stata segnata da ingiustizie legali, Turing ha ricevuto numerosi riconoscimenti postumi. Nel 2009, il governo britannico, sotto il primo ministro Gordon Brown, emise scuse ufficiali per il trattamento che Turing aveva subito. Nel 2013, la Regina Elisabetta II concesse a Turing la grazia reale postuma. In suo onore, la Medaglia Turing, istituita nel 1966 dall’Association for Computing Machinery (ACM), è uno dei premi più prestigiosi nel campo dell’informatica.</p>
-</section>
-<section id="john-searle-filosofia-della-mente-e-coscienza" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="john-searle-filosofia-della-mente-e-coscienza">John Searle: Filosofia della Mente e Coscienza</h2>
-<p><strong>Biografia</strong></p>
-<p>John Rogers Searle nacque il 31 luglio 1932 a Denver, Colorado, Stati Uniti. Filosofo contemporaneo di grande rilievo, Searle si è concentrato principalmente su questioni relative alla filosofia del linguaggio, alla coscienza e alla filosofia della mente. Ha conseguito il dottorato presso l’Università di Oxford, e ha insegnato per la maggior parte della sua carriera accademica all’Università della California, Berkeley.</p>
-<p>Searle ha scritto numerosi testi fondamentali, e il suo pensiero si è sviluppato all’interno della tradizione della filosofia analitica. Oltre al suo celebre “Argomento della Stanza Cinese”, ha sviluppato una teoria della coscienza basata sul realismo biologico, sostenendo che la coscienza sia un fenomeno biologico emergente dai processi del cervello.</p>
-<p><strong>Contributi Filosofici e Opere Chiave</strong></p>
-<p>Searle è conosciuto soprattutto per il suo contributo alla filosofia del linguaggio e alla filosofia della mente. Nei primi anni della sua carriera, ha lavorato sulla teoria degli atti linguistici, che esamina come il linguaggio sia utilizzato per eseguire azioni, ad esempio promettere, ordinare o chiedere.</p>
-<p>Tuttavia, la sua opera più conosciuta è senza dubbio il suo “Argomento della Stanza Cinese”, pubblicato per la prima volta nel 1980. In questo esperimento mentale, Searle sostiene che, sebbene una macchina possa eseguire compiti che simulano la comprensione del linguaggio, essa non possiede una comprensione reale dei significati o delle intenzioni dietro le parole. Questo argomento critica l’idea dell’intelligenza artificiale forte, che sostiene che le macchine possano pensare o essere coscienti come gli esseri umani.</p>
-<p><strong>Onorificenze e Premi</strong></p>
-<p>Searle ha ricevuto numerosi riconoscimenti durante la sua carriera accademica. Nel 2004, ha ricevuto il National Humanities Medal dal presidente degli Stati Uniti George W. Bush per il suo contributo alla filosofia. Nel 2006 è stato premiato con il Premio Mind and Brain per i suoi studi innovativi sulla mente e la coscienza.</p>
-<p>Oltre a questi premi, Searle è membro di diverse accademie internazionali, inclusa l’American Academy of Arts and Sciences, e ha ricevuto numerose lauree honoris causa da università di tutto il mondo.</p>
-</section>
-<section id="conclusione" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="conclusione">Conclusione</h2>
-<p>In sintesi, mentre Turing e Searle condividono un interesse comune per la natura dell’intelligenza e della mente, le loro posizioni sono radicalmente diverse. Turing vede l’intelligenza come qualcosa che può essere simulato attraverso il comportamento, mentre Searle insiste che senza comprensione interna, ciò che viene prodotto è una mera simulazione priva di coscienza. Questo dibattito continua a influenzare il campo dell’intelligenza artificiale, sfidando filosofi, scienziati e ingegneri a esplorare cosa significhi davvero essere intelligenti e consapevoli. Si noti che il test di Touring è anche all’origine dell’onnipresente “CAPTCHA” (Completely Automated Public Turing test to tell Computers and Humans Apart) che è una forma di test di Turing inverso utilizzato per distinguere gli esseri umani dai bot nei contesti online.</p>
+<p>L’IA è sia una scienza che una tecnica, un’area di ricerca in cui convergono diverse discipline, tra cui l’informatica, la statistica e le scienze cognitive.</p>
+<p>L’IA si divide principalmente in due categorie: IA debole e IA forte. L’IA debole si riferisce a sistemi progettati per eseguire compiti specifici, come il riconoscimento vocale o la guida autonoma. L’IA forte, invece, riguarda sistemi che potrebbero possedere una coscienza e un’intelligenza simile a quella umana <span class="citation" data-cites="Searle1980">(<a href="#ref-Searle1980" role="doc-biblioref">Searle 1980</a>)</span>.</p>
+<p>L’IA sta trasformando molti settori, tra cui l’assistenza sanitaria, l’istruzione, i trasporti e l’industria. Ad esempio, nel campo sanitario, l’IA supporta i medici nella diagnosi delle malattie e nella creazione di piani di trattamento personalizzati <span class="citation" data-cites="Jiang2017">(<a href="#ref-Jiang2017" role="doc-biblioref">Jiang et al. 2017</a>)</span>.</p>
+<p>Nonostante i progressi, l’IA presenta diverse sfide, tra cui questioni etiche come la privacy dei dati e l’impatto sull’occupazione, nonché problemi tecnici legati alla comprensione del linguaggio naturale e allo sviluppo di algoritmi di apprendimento automatico efficaci <span class="citation" data-cites="Russell2016">(<a href="#ref-Russell2016" role="doc-biblioref">Russell and Norvig 2016</a>)</span>.</p>
+<p>In conclusione, l’IA è un campo in rapida evoluzione con il potenziale di rivoluzionare la società. Tuttavia, è essenziale affrontare le sfide etiche e tecniche per garantire che i suoi benefici siano raggiunti in modo sicuro e sostenibile.</p>
 
 
-</section>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Jiang2017" class="csl-entry" role="listitem">
+Jiang, Feng, Yong Jiang, Hui Zhi, Dong Yang, Hua Li, Shanyu Ma, and Yan Wang. 2017. <span>“Artificial Intelligence in Healthcare: Past, Present and Future.”</span> <em>Stroke and Vascular Neurology</em>.
+</div>
+<div id="ref-McCarthy1955" class="csl-entry" role="listitem">
+McCarthy, John, Marvin Minsky, Nathaniel Rochester, and Claude E. Shannon. 1955. <em>A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence</em>.
+</div>
+<div id="ref-Russell2016" class="csl-entry" role="listitem">
+Russell, Stuart, and Peter Norvig. 2016. <em>Artificial Intelligence: A Modern Approach</em>. Pearson.
+</div>
+<div id="ref-Searle1980" class="csl-entry" role="listitem">
+Searle, John R. 1980. <span>“Minds, Brains, and Programs.”</span> <em>Behavioral and Brain Sciences</em>.
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -876,13 +849,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Prefazione">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Prefazione</span>
+      <a href="./index.html" class="pagination-link" aria-label="Benvenuti">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Benvenuti</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./1 elementi di Python.html" class="pagination-link" aria-label="Elementi di Python">
-        <span class="nav-page-text"><span class="chapter-title">Elementi di Python</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./1-Turing-vs-Searle.html" class="pagination-link" aria-label="Turing vs Searle: Un'Analisi del Pensiero Computazionale e della Coscienza">
+        <span class="nav-page-text"><span class="chapter-title">Turing vs Searle: Un’Analisi del Pensiero Computazionale e della Coscienza</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

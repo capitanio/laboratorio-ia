@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+        <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VNK2YDR2HZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VNK2YDR2HZ');
+</script>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Luciano Capitanio">
-<meta name="dcterms.date" content="2024-11-25">
 
-<title>Laboratorio di Intelligenza Artificiale</title>
+<title>Turing vs Searle: Un’Analisi del Pensiero Computazionale e della Coscienza – Laboratorio di Intelligenza Artificiale</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +30,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -32,7 +60,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./0-introduzione.html" rel="next">
+<link href="./2-algoritmi.html" rel="next">
+<link href="./0-introduzione.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -84,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Benvenuti</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./1-Turing-vs-Searle.html"><span class="chapter-title">Turing vs Searle: Un’Analisi del Pensiero Computazionale e della Coscienza</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -153,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Benvenuti</span></a>
   </div>
 </li>
@@ -165,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./1-Turing-vs-Searle.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Turing vs Searle: Un’Analisi del Pensiero Computazionale e della Coscienza</span></a>
+  <a href="./1-Turing-vs-Searle.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Turing vs Searle: Un’Analisi del Pensiero Computazionale e della Coscienza</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -204,8 +233,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#benvenuti" id="toc-benvenuti" class="nav-link active" data-scroll-target="#benvenuti">Benvenuti</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  <li><a href="#alan-turing-e-il-test-di-turing" id="toc-alan-turing-e-il-test-di-turing" class="nav-link active" data-scroll-target="#alan-turing-e-il-test-di-turing">Alan Turing e il Test di Turing</a>
+  <ul class="collapse">
+  <li><a href="#critiche-al-test-di-turing" id="toc-critiche-al-test-di-turing" class="nav-link" data-scroll-target="#critiche-al-test-di-turing">Critiche al Test di Turing</a></li>
+  </ul></li>
+  <li><a href="#john-searle-e-largomento-della-stanza-cinese" id="toc-john-searle-e-largomento-della-stanza-cinese" class="nav-link" data-scroll-target="#john-searle-e-largomento-della-stanza-cinese">John Searle e l’Argomento della Stanza Cinese</a></li>
+  <li><a href="#conclusioni" id="toc-conclusioni" class="nav-link" data-scroll-target="#conclusioni">Conclusioni</a></li>
   </ul>
 </nav>
     </div>
@@ -214,27 +247,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Laboratorio di Intelligenza Artificiale</h1>
-<p class="subtitle lead">Elementi di Intelligenza Artificiale in Python</p>
+<h1 class="title"><span class="chapter-title">Turing vs Searle: Un’Analisi del Pensiero Computazionale e della Coscienza</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Luciano Capitanio </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">November 25, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -244,18 +264,83 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-
-<section id="benvenuti" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="benvenuti">Benvenuti</h2><p><img src="stanza cinese intera.jpg" title="Laboratorio di Intelligenza Artificiale" class="quarto-cover-image img-fluid"></p>
-<p>Questo sito è la versione web del libro “Laboratorio di Intelligenza Artificiale in Python” che vuole essere una guida pratica pensata per professionisti legali senza esperienza di programmazione. Il libro introduce in modo semplice l’uso di Python per applicazioni nell’ambito giuridico, aiutando a comprendere come l’intelligenza artificiale può trasformare il settore legale.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Da ricordare!">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Da ricordare!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Alan Turing</strong>:
+<ul>
+<li><strong>Contributo principale</strong>: Propose il “Test di Turing” come metodo per determinare l’intelligenza artificiale.</li>
+<li><strong>Idea chiave</strong>: L’intelligenza può essere valutata dalla capacità di una macchina di imitare un essere umano in una conversazione.</li>
+</ul></li>
+<li><strong>John Searle</strong>:
+<ul>
+<li><strong>Contributo principale</strong>: Ideò l’esperimento mentale della “Stanza Cinese”.</li>
+<li><strong>Critica chiave</strong>: L’IA può simulare la comprensione ma non avere una vera coscienza.</li>
+</ul></li>
+<li><strong>Temi fondamentali</strong>:
+<ul>
+<li>Differenza tra imitazione e comprensione reale.</li>
+<li>Implicazioni filosofiche dell’intelligenza artificiale.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<p>Alan Turing e John Searle sono due figure centrali nella riflessione sull’intelligenza artificiale e la coscienza. Turing ha introdotto il famoso “Test di Turing” <span class="citation" data-cites="Turing1950">(<a href="#ref-Turing1950" role="doc-biblioref">Turing 1950</a>)</span>, concentrandosi sulla capacità delle macchine di simulare il comportamento umano, mentre Searle, con il suo “Argomento della Stanza Cinese”, ha criticato l’idea che una macchina possa davvero comprendere o avere coscienza <span class="citation" data-cites="Searle1980">(<a href="#ref-Searle1980" role="doc-biblioref">Searle 1980</a>)</span>.</p>
+<section id="alan-turing-e-il-test-di-turing" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="alan-turing-e-il-test-di-turing">Alan Turing e il Test di Turing</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="turing-test.jpg" class="img-fluid figure-img" alt="Immagine del Test di Turing" width="600"></p>
+<figcaption>Immagine generata da DALL-E del Test di Turing</figcaption>
+</figure>
+</div>
+<p>Alan Turing, pioniere dell’informatica, propose il “Test di Turing” nel 1950 come criterio per valutare se una macchina potesse essere considerata intelligente <span class="citation" data-cites="Turing1950">(<a href="#ref-Turing1950" role="doc-biblioref">Turing 1950</a>)</span>. Secondo Turing, se un essere umano che comunica con una macchina attraverso uno schermo non riesce a distinguerla da un altro essere umano, allora la macchina può essere considerata intelligente.</p>
+<p><strong>Punti chiave del Test di Turing</strong>: - Il test misura la capacità di imitare il comportamento umano, non la comprensione o la coscienza. - Ha ispirato lo sviluppo di chatbot e sistemi di IA conversazionale.</p>
+<section id="critiche-al-test-di-turing" class="level3">
+<h3 class="anchored" data-anchor-id="critiche-al-test-di-turing">Critiche al Test di Turing</h3>
+<p>Molti filosofi e scienziati sostengono che il test non catturi la vera natura dell’intelligenza o della coscienza. John Searle è uno dei principali critici.</p>
+<hr>
 </section>
-<section id="license" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="license">License</h2>
-<p>L’uso di questo sito è <strong>gratuito</strong> ed i suoi contenuti sono sottoposto a una licenza <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivs 4.0</a>. Se vuoi avere una <strong>copia fisica</strong> o una <strong>versione e-book</strong> del libro puoi ordinarlo da …; è stato pubblicato il …</p>
-<p>Se vuoi contribuire, è gradito ogni commento e correzione di refusi, puoi farlo su <a href="https://github.com/capitanio/laboratorio-ia">github.com/capitanio/laboratorio-ia</a>.</p>
-<p><a href="https://capitanio.github.io/">Luciano Capitanio</a></p>
+</section>
+<section id="john-searle-e-largomento-della-stanza-cinese" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="john-searle-e-largomento-della-stanza-cinese">John Searle e l’Argomento della Stanza Cinese</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stanza-cinese.jpg" class="img-fluid figure-img" alt="Illustrazione della Stanza Cinese" width="600"></p>
+<figcaption>Immagine generata da DALL-E del Test della Stanza Cinese</figcaption>
+</figure>
+</div>
+<p>John Searle propose l’esperimento mentale della “Stanza Cinese” nel 1980 come critica al concetto di IA forte. L’idea è la seguente:</p>
+<ul>
+<li>Una persona che non conosce il cinese si trova in una stanza con un manuale di istruzioni che spiega come rispondere ai messaggi scritti in cinese.</li>
+<li>Usando il manuale, la persona può rispondere correttamente ai messaggi senza comprendere realmente il cinese.</li>
+<li>Searle sostiene che le macchine, similmente, possono elaborare simboli senza comprendere il loro significato.</li>
+</ul>
+<p><strong>Conclusione della Stanza Cinese</strong>: - L’elaborazione simbolica non equivale alla comprensione. - Questo pone un limite all’idea che una macchina possa essere veramente intelligente.</p>
+<hr>
+</section>
+<section id="conclusioni" class="level2">
+<h2 class="anchored" data-anchor-id="conclusioni">Conclusioni</h2>
+<p>Il confronto tra Turing e Searle evidenzia due prospettive opposte sull’intelligenza artificiale: - Turing vede l’imitazione come un segno sufficiente di intelligenza. - Searle insiste sulla distinzione tra simulazione e comprensione reale.</p>
+<p>Questo dibattito rimane centrale nella filosofia dell’intelligenza artificiale e continua a ispirare nuove domande e riflessioni.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Searle1980" class="csl-entry" role="listitem">
+Searle, John R. 1980. <span>“Minds, Brains, and Programs.”</span> <em>Behavioral and Brain Sciences</em>.
+</div>
+<div id="ref-Turing1950" class="csl-entry" role="listitem">
+Turing, Alan M. 1950. <span>“Computing Machinery and Intelligence.”</span> <em>Mind</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -825,10 +910,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./0-introduzione.html" class="pagination-link" aria-label="Introduzione">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduzione</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./0-introduzione.html" class="pagination-link" aria-label="Introduzione">
-        <span class="nav-page-text">Introduzione</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./2-algoritmi.html" class="pagination-link" aria-label="Algoritmi">
+        <span class="nav-page-text"><span class="chapter-title">Algoritmi</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
