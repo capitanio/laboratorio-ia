@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Apprendimento Non Supervisionato – Laboratorio di Intelligenza Artificiale</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./3-3-bias.html" rel="next">
+<link href="./3-1-apprendimento-supervisionato.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254d8caa02a4f51d576d86802a86f2db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e5911a59318b73639a72866017db9c42.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254d8caa02a4f51d576d86802a86f2db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="epub.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./3-machine learning.html">Machine learning</a></li><li class="breadcrumb-item"><a href="./3-2-apprendimento-non-supervisionato.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Apprendimento Non Supervisionato</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Laboratorio di Intelligenza Artificiale</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefazione dell’autore{.unnumbered}</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0-introduzione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduzione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-Turing-vs-Searle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Turing vs Searle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./2-algoritmi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-1-inferenza-logica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferenza Logica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-2-inferenza-probabilistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferenza Probabilistica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-3-inferenza-bayesiana.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inferenza Bayesiana</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-4-algoritmi-di-ricerca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmi di Ricerca</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-5-algoritmi-equitativi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algoritmi Equitativi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-6-algoritmi-predittivi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algoritmi Predittivi</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./3-machine learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-1-apprendimento-supervisionato.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Apprendimento Supervisionato</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-2-apprendimento-non-supervisionato.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Apprendimento Non Supervisionato</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-3-bias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-4-regressione-lineare-e-logistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regressione Lineare e Logistica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-5-perceptrone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Percetptrone</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-6-deep-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Deep learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-7-elaborazione-linguaggio-naturale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Elaborazione del Linguaggio Naturale</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bibliografia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bibliografia</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduzione" id="toc-introduzione" class="nav-link active" data-scroll-target="#introduzione"><span class="header-section-number">10.1</span> Introduzione</a></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering"><span class="header-section-number">10.2</span> Clustering</a>
+  <ul class="collapse">
+  <li><a href="#confronto-tra-metodi" id="toc-confronto-tra-metodi" class="nav-link" data-scroll-target="#confronto-tra-metodi"><span class="header-section-number">10.2.1</span> Confronto tra Metodi</a></li>
+  </ul></li>
+  <li><a href="#riduzione-della-dimensionalità" id="toc-riduzione-della-dimensionalità" class="nav-link" data-scroll-target="#riduzione-della-dimensionalità"><span class="header-section-number">10.3</span> Riduzione della Dimensionalità</a></li>
+  <li><a href="#applicazioni" id="toc-applicazioni" class="nav-link" data-scroll-target="#applicazioni"><span class="header-section-number">10.4</span> Applicazioni</a></li>
+  <li><a href="#laboratorio-python" id="toc-laboratorio-python" class="nav-link" data-scroll-target="#laboratorio-python"><span class="header-section-number">10.5</span> Laboratorio Python</a>
+  <ul class="collapse">
+  <li><a href="#esperimento-1-segmentazione-di-documenti-legali-con-k-means" id="toc-esperimento-1-segmentazione-di-documenti-legali-con-k-means" class="nav-link" data-scroll-target="#esperimento-1-segmentazione-di-documenti-legali-con-k-means"><span class="header-section-number">10.5.1</span> Esperimento 1: Segmentazione di documenti legali con K-means</a></li>
+  <li><a href="#esperimento-2-identificazione-di-anomalie-nei-dati-giudiziari-con-dbscan" id="toc-esperimento-2-identificazione-di-anomalie-nei-dati-giudiziari-con-dbscan" class="nav-link" data-scroll-target="#esperimento-2-identificazione-di-anomalie-nei-dati-giudiziari-con-dbscan"><span class="header-section-number">10.5.2</span> Esperimento 2: Identificazione di anomalie nei dati giudiziari con DBSCAN</a></li>
+  </ul></li>
+  <li><a href="#esercizi" id="toc-esercizi" class="nav-link" data-scroll-target="#esercizi"><span class="header-section-number">10.6</span> Esercizi</a>
+  <ul class="collapse">
+  <li><a href="#esercizio-1-analisi-delle-variabili-rilevanti-per-il-clustering-dei-casi-giudiziari" id="toc-esercizio-1-analisi-delle-variabili-rilevanti-per-il-clustering-dei-casi-giudiziari" class="nav-link" data-scroll-target="#esercizio-1-analisi-delle-variabili-rilevanti-per-il-clustering-dei-casi-giudiziari"><span class="header-section-number">10.6.1</span> Esercizio 1: Analisi delle variabili rilevanti per il clustering dei casi giudiziari</a></li>
+  <li><a href="#esercizio-2-interpretazione-dei-risultati-del-clustering-e-loro-applicazione-nel-sistema-giudiziario" id="toc-esercizio-2-interpretazione-dei-risultati-del-clustering-e-loro-applicazione-nel-sistema-giudiziario" class="nav-link" data-scroll-target="#esercizio-2-interpretazione-dei-risultati-del-clustering-e-loro-applicazione-nel-sistema-giudiziario"><span class="header-section-number">10.6.2</span> Esercizio 2: Interpretazione dei risultati del clustering e loro applicazione nel sistema giudiziario</a></li>
+  <li><a href="#esercizio-3-riduzione-della-dimensionalità-per-semplificare-lanalisi-dei-dati-legali" id="toc-esercizio-3-riduzione-della-dimensionalità-per-semplificare-lanalisi-dei-dati-legali" class="nav-link" data-scroll-target="#esercizio-3-riduzione-della-dimensionalità-per-semplificare-lanalisi-dei-dati-legali"><span class="header-section-number">10.6.3</span> Esercizio 3: Riduzione della dimensionalità per semplificare l’analisi dei dati legali</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./3-machine learning.html">Machine learning</a></li><li class="breadcrumb-item"><a href="./3-2-apprendimento-non-supervisionato.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Apprendimento Non Supervisionato</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Apprendimento Non Supervisionato</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduzione" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="introduzione"><span class="header-section-number">10.1</span> Introduzione</h2>
+<p>L’apprendimento non supervisionato è un ramo del machine learning in cui i modelli vengono addestrati su dati senza etichette, ossia senza output conosciuti. L’obiettivo è scoprire strutture, pattern o relazioni nascoste all’interno dei dati. A differenza dell’apprendimento supervisionato, che richiede un dataset etichettato, l’apprendimento non supervisionato si concentra su come raggruppare dati simili o ridurre la complessità dei dati mantenendo le informazioni essenziali. Di seguito esamineremo i principali approcci e tecniche utilizzati in questo campo.</p>
+</section>
+<section id="clustering" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="clustering"><span class="header-section-number">10.2</span> Clustering</h2>
+<p>Il clustering è una tecnica di apprendimento non supervisionato che mira a raggruppare i dati in gruppi (cluster) in base alla somiglianza tra gli elementi. Gli elementi all’interno di un cluster sono più simili tra loro rispetto a quelli di cluster differenti. Questa tecnica è ampiamente utilizzata per esplorare la struttura sottostante dei dati e per identificare segmenti naturali all’interno di un dataset.</p>
+<p>Esistono vari metodi di clustering, tra cui:</p>
+<ul>
+<li><p><strong>K-means</strong>: Uno degli algoritmi di clustering più popolari, il k-means divide il dataset in k cluster, dove k è un numero predefinito. L’algoritmo funziona iterativamente, assegnando ogni punto dati al cluster il cui centroide è il più vicino e poi aggiornando i centroidi in base ai punti assegnati. Il processo continua fino a che i centroidi non cambiano più o le assegnazioni dei punti si stabilizzano. K-means è semplice ed efficace, ma può essere sensibile alla scelta di k e ai valori iniziali dei centroidi <span class="citation" data-cites="macqueen1967">(<a href="#ref-macqueen1967" role="doc-biblioref">MacQueen 1967</a>)</span>.</p></li>
+<li><p><strong>Agglomerative Hierarchical Clustering</strong>: Questo approccio costruisce una gerarchia di cluster attraverso un processo iterativo in cui ogni punto dati inizia come un cluster separato, e a ogni passo, i due cluster più vicini vengono uniti. Questo processo continua fino a che tutti i punti dati non appartengono a un singolo cluster. Il risultato può essere rappresentato come un dendrogramma, che visualizza la struttura gerarchica dei cluster. Questo metodo è utile per esplorare la struttura dei dati a diversi livelli di granularità <span class="citation" data-cites="rokach2005">(<a href="#ref-rokach2005" role="doc-biblioref">Rokach and Maimon 2005</a>)</span>.</p></li>
+<li><p><strong>DBSCAN (Density-Based Spatial Clustering of Applications with Noise)</strong>: DBSCAN è un algoritmo di clustering basato sulla densità che identifica cluster di alta densità separati da aree di bassa densità. A differenza di k-means, DBSCAN non richiede di specificare il numero di cluster in anticipo e può identificare cluster di forma arbitraria, oltre a gestire outlier in modo naturale <span class="citation" data-cites="ester1996">(<a href="#ref-ester1996" role="doc-biblioref">Ester et al. 1996</a>)</span>.</p></li>
+</ul>
+<section id="confronto-tra-metodi" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="confronto-tra-metodi"><span class="header-section-number">10.2.1</span> Confronto tra Metodi</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 44%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metodo</th>
+<th>Vantaggi</th>
+<th>Svantaggi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>K-means</strong></td>
+<td>Semplice da implementare; efficiente su grandi dataset</td>
+<td>Sensibile alla scelta di k e ai valori iniziali dei centroidi</td>
+</tr>
+<tr class="even">
+<td><strong>Hierarchical Clustering</strong></td>
+<td>Rappresentazione visiva con dendrogrammi; non richiede k iniziale</td>
+<td>Poco scalabile su grandi dataset</td>
+</tr>
+<tr class="odd">
+<td><strong>DBSCAN</strong></td>
+<td>Rileva cluster di forma arbitraria; gestisce outlier</td>
+<td>Richiede tuning accurato dei parametri eps e minPts</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="riduzione-della-dimensionalità" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="riduzione-della-dimensionalità"><span class="header-section-number">10.3</span> Riduzione della Dimensionalità</h2>
+<p>La riduzione della dimensionalità è una tecnica che mira a ridurre il numero di variabili (o caratteristiche) nel dataset mantenendo la maggior parte dell’informazione rilevante. Questo è particolarmente utile quando si lavora con dati ad alta dimensionalità, dove un numero elevato di variabili può complicare l’analisi e aumentare il rischio di overfitting.</p>
+<p>Alcuni dei metodi principali per la riduzione della dimensionalità includono:</p>
+<ul>
+<li><p><strong>Principal Component Analysis (PCA)</strong>: PCA è una tecnica matematica che trasforma i dati in un nuovo spazio di coordinate ridotto, dove le nuove variabili (componenti principali) sono combinazioni lineari delle variabili originali. Le componenti principali sono ordinate in modo tale che la prima componente catturi la massima varianza nei dati, la seconda componente catturi la seconda massima varianza, e così via. Riducendo il numero di componenti principali, PCA può ridurre la dimensionalità dei dati preservando gran parte dell’informazione originale <span class="citation" data-cites="hotelling1933">(<a href="#ref-hotelling1933" role="doc-biblioref">Hotelling 1933</a>)</span>.</p></li>
+<li><p><strong>t-SNE (t-Distributed Stochastic Neighbor Embedding)</strong>: t-SNE è una tecnica di riduzione della dimensionalità non lineare che è particolarmente efficace per la visualizzazione di dati ad alta dimensionalità. Riduce i dati in uno spazio a 2 o 3 dimensioni, preservando le relazioni di vicinanza tra i punti dati, il che lo rende ideale per visualizzare cluster naturali nei dati <span class="citation" data-cites="van2008">(<a href="#ref-van2008" role="doc-biblioref">Van der Maaten and Hinton 2008</a>)</span>.</p></li>
+<li><p><strong>Autoencoder</strong>: Gli autoencoder sono reti neurali progettate per imparare una rappresentazione compressa dei dati. Sono composti da due parti: l’encoder, che riduce i dati in uno spazio a bassa dimensionalità, e il decoder, che ricostruisce i dati originali dalla rappresentazione compressa. Gli autoencoder sono particolarmente utili per la riduzione della dimensionalità in problemi complessi dove le relazioni tra le variabili non sono lineari <span class="citation" data-cites="hinton2006">(<a href="#ref-hinton2006" role="doc-biblioref">Hinton and Salakhutdinov 2006</a>)</span>.</p></li>
+</ul>
+</section>
+<section id="applicazioni" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="applicazioni"><span class="header-section-number">10.4</span> Applicazioni</h2>
+<p>L’apprendimento non supervisionato trova applicazione in una vasta gamma di settori e problemi, soprattutto in contesti in cui i dati non sono etichettati e l’obiettivo è scoprire strutture nascoste o ridurre la complessità dei dati. Alcune delle principali applicazioni includono:</p>
+<ul>
+<li><p><strong>Segmentazione del Mercato</strong>: Le tecniche di clustering come k-means e GMM sono utilizzate per segmentare i clienti in gruppi omogenei in base ai loro comportamenti o caratteristiche, permettendo strategie di marketing mirate e personalizzate.</p></li>
+<li><p><strong>Analisi delle Reti Sociali</strong>: L’apprendimento non supervisionato può essere utilizzato per identificare comunità o gruppi di interesse all’interno di reti sociali, analizzando le connessioni tra individui o entità <span class="citation" data-cites="newman2004">(<a href="#ref-newman2004" role="doc-biblioref">Newman 2004</a>)</span>.</p></li>
+<li><p><strong>Rilevamento delle Anomalie</strong>: Algoritmi come DBSCAN sono utilizzati per identificare outlier o anomalie nei dati, come transazioni fraudolente, guasti nei sistemi o attività insolite.</p></li>
+<li><p><strong>Preprocessing dei Dati per Modelli Supervisionati</strong>: La riduzione della dimensionalità attraverso PCA o autoencoder è spesso utilizzata come fase di preprocessing per migliorare le prestazioni di modelli di apprendimento supervisionato, riducendo il rumore e la complessità dei dati.</p></li>
+<li><p><strong>Visualizzazione dei Dati</strong>: Tecniche come t-SNE sono utilizzate per ridurre la dimensionalità dei dati ad alta complessità, facilitando la visualizzazione e l’interpretazione delle strutture interne dei dati, come cluster o pattern nascosti.</p></li>
+</ul>
+<p>In ambito giuridico, l’apprendimento non supervisionato può essere utilizzato per:</p>
+<ul>
+<li>L’<strong>analisi di grandi volumi di documenti legali</strong>, identificando temi ricorrenti o gruppi di casi simili.</li>
+<li>La <strong>scoperta di pattern</strong> nei dati dei casi giudiziari, come tipologie di reati o fattori comuni nei procedimenti legali.</li>
+<li>La <strong>segmentazione dei casi giudiziari</strong>, utile per organizzare i casi in categorie omogenee.</li>
+<li>Il <strong>rilevamento delle anomalie</strong> nei contratti legali o nelle transazioni finanziarie.</li>
+</ul>
+<p>Queste tecniche forniscono strumenti potenti per esplorare e comprendere i dati in modo più profondo, senza la necessità di etichette predefinite.</p>
+</section>
+<section id="laboratorio-python" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="laboratorio-python"><span class="header-section-number">10.5</span> Laboratorio Python</h2>
+<section id="esperimento-1-segmentazione-di-documenti-legali-con-k-means" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="esperimento-1-segmentazione-di-documenti-legali-con-k-means"><span class="header-section-number">10.5.1</span> Esperimento 1: Segmentazione di documenti legali con K-means</h3>
+<p>In questo esperimento Python, utilizziamo l’algoritmo K-means per raggruppare documenti legali basandoci sulla frequenza delle parole chiave presenti nei documenti. Si ipotizza che i documenti legali possano appartenere a categorie specifiche, come Contratti, Reati, Proprietà Privata, Assicurazioni, e Contratti di Lavoro. In particolare, si ipotizza che siano presenti 3 categorie principali. Il numero di cluster (K) è impostato a 3.</p>
+<p>Il funzionamento del semplice codice che segue può essere descritto come segue:</p>
+<ol type="1">
+<li>Si caricano le stop word della lingua italiana in modo che il codice possa rimuovere correttamente le parole comuni in italiano come “il”, “di”, “la”, migliorando la qualità del clustering K Stop Words Italiane;</li>
+<li>I documenti legali sono trasformati in vettori numerici usando la tecnica <strong>TF-IDF</strong>, che calcola l’importanza delle parole in ciascun documento.</li>
+<li>L’algoritmo K-means raggruppa i documenti in 3 cluster (ad esempio, Contratti, Reati, Proprietà Privata).</li>
+<li>Ogni documento viene assegnato a un cluster in base alla somiglianza del suo contenuto con altri documenti.</li>
+</ol>
+<div id="33fc8a40" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Scarica le stop words italiane</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>stop_words_italiane <span class="op">=</span> stopwords.words(<span class="st">'italian'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Dati simulati: estratti di documenti legali</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>documenti_legali <span class="op">=</span> [</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Il contratto di locazione è regolato dal Codice Civile."</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Il reato di furto è punito secondo l'articolo 624."</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"La proprietà privata è garantita dalla Costituzione."</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"L'assicurazione copre i danni derivanti da incidenti stradali."</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Il contratto di lavoro subordinato deve rispettare le norme vigenti."</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Il Codice Penale stabilisce le pene per i reati contro la persona. Le pene sono determinate dalla gravità del reato."</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Le controversie contrattuali sono risolte tramite arbitrato."</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Trasformazione dei documenti in rappresentazioni numeriche (TF-IDF)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> TfidfVectorizer(stop_words<span class="op">=</span>stop_words_italiane)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> vectorizer.fit_transform(documenti_legali)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Applicazione di K-means</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Etichette dei cluster</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> kmeans.labels_</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizzazione dei risultati</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, documento <span class="kw">in</span> <span class="bu">enumerate</span>(documenti_legali):</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Documento: </span><span class="sc">{</span>documento<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Appartiene al cluster: </span><span class="sc">{</span>labels[i]<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Documento: Il contratto di locazione è regolato dal Codice Civile.
+Appartiene al cluster: 2
+
+Documento: Il reato di furto è punito secondo l'articolo 624.
+Appartiene al cluster: 1
+
+Documento: La proprietà privata è garantita dalla Costituzione.
+Appartiene al cluster: 0
+
+Documento: L'assicurazione copre i danni derivanti da incidenti stradali.
+Appartiene al cluster: 0
+
+Documento: Il contratto di lavoro subordinato deve rispettare le norme vigenti.
+Appartiene al cluster: 2
+
+Documento: Il Codice Penale stabilisce le pene per i reati contro la persona. Le pene sono determinate dalla gravità del reato.
+Appartiene al cluster: 1
+
+Documento: Le controversie contrattuali sono risolte tramite arbitrato.
+Appartiene al cluster: 0
+</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[nltk_data] Downloading package stopwords to
+[nltk_data]     C:\Users\lcapitanio\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+C:\Users\lcapitanio\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\joblib\externals\loky\backend\context.py:136: UserWarning:
+
+Could not find the number of physical cores for the following reason:
+[WinError 2] Impossibile trovare il file specificato
+Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+
+  File "C:\Users\lcapitanio\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</code></pre>
+</div>
+</div>
+</section>
+<section id="esperimento-2-identificazione-di-anomalie-nei-dati-giudiziari-con-dbscan" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="esperimento-2-identificazione-di-anomalie-nei-dati-giudiziari-con-dbscan"><span class="header-section-number">10.5.2</span> Esperimento 2: Identificazione di anomalie nei dati giudiziari con DBSCAN</h3>
+<p>In questo epserimento useremo l’algoritmo DBSCAN per analizzare un dataset multivariato simulato in ambito giuridico. L’obiettivo è individuare pattern o anomalie nei dati relativi a sentenze legali. Il funzionamento del codice che segue può essere descritto come segue:</p>
+<ol type="1">
+<li>Viene generato un dataset simulato contenente variabili come numero di testimoni, durata dei processi, gravità del reato, ecc.</li>
+<li>L’algoritmo DBSCAN viene applicato per identificare cluster di casi simili e individuare eventuali anomalie o outlier. DBSCAN assegna il valore <code>-1</code> ai punti considerati outlier.</li>
+<li>I risultati vengono visualizzati graficamente in 2D (numero di testimoni contro durata dei processi), con cluster distinti identificati da colori diversi, per una comprensione visiva dei cluster e delle anomalie. In particolare, il cluster -1 è quello composto dalle anomalie.</li>
+</ol>
+<div id="2404fbae" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Generazione di dati simulati: caratteristiche di sentenze legali</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creazione di variabili</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>numero_testimoni <span class="op">=</span> np.random.randint(<span class="dv">1</span>, <span class="dv">10</span>, size<span class="op">=</span><span class="dv">200</span>)  <span class="co"># Numero di testimoni per caso</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>durata_processi <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">12</span>, scale<span class="op">=</span><span class="dv">4</span>, size<span class="op">=</span><span class="dv">200</span>)  <span class="co"># Durata dei processi in mesi</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>gravita_reato <span class="op">=</span> np.random.randint(<span class="dv">1</span>, <span class="dv">5</span>, size<span class="op">=</span><span class="dv">200</span>)  <span class="co"># Gravità del reato (1=leggera, 4=grave)</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Creazione di outlier</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>outlier_testimoni <span class="op">=</span> [<span class="dv">20</span>, <span class="dv">25</span>]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>outlier_durata <span class="op">=</span> [<span class="dv">40</span>, <span class="dv">50</span>]</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>outlier_gravita <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">5</span>]</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Inserimento degli outlier nei dati</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>numero_testimoni <span class="op">=</span> np.append(numero_testimoni, outlier_testimoni)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>durata_processi <span class="op">=</span> np.append(durata_processi, outlier_durata)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>gravita_reato <span class="op">=</span> np.append(gravita_reato, outlier_gravita)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinazione delle variabili in un DataFrame</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Numero_Testimoni'</span>: numero_testimoni,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Durata_Processi'</span>: durata_processi,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Gravita_Reato'</span>: gravita_reato</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardizzazione dei dati</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>data_scaled <span class="op">=</span> scaler.fit_transform(data)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Applicazione dell'algoritmo DBSCAN</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">1.5</span>, min_samples<span class="op">=</span><span class="dv">5</span>)  <span class="co"># Parametri regolabili</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> dbscan.fit_predict(data_scaled)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggiunta delle etichette al DataFrame</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Cluster'</span>] <span class="op">=</span> labels</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizzazione dei risultati</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Esempio di cluster individuati:"</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.head())</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizzazione in 2D (numero testimoni vs durata processi)</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cluster <span class="kw">in</span> np.unique(labels):</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    cluster_data <span class="op">=</span> data[data[<span class="st">'Cluster'</span>] <span class="op">==</span> cluster]</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    plt.scatter(cluster_data[<span class="st">'Numero_Testimoni'</span>], cluster_data[<span class="st">'Durata_Processi'</span>], label<span class="op">=</span><span class="ss">f"Cluster </span><span class="sc">{</span>cluster<span class="sc">}</span><span class="ss">"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Cluster di Dati Legali (Numero Testimoni vs Durata Processi)"</span>)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Numero Testimoni"</span>)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Durata Processi (mesi)"</span>)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Esempio di cluster individuati:
+   Numero_Testimoni  Durata_Processi  Gravita_Reato  Cluster
+0                 7        10.446942              3        0
+1                 4         8.457951              3        0
+2                 8        10.573020              1        0
+3                 5        14.224487              4        0
+4                 7        16.175442              2        0</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3-2-apprendimento-non-supervisionato_files/figure-html/cell-3-output-2.png" width="808" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Con questo approccio, è possibile identificare sia i cluster naturali nei dati sia eventuali anomalie (outlier), che potrebbero rappresentare sentenze particolarmente atipiche o significative.</p>
+</section>
+</section>
+<section id="esercizi" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="esercizi"><span class="header-section-number">10.6</span> Esercizi</h2>
+<section id="esercizio-1-analisi-delle-variabili-rilevanti-per-il-clustering-dei-casi-giudiziari" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="esercizio-1-analisi-delle-variabili-rilevanti-per-il-clustering-dei-casi-giudiziari"><span class="header-section-number">10.6.1</span> Esercizio 1: Analisi delle variabili rilevanti per il clustering dei casi giudiziari</h3>
+<p>Un’agenzia governativa sta analizzando un dataset relativo ai casi giudiziari per identificare gruppi omogenei di processi. Le variabili disponibili includono:</p>
+<ul>
+<li>Durata del processo (in mesi).</li>
+<li>Tipologia di reato (furto, frode, omicidio, ecc.).</li>
+<li>Numero di testimoni ascoltati.</li>
+<li>Gravità della pena prevista (da 1 a 5).</li>
+</ul>
+<p><strong>Domande</strong>:</p>
+<ol type="1">
+<li>Quali variabili pensi siano più rilevanti per identificare cluster di processi simili? Motiva la tua scelta.</li>
+<li>Spiega come la scelta delle variabili potrebbe influenzare il risultato del clustering.</li>
+<li>Quali misure adotteresti per assicurarti che i dati siano ben preparati prima di applicare un algoritmo di clustering?</li>
+</ol>
+</section>
+<section id="esercizio-2-interpretazione-dei-risultati-del-clustering-e-loro-applicazione-nel-sistema-giudiziario" class="level3" data-number="10.6.2">
+<h3 data-number="10.6.2" class="anchored" data-anchor-id="esercizio-2-interpretazione-dei-risultati-del-clustering-e-loro-applicazione-nel-sistema-giudiziario"><span class="header-section-number">10.6.2</span> Esercizio 2: Interpretazione dei risultati del clustering e loro applicazione nel sistema giudiziario</h3>
+<p>Immagina di aver applicato un algoritmo di clustering a un dataset giuridico e di aver ottenuto tre cluster con le seguenti caratteristiche medie:</p>
+<ul>
+<li><strong>Cluster 1</strong>: Durata del processo breve (6 mesi), reati di bassa gravità (furto), pochi testimoni (1-2).</li>
+<li><strong>Cluster 2</strong>: Durata media (18 mesi), reati di gravità moderata (frode), testimoni multipli (5-10).</li>
+<li><strong>Cluster 3</strong>: Durata lunga (36 mesi), reati gravi (omicidio), molti testimoni (15-20).</li>
+</ul>
+<p><strong>Domande</strong>:</p>
+<ol type="1">
+<li>Quali interpretazioni puoi dare ai tre cluster? Ad esempio, rappresentano categorie specifiche di processi?</li>
+<li>Come potrebbero questi risultati essere utilizzati per migliorare l’efficienza del sistema giudiziario?</li>
+<li>Se ci fossero casi che non si adattano a nessun cluster, come li gestiresti?</li>
+</ol>
+</section>
+<section id="esercizio-3-riduzione-della-dimensionalità-per-semplificare-lanalisi-dei-dati-legali" class="level3" data-number="10.6.3">
+<h3 data-number="10.6.3" class="anchored" data-anchor-id="esercizio-3-riduzione-della-dimensionalità-per-semplificare-lanalisi-dei-dati-legali"><span class="header-section-number">10.6.3</span> Esercizio 3: Riduzione della dimensionalità per semplificare l’analisi dei dati legali</h3>
+<p>Un ricercatore sta analizzando un dataset di documenti legali che contiene centinaia di variabili, come parole chiave, lunghezza del documento e numero di citazioni. Il ricercatore vuole semplificare il dataset utilizzando una tecnica di riduzione della dimensionalità come <strong>PCA</strong> (Principal Component Analysis).</p>
+<p><strong>Domande</strong>:</p>
+<ol type="1">
+<li>Quali vantaggi offre l’uso di una tecnica come PCA in questo caso?</li>
+<li>Dopo aver ridotto la dimensionalità dei dati, come valuteresti se l’informazione essenziale è stata preservata?</li>
+<li>In che modo l’analisi dei dati ridotti potrebbe facilitare l’identificazione di pattern nei documenti legali?</li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-ester1996" class="csl-entry" role="listitem">
+Ester, Martin, Hans-Peter Kriegel, Jörg Sander, and Xiaowei Xu. 1996. <span>“A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise.”</span> In <em>Proceedings of the Second International Conference on Knowledge Discovery and Data Mining (KDD-96)</em>, 226–31.
+</div>
+<div id="ref-hinton2006" class="csl-entry" role="listitem">
+Hinton, Geoffrey E, and Ruslan R Salakhutdinov. 2006. <span>“Reducing the Dimensionality of Data with Neural Networks.”</span> <em>Science</em> 313 (5786): 504–7.
+</div>
+<div id="ref-hotelling1933" class="csl-entry" role="listitem">
+Hotelling, Harold. 1933. <span>“Analysis of a Complex of Statistical Variables into Principal Components.”</span> <em>Journal of Educational Psychology</em> 24 (6): 417–41.
+</div>
+<div id="ref-macqueen1967" class="csl-entry" role="listitem">
+MacQueen, James. 1967. <em>Some Methods for Classification and Analysis of Multivariate Observations</em>. University of California Press.
+</div>
+<div id="ref-newman2004" class="csl-entry" role="listitem">
+Newman, Mark EJ. 2004. <span>“Fast Algorithm for Detecting Community Structure in Networks.”</span> <em>Physical Review E</em> 69 (6): 066133.
+</div>
+<div id="ref-rokach2005" class="csl-entry" role="listitem">
+Rokach, Lior, and Oded Maimon. 2005. <span>“Clustering Methods: A Review.”</span> <em>Data Mining and Knowledge Discovery Handbook</em>, 321–52.
+</div>
+<div id="ref-van2008" class="csl-entry" role="listitem">
+Van der Maaten, Laurens, and Geoffrey Hinton. 2008. <span>“Visualizing Data Using t-SNE.”</span> <em>Journal of Machine Learning Research</em> 9: 2579–2605.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "capitanio/laboratorio-ia";
+    script.dataset.repoId = "";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./3-1-apprendimento-supervisionato.html" class="pagination-link" aria-label="Apprendimento Supervisionato">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Apprendimento Supervisionato</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./3-3-bias.html" class="pagination-link" aria-label="Bias">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Laboratorio di Intelligenza Artificiale (1e) scritto da Luciano Capitanio.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Draft - Licenza Apache ver. 2</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

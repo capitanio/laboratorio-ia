@@ -1,0 +1,2434 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Algoritmi di Ricerca – Laboratorio di Intelligenza Artificiale</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./2-5-algoritmi-equitativi.html" rel="next">
+<link href="./2-3-inferenza-bayesiana.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254d8caa02a4f51d576d86802a86f2db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e5911a59318b73639a72866017db9c42.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254d8caa02a4f51d576d86802a86f2db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="epub.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2-algoritmi.html">Algoritmi</a></li><li class="breadcrumb-item"><a href="./2-4-algoritmi-di-ricerca.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmi di Ricerca</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Laboratorio di Intelligenza Artificiale</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefazione dell’autore{.unnumbered}</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0-introduzione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduzione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-Turing-vs-Searle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Turing vs Searle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./2-algoritmi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-1-inferenza-logica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferenza Logica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-2-inferenza-probabilistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferenza Probabilistica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-3-inferenza-bayesiana.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inferenza Bayesiana</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-4-algoritmi-di-ricerca.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmi di Ricerca</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-5-algoritmi-equitativi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algoritmi Equitativi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-6-algoritmi-predittivi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algoritmi Predittivi</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./3-machine learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-1-apprendimento-supervisionato.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Apprendimento Supervisionato</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-2-apprendimento-non-supervisionato.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Apprendimento Non Supervisionato</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-3-bias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-4-regressione-lineare-e-logistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regressione Lineare e Logistica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-5-perceptrone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Percetptrone</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-6-deep-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Deep learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-7-elaborazione-linguaggio-naturale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Elaborazione del Linguaggio Naturale</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bibliografia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bibliografia</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduzione" id="toc-introduzione" class="nav-link active" data-scroll-target="#introduzione"><span class="header-section-number">6.1</span> Introduzione</a></li>
+  <li><a href="#sec-algoritm-generale-di-ricerca" id="toc-sec-algoritm-generale-di-ricerca" class="nav-link" data-scroll-target="#sec-algoritm-generale-di-ricerca"><span class="header-section-number">6.2</span> Algoritmo “generale” di ricerca</a></li>
+  <li><a href="#sec-algoritmi-di-ricerca-non-informati" id="toc-sec-algoritmi-di-ricerca-non-informati" class="nav-link" data-scroll-target="#sec-algoritmi-di-ricerca-non-informati"><span class="header-section-number">6.3</span> Algoritmi di ricerca non informati</a></li>
+  <li><a href="#sec-algoritmi-di-ricerca-informati" id="toc-sec-algoritmi-di-ricerca-informati" class="nav-link" data-scroll-target="#sec-algoritmi-di-ricerca-informati"><span class="header-section-number">6.4</span> Algoritmi di Ricerca Informati</a>
+  <ul class="collapse">
+  <li><a href="#euristiche" id="toc-euristiche" class="nav-link" data-scroll-target="#euristiche"><span class="header-section-number">6.4.1</span> Euristiche</a></li>
+  <li><a href="#greedy-best-first-search" id="toc-greedy-best-first-search" class="nav-link" data-scroll-target="#greedy-best-first-search"><span class="header-section-number">6.4.2</span> Greedy Best-First Search</a></li>
+  <li><a href="#a-a-star-search" id="toc-a-a-star-search" class="nav-link" data-scroll-target="#a-a-star-search"><span class="header-section-number">6.4.3</span> A* (A-Star Search)</a></li>
+  </ul></li>
+  <li><a href="#laboratorio-python" id="toc-laboratorio-python" class="nav-link" data-scroll-target="#laboratorio-python"><span class="header-section-number">6.5</span> Laboratorio Python</a>
+  <ul class="collapse">
+  <li><a href="#sec-algoritmi-di-ricerca-non-informata-in-python" id="toc-sec-algoritmi-di-ricerca-non-informata-in-python" class="nav-link" data-scroll-target="#sec-algoritmi-di-ricerca-non-informata-in-python"><span class="header-section-number">6.5.1</span> Esperimento 1: Algoritmi di ricerca non informata</a></li>
+  <li><a href="#esperimento-2-ricerca-non-informata-del-cammino-in-un-labirinto" id="toc-esperimento-2-ricerca-non-informata-del-cammino-in-un-labirinto" class="nav-link" data-scroll-target="#esperimento-2-ricerca-non-informata-del-cammino-in-un-labirinto"><span class="header-section-number">6.5.2</span> Esperimento 2: ricerca non informata del cammino in un labirinto</a></li>
+  <li><a href="#sec-algoritmi-di-ricerca-informati-inpython" id="toc-sec-algoritmi-di-ricerca-informati-inpython" class="nav-link" data-scroll-target="#sec-algoritmi-di-ricerca-informati-inpython"><span class="header-section-number">6.5.3</span> Esperimento 3: Algoritmi di ricerca informata</a></li>
+  </ul></li>
+  <li><a href="#esercizi" id="toc-esercizi" class="nav-link" data-scroll-target="#esercizi"><span class="header-section-number">6.6</span> Esercizi</a>
+  <ul class="collapse">
+  <li><a href="#esercizio-1-percorso-più-breve" id="toc-esercizio-1-percorso-più-breve" class="nav-link" data-scroll-target="#esercizio-1-percorso-più-breve"><span class="header-section-number">6.6.1</span> Esercizio 1: percorso più breve</a></li>
+  <li><a href="#esercizio-2-progetto-euristiche" id="toc-esercizio-2-progetto-euristiche" class="nav-link" data-scroll-target="#esercizio-2-progetto-euristiche"><span class="header-section-number">6.6.2</span> Esercizio 2: progetto euristiche</a></li>
+  <li><a href="#esercizio-3-algoritmi-di-ricerca-informati" id="toc-esercizio-3-algoritmi-di-ricerca-informati" class="nav-link" data-scroll-target="#esercizio-3-algoritmi-di-ricerca-informati"><span class="header-section-number">6.6.3</span> Esercizio 3: algoritmi di ricerca informati</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2-algoritmi.html">Algoritmi</a></li><li class="breadcrumb-item"><a href="./2-4-algoritmi-di-ricerca.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmi di Ricerca</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmi di Ricerca</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduzione" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introduzione"><span class="header-section-number">6.1</span> Introduzione</h2>
+<p>Gli algoritmi di ricerca sono usati in molte applicazioni della intelligenza artificiale, tra cui:</p>
+<ul>
+<li><strong>Problemi di pianificazione</strong>: trovare una sequenza di azioni per raggiungere un obiettivo.</li>
+<li><strong>Risoluzione di puzzle e giochi</strong>: come il cubo di Rubik, gli scacchi o il gioco del 15.</li>
+<li><strong>Navigazione e percorsi</strong>: trovare il percorso migliore in mappe o reti stradali.</li>
+<li><strong>Ottimizzazione di processi</strong>: trovare la configurazione ottimale in problemi complessi.</li>
+<li><strong>Scheduling</strong>: organizzare attività o risorse in modo efficiente.</li>
+<li><strong>Riconoscimento di pattern</strong>: identificare strutture o sequenze in dati complessi.</li>
+<li><strong>Diagnosi medica</strong>: identificare possibili malattie basandosi su sintomi.</li>
+<li><strong>Elaborazione del linguaggio naturale</strong>: analisi sintattica e semantica.</li>
+<li><strong>Visione artificiale</strong>: riconoscimento di oggetti e scene in immagini.</li>
+<li><strong>Robotica</strong>: pianificazione del movimento e navigazione autonoma.</li>
+</ul>
+<p>Questi algoritmi sono versatili e possono essere adattati a molti altri domini, rendendo la ricerca un’area fondamentale dell’intelligenza artificiale.</p>
+<p>I problemi che si possono affrontare con gli algoritmi di ricerca sono quei problemi dove:</p>
+<p>Un agente che opera in un certo ambiente si trova in uno <strong>Stato iniziale</strong> (Questo rappresenta la condizione o la configurazione di partenza del problema). Esso, mediante le sue <strong>Azioni</strong> (le possibili mosse o le transizioni che possono essere effettuate a partire da uno stato) cerca di raggiungere lo <strong>stato finale</strong> o <strong>obiettivo</strong>. Il raggiungimento dello stato obiettivo è misurabile mediante un <strong>Test obiettivo (goal test)</strong> (un criterio che determina se uno stato specifico risolve il problema). Ogni azione o operatore dell’agente ha un costo associato, che può essere costante o variabile a seconda della natura del problema, che può essere misurato mediante una <strong>Funzione costo</strong> (Il costo può rappresentare, ad esempio, il tempo, lo sforzo o le risorse necessarie per eseguire un’azione).</p>
+<p>A seconda della natura del problema, lo stato iniziale può essere un singolo stato o un insieme di stati. Inoltre, i problemi possono essere classificati in base alla conoscenza che l’agente ha sullo stato in cui si trova e sulle azioni.</p>
+<p>Una volta definito il problema in questi termini, l’algoritmo di ricerca può essere utilizzato per esplorare lo spazio degli stati e trovare una soluzione, che è una sequenza di azioni che porta dallo stato iniziale a uno stato che soddisfa il test obiettivo¹.</p>
+<p><strong>esempio di problema di ricerca</strong></p>
+<p>Un esempio classico di problema che segue questa struttura è il problema del commesso viaggiatore (<a href="[https://](https://it.wikipedia.org/wiki/Problema_del_commesso_viaggiatore)">Travelling Salesman Problem</a>, TSP).</p>
+<p>Dato un insieme di città, e note le distanze tra ciascuna coppia di esse, trovare il tragitto di minima percorrenza che un commesso viaggiatore deve seguire per visitare tutte le città una ed una sola volta e ritornare alla città di partenza</p>
+<ol type="1">
+<li><p><strong>Stato iniziale</strong>: Il commesso viaggiatore si trova in una città specifica (ad esempio, Roma) e deve visitare tutte le altre città una sola volta e tornare alla città di partenza.</p></li>
+<li><p><strong>Azioni o operatori</strong>: Il commesso viaggiatore può scegliere di viaggiare da una città all’altra. Ogni possibile percorso da una città all’altra rappresenta un’azione.</p></li>
+<li><p><strong>Test obiettivo (goal test)</strong>: Il test obiettivo verifica se tutte le città sono state visitate una sola volta e se il commesso viaggiatore è tornato alla città di partenza.</p></li>
+<li><p><strong>Funzione costo</strong>: Il costo di un percorso può essere la distanza totale percorsa o il tempo totale impiegato per il viaggio.</p></li>
+</ol>
+<p>L’obiettivo del problema del commesso viaggiatore è trovare il percorso più breve (o il percorso che minimizza il tempo di viaggio) che visita tutte le città una sola volta e ritorna alla città di partenza. Gli algoritmi di ricerca possono essere utilizzati per esplorare lo spazio degli stati (cioè, tutti i possibili percorsi) e trovare la soluzione ottimale.</p>
+</section>
+<section id="sec-algoritm-generale-di-ricerca" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-algoritm-generale-di-ricerca"><span class="header-section-number">6.2</span> Algoritmo “generale” di ricerca</h2>
+<p>In ogni istante l’agente si troverà davanti un insieme di stati possibili da esplorare. Questo insieme di stati è noto come la <strong>frontiera</strong>. Abbiamo bisogno di una struttura dati in grado di contenere gli stati della frontiera che l’agente può esplorare.Vedremo almeno due implementazioni. Lo pseudocodice dell’algoritmo “generale” di ricerca è il seguente <span class="citation" data-cites="russell2021intelligenza">(<a href="#ref-russell2021intelligenza" role="doc-biblioref">Russell and Norvig 2021</a>)</span>:</p>
+<pre><code>1. Inizializza la frontiera con lo stato iniziale.
+2. Se la Frontiera è vuota, si tratta di un problema insolubile.
+3.   Rimuovi un nodo dalla frontiera secondo la strategia di ricerca e consideralo come candidato.
+4.   Se il nodo contiene lo stato finale, Restituisci la soluzione. Finito!
+5.    Altrimenti
+6.       Cerca tutti i nodi raggiungibili dal nodo corrente e aggiungili alla frontiera, rispettando la strategia di ricerca.
+7.       Aggiungi il nodo corrente all'insieme dei nodi visitati.
+8. Torna al passo 2.</code></pre>
+<p>L’algoritmo di ricerca generale appena descritto è un approccio generale per risolvere problemi di ricerca. Tuttavia, per risolvere un problema specifico, è necessario specificare una strategia di ricerca. Una strategia di ricerca è una regola che determina l’ordine in cui i nodi vengono esplorati nella frontiera. Le strategie di ricerca possono essere classificate in base a diversi criteri, tra cui: 1. <strong>Strategie di ricerca non informate</strong>: Queste strategie non utilizzano alcuna informazione aggiuntiva oltre a quella fornita dal problema stesso. 2. <strong>Strategie di ricerca informate</strong>: Queste strategie utilizzano informazioni aggiuntive per guidare la ricerca. 3. <strong>Strategie di ricerca a costo minimo</strong>: Queste strategie utilizzano un costo per guidare la ricerca.</p>
+</section>
+<section id="sec-algoritmi-di-ricerca-non-informati" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-algoritmi-di-ricerca-non-informati"><span class="header-section-number">6.3</span> Algoritmi di ricerca non informati</h2>
+<p>Le strategie di ricerca non informate sono un tipo di algoritmo di ricerca che non utilizza alcuna conoscenza specifica o informazione aggiuntiva sul problema da risolvere. Questi algoritmi utilizzano solo la struttura del problema e la definizione di stato e azione per esplorare lo spazio degli stati. La scelta del nodo da rimuovere dalla frontiera è basata su una strategia di ricerca, che determina l’ordine in cui i nodi vengono esplorati. Nel laboratorio di Python alla fine di questo capitolo vedremo come si implementano le strategie di ricerca più comuni. Invece, qui di seguito ipotizziamo di voler trovare il percorso più breve tra i nodi A e F del seguente grafo:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-simple">graph TD
+    A --- B
+    A --- C
+    A --- D
+    B --- E
+    E --- F
+    C --- G
+    C --- H
+    G --- I
+    D --- L
+
+style A fill:#f9f,stroke:#333,stroke-width:4px
+style L fill:#f9f,stroke:#333,stroke-width:4px
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Grafo dove cercare il percorso tra il nodo A e il nodo L.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Nel fare questa ricerca usiamo due strutture per la frontiera:</p>
+<ul>
+<li>Lo <strong>pila</strong>: L’ultimo nodo inserito è il primo estratto (LIFO = Last In First Out) come accade per una <strong>pila</strong> di piatti dove il più in alto è il primo a essere prelevato.</li>
+<li>La <strong>coda</strong>: Il primo nodo inserito è il primo estratto (FIFO = First In First Out) come accade per una <strong>coda</strong> di persone ad uno sportello dove la prima persona in coda è la prima a essere servita.</li>
+</ul>
+<hr>
+<p>Se applichiamo l’algoritmo generale di ricerca al nostro grafo, utilizzando la strategia di ricerca a pila, o LIFO (Last In, First Out), il nodo più recentemente aggiunto alla frontiera è il primo a essere esplorato. Questo comporta una <strong>ricerca in profondità</strong> nota come <strong>DFS - Depth First Search</strong>:</p>
+<ul>
+<li>L’algoritmo esplora un ramo del grafo fino a raggiungere un vicolo cieco o la soluzione.</li>
+<li>Se non si trova la soluzione, torna indietro per esplorare altri rami.</li>
+</ul>
+<p>Nella tabella seguente, mostriamo i passi dell’esecuzione dell’algoritmo con il nodo candidato, il contenuto della frontiera, i nodi visitati e il percorso candidato per ogni passo dell’algoritmo:</p>
+<table class="caption-top table">
+<caption>ricerca del percorso tra i nodi A e L utilizzando la strategia di ricerca a pila</caption>
+<colgroup>
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 28%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Passo</th>
+<th>Nodo Candidato</th>
+<th>Frontiera</th>
+<th>Nodi Visitati</th>
+<th>Percorso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>[D, C, B]</td>
+<td>[A]</td>
+<td>[A]</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>B</td>
+<td>[D, C, E]</td>
+<td>[A, B]</td>
+<td>[A, B]</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>E</td>
+<td>[D, C, F]</td>
+<td>[A, B, E]</td>
+<td>[A, B, E]</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>F</td>
+<td>[D, C]</td>
+<td>[A, B, E, F]</td>
+<td>[A, B, E, F]</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>C</td>
+<td>[D, H, G]</td>
+<td>[A, B, E, F, C]</td>
+<td>[A, C]</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>G</td>
+<td>[D, H, I]</td>
+<td>[A, B, E, F, C, G]</td>
+<td>[A, C, G]</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>I</td>
+<td>[D, H]</td>
+<td>[A, B, E, F, C, G, I]</td>
+<td>[A, C, G, I]</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>H</td>
+<td>[D]</td>
+<td>[A, B, E, F, C, G, I, H]</td>
+<td>[A, C, H]</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>D</td>
+<td>[L]</td>
+<td>[A, B, E, F, C, G, I, H, D]</td>
+<td>[A, D]</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>L</td>
+<td>[]</td>
+<td>[A, B, E, F, C, G, I, H, D, L]</td>
+<td>[A, D, L]</td>
+</tr>
+</tbody>
+</table>
+<p>L’esito della ricerca DFS è mostrato nel seguente grafo dove i nodi visitati sono evidenziati in verde e numerati in ordine di visita e il percorso trovato ha i rami di colore rosso:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-simple">graph TD
+    A(A-1):::start--- B(B-2):::visited
+    A --- C(C-5):::visited
+    A === D(D-9):::visited
+    B --- E(E-3):::visited
+    E --- F(F-4):::visited
+    C --- G(G-6):::visited
+    C --- H(H-8):::visited
+    G --- I(I-7):::visited
+    D ==== L(L-10):::stop
+
+classDef start fill:#f9f,stroke:#333,stroke-width:2px;
+classDef stop fill:#f9f,stroke:#333,stroke-width:2px;
+classDef visited fill:#1f1,stroke:#333,stroke-width:2px;
+linkStyle 2,8 stroke:#f00,stroke-width:4px;
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: Esito della ricerca DFS: Percorso trovato: [A, D, L].
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Se applichiamo l’algoritmo generale di ricerca al nostro grafo, utilizzando la strategia di ricerca a coda, o FIFO (First In, First Out), il nodo più vecchio è il primo a essere esplorato. Questo comporta una <strong>ricerca in ampiezza</strong> nota come <strong>BFS - Breath First Search</strong>:</p>
+<ul>
+<li>L’algoritmo esplora i nodi vicini prima di passare a quelli più lontani.</li>
+<li>Trova sempre il percorso più breve (in termini di numero di nodi).</li>
+</ul>
+<p>Nella tabella seguente, mostriamo i passi dell’esecuzione dell’algoritmo con il nodo candidato, il contenuto della frontiera, i nodi visitati e il percorso candidato per ogni passo dell’algoritmo:</p>
+<table class="caption-top table">
+<caption>ricerca del percorso tra i nodi A e L utilizzando la strategia di ricerca a coda</caption>
+<colgroup>
+<col style="width: 9%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 26%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Passo</th>
+<th>Nodo Candidato</th>
+<th>Frontiera</th>
+<th>Nodi Visitati</th>
+<th>Percorso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>[B, C, D]</td>
+<td>[A]</td>
+<td>[A]</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>B</td>
+<td>[C, D, E]</td>
+<td>[A, B]</td>
+<td>[A, B]</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>C</td>
+<td>[D, E, G, H]</td>
+<td>[A, B, C]</td>
+<td>[A, C]</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>D</td>
+<td>[E, G, H, L]</td>
+<td>[A, B, C, D]</td>
+<td>[A, D]</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>L</td>
+<td>[E, G, H]</td>
+<td>[A, B, C, D, L]</td>
+<td>[A, D, L]</td>
+</tr>
+</tbody>
+</table>
+<p>L’esito della ricerca BFS è mostrato nel seguente grafo dove i nodi visitati sono evidenziati in verde e numerati in ordine di visita e il percorso trovato ha i rami di colore rosso:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-simple">graph TD
+    A(A-1):::start--- B(B-2):::visited
+    A --- C(C-3):::visited
+    A === D(D-4):::visited
+    B --- E
+    E --- F
+    C --- G
+    C --- H
+    G --- I
+    D === L(L-5):::stop
+
+classDef start fill:#f9f,stroke:#333,stroke-width:2px;
+classDef stop fill:#f9f,stroke:#333,stroke-width:2px;
+classDef visited fill:#1f1,stroke:#333,stroke-width:2px;
+linkStyle 2,8 stroke:#f00,stroke-width:4px;
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: Esito della ricerca BFS: Percorso trovato: [A, D, L].
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Confrontando i due algoritmi di ricerca, possiamo notare che:</p>
+<ol type="1">
+<li><strong>Pila (DFS)</strong>:
+<ul>
+<li>Esplora un ramo alla volta.</li>
+<li>Potrebbe visitare più nodi rispetto alla soluzione ottimale.</li>
+</ul></li>
+<li><strong>Coda (BFS)</strong>:
+<ul>
+<li>Trova sempre il percorso più breve in termini di numero di nodi.</li>
+<li>Esplora i nodi livello per livello.</li>
+</ul></li>
+</ol>
+<p>In generale, la scelta tra DFS e BFS dipende dal problema specifico e dalle caratteristiche del grafo.</p>
+</section>
+<section id="sec-algoritmi-di-ricerca-informati" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-algoritmi-di-ricerca-informati"><span class="header-section-number">6.4</span> Algoritmi di Ricerca Informati</h2>
+<p>Gli <strong>algoritmi di ricerca informati</strong> sono una classe di algoritmi che utilizzano informazioni aggiuntive, chiamate <strong>euristiche</strong>, per guidare il processo di ricerca verso la soluzione in modo più efficiente rispetto agli approcci non informati. L’<strong>euristica</strong> è una funzione che stima il costo o la distanza dal nodo corrente al nodo obiettivo, fornendo un’indicazione di “quanto vicino” ci si trovi alla soluzione. Gli algoritmi di ricerca informati trovano applicazione in numerosi campi, come l’intelligenza artificiale, la robotica, la pianificazione di percorsi e la risoluzione di problemi di ottimizzazione. La scelta dell’algoritmo più appropriato dipende dalle caratteristiche del problema, come la complessità dello spazio di ricerca, la disponibilità di informazioni euristiche accurate e i requisiti di ottimalità della soluzione.</p>
+<section id="euristiche" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="euristiche"><span class="header-section-number">6.4.1</span> Euristiche</h3>
+<p>Le funzioni euristiche svolgono un ruolo cruciale negli algoritmi di ricerca informati, fornendo una stima della distanza o del costo rimanente per raggiungere la soluzione. Queste funzioni sono progettate per guidare la ricerca in modo intelligente, evitando di esplorare percorsi poco promettenti e concentrandosi sulle regioni dello spazio di ricerca più vicine alla soluzione. Le euristiche dovrebbero essere <strong>ammissibili</strong> e <strong>consistenti</strong>:</p>
+<ol type="1">
+<li><strong>Euristiche ammissibili</strong>:
+<ul>
+<li>Una funzione euristica è ammissibile se non sovrastima mai il costo reale per raggiungere l’obiettivo, garantendo che l’algoritmo trovi il percorso ottimale.</li>
+<li>Ad esempio, in un problema di navigazione, la distanza in linea retta tra due punti è un’euristica ammissibile.</li>
+</ul></li>
+<li><strong>Euristiche consistenti (o monotone)</strong>:
+<ul>
+<li><p>Una funzione euristica è consistente se per ogni nodo <span class="math inline">\(n\)</span>, il costo stimato dall’euristica soddisfa la disuguaglianza del triangolo:</p>
+<p><span class="math display">\[
+h(n) \leq c(n, n') + h(n')
+\]</span></p>
+<p>Dove <span class="math inline">\(c(n, n')\)</span> è il costo effettivo tra <span class="math inline">\(n\)</span> e <span class="math inline">\(n'\)</span>. Questa proprietà garantisce che A* non rientri mai in un nodo già visitato. La progettazione di funzioni euristiche efficaci è spesso una sfida cruciale nell’applicazione degli algoritmi di ricerca informati a problemi complessi del mondo reale.</p></li>
+</ul></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="distanze.png" class="img-fluid figure-img" alt="Distanza euclidea si misura la distanza tra due punti. Distanza di Manhattan si misura la distanza in orizzontale e si somma a quella in verticale" width="400"></p>
+<figcaption>Distanze euclidee e di Manhattan</figcaption>
+</figure>
+</div>
+<p><strong>Distanza euclidea</strong> : La distanza euclidea, anche nota come distanza in linea retta, è una misura della distanza tra due punti in uno spazio euclideo, come il piano cartesiano o lo spazio tridimensionale. Essa rappresenta la lunghezza del segmento di retta che congiunge i due punti. La formula per calcolare la distanza euclidea tra due punti <span class="math inline">\(A=(x_A, y_A)\)</span> e <span class="math inline">\(B=(x_B, y_B)\)</span> in un piano cartesiano bidimensionale è:</p>
+<p><span class="math display">\[
+d_{euclide}=\sqrt{(x_B-x_A)^2+(y_B-Y_A)^2}
+\]</span></p>
+<p>La distanza euclidea è ampiamente utilizzata come funzione euristica negli algoritmi di ricerca informati, come l’algoritmo A*, per stimare la distanza rimanente dalla soluzione. Essa fornisce una stima ammissibile (non sovrastima) della distanza effettiva, soddisfacendo così i requisiti per garantire l’ottimalità dell’algoritmo di ricerca. Tuttavia, la distanza euclidea può essere una stima poco accurata in alcuni contesti, come nei labirinti o in presenza di ostacoli, poiché non tiene conto degli impedimenti lungo il percorso. In questi casi, possono essere utilizzate funzioni euristiche più sofisticate per ottenere stime più precise.</p>
+<p><strong>Distanza di Manhattan</strong> : La distanza di Manhattan, anche nota come distanza city-block o distanza del tassista, è una metrica utilizzata per calcolare la distanza tra due punti in uno spazio a coordinate cartesiane. Essa prende il nome dalla griglia di strade di Manhattan, dove i percorsi possibili sono limitati a spostamenti orizzontali e verticali. La formula per calcolare la distanza di Manhattan tra due punti <span class="math inline">\(A=(x_A, y_A)\)</span> e <span class="math inline">\(B=(x_B, y_B)\)</span> in un piano cartesiano bidimensionale è:</p>
+<p><span class="math display">\[
+d_{Manhattan}=(x_B-x_A)+(y_B-Y_A)
+\]</span></p>
+<p>Essenzialmente, la distanza di Manhattan è la somma delle differenze assolute delle coordinate x e y dei due punti.</p>
+<p>La distanza di Manhattan è spesso utilizzata come funzione euristica negli algoritmi di ricerca informati, come l’algoritmo A*, per risolvere problemi di ricerca su griglie o labirinti. Essa fornisce una stima ammissibile della distanza effettiva, garantendo così l’ottimalità dell’algoritmo di ricerca.</p>
+<p>Rispetto alla distanza euclidea, la distanza di Manhattan può essere una stima più accurata in contesti come i labirinti, poiché tiene conto delle restrizioni di movimento lungo le direzioni orizzontali e verticali. Tuttavia, può sottostimare la distanza effettiva in situazioni in cui sono possibili percorsi diagonali.</p>
+<p><strong>Numero di pezzi fuori posto</strong>: Usata nei giochi di puzzle (es. il gioco del 15), conta il numero di tessere non in posizione corretta.</p>
+</section>
+<section id="greedy-best-first-search" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="greedy-best-first-search"><span class="header-section-number">6.4.2</span> Greedy Best-First Search</h3>
+<p>L’algoritmo utilizza una <strong>priority queue</strong>, una coda che mantiene i nodi in ordine di priorità, per gestire la frontiera. In questo algoritmo la priorità è determinata unicamente dalla funzione euristica <span class="math inline">\(h(n)\)</span>, che stima quanto il nodo <span class="math inline">\(n\)</span> sia vicino all’obiettivo. Funzionamento:</p>
+<ol type="1">
+<li>Si inseriscono nella frontiera i nodi vicini al nodo corrente.</li>
+<li>Si estrae il nodo con il valore di <span class="math inline">\(h(n)\)</span> più basso.</li>
+<li>Si ripete fino a raggiungere l’obiettivo o a esaurire i nodi.</li>
+</ol>
+<p>Questo algoritmo è efficiente, ma non garantisce la soluzione ottimale, poiché si basa solo sull’euristica.</p>
+<p>Nel laboratorio di Python alla fine di questo capitolo vedremo come si implementa questa strategia di ricerca. Qui di seguito ipotizziamo di voler trovare il percorso più breve tra i nodi due località : Castelnuovo di Porto(RM) e Viale Pola, 12, Roma. Il grafo semplificato è il seguente:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-simple">graph TD
+    A(Castelnuovo di Porto):::start --- |Flaminia| B(Via Flaminia+GRA)
+    A --- |Tiberina| B
+    A --- |Salaria| D(GRA-Salaria)
+    A --- |E35| C(E35+GRA)
+    B --- |GRA| D
+    C --- |GRA| D
+    D --- |Salaria| E(Viale Pola):::stop
+classDef start fill:#f9f,stroke:#333,stroke-width:2px;
+classDef stop fill:#f9f,stroke:#333,stroke-width:2px;
+classDef visited fill:#1f1,stroke:#333,stroke-width:2px;
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.4: Esempio di grafo per le funzioni di ricerca informate
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>L’eurstica utilizzata è la distanza euclidea tra i nodi, le località, che è una stima ammissibile:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>località</th>
+<th>distanza da Via Pola</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A - Castelnuovo di Porto</td>
+<td>23</td>
+</tr>
+<tr class="even">
+<td>B - Via Flaminia+GRA</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>C - E35+GRA</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>D - GRA-Salaria</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>E - Viale Pola</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Nella tabella seguente, mostriamo i passi dell’esecuzione dell’algoritmo con il nodo candidato, il contenuto della frontiera, i nodi visitati, il percorso candidato e l’euristica per ogni passo dell’algoritmo:</p>
+<table class="caption-top table">
+<caption>ricerca del percorso tra i nodi A e L utilizzando l’algoritmo Greedy Best-First Search.</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Passo</th>
+<th>Nodo Candidato</th>
+<th>Frontiera</th>
+<th>Nodi Visitati</th>
+<th>Percorso</th>
+<th>Euristica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>[(B, 7), (C, 7), (D, 8)]</td>
+<td>[A]</td>
+<td>[A]</td>
+<td>23</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>B</td>
+<td>[(C, 7), (D, 8), (D, 8)]</td>
+<td>[A, B]</td>
+<td>[A, B]</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>C</td>
+<td>[(D, 8), (D, 8)]</td>
+<td>[A, B, C]</td>
+<td>[A, C]</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>D</td>
+<td>[(D, 8)]</td>
+<td>[A, B, C, D]</td>
+<td>[A, D]</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>E</td>
+<td>[]</td>
+<td>[A, B, C, D, E]</td>
+<td>[A, D, E]</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Spiegazione dei Passaggi</strong></p>
+<ol type="1">
+<li><strong>Passo 1</strong>:
+<ul>
+<li>Nodo iniziale <span class="math inline">\(A\)</span> viene visitato.</li>
+<li>I vicini <span class="math inline">\(B, C, D\)</span> sono aggiunti alla frontiera con le rispettive euristiche.</li>
+<li>Nodo candidato successivo: <span class="math inline">\(B\)</span> (euristica più bassa).</li>
+</ul></li>
+<li><strong>Passo 2</strong>:
+<ul>
+<li>Nodo <span class="math inline">\(B\)</span> viene estratto dalla frontiera e visitato.</li>
+<li>Vicino <span class="math inline">\(D\)</span> viene aggiunto di nuovo alla frontiera, ma ha già un’euristica assegnata.</li>
+<li>Nodo candidato successivo: <span class="math inline">\(C\)</span> (euristica più bassa).</li>
+</ul></li>
+<li><strong>Passo 3</strong>:
+<ul>
+<li>Nodo <span class="math inline">\(C\)</span> viene estratto e visitato.</li>
+<li>Il vicino <span class="math inline">\(D\)</span> non cambia la priorità della frontiera.</li>
+<li>Nodo candidato successivo: <span class="math inline">\(D\)</span> (euristica più bassa).</li>
+</ul></li>
+<li><strong>Passo 4</strong>:
+<ul>
+<li>Nodo <span class="math inline">\(D\)</span> viene estratto e visitato.</li>
+<li>Il vicino <span class="math inline">\(E\)</span> è aggiunto alla frontiera.</li>
+<li>Nodo candidato successivo: <span class="math inline">\(E\)</span> (obiettivo raggiunto).</li>
+</ul></li>
+<li><strong>Passo 5</strong>:
+<ul>
+<li>Nodo <span class="math inline">\(E\)</span> viene estratto e visitato.</li>
+<li>Il nodo obiettivo è stato raggiunto, e l’algoritmo termina.</li>
+</ul></li>
+</ol>
+<p><strong>Percorso trovato</strong>: <span class="math inline">\([A, D, E]\)</span><br>
+<strong>Euristica utilizzata</strong>: La scelta dei nodi è basata esclusivamente sul valore <span class="math inline">\(h(n)\)</span>, senza considerare il costo effettivo del cammino. Quindi l’algoritmo usato senza altre informazioni oltre alla distanza da Viale Pola indica di percorrere un tratto della salaria fino al GRA e continuare sulla Salaria per raggiungere Viale Pola.</p>
+</section>
+<section id="a-a-star-search" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="a-a-star-search"><span class="header-section-number">6.4.3</span> A* (A-Star Search)</h3>
+<p>L’algoritmo utilizza una <strong>priority queue</strong> con una funzione di priorità combinata:</p>
+<p><span class="math display">\[
+  f(n) = g(n) + h(n)
+\]</span></p>
+<p>Dove:</p>
+<ul>
+<li><span class="math inline">\(g(n)\)</span>: costo del percorso dal nodo iniziale al nodo <span class="math inline">\(n\)</span>.</li>
+<li><span class="math inline">\(h(n)\)</span> : stima del costo per raggiungere l’obiettivo da <span class="math inline">\(n\)</span>.</li>
+</ul>
+<p>Funzionamento:</p>
+<ol type="1">
+<li>Ogni nodo inserito nella frontiera ha una priorità basata su <span class="math inline">\(f(n)\)</span>.</li>
+<li>Si estrae il nodo con il valore di <span class="math inline">\(f(n)\)</span> più basso.</li>
+<li>L’algoritmo continua fino a trovare il nodo obiettivo con il costo più basso.</li>
+</ol>
+<p><strong>Differenza tra Greedy e A</strong>*:</p>
+<ul>
+<li><strong>Greedy Best-First Search</strong> si concentra solo su* <span class="math inline">\(h(n)\)</span> (euristica).</li>
+<li><strong>A*</strong> bilancia <span class="math inline">\(g(n)\)</span> (costo effettivo) e <span class="math inline">\(h(n)\)</span> (euristica), garantendo una soluzione ottimale se l’euristica è ammissibile e consistente.</li>
+</ul>
+<p>Proviamo ad applicare l’algoritmo A* al calcolo del percorso più breve nel caso dell’esempio visto nel paragrafo precedente. Riportiamo qui di seguito il grafo semplificato dove sono riportati anche i valori di costo stimati usando la distanza su strada tra i nodi del grafo:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A(Castelnuovo di Porto):::start --- |Flaminia, 18| B(Via Flaminia+GRA)
+    A --- |Tiberina, 23| B
+    A --- |Salaria, 27| D(GRA-Salaria)
+    A --- |E35, 21| C(E35+GRA)
+    B --- |GRA, 2| D
+    C --- |GRA, 1| D
+    D --- |Salaria, 9| E(Viale Pola):::stop
+classDef start fill:#f9f,stroke:#333,stroke-width:2px;
+classDef stop fill:#f9f,stroke:#333,stroke-width:2px;
+classDef visited fill:#1f1,stroke:#333,stroke-width:2px;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>L’eurstica utilizzata è la distanza euclidea tra i nodi, le località, che è una stima ammissibile come nel paragrafo precedente:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>località</th>
+<th>distanza da Via Pola</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A - Castelnuovo di Porto</td>
+<td>23</td>
+</tr>
+<tr class="even">
+<td>B - Via Flaminia+GRA</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>C - E35+GRA</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>D - GRA-Salaria</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>E - Viale Pola</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Nella tabella seguente, mostriamo i passi dell’esecuzione dell’algoritmo con il nodo candidato, il contenuto della frontiera, i nodi visitati, il percorso candidato l’euristica, il costo e la priorità combinata per ogni passo dell’algoritmo:</p>
+<table class="caption-top table">
+<caption>ricerca del percorso tra i nodi A e L utilizzando l’algoritmo A*.</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Passo</th>
+<th>Nodo Candidato</th>
+<th>Frontiera</th>
+<th>Nodi Visitati</th>
+<th>Percorso</th>
+<th><span class="math inline">\(g(n)\)</span></th>
+<th><span class="math inline">\(h(n)\)</span></th>
+<th><span class="math inline">\(f(n) = g(n) + h(n)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>[(B, 18 + 7 = 25), (C, 21 + 7 = 28), (D, 27 + 8 = 35)]</td>
+<td>[A]</td>
+<td>[A]</td>
+<td>0</td>
+<td>23</td>
+<td>23</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>B</td>
+<td>[(C, 28), (D, 35), (D (via B), 20 + 8 = 28)]</td>
+<td>[A, B]</td>
+<td>[A, B]</td>
+<td>18</td>
+<td>7</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>D (via B)</td>
+<td>[(C, 28), (D, 35), (E, 29)]</td>
+<td>[A, B, D]</td>
+<td>[A, B, D]</td>
+<td>20</td>
+<td>8</td>
+<td>28</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>E</td>
+<td>[(C, 28), (D, 35)]</td>
+<td>[A, B, D, E]</td>
+<td>[A, B, D, E]</td>
+<td>29</td>
+<td>0</td>
+<td>29</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Spiegazione dei Passaggi</strong></p>
+<ol type="1">
+<li><strong>Passo 1</strong>:
+<ul>
+<li>Partiamo dal nodo iniziale <span class="math inline">\(A\)</span>.</li>
+<li>Calcoliamo <span class="math inline">\(f(n) = g(n) + h(n)\)</span> per tutti i vicini:
+<ul>
+<li><span class="math inline">\(B: f(B) = 18 + 7 = 25\)</span></li>
+<li><span class="math inline">\(C: f(C) = 21 + 7 = 28\)</span></li>
+<li><span class="math inline">\(D: f(D) = 27 + 8 = 35\)</span></li>
+</ul></li>
+<li>Aggiorniamo la frontiera con i nodi <span class="math inline">\(B, C, D\)</span>.</li>
+</ul></li>
+<li><strong>Passo 2</strong>:
+<ul>
+<li>Nodo <span class="math inline">\(B\)</span> ha il valore <span class="math inline">\(f(B) = 25\)</span>, il più basso nella frontiera, quindi viene esplorato.</li>
+<li>Il vicino <span class="math inline">\(D\)</span> viene aggiornato con il nuovo costo tramite <span class="math inline">\(B\)</span>:
+<ul>
+<li><span class="math inline">\(D (via B): g(D) = 20, h(D) = 8, f(D) = 28\)</span>.</li>
+</ul></li>
+<li>La frontiera è aggiornata.</li>
+</ul></li>
+<li><strong>Passo 3</strong>:
+<ul>
+<li>Nodo <span class="math inline">\(D (via B)\)</span> ha <span class="math inline">\(f(D) = 28\)</span>, il più basso nella frontiera, quindi viene esplorato.</li>
+<li>Il vicino <span class="math inline">\(E\)</span> viene aggiunto alla frontiera:
+<ul>
+<li><span class="math inline">\(E: g(E) = 29, h(E) = 0, f(E) = 29\)</span>.</li>
+</ul></li>
+</ul></li>
+<li><strong>Passo 4</strong>:
+<ul>
+<li>Nodo <span class="math inline">\(E\)</span> ha <span class="math inline">\(f(E) = 29\)</span>, il più basso nella frontiera, quindi viene esplorato.</li>
+<li>Obiettivo raggiunto, l’algoritmo termina.</li>
+</ul></li>
+</ol>
+<hr>
+<p><strong>Risultato</strong></p>
+<p><strong>Percorso trovato</strong>: <span class="math inline">\([A, B, D, E]\)</span><br>
+<strong>Costo totale</strong>: <span class="math inline">\(29\)</span><br>
+<strong>Euristica e costo combinati</strong> garantiscono la soluzione ottimale.</p>
+<p>L’esempio visto mostra come l’algoritmo A* bilancia la ricerca euristica con la ricerca di costo effettivo, fornendo una soluzione ottimale se l’euristica è ammissibile e consistente. In questo caso, l’algoritmo A* suggerisce di passare per il nodo <span class="math inline">\(B\)</span> e poi per il nodo <span class="math inline">\(D\)</span> prima di raggiungere l’obiettivo.</p>
+</section>
+</section>
+<section id="laboratorio-python" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="laboratorio-python"><span class="header-section-number">6.5</span> Laboratorio Python</h2>
+<section id="sec-algoritmi-di-ricerca-non-informata-in-python" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="sec-algoritmi-di-ricerca-non-informata-in-python"><span class="header-section-number">6.5.1</span> Esperimento 1: Algoritmi di ricerca non informata</h3>
+<p>L’algoritmo generale di ricerca visto nel paragrafo <a href="#sec-algoritm-generale-di-ricerca" class="quarto-xref"><span>6.2</span></a> può essere ulteriormente dettaglia in un linguaggio pseudo-Python come segue:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Funzione RicercaGenerale(stato_iniziale, obiettivo, strategia):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inizializza la frontiera con lo stato iniziale</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    frontiera <span class="op">=</span> CreaStrutturaDati(strategia)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    Aggiungi(frontiera, stato_iniziale)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inizializza l'insieme dei nodi visitati (opzionale, per evitare cicli)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    visitati <span class="op">=</span> InsiemeVuoto()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    Mentre la frontiera non è vuota:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rimuovi un nodo dalla frontiera seguendo la strategia scelta</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        nodo_corrente <span class="op">=</span> Rimuovi(frontiera)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Controlla se lo stato corrente soddisfa l'obiettivo</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        Se nodo_corrente <span class="op">==</span> obiettivo:</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            Restituisci <span class="st">"Soluzione trovata!"</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Se il nodo corrente non è stato visitato</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        Se nodo_corrente non è <span class="kw">in</span> visitati:</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Aggiungi il nodo corrente ai nodi visitati</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            Aggiungi(visitati, nodo_corrente)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Espandi il nodo corrente per generare i nodi figli</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            nodi_figli <span class="op">=</span> GeneraFigli(nodo_corrente)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Aggiungi i nodi figli alla frontiera</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            Per ogni nodo <span class="kw">in</span> nodi_figli:</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                Se nodo non è <span class="kw">in</span> visitati e nodo non è nella frontiera:</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                    Aggiungi(frontiera, nodo)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    Restituisci <span class="st">"Problema senza soluzione"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Le struttre dati usate per la frontiera sono le seguenti:</p>
+<ul>
+<li><strong>Stack</strong>: L’ultimo nodo inserito è il primo estratto (LIFO = Last In First Out) –&gt; Algoritmo Depth-First Search (DFS).</li>
+<li><strong>Queue</strong>: Il primo nodo inserito è il primo estratto (FIFO = First In First Out) –&gt; Algoritmo Breadth-First Search (BFS).</li>
+<li><strong>Priority Queue</strong>: Il nodo con il valore di priorità più alto è il primo estratto –&gt; Usato per Greedy Best-First Search e A*, dove la priorità è determinata da funzioni di costo o euristiche.</li>
+</ul>
+<p>L’implementazione in Python di questo algoritmo riportata qui di seguito discende immediatamente dalla implementazione in pseudo-python vista qui sopra. Si noti che la funzione accetta in ingresso un grafo descritto da un dizionarip, uno stato iniziale, ovvero il nome del nodo inziale nel dizionario, uno stato obiettivo, ovvero il nome del nodo da raggiungere nel dizionario, e la strategia non informata che vogliamo usare, DFS o BFS.</p>
+<div id="8b80c30f" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> deque</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ricerca_generale(grafo, stato_iniziale, obiettivo, strategia<span class="op">=</span><span class="st">"BFS"</span>):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Algoritmo generale di ricerca.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    :param grafo: Dizionario che rappresenta il grafo come lista di adiacenza</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    :param stato_iniziale: Nodo di partenza</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    :param obiettivo: Nodo obiettivo</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">    :param strategia: Strategia di ricerca, "BFS" (coda) o "DFS" (stack)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">    :return: Tupla contenente (percorso dal nodo iniziale al nodo obiettivo, lista dei nodi visitati) o (messaggio di fallimento, lista dei nodi visitati)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> strategia <span class="op">==</span> <span class="st">"BFS"</span>:</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        frontiera <span class="op">=</span> deque([[stato_iniziale]])  <span class="co"># Coda per BFS</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> strategia <span class="op">==</span> <span class="st">"DFS"</span>:</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        frontiera <span class="op">=</span> [[stato_iniziale]]  <span class="co"># Stack per DFS</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Strategia non supportata. Usa 'BFS' o 'DFS'."</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    visitati <span class="op">=</span> <span class="bu">set</span>()  <span class="co"># Insieme dei nodi visitati</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    nodi_visitati <span class="op">=</span> []  <span class="co"># Lista per memorizzare l'ordine dei nodi visitati</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> frontiera:</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Rimuovi un percorso dalla frontiera (FIFO per BFS, LIFO per DFS)</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> strategia <span class="op">==</span> <span class="st">"BFS"</span>:</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            percorso_corrente <span class="op">=</span> frontiera.popleft()</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># strategia == "DFS"</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            percorso_corrente <span class="op">=</span> frontiera.pop()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        nodo_corrente <span class="op">=</span> percorso_corrente[<span class="op">-</span><span class="dv">1</span>]  <span class="co"># Ultimo nodo nel percorso</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Controlla se abbiamo raggiunto l'obiettivo</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> nodo_corrente <span class="op">==</span> obiettivo:</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> percorso_corrente, nodi_visitati  <span class="co"># Restituisci il percorso completo e i nodi visitati</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Se il nodo non è stato visitato</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> nodo_corrente <span class="kw">not</span> <span class="kw">in</span> visitati:</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>            visitati.add(nodo_corrente)  <span class="co"># Segna il nodo come visitato</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>            nodi_visitati.append(nodo_corrente)  <span class="co"># Aggiunge il nodo alla lista dei visitati</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Aggiungi i vicini alla frontiera</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> vicino <span class="kw">in</span> grafo.get(nodo_corrente, []):</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> vicino <span class="kw">not</span> <span class="kw">in</span> visitati:</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>                    nuovo_percorso <span class="op">=</span> percorso_corrente <span class="op">+</span> [vicino]</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>                    frontiera.append(nuovo_percorso)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">"Problema senza soluzione"</span>, nodi_visitati</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Applichiamo la funzione di ricerca generale al seguente grafo usato nel paragrafo <a href="#sec-algoritmi-di-ricerca-non-informati" class="quarto-xref"><span>6.3</span></a> che si riporta qui di seguito per comodità:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-simple">graph TD
+    A --- B
+    A --- C
+    A --- D
+    B --- E
+    E --- F
+    C --- G
+    C --- H
+    G --- I
+    D --- L
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.5: Esempio di grafo per la funzione di ricerca generale non informata
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Tradotto in Python, il grafo è rappresentato da un dizionario dove le chiavi sono i nodi e i valori sono le liste di nodi adiacenti.</p>
+<div id="870e4182" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>grafo <span class="op">=</span> {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'A'</span>: [<span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>],</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'B'</span>: [<span class="st">'E'</span>],</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C'</span>: [<span class="st">'G'</span>, <span class="st">'H'</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'D'</span>: [<span class="st">'L'</span>],</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'E'</span>: [<span class="st">'F'</span>],</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'G'</span>: [<span class="st">'I'</span>],</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'H'</span>: [],</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'I'</span>: [],</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'F'</span>: [],</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'L'</span>: []</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Creiamo una semplice funzione Python per vedere il grafo in output su schermo:</p>
+<div id="fe9f2449" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stampa_grafo(grafo):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nodo, vicini <span class="kw">in</span> grafo.items():</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>nodo<span class="sc">}</span><span class="ss"> -&gt; "</span>, end<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> vicino <span class="kw">in</span> vicini:</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>vicino<span class="sc">}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">" "</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>()  <span class="co"># Nuova linea dopo ogni nodo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Proviamo a stampare per verificare di aver caricato il grafo in maniera corretta:</p>
+<div id="038bda75" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stampa_grafo(grafo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A -&gt; B C D 
+B -&gt; E 
+C -&gt; G H 
+D -&gt; L 
+E -&gt; F 
+G -&gt; I 
+H -&gt; 
+I -&gt; 
+F -&gt; 
+L -&gt; </code></pre>
+</div>
+</div>
+<p>Adesso proviamo a eseguire la ricerca usando la strategia BFS:</p>
+<div id="cd7ff1cc" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Esempi di utilizzo</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ricerca BFS:"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>percorso, visitati <span class="op">=</span> ricerca_generale(grafo, <span class="st">"A"</span>, <span class="st">"L"</span>, strategia<span class="op">=</span><span class="st">"BFS"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Nodi visitati:"</span>, visitati)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percorso completo:"</span>, percorso)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Ricerca BFS:
+Nodi visitati: ['A', 'B', 'C', 'D', 'E', 'G', 'H']
+Percorso completo: ['A', 'D', 'L']</code></pre>
+</div>
+</div>
+<p>Proviamo adesso a eseguire la ricerca usando la strategia DFS:</p>
+<div id="dabc8d32" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Ricerca DFS:"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>percorso, visitati <span class="op">=</span> ricerca_generale(grafo, <span class="st">"A"</span>, <span class="st">"L"</span>, strategia<span class="op">=</span><span class="st">"DFS"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Nodi visitati:"</span>, visitati)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percorso completo:"</span>, percorso)       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Ricerca DFS:
+Nodi visitati: ['A', 'D']
+Percorso completo: ['A', 'D', 'L']</code></pre>
+</div>
+</div>
+<p>Si noti come, in questo caso, la strategia DFS visiti molti più nodi rispetto alla strategia BFS per arrivare allo stesso percorso come visto nel paragrafo <a href="#sec-algoritmi-di-ricerca-non-informati" class="quarto-xref"><span>6.3</span></a></p>
+</section>
+<section id="esperimento-2-ricerca-non-informata-del-cammino-in-un-labirinto" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="esperimento-2-ricerca-non-informata-del-cammino-in-un-labirinto"><span class="header-section-number">6.5.2</span> Esperimento 2: ricerca non informata del cammino in un labirinto</h3>
+<p>Il caso del labirinto è un caso particolare di problema di ricerca in un grafo. Cominciamo con la definizione di un labirinto in formato testo. Possiamo descrivere un labirinto come una matrice di caratteri, dove i caratteri rappresentano le celle del labirinto. In particolare possiamo usare i seguenti caratteri:</p>
+<ul>
+<li><code>#</code>: Muro</li>
+<li>: Passaggio libero</li>
+<li><code>S</code>: Inizio</li>
+<li><code>E</code>: Fine</li>
+<li><code>+</code>: Percorso trovato</li>
+<li><code>-</code>: celle visitate</li>
+</ul>
+<p>Un esempio di labirinto è il seguente:</p>
+<pre><code>###                 #########
+#   ###################   # #
+# ####                # # # #
+# ################### # # # #
+#                     # # # #
+##################### # # # #
+#   ##                # # # #
+# # ## ### ## ######### # # #
+# #    #   ##E#         # # #
+# # ## ################ # # #
+### ##             #### # # #
+### ############## ## # # # #
+###             ##    # # # #
+###### ######## ####### # # #
+###### ####             #   #
+S      ######################</code></pre>
+<p>Evidentemente, al di fuori della matrice, il labirinto è circondato da un muro. Prima di tutto dobbiamo leggere il labirinto da un file di testo e trasformarlo in un grafo che rappresenta il labirinto. La funzione prende in input il nome di un file che contiene un labirinto, rappresentato come una griglia 2D di caratteri. Ogni carattere rappresenta elementi diversi: ‘#’ per i muri, ‘S’ per il punto di partenza, ‘E’ per il punto di arrivo e spazi vuoti per i percorsi percorribili. La funzione produce tre risultati: - un dizionario del grafo che mostra come le posizioni del labirinto sono collegate. Il dizionario del grafo usa coppie di coordinate (x,y) come chiavi, con ogni chiave che ha una lista delle coordinate dei vicini raggiungibili. - le coordinate della posizione iniziale - le coordinate della posizione finale.</p>
+<p>Il funzionamento è il seguente: Per ogni posizione nella griglia del labirinto (i due cicli for uno per le righe e uno per le colonne) se non è un muro, controlla se è il punto di partenza (‘S’) o di arrivo (‘E’) e memorizza queste posizioni speciali. Poi, per ogni posizione valida, esamina le quattro possibili direzioni in cui ci si può muovere (su, destra, giù, sinistra) e aggiunge qualsiasi mossa valida alla lista delle connessioni di quella posizione nel grafo.</p>
+<p>La principale trasformazione dei dati che avviene è la conversione da una rappresentazione a griglia 2D a una struttura a grafo dove ogni posizione è collegata ai suoi vicini accessibili.</p>
+<p>Per esempio, se il labirinto ha un percorso dove ci si può muovere a destra e in basso dalla posizione (1,1), il grafo includerebbe qualcosa come: {(1,1): [(2,1), (1,2)]}, mostrando che dalla posizione (1,1) si possono raggiungere le posizioni (2,1) e (1,2).</p>
+<div id="a035c23d" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> leggi_labirinto(file_path):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Legge un labirinto da un file ASCII e lo trasforma in un grafo.</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">    :param file_path: nome del file testo (.txt) contenente il labirinto.</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">    :return: Tupla contenente (labirinto, grafo, stato_iniziale, stato_finale.</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        labirinto <span class="op">=</span> [<span class="bu">list</span>(line.rstrip()) <span class="cf">for</span> line <span class="kw">in</span> <span class="bu">file</span>]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    grafo <span class="op">=</span> {}</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    stato_iniziale <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    stato_finale <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    righe <span class="op">=</span> <span class="bu">len</span>(labirinto)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    colonne <span class="op">=</span> <span class="bu">len</span>(labirinto[<span class="dv">0</span>])</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> riga <span class="kw">in</span> <span class="bu">range</span>(righe):</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> colonna <span class="kw">in</span> <span class="bu">range</span>(colonne):</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> labirinto[riga][colonna] <span class="kw">in</span> (<span class="st">' '</span>, <span class="st">'S'</span>, <span class="st">'E'</span>):</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>                nodo <span class="op">=</span> (riga, colonna)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>                grafo[nodo] <span class="op">=</span> []</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> labirinto[riga][colonna] <span class="op">==</span> <span class="st">'S'</span>:</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>                    stato_iniziale <span class="op">=</span> nodo</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> labirinto[riga][colonna] <span class="op">==</span> <span class="st">'E'</span>:</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>                    stato_finale <span class="op">=</span> nodo</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Controlla i vicini (su, giù, sinistra, destra)</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> dr, dc <span class="kw">in</span> [(<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>), (<span class="dv">1</span>, <span class="dv">0</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>), (<span class="dv">0</span>, <span class="dv">1</span>)]:</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>                    vicinino <span class="op">=</span> (riga <span class="op">+</span> dr, colonna <span class="op">+</span> dc)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> vicinino[<span class="dv">0</span>] <span class="op">&lt;</span> righe <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> vicinino[<span class="dv">1</span>] <span class="op">&lt;</span> colonne <span class="kw">and</span> labirinto[vicinino[<span class="dv">0</span>]][vicinino[<span class="dv">1</span>]] <span class="kw">in</span> (<span class="st">' '</span>, <span class="st">'S'</span>, <span class="st">'E'</span>):</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>                        grafo[nodo].append(vicinino)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> labirinto, grafo, stato_iniziale, stato_finale</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Adesso ci occorre una funzione che, dato un labirinto e un percorso, stampa il labirinto con il percorso e i nodi visitati.</p>
+<div id="73d7a37d" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stampa_labirinto(labirinto):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Stampa il labirinto in formato ASCII."""</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> riga <span class="kw">in</span> labirinto:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">''</span>.join(riga))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stampa_labirinto_con_percorso(labirinto, percorso, visitati):</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Stampa il labirinto con il percorso e i nodi visitati."""</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    labirinto_modificato <span class="op">=</span> [riga.copy() <span class="cf">for</span> riga <span class="kw">in</span> labirinto]</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> riga, colonna <span class="kw">in</span> visitati:</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> labirinto_modificato[riga][colonna] <span class="kw">not</span> <span class="kw">in</span> (<span class="st">'S'</span>, <span class="st">'E'</span>):</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>            labirinto_modificato[riga][colonna] <span class="op">=</span> <span class="st">'-'</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> riga, colonna <span class="kw">in</span> percorso:</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> labirinto_modificato[riga][colonna] <span class="kw">not</span> <span class="kw">in</span> (<span class="st">'S'</span>, <span class="st">'E'</span>):</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>            labirinto_modificato[riga][colonna] <span class="op">=</span> <span class="st">'+'</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    stampa_labirinto(labirinto_modificato)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ipotizzando di aver memorizzato il labirinto nel file “labirinto.txt” possiamo leggerlo e memorizzarlo in un grafo nel seguente modo:</p>
+<div id="f404c94d" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>labirinto, grafo, stato_iniziale, stato_finale <span class="op">=</span> leggi_labirinto(<span class="st">"labirinto.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Proviamo a risolvere il labirinto con l’algoritmo DFS:</p>
+<div id="8af6f273" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>percorso, visitati <span class="op">=</span> ricerca_generale(grafo, stato_iniziale, stato_finale, strategia<span class="op">=</span><span class="st">"DFS"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">isinstance</span>(percorso, <span class="bu">list</span>):</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Labirinto con percorso trovato:"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    stampa_labirinto_con_percorso(labirinto, percorso, visitati)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(percorso)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Labirinto con percorso trovato:
+###-----------------#########
+#---###################---#-#
+#-####----------------#-#-#-#
+#-###################-#-#-#-#
+#---------------------#-#-#-#
+#####################-#-#-#-#
+#   ##++++++++--------#-#-#-#
+# # ##+### ##+#########-#-#-#
+# #++++#   ##E#---------#-#-#
+# #+##-################-#-#-#
+###+##-------------####-#-#-#
+###+##############-##-#-#-#-#
+###++++---------##----#-#-#-#
+######+########-#######-#-#-#
+######+####-------------#---#
+S++++++######################</code></pre>
+</div>
+</div>
+<p>Come possiamo vedere, l’algoritmo DFS ha trovato un percorso, ma non è l’unico possibile. Per trovare il percorso ha visitatoo molti nodi:</p>
+<div id="66a511bc" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nodi visitati: </span><span class="sc">{</span><span class="bu">len</span>(visitati)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nodi visitati: 193</code></pre>
+</div>
+</div>
+<p>Se proviamo a risolvere il labirinto con l’algoritmo BFS otteniamo il seguente risultato:</p>
+<div id="d1564cf9" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>percorso, visitati <span class="op">=</span> ricerca_generale(grafo, stato_iniziale, stato_finale, strategia<span class="op">=</span><span class="st">"BFS"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">isinstance</span>(percorso, <span class="bu">list</span>):</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Labirinto con percorso trovato:"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    stampa_labirinto_con_percorso(labirinto, percorso, visitati)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(percorso)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Labirinto con percorso trovato:
+###                 #########
+#   ###################   # #
+# ####                # # # #
+# ################### # # # #
+#                     # # # #
+##################### # # # #
+#---##++++++++-       # # # #
+#-#-##+###-##+######### # # #
+#-#++++#---##E#         # # #
+#-#+##-################ # # #
+###+##---------    #### # # #
+###+############## ## # # # #
+###++++---------##    # # # #
+######+########-#######-# # #
+######+####-------------#   #
+S++++++######################</code></pre>
+</div>
+</div>
+<p>Per trovare il percorso ha visitatoo molti nodi:</p>
+<div id="2f6940c4" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nodi visitati: </span><span class="sc">{</span><span class="bu">len</span>(visitati)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nodi visitati: 76</code></pre>
+</div>
+</div>
+<p>Come visto nel paragrafo <a href="#sec-algoritmi-di-ricerca-non-informati" class="quarto-xref"><span>6.3</span></a> anche in questo caso l’algoritmo BFS trova il percorso più breve visitando un minor numero di nodi rispetto al BFS.</p>
+</section>
+<section id="sec-algoritmi-di-ricerca-informati-inpython" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="sec-algoritmi-di-ricerca-informati-inpython"><span class="header-section-number">6.5.3</span> Esperimento 3: Algoritmi di ricerca informata</h3>
+<p>Gli algoritmi di ricerca informata sono una categoria di algoritmi di ricerca che utilizzano informazioni aggiuntive oltre alla struttura del problema per guidare la ricerca verso una soluzione. Queste informazioni aggiuntive sono spesso chiamate <strong>euristiche</strong>. Vediamo l’esempio proposto nel paragrafo <a href="#sec-algoritmi-di-ricerca-informati" class="quarto-xref"><span>6.4</span></a> :</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A(Castelnuovo di Porto):::start --- |Flaminia| B(Via Flaminia+GRA)
+    A --- |Tiberina| B
+    A --- |Salaria| D(GRA-Salaria)
+    A --- |E35| C(E35+GRA)
+    B --- |GRA| D
+    C --- |GRA| D
+    D --- |Salaria| E(Viale Pola):::stop
+classDef start fill:#f9f,stroke:#333,stroke-width:2px;
+classDef stop fill:#f9f,stroke:#333,stroke-width:2px;
+classDef visited fill:#1f1,stroke:#333,stroke-width:2px;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>greedy best-first search</strong></p>
+<p>Il grafo, come visto nel paragrafo precedente, può essere rappresentato da un dizionario Python:</p>
+<div id="2b6c89c2" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definizione del grafo come lista di adiacenza</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>grafo <span class="op">=</span> {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A"</span>: [(<span class="st">"B"</span>, <span class="st">"Flaminia"</span>), (<span class="st">"C"</span>, <span class="st">"E35"</span>), (<span class="st">"D"</span>, <span class="st">"Salaria"</span>)],</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B"</span>: [(<span class="st">"D"</span>, <span class="st">"GRA"</span>)],</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C"</span>: [(<span class="st">"D"</span>, <span class="st">"GRA"</span>)],</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"D"</span>: [(<span class="st">"E"</span>, <span class="st">"Salaria"</span>)],</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E"</span>: []</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Mentre l’euristica è rappresentata da un dizionario Python con i nodi come chiavi e i valori euristici, distanza tra il nodo e l’obiettivo, come valori:</p>
+<div id="ee1275ac" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definizione dei valori euristici</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>euristica <span class="op">=</span> {</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A"</span>: <span class="dv">23</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B"</span>: <span class="dv">7</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C"</span>: <span class="dv">7</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"D"</span>: <span class="dv">8</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E"</span>: <span class="dv">0</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La funzione per l’implementazione dell’algoritmo <strong>greedy best-first search</strong> è facilmente implementabile a partire dalla funzione di ricerca generale vista nel paragrafo modificando la frontiera in una coda a priorità (min-heap) che memorizza i nodi in base al valore di euristica. Inoltre, la funzione di valutazione della frontiera viene modificata per estrarre il nodo con il valore di euristica più basso. La libreria heapq di Python può essere utilizzata per implementare una coda a priorità.</p>
+<div id="843875e1" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> heapq <span class="im">import</span> heappush, heappop</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greedy_best_first_search(grafo, euristica, start, goal):</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Esegue la Ricerca Greedy Best-First sul grafo fornito.</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parametri:</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">        grafo (dict): Lista di adiacenza che rappresenta il grafo.</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">        euristica (dict): Valori euristici per ogni nodo.</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">        start (str): Nodo iniziale.</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">        goal (str): Nodo obiettivo.</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">    Restituisce:</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">        list: Percorso dal nodo iniziale al nodo obiettivo.</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Coda a priorità (min-heap) per memorizzare (valore euristico, nodo, percorso)</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    coda_prioritaria <span class="op">=</span> []</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    heappush(coda_prioritaria, (euristica[start], start, [start]))</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    visitati <span class="op">=</span> <span class="bu">set</span>()  <span class="co"># Per tenere traccia dei nodi visitati</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> coda_prioritaria:</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Estrai il nodo con il valore euristico più piccolo</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>        valore_h, nodo_corrente, percorso <span class="op">=</span> heappop(coda_prioritaria)</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Se l'obiettivo è raggiunto, restituisci il percorso</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> nodo_corrente <span class="op">==</span> goal:</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> percorso</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Se il nodo è già stato visitato, saltalo</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> nodo_corrente <span class="kw">in</span> visitati:</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Segna il nodo corrente come visitato</span></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>        visitati.add(nodo_corrente)</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Esplora i vicini</span></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> vicino, _ <span class="kw">in</span> grafo.get(nodo_corrente, []):</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> vicino <span class="kw">not</span> <span class="kw">in</span> visitati:</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>                heappush(coda_prioritaria, (euristica[vicino], vicino, percorso <span class="op">+</span> [vicino]))</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Restituisce una lista vuota se non è stato trovato alcun percorso</span></span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Proviamo a trovare il percorso più breve trale località Castelnuovo di Porto e Viale Pola, ovvero tra i nodi A e E:</p>
+<div id="f7dcd17e" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Esecuzione dell'algoritmo</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>nodo_iniziale <span class="op">=</span> <span class="st">"A"</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>nodo_obiettivo <span class="op">=</span> <span class="st">"E"</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>percorso <span class="op">=</span> greedy_best_first_search(grafo, euristica, nodo_iniziale, nodo_obiettivo)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percorso da"</span>, nodo_iniziale, <span class="st">"a"</span>, nodo_obiettivo, <span class="st">":"</span>, percorso)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Percorso da A a E : ['A', 'B', 'D', 'E']</code></pre>
+</div>
+</div>
+<p>Quindi il percorso più breve tra Castelnuovo di Porto e Viale Pola è: [‘A’, ‘B’, ‘D’, ‘E’]</p>
+<p>Cioè Castelnuovo di Porto -&gt; Via Flaminia -&gt; GRA -&gt; Salaria -&gt; Viale Pola.</p>
+<p>Si invita il lettore a provare a modificare l’euristica per vedere l’effetto nella ricerca del percorso più breve.</p>
+<p><strong>Algoritmo A*</strong></p>
+<p>L’algoritmo A* è un algoritmo di ricerca informata che combina l’euristica con la ricerca di costo minimo.</p>
+<p>Usiamo, come esempio, lo stesso grafo del paragrago <a href="#sec-algoritmi-di-ricerca-informati" class="quarto-xref"><span>Section 6.4</span></a> e l’euristica definita nel paragrafo precedente.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A(Castelnuovo di Porto):::start --- |Flaminia, 18| B(Via Flaminia+GRA)
+    A --- |Tiberina, 23| B
+    A --- |Salaria, 27| D(GRA-Salaria)
+    A --- |E35, 21| C(E35+GRA)
+    B --- |GRA, 2| D
+    C --- |GRA, 1| D
+    D --- |Salaria, 9| E(Viale Pola):::stop
+    classDef start fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef stop fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef visited fill:#1f1,stroke:#333,stroke-width:2px;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Come nel paragrafo precedente, il grafo può essere rappresentato da un dizionario Python. Solo che in questo caso la lista delle adiacenze, oltre ai nomi dei nodi, contiene anche il costo del percorso tra i nodi:</p>
+<div id="0c19c205" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definizione del grafo come lista di adiacenza con costi</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>grafo <span class="op">=</span> {</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A"</span>: [(<span class="st">"B"</span>, <span class="dv">18</span>), (<span class="st">"C"</span>, <span class="dv">21</span>), (<span class="st">"D"</span>, <span class="dv">27</span>)],</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B"</span>: [(<span class="st">"D"</span>, <span class="dv">2</span>)],</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C"</span>: [(<span class="st">"D"</span>, <span class="dv">1</span>)],</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"D"</span>: [(<span class="st">"E"</span>, <span class="dv">9</span>)],</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E"</span>: []</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Mentre l’implementazione dell’euristica è la stessa del paragrafo precedente.</p>
+<div id="4afe2e81" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definizione dei valori euristici</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>euristica <span class="op">=</span> {</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"A"</span>: <span class="dv">23</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"B"</span>: <span class="dv">7</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C"</span>: <span class="dv">7</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"D"</span>: <span class="dv">8</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E"</span>: <span class="dv">0</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Una possibile implementazione dell’algoritmo A* basata sull’algoritmo generale di ricerca con l’aggiunta di una coda a priorità basata sulla somma del costo del percorso e dell’euristica, può essere la seguente:</p>
+<div id="d33c23f5" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> heapq <span class="im">import</span> heappush, heappop</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> a_star_search(grafo, euristica, start, goal):</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Esegue l'algoritmo A* sul grafo fornito.</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parametri:</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">        grafo (dict): Lista di adiacenza che rappresenta il grafo con costi.</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">        euristica (dict): Valori euristici per ogni nodo.</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co">        start (str): Nodo iniziale.</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co">        goal (str): Nodo obiettivo.</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">    Restituisce:</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">        list: Percorso dal nodo iniziale al nodo obiettivo.</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Coda a priorità (min-heap) per memorizzare (f(n), g(n), nodo, percorso)</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    coda_prioritaria <span class="op">=</span> []</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    heappush(coda_prioritaria, (euristica[start], <span class="dv">0</span>, start, [start]))</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>    visitati <span class="op">=</span> <span class="bu">set</span>()  <span class="co"># Per tenere traccia dei nodi visitati</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> coda_prioritaria:</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Estrai il nodo con il valore f(n) più piccolo</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>        _, costo_g, nodo_corrente, percorso <span class="op">=</span> heappop(coda_prioritaria)</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Se l'obiettivo è raggiunto, restituisci il percorso</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> nodo_corrente <span class="op">==</span> goal:</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> percorso</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Se il nodo è già stato visitato, saltalo</span></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> nodo_corrente <span class="kw">in</span> visitati:</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Segna il nodo corrente come visitato</span></span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>        visitati.add(nodo_corrente)</span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Esplora i vicini</span></span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> vicino, costo <span class="kw">in</span> grafo.get(nodo_corrente, []):</span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> vicino <span class="kw">not</span> <span class="kw">in</span> visitati:</span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>                nuovo_costo_g <span class="op">=</span> costo_g <span class="op">+</span> costo</span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>                valore_f <span class="op">=</span> nuovo_costo_g <span class="op">+</span> euristica[vicino]</span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>                heappush(coda_prioritaria, (valore_f, nuovo_costo_g, vicino, percorso <span class="op">+</span> [vicino]))</span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Restituisce una lista vuota se non è stato trovato alcun percorso</span></span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> []</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Proviamo a trovare il percorso più breve trale località Castelnuovo di Porto e Viale Pola, ovvero tra i nodi A e E:</p>
+<div id="e88384bd" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Esecuzione dell'algoritmo</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>nodo_iniziale <span class="op">=</span> <span class="st">"A"</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>nodo_obiettivo <span class="op">=</span> <span class="st">"E"</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>percorso <span class="op">=</span> a_star_search(grafo, euristica, nodo_iniziale, nodo_obiettivo)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percorso da"</span>, nodo_iniziale, <span class="st">"a"</span>, nodo_obiettivo, <span class="st">":"</span>, percorso)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Percorso da A a E : ['A', 'B', 'D', 'E']</code></pre>
+</div>
+</div>
+<p>Quindi il percorso più breve tra Castelnuovo di Porto e Viale Pola è: [‘A’, ‘B’, ‘D’, ‘E’] Cioè Castelnuovo di Porto -&gt; Via Flaminia -&gt; GRA -&gt; Salaria -&gt; Viale Pola. Quindi l’algoritmo A* ha trovato lo stesso percorso trovato con l’algoritmo di ricerca informata greedy best first search. Questo perche la funzione di costo associato a ogni arco è esattamente l distanza stradale tra i nodi. Si invita il lettore a provare a modificare la funzione di costo per vedere l’effetto nella ricerca del percorso più breve. Ad esempio si potrebbe modificare il costo tra i nodi A e B e tra A e C impostandolo a 50 per simulare un cantiere su Flaminia e Tiberina che rallenta di molto il traffico e vedere quale percorso suggerisce A* in questo caso.</p>
+</section>
+</section>
+<section id="esercizi" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="esercizi"><span class="header-section-number">6.6</span> Esercizi</h2>
+<section id="esercizio-1-percorso-più-breve" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="esercizio-1-percorso-più-breve"><span class="header-section-number">6.6.1</span> Esercizio 1: percorso più breve</h3>
+<p>Considera il seguente grafo:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    S(Start):::start --- A
+    S --- B
+    A --- C
+    A --- D
+    B --- D
+    B --- E
+    C --- F
+    D --- F
+    E --- F
+    F --- G(Goal):::stop
+classDef start fill:#f9f,stroke:#333,stroke-width:2px;
+classDef stop fill:#f9f,stroke:#333,stroke-width:2px;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Disegna la sequenza dei passi per trovare il percorso più breve da <code>S</code> a <code>G</code> utilizzando le seguenti strategie di ricerca:
+<ul>
+<li>Depth-First Search (DFS)</li>
+<li>Breadth-First Search (BFS)</li>
+</ul></li>
+<li>Quale dei due algoritmi visita meno nodi? Giustifica la tua risposta.</li>
+<li>Indica quale algoritmo garantisce sempre di trovare il percorso più breve e perché.</li>
+</ol>
+</section>
+<section id="esercizio-2-progetto-euristiche" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="esercizio-2-progetto-euristiche"><span class="header-section-number">6.6.2</span> Esercizio 2: progetto euristiche</h3>
+<p>Supponi di avere una griglia 5x5 rappresentante un labirinto, con il punto di partenza <code>S</code> in <code>(0, 0)</code> e il punto di arrivo <code>E</code> in <code>(4, 4)</code>. Alcune celle sono bloccate e non possono essere attraversate:</p>
+<pre><code>S _ _ _ _
+_ # _ # _
+_ _ _ # _
+# _ # _ _
+_ _ _ _ E</code></pre>
+<ol type="1">
+<li>Progetta due euristiche ammissibili per il problema:
+<ul>
+<li>Una basata sulla <strong>distanza di Manhattan</strong>.</li>
+<li>Una basata sulla <strong>distanza euclidea</strong>.</li>
+</ul></li>
+<li>Applica entrambe le euristiche per stimare il costo dal punto di partenza <code>(0, 0)</code> al punto di arrivo <code>(4, 4)</code>.</li>
+<li>Quale delle due euristiche è più precisa nel guidare la ricerca?</li>
+</ol>
+</section>
+<section id="esercizio-3-algoritmi-di-ricerca-informati" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="esercizio-3-algoritmi-di-ricerca-informati"><span class="header-section-number">6.6.3</span> Esercizio 3: algoritmi di ricerca informati</h3>
+<p>Considera il seguente grafo con costi sugli archi e valori euristici per ogni nodo:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A:::start ---|3| B
+    A ---|4| C
+    B ---|2| D
+    B ---|5| E
+    C ---|1| D
+    C ---|6| E
+    D ---|7| F(Goal):::stop
+    E ---|2| F
+classDef start fill:#f9f,stroke:#333,stroke-width:2px;
+classDef stop fill:#f9f,stroke:#333,stroke-width:2px;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Euristiche: - A: 10 - B: 8 - C: 6 - D: 5 - E: 3 - F: 0</p>
+<ol type="1">
+<li>Applica l’algoritmo Greedy Best-First Search per trovare il percorso da <code>A</code> a <code>F</code>. Registra tutti i passi in una tabella (candidato, frontiera, percorso, euristica).</li>
+<li>Applica l’algoritmo A* allo stesso grafo e registra i passi.</li>
+<li>Confronta i risultati ottenuti e discuti i vantaggi di A* rispetto al Greedy Best-First Search.</li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-russell2021intelligenza" class="csl-entry" role="listitem">
+Russell, Stuart J., and Peter Norvig. 2021. <em>Intelligenza Artificiale. Un Approccio Moderno</em>. Edited by Francesco Amigoni (Ed. Italiana). Pearson.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "capitanio/laboratorio-ia";
+    script.dataset.repoId = "";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./2-3-inferenza-bayesiana.html" class="pagination-link" aria-label="Inferenza Bayesiana">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inferenza Bayesiana</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./2-5-algoritmi-equitativi.html" class="pagination-link" aria-label="Algoritmi Equitativi">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algoritmi Equitativi</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Laboratorio di Intelligenza Artificiale (1e) scritto da Luciano Capitanio.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Draft - Licenza Apache ver. 2</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

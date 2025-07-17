@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Algoritmi Predittivi – Laboratorio di Intelligenza Artificiale</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./3-machine learning.html" rel="next">
+<link href="./2-5-algoritmi-equitativi.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254d8caa02a4f51d576d86802a86f2db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e5911a59318b73639a72866017db9c42.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254d8caa02a4f51d576d86802a86f2db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="epub.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2-algoritmi.html">Algoritmi</a></li><li class="breadcrumb-item"><a href="./2-6-algoritmi-predittivi.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algoritmi Predittivi</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Laboratorio di Intelligenza Artificiale</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefazione dell’autore{.unnumbered}</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0-introduzione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduzione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-Turing-vs-Searle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Turing vs Searle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./2-algoritmi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-1-inferenza-logica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferenza Logica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-2-inferenza-probabilistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferenza Probabilistica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-3-inferenza-bayesiana.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inferenza Bayesiana</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-4-algoritmi-di-ricerca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmi di Ricerca</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-5-algoritmi-equitativi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algoritmi Equitativi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-6-algoritmi-predittivi.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algoritmi Predittivi</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./3-machine learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-1-apprendimento-supervisionato.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Apprendimento Supervisionato</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-2-apprendimento-non-supervisionato.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Apprendimento Non Supervisionato</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-3-bias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-4-regressione-lineare-e-logistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regressione Lineare e Logistica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-5-perceptrone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Percetptrone</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-6-deep-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Deep learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-7-elaborazione-linguaggio-naturale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Elaborazione del Linguaggio Naturale</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bibliografia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bibliografia</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduzione" id="toc-introduzione" class="nav-link active" data-scroll-target="#introduzione"><span class="header-section-number">8.1</span> Introduzione</a></li>
+  <li><a href="#definizione-del-problema" id="toc-definizione-del-problema" class="nav-link" data-scroll-target="#definizione-del-problema"><span class="header-section-number">8.2</span> Definizione del Problema</a></li>
+  <li><a href="#raccolta-dei-dati" id="toc-raccolta-dei-dati" class="nav-link" data-scroll-target="#raccolta-dei-dati"><span class="header-section-number">8.3</span> Raccolta dei Dati</a></li>
+  <li><a href="#pre-elaborazione-dei-dati" id="toc-pre-elaborazione-dei-dati" class="nav-link" data-scroll-target="#pre-elaborazione-dei-dati"><span class="header-section-number">8.4</span> Pre-elaborazione dei Dati</a></li>
+  <li><a href="#divisione-dei-dati" id="toc-divisione-dei-dati" class="nav-link" data-scroll-target="#divisione-dei-dati"><span class="header-section-number">8.5</span> Divisione dei Dati</a></li>
+  <li><a href="#scelta-dell-algoritmo" id="toc-scelta-dell-algoritmo" class="nav-link" data-scroll-target="#scelta-dell-algoritmo"><span class="header-section-number">8.6</span> Scelta dell’ algoritmo</a></li>
+  <li><a href="#addestramento-del-modello" id="toc-addestramento-del-modello" class="nav-link" data-scroll-target="#addestramento-del-modello"><span class="header-section-number">8.7</span> Addestramento del modello</a></li>
+  <li><a href="#valutazione-del-modello" id="toc-valutazione-del-modello" class="nav-link" data-scroll-target="#valutazione-del-modello"><span class="header-section-number">8.8</span> Valutazione del modello</a></li>
+  <li><a href="#ottimizzazione-degli-iperparametri" id="toc-ottimizzazione-degli-iperparametri" class="nav-link" data-scroll-target="#ottimizzazione-degli-iperparametri"><span class="header-section-number">8.9</span> Ottimizzazione degli iperparametri</a></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment"><span class="header-section-number">8.10</span> Deployment</a></li>
+  <li><a href="#monitoraggio-e-manutenzione" id="toc-monitoraggio-e-manutenzione" class="nav-link" data-scroll-target="#monitoraggio-e-manutenzione"><span class="header-section-number">8.11</span> Monitoraggio e manutenzione</a></li>
+  <li><a href="#laboratorio-python" id="toc-laboratorio-python" class="nav-link" data-scroll-target="#laboratorio-python"><span class="header-section-number">8.12</span> Laboratorio Python</a>
+  <ul class="collapse">
+  <li><a href="#sec-esperimento-1-predizione-della-recidiva-parte-a" id="toc-sec-esperimento-1-predizione-della-recidiva-parte-a" class="nav-link" data-scroll-target="#sec-esperimento-1-predizione-della-recidiva-parte-a"><span class="header-section-number">8.12.1</span> Esperimento 1: Predizione della recidiva parte A: creazione di un dataset di addestramento e test simulato</a></li>
+  <li><a href="#esperimento-2-predizione-della-recidiva-parte-b-addestramento-e-test-del-modello" id="toc-esperimento-2-predizione-della-recidiva-parte-b-addestramento-e-test-del-modello" class="nav-link" data-scroll-target="#esperimento-2-predizione-della-recidiva-parte-b-addestramento-e-test-del-modello"><span class="header-section-number">8.12.2</span> Esperimento 2: Predizione della recidiva parte B: Addestramento e test del modello</a></li>
+  <li><a href="#esperimento-3-predizione-della-recidiva-parte-c-ottimizzazione-degli-iperparametri-del-modello-e-visualizzazione-dei-risultati" id="toc-esperimento-3-predizione-della-recidiva-parte-c-ottimizzazione-degli-iperparametri-del-modello-e-visualizzazione-dei-risultati" class="nav-link" data-scroll-target="#esperimento-3-predizione-della-recidiva-parte-c-ottimizzazione-degli-iperparametri-del-modello-e-visualizzazione-dei-risultati"><span class="header-section-number">8.12.3</span> Esperimento 3: Predizione della recidiva parte C: Ottimizzazione degli iperparametri del modello e visualizzazione dei risultati</a></li>
+  </ul></li>
+  <li><a href="#esercizi" id="toc-esercizi" class="nav-link" data-scroll-target="#esercizi"><span class="header-section-number">8.13</span> Esercizi</a>
+  <ul class="collapse">
+  <li><a href="#esercizio-1-analisi-delle-variabili-significative" id="toc-esercizio-1-analisi-delle-variabili-significative" class="nav-link" data-scroll-target="#esercizio-1-analisi-delle-variabili-significative"><span class="header-section-number">8.13.1</span> Esercizio 1: Analisi delle variabili significative</a></li>
+  <li><a href="#esercizio-2-creazione-di-un-dataset-realistico" id="toc-esercizio-2-creazione-di-un-dataset-realistico" class="nav-link" data-scroll-target="#esercizio-2-creazione-di-un-dataset-realistico"><span class="header-section-number">8.13.2</span> Esercizio 2: Creazione di un dataset realistico</a></li>
+  <li><a href="#esercizio-3-valutazione-di-un-modello-predittivo" id="toc-esercizio-3-valutazione-di-un-modello-predittivo" class="nav-link" data-scroll-target="#esercizio-3-valutazione-di-un-modello-predittivo"><span class="header-section-number">8.13.3</span> Esercizio 3: Valutazione di un modello predittivo</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2-algoritmi.html">Algoritmi</a></li><li class="breadcrumb-item"><a href="./2-6-algoritmi-predittivi.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algoritmi Predittivi</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algoritmi Predittivi</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduzione" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introduzione"><span class="header-section-number">8.1</span> Introduzione</h2>
+<p>Gli algoritmi predittivi rappresentano un salto qualitativo rispetto agli algoritmi deterministici e probabilistici visti nei capitoli precedenti<span class="citation" data-cites="bishop2006pattern">(<a href="#ref-bishop2006pattern" role="doc-biblioref">Bishop 2006</a>)</span>. Mentre gli algoritmi deterministici seguono regole ben definite per raggiungere una soluzione e gli algoritmi probabilistici utilizzano la probabilità per gestire l’incertezza, gli algoritmi predittivi apprendono dai dati per costruire modelli capaci di fare previsioni su eventi futuri.</p>
+<p><strong>Differenze principali</strong>:</p>
+<ol type="1">
+<li><strong>Deterministici</strong>:
+<ul>
+<li>Producono lo stesso risultato ogni volta con gli stessi input.</li>
+<li>Non gestiscono incertezza o variabilità nei dati.</li>
+<li>Esempio: algoritmi di ricerca in grafi (DFS, BFS).</li>
+</ul></li>
+<li><strong>Probabilistici</strong>:
+<ul>
+<li>Includono l’incertezza nei calcoli.</li>
+<li>Basati su modelli matematici che stimano la probabilità di eventi.</li>
+<li>Esempio: filtri email o algoritmi Bayesiani.</li>
+</ul></li>
+<li><strong>Predittivi</strong>:
+<ul>
+<li>Si basano sull’apprendimento dai dati per costruire modelli.</li>
+<li>Adattano il comportamento in base a nuove informazioni.</li>
+<li>Possono gestire sia dati complessi che non lineari.</li>
+<li>Esempi: regressione lineare, reti neurali, support vector machine (SVM).</li>
+</ul></li>
+</ol>
+<p>La vera forza degli algoritmi predittivi risiede nella loro capacità di migliorare le decisioni grazie all’apprendimento automatico. Possono affrontare scenari complessi dove non esistono regole fisse e dove i dati contengono rumore o incertezza. Gli algoritmi di predizione sono usati per creare modelli basati sull’ apprendedimento dei dati misurati o prodotti in un certo dominio applicativo al fine di fare previsioni su eventi futuri. Questi algoritmi possono essere classificati in diverse categorie in base al tipo di apprendimento, al tipo di output, e alle tecniche utilizzate <span class="citation" data-cites="murphy2012ml">(<a href="#ref-murphy2012ml" role="doc-biblioref">Murphy 2012</a>)</span>:</p>
+<p><strong>Classificazione Basata sul Tipo di Apprendimento:</strong></p>
+<ol type="1">
+<li><strong>Apprendimento Supervisionato</strong>: Gli algoritmi di apprendimento supervisionato richiedono un set di dati etichettato per l’addestramento. Utilizzano queste etichette per apprendere una funzione che mappa gli input agli output desiderati. Esempi includono la regressione lineare, gli alberi decisionali e le reti neurali¹.</li>
+<li><strong>Apprendimento Non Supervisionato</strong>: Questi algoritmi scoprono pattern nascosti o strutture nei dati non etichettati. Tecniche comuni sono la clusterizzazione e la riduzione della dimensionalità¹.</li>
+<li><strong>Apprendimento Semi-supervisionato e Rinforzato</strong>: Combinano elementi dei primi due tipi, utilizzando un piccolo set di dati etichettati insieme a una grande quantità di dati non etichettati, o apprendendo attraverso il rinforzo da un ambiente¹.</li>
+</ol>
+<p><strong>Classificazione Basata sul Tipo di Output:</strong></p>
+<ol type="1">
+<li><strong>Classificazione</strong>: Quando l’output è una categoria, come “spam” o “non spam” in un filtro di posta elettronica, si parla di classificazione. Gli algoritmi di classificazione assegnano un’etichetta discreta a un’istanza di input¹.</li>
+<li><strong>Regressione</strong>: Se l’output è un valore continuo, come il prezzo di una casa, si utilizza la regressione. Gli algoritmi di regressione prevedono un valore numerico basato sugli input¹.</li>
+<li><strong>Ranking</strong>: Alcuni algoritmi ordinano gli elementi in base alla probabilità di appartenenza a una certa categoria o valore¹.</li>
+</ol>
+<p><strong>Classificazione Basata sulle Tecniche Utilizzate:</strong></p>
+<ol type="1">
+<li><strong>Alberi Decisionali</strong>: Suddividono i dati in modo gerarchico basandosi su attributi specifici. Sono semplici da interpretare ma possono soffrire di overfitting².</li>
+<li><strong>Random Forest</strong>: Una collezione di alberi decisionali che riduce il rischio di overfitting e gestisce meglio le variabili non correlate².</li>
+<li><strong>Support Vector Machine (SVM)</strong>: Trovano il miglior iperpiano che separa i dati in classi. Sono efficaci in spazi ad alta dimensionalità².</li>
+<li><strong>K-Nearest Neighbors (K-NN)</strong>: Classificano i nuovi dati in base alla classe più comune tra i vicini più prossimi. Sono semplici da implementare ma computazionalmente costosi².</li>
+<li><strong>Reti Neurali</strong>: Sono modelli ispirati al funzionamento del cervello umano e possono catturare relazioni complesse nei dati¹.</li>
+</ol>
+<p>Ogni algoritmo ha i suoi vantaggi e svantaggi, e la scelta dipende da vari fattori come la dimensione e la natura del dataset, la velocità richiesta, la trasparenza del modello e la capacità di gestire dati non lineari o mancanti. Ad esempio, gli alberi decisionali sono facili da interpretare ma possono soffrire di overfitting, mentre le SVM sono efficaci con dataset di piccole dimensioni ma meno efficienti con dataset molto grandi². L’agente deve imparare a riconoscere alcune configurazioni del suo percepito sulla base di un esperienza fatta su casi detti di training e deve essere in grado di riconoscere un nuovo percepito mai visto prima. Il percepito dell’agente è composto da dati, caratteristiche, che possono essere di tipo continuo (es. temperatura) o categoriali (es. colore rosso). I dati categoriali possono essere ordinabili (es. scarso, insufficiente, …) o non ordinabili (es. sesso) All’agente può essere chiesto di predire un dato continuo, nel qual caso si tratta di predizione o regressione, oppure può essere chiesto di predire un dato categoriale, nel qual caso si tratta di classificazione. Il processo di predizione segue il seguente flusso:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-simple">flowchart TD
+    A[1.Definizione del Problema] --&gt; B(2.Raccolta dei Dati)
+    B --&gt; C(3.Pre-elaborazione dei Dati)
+    C --&gt; D(4.Divisione dei dati)
+    D --&gt; E(5.Scelta dell'algoritmo)
+    E --&gt; F(6.Addestramento del Modello)
+    F --&gt; G{7valutazione risultati modello}
+    G --&gt;|valutazione scarsa| H(8.Ottimizzazione parametri)
+    H --&gt; F
+    G --&gt;|9.valutazione buona| I(Deployment)
+    G --&gt;|10.modello inadeguato|E
+    I --&gt; L(11.Monitoraggio e manutenzione)
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Diagramma di flusso del processo di predizione
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Nei prossimi paragrafi si presenterà una descrizione di ognuno di questi passi con la descrizione di un caso concreto di previsione della probabilità che un imputato in libertà vigilata commetta un nuovo reato. Si veda <span class="citation" data-cites="compas">(<a href="#ref-compas" role="doc-biblioref">Inc. 2018</a>)</span> per la descrizione di un applicativo di questo tipo in uso presso gli organi giudiziari negli Stati Uniti.</p>
+</section>
+<section id="definizione-del-problema" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="definizione-del-problema"><span class="header-section-number">8.2</span> Definizione del Problema</h2>
+<p>Questp è il primo passo nel processo di predizione nell’intelligenza artificiale. Questa fase richiede una comprensione chiara e precisa dell’obiettivo che si desidera raggiungere con l’algoritmo di predizione. Che si tratti di prevedere il comportamento del consumatore, di diagnosticare malattie o di identificare frodi, è fondamentale stabilire parametri chiari e misurabili. La definizione del problema guida tutte le fasi successive, dalla raccolta dei dati alla scelta dell’algoritmo più adatto, assicurando che l’intero processo sia allineato con l’obiettivo finale. Un’accurata definizione del problema è la base per un modello predittivo efficace e funzionale. <strong>esempio pratico</strong>: Prevedere la probabilità che un imputato in libertà vigilata commetta un nuovo reato.</p>
+<ul>
+<li><strong>Obiettivo</strong>: Stimare il rischio di recidiva.</li>
+<li><strong>Dati necessari</strong>: Età, tipo di reato precedente, durata della libertà vigilata.</li>
+<li><strong>Ipotesi</strong>: Alcuni fattori, come precedenti specifici, possono aumentare il rischio.</li>
+</ul>
+</section>
+<section id="raccolta-dei-dati" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="raccolta-dei-dati"><span class="header-section-number">8.3</span> Raccolta dei Dati</h2>
+<p>Si tratta di acquisire informazioni rilevanti per il problema da risolvere. Questo processo non si limita alla mera acquisizione di dati grezzi; è una pratica strategica che trasforma questi dati in insights preziosi, capaci di guidare decisioni informate. I dati possono essere raccolti da fonti interne come database aziendali, o esterne come social media, sensori IoT (Internet of Things), o registri pubblici. La raccolta deve essere sistematica e organizzata, assicurando che i dati siano accurati, completi e aggiornati. È fondamentale anche considerare la privacy e la sicurezza dei dati durante la raccolta e l’elaborazione. <strong>Esempio Pratico</strong>: Raccolta di dati da archivi giudiziari, registri penitenziari e rapporti sociali.</p>
+<ul>
+<li><strong>Fonti</strong>: Sentenze, relazioni degli assistenti sociali.</li>
+<li><strong>Dati</strong>:
+<ul>
+<li>Età: 25, 30, 35, 40, 45, 50, 55, 60, 65, 70</li>
+<li>Tipo di reato: furto, furto con violenza, omicidio, omicidio con violenza, …</li>
+<li>Durata della libertà vigilata: 1 mese, 3 mesi, 6 mesi, 1 anno, 2 anni, 3 anni, 4 anni, 5 anni, 6 anni, 7 anni</li>
+<li>…</li>
+</ul></li>
+<li><strong>Risultato</strong>:
+<ul>
+<li>Rischio di recidiva: 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0</li>
+</ul></li>
+<li><strong>Considerazioni</strong>: Garantire la protezione dei dati personali e una raccolta dei dei dati bilanciata tra le classi sottostanti il fenomeno da studiare per evitare una eccessiva polarizzazione dei dati.</li>
+</ul>
+</section>
+<section id="pre-elaborazione-dei-dati" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="pre-elaborazione-dei-dati"><span class="header-section-number">8.4</span> Pre-elaborazione dei Dati</h2>
+<p>Si prepara il dataset per garantire che l’algoritmo di machine learning funzioni in modo ottimale. Questo passo include diverse attività chiave:</p>
+<ul>
+<li><p><strong>Pulizia dei dati</strong>: correzione o rimozione di dati errati, corrotti, duplicati o non pertinenti. La pulizia assicura che il modello non apprenda da informazioni fuorvianti o irrilevanti.</p></li>
+<li><p><strong>Gestione dei valori mancanti</strong>: I dati incompleti sono comuni in molti dataset. La gestione dei valori mancanti può includere tecniche come l’imputazione, dove i valori mancanti sono sostituiti con stime, o l’eliminazione delle righe o colonne con dati mancanti.</p></li>
+<li><p><strong>Normalizzazione</strong>: scalatura dei dati in modo che attributi con ampi intervalli di valori non dominino quelli con intervalli più stretti. La normalizzazione è essenziale per algoritmi che sono sensibili alle scale dei dati, come la regressione lineare o le reti neurali.</p></li>
+<li><p><strong>Riduzione della dimensionalità</strong>: Tecniche come l’Analisi delle Componenti Principali (PCA) sono utilizzate per ridurre il numero di variabili nel dataset, mantenendo solo quelle più informative. Questo non solo semplifica il modello, ma può anche migliorare le prestazioni riducendo il rischio di overfitting. <strong>Esempio Pratico</strong>:</p></li>
+<li><p><strong>Pulizia</strong>: Rimuovere duplicati o incongruenze nei dati delle sentenze.</p></li>
+<li><p><strong>Gestione dei valori mancanti</strong>: Stimare dati mancanti, come la durata del procedimento.</p></li>
+<li><p><strong>Normalizzazione</strong>: Uniformare i dati, ad esempio convertendo valute in una stessa unità.</p></li>
+</ul>
+</section>
+<section id="divisione-dei-dati" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="divisione-dei-dati"><span class="header-section-number">8.5</span> Divisione dei Dati</h2>
+<p>Si separa il dataset in due o più gruppi per diversi scopi: addestramento, validazione e test. Questa divisione serve per avere dati per valutare l’efficacia e la generalizzabilità del modello predittivo. Il set di addestramento è utilizzato per insegnare all’algoritmo a riconoscere i pattern nei dati. Il set di validazione, quando presente, aiuta a ottimizzare i parametri del modello e a prevenire l’overfitting. Infine, il set di test serve a valutare le prestazioni del modello su dati non visti durante l’addestramento, fornendo una stima dell’errore di generalizzazione. La proporzione della divisione può variare, ma una suddivisione comune è 70% per l’addestramento, 15% per la validazione e 15% per il test. È importante che la divisione dei dati sia rappresentativa dell’intero dataset, quindi tecniche come il campionamento stratificato possono essere utilizzate per mantenere la stessa distribuzione delle classi in ciascun set. <strong>Esempio Pratico</strong>:</p>
+<ul>
+<li><strong>Divisione</strong>: 70% addestramento, 15% validazione, 15% test.</li>
+</ul>
+</section>
+<section id="scelta-dell-algoritmo" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="scelta-dell-algoritmo"><span class="header-section-number">8.6</span> Scelta dell’ algoritmo</h2>
+<p>La scelta dell’algoritmo determina l’approccio con cui il modello analizzerà i dati e farà previsioni <span class="citation" data-cites="james2013introduction">(<a href="#ref-james2013introduction" role="doc-biblioref">James et al. 2013</a>)</span>. La selezione dell’algoritmo dipende da vari fattori, tra cui il tipo di problema (classificazione, regressione, clustering), la natura dei dati, la dimensione del dataset e le risorse computazionali disponibili. Ad esempio, per problemi di classificazione, algoritmi come le reti neurali, le macchine a vettori di supporto (SVM) e gli alberi decisionali sono spesso utilizzati. Per la regressione, si possono considerare algoritmi come la regressione lineare, la regressione polinomiale o le reti neurali. È importante anche considerare la complessità dell’algoritmo: algoritmi più complessi possono offrire maggiore accuratezza, ma richiedono più tempo e risorse per l’addestramento. <strong>Esempio Pratico</strong>: In questo si potrebbe usare un algoritmo di regressione, come una Random Forest Regressor, per stimare la probabilità di recidiva.</p>
+</section>
+<section id="addestramento-del-modello" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="addestramento-del-modello"><span class="header-section-number">8.7</span> Addestramento del modello</h2>
+<p>L’addestramento di un modello di machine learning è un processo iterativo che consiste nell’esporre un algoritmo a un ampio dataset di apprendimento, con l’obiettivo di insegnargli a riconoscere pattern e a fare predizioni accurate su nuovi dati <span class="citation" data-cites="hastie2009elements">(<a href="#ref-hastie2009elements" role="doc-biblioref">Hastie, Tibshirani, and Friedman 2009</a>)</span>. La qualità e l’efficacia di un modello dipendono fortemente dalla scelta dell’algoritmo, dalla qualità dei dati e dalle tecniche di addestramento utilizzate. <strong>Modalità di apprendimento</strong> Esistono diverse modalità di apprendimento:</p>
+<ul>
+<li><strong>Apprendimento supervisionato</strong>: Il modello viene addestrato su un dataset etichettato, dove ogni esempio è associato a una risposta corretta. L’obiettivo è insegnare al modello a mappare nuovi input alle loro rispettive etichette.</li>
+<li><strong>Apprendimento non supervisionato</strong>: Il modello lavora con dati non etichettati, cercando di scoprire strutture nascoste nei dati, come gruppi di dati simili (clustering).</li>
+<li><strong>Apprendimento semi-supervisionato</strong>: Combina elementi dei due approcci precedenti, utilizzando sia dati etichettati che non etichettati.</li>
+</ul>
+<p>L’addestramento di modelli complessi richiede risorse computazionali significative. Le GPU e le TPU sono hardware specializzati che accelerano i calcoli necessari per l’addestramento di reti neurali profonde. Inoltre, sono necessari software specifici per definire le architetture delle reti neurali e gestire il processo di addestramento. Nel processo di addestramento occorre spesso intervenire manualmente per regolare i parametri del modello, come la dimensione del batch, la velocità di apprendimento e la regolarizzazione per evitare fenomeni come l’overfitting e l’underfitting:</p>
+<ul>
+<li><strong>Overfitting</strong>: Si verifica quando il modello si adatta troppo ai dati di addestramento, perdendo la capacità di generalizzare a nuovi dati. In questo caso, il modello memorizza i dettagli specifici dei dati di addestramento invece di apprendere le caratteristiche generali.</li>
+<li><strong>Underfitting</strong>: Si verifica quando il modello è troppo semplice per catturare la complessità dei dati. In questo caso, il modello non è in grado di apprendere le relazioni significative tra le variabili.</li>
+</ul>
+<p>L’addestramento di modelli di machine learning solleva importanti questioni etiche. È fondamentale utilizzare dataset rappresentativi e bilanciati per evitare bias e discriminazioni. Inoltre, è necessario considerare le potenziali conseguenze negative dell’utilizzo di modelli in contesti reali, come la privacy e la sicurezza dei dati. <strong>Esempio Pratico</strong>: Nel caso in studio si tratterà di addestrare il modello scelto con dati storici su imputati e loro comportamenti post-processo.</p>
+</section>
+<section id="valutazione-del-modello" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="valutazione-del-modello"><span class="header-section-number">8.8</span> Valutazione del modello</h2>
+<p>La valutazione del modello è una fase cruciale nel processo di sviluppo di un modello di machine learning, poiché consente di misurare la capacità del modello addestrato di generalizzare a nuovi dati, ovvero di fare predizioni accurate su esempi che non ha mai visto durante l’addestramento. Le metriche di valutazione variano a seconda del tipo di problema:</p>
+<ul>
+<li><strong>problemi di classificazione</strong>, si utilizzano metriche come: <strong>Matrice di confusione</strong>: una tabella che mostra il numero di casi classificati correttamente e erroneamente in ogni classe.
+<ul>
+<li><strong>Accuratezza</strong>: misura la percentuale di casi classificati correttamente.</li>
+<li><strong>Precisione</strong>: misura la percentuale di veri positivi (cioè quei casi che effettivamente appartengono alla classe positiva) tra i casi classificati come positivi.</li>
+<li><strong>Richiamo</strong>: misura la percentuale di veri positivi tra tutti i casi positivi reali.</li>
+<li><strong>F1-score</strong>: misura la media armonica tra precisione e richiamo.</li>
+<li><strong>Curva ROC</strong> (Receiver Operating Characteristic) con l’area sotto la curva (AUC): misura la capacità del modello di distinguere correttamente tra le classi.</li>
+</ul></li>
+<li><strong>problemi di regressione</strong>, si utilizzano metriche come:
+<ul>
+<li><strong>Errore quadratico medio (MSE)</strong>: misura la differenza media quadratica tra i valori predetti dal modello e i valori reali.</li>
+<li><strong>Coefficiente di determinazione (R²)</strong>: misura la percentuale di variazione dei valori predetti rispetto ai valori reali.</li>
+</ul></li>
+</ul>
+<p><strong>Analisi dei risultati</strong> L’analisi dei risultati della valutazione permette di identificare eventuali problemi come l’overfitting o l’underfitting. L’overfitting si verifica quando il modello si adatta troppo ai dati di addestramento, perdendo la capacità di generalizzare a nuovi dati. L’underfitting si verifica quando il modello è troppo semplice e non riesce a catturare la complessità dei dati. <strong>Esempio pratico</strong>: nel caso in studio di modello di machine learning addestrato per predire la probabilità di recidività di un reo in base ai dati raccolti sullo stesso. Dopo l’addestramento, il modello viene valutato su un dataset di test che contiene informazioni su nuovi reati. Utilizzando la Cross-validation, calcolando metriche come l’accuratezza e il richiamo, possiamo valutare l’affidabilità delle predizioni del modello. Un’alta accuratezza indica che il modello è generalmente corretto nelle sue previsioni, mentre un alto richiamo indica che il modello è bravo a identificare i reati che effettivamente si sono verificati.</p>
+</section>
+<section id="ottimizzazione-degli-iperparametri" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="ottimizzazione-degli-iperparametri"><span class="header-section-number">8.9</span> Ottimizzazione degli iperparametri</h2>
+<p>L’ottimizzazione degli iperparametri è un processo iterativo che consiste nel regolare i parametri esterni al modello che non vengono appresi durante l’addestramento, ma che influenzano significativamente le sue prestazioni. Esempi di iperparametri includono il tasso di apprendimento, la profondità di un albero decisionale o il numero di neuroni in una rete neurale. L’obiettivo dell’ottimizzazione è individuare la combinazione di iperparametri che massimizza le prestazioni del modello su un dataset di valutazione indipendente. Per raggiungere questo obiettivo, si utilizzano diverse tecniche, tra cui:</p>
+<ul>
+<li><strong>Ricerca a griglia:</strong> Esplora sistematicamente tutte le possibili combinazioni di iperparametri all’interno di un intervallo specificato.</li>
+<li><strong>Ricerca casuale:</strong> Seleziona casualmente combinazioni di iperparametri, potendo essere più efficiente della ricerca a griglia in spazi di ricerca ampi.</li>
+<li><strong>Ottimizzazione bayesiana:</strong> Utilizza modelli probabilistici per guidare la ricerca verso le regioni dello spazio degli iperparametri più promettenti.</li>
+</ul>
+<p>Per valutare l’efficacia delle diverse combinazioni di iperparametri, si ricorre alla <strong>validazione incrociata</strong>. Questa tecnica consiste nel suddividere il dataset in più parti, addestrando il modello su una parte e valutandolo sulle altre. Ripetendo questo processo multiple volte, si ottiene una stima più robusta delle prestazioni del modello. Tecniche come l’<strong>early stopping</strong> possono essere utilizzate per migliorare ulteriormente il processo di ottimizzazione. L’early stopping consiste nell’interrompere l’addestramento quando le prestazioni del modello sul dataset di convalida iniziano a peggiorare, evitando così l’overfitting.</p>
+<p><strong>Esempio pratico:</strong> Nel caso in studio si procederà a regolare i parametri della Random Forest Regressor, come il numero di alberi (n_estimators) o la profondità massima degli alberi (max_depth), per migliorare le prestazioni. Una possibile metodologia di ottimizzazione potrebbe essere di utilizzare una ricerca a griglia per identificare i migliori iperparametri. Ad esempio, testare diversi valori di n_estimators (100, 200, 500) e max_depth (5, 10, 15). La validazione incrociata può essere utilizzata per valutare le prestazioni del modello su diversi set di dati di addestramento e convalida.</p>
+</section>
+<section id="deployment" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="deployment"><span class="header-section-number">8.10</span> Deployment</h2>
+<p>Il deployment è la fase finale del processo di predizione, in cui il modello addestrato e ottimizzato viene messo in produzione per essere utilizzato in applicazioni reali. Questa fase implica la preparazione del modello per l’integrazione con sistemi esistenti, garantendo che sia scalabile, affidabile e sicuro. Il deployment può avvenire su diverse piattaforme, come server locali, cloud o dispositivi edge (dispositivi periferici che elaborano i dati vicino alla fonte, riducendo la latenza e il carico sui server centrali), a seconda delle esigenze dell’applicazione. È importante notare che l’hardware necessario per il deployment è diverso da quello utilizzato per l’addestramento. Durante l’addestramento, sono necessarie risorse computazionali elevate, come GPU o TPU, per gestire i complessi calcoli e l’ottimizzazione dei parametri del modello. Tuttavia, una volta che il modello è addestrato, il deployment richiede meno potenza computazionale, poiché il modello deve solo eseguire previsioni basate sui dati in ingresso. Questo permette di utilizzare hardware meno potente e più economico per il deployment, riducendo i costi operativi.</p>
+<p><strong>Sfide del deployment:</strong></p>
+<ul>
+<li><strong>Scalabilità:</strong> Il sistema di deployment deve essere in grado di gestire un aumento del carico di lavoro e di scalare in modo elastico per soddisfare le esigenze dell’applicazione.</li>
+<li><strong>Affidabilità:</strong> Il modello deve essere disponibile e funzionante in modo continuo, minimizzando i tempi di fermo e garantendo la qualità delle previsioni.</li>
+<li><strong>Sicurezza:</strong> È fondamentale proteggere il modello e i dati sensibili da accessi non autorizzati e attacchi informatici.</li>
+</ul>
+<p><strong>esempio pratico</strong>: nel caso in studio si procederà a creare un’applicazione web che consenta agli utenti di inserire i dati di input e ricevere le previsioni del modello. Questa applicazione sarà ospitata su un server web e sarà accessibile tramite un’interfaccia web nella quale sarà necessario implementare un sistema di autenticazione per garantire che solo gli utenti autorizzati possano accedere al modello. Se si prevede che il modello sarà utilizzato in un’applicazione mobile, sarà necessario sviluppare un’interfaccia utente per dispositivi mobili che consenta agli utenti di inserire i dati di input e ricevere le previsioni. Per garantire prestazioni elevate, il modello può essere deployato su un server cloud scalabile, come <strong>AWS</strong> (Amazon Web Services) o <strong>GCP</strong> (Google Cloud Platform).Monitorando le prestazioni del modello, è possibile fare aggiustamenti e aggiornamenti per mantenere alta la qualità delle previsioni.</p>
+</section>
+<section id="monitoraggio-e-manutenzione" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="monitoraggio-e-manutenzione"><span class="header-section-number">8.11</span> Monitoraggio e manutenzione</h2>
+<p>Il monitoraggio e la manutenzione sono attività cruciali nel ciclo di vita di un modello di predizione, volte a garantire che il modello rimanga accurato e affidabile nel tempo<span class="citation" data-cites="kuhn2013applied">(<a href="#ref-kuhn2013applied" role="doc-biblioref">Kuhn and Johnson 2013</a>)</span>. Dopo il deployment, è essenziale monitorare continuamente le prestazioni del modello per rilevare eventuali degradi dovuti a cambiamenti nei dati o nel contesto operativo. Questo può includere il monitoraggio di indicatori di degrado come:</p>
+<ol type="1">
+<li><strong>Aumento dell’errore di previsione</strong>: Se il modello inizia a fare più errori nelle previsioni rispetto a prima, potrebbe essere un segnale di degrado. Questo può essere misurato attraverso metriche come l’errore quadratico medio (MSE) per i modelli di regressione o l’accuratezza per i modelli di classificazione.</li>
+<li><strong>Diminuzione dell’accuratezza</strong>: Un calo nell’accuratezza complessiva del modello indica che le previsioni non sono più affidabili come in passato.</li>
+<li><strong>Aumento dei falsi positivi/negativi</strong>: Per i modelli di classificazione, un aumento dei falsi positivi (previsioni errate di eventi positivi) o dei falsi negativi (previsioni errate di eventi negativi) può indicare che il modello non sta più funzionando correttamente.</li>
+<li><strong>Cambiamenti nelle distribuzioni dei dati</strong>: Se i dati in ingresso cambiano significativamente rispetto ai dati su cui il modello è stato addestrato, il modello potrebbe non essere più in grado di generalizzare correttamente. Questo può essere monitorato attraverso tecniche di drift detection.</li>
+<li><strong>Aumento del tempo di risposta</strong>: Se il modello impiega più tempo per fare previsioni, potrebbe essere un segnale che qualcosa non va, come un sovraccarico computazionale o inefficienze nel codice.</li>
+</ol>
+<p>La manutenzione del modello può comportare aggiornamenti periodici, riaddestramento con nuovi dati e ottimizzazioni per adattarsi a nuove condizioni. Inoltre, è importante implementare sistemi di allerta per notificare tempestivamente eventuali problemi. La manutenzione preventiva e correttiva aiuta a mantenere il modello efficiente e a evitare errori significativi che potrebbero influenzare le decisioni basate sulle sue previsioni. <strong>Esempio pratico</strong>: Nel caso in studio, il monitoraggio del modello di previsione potrebbero includere la verifica regolare dell’MSE e del’R² su nuovi dati. Mentre la manutenzione potrebbe includere l’aggiornamento periodico, ad esempio ogni 6 mesi, del modello con nuovi dati per garantire prestazioni ottimali.</p>
+</section>
+<section id="laboratorio-python" class="level2" data-number="8.12">
+<h2 data-number="8.12" class="anchored" data-anchor-id="laboratorio-python"><span class="header-section-number">8.12</span> Laboratorio Python</h2>
+<section id="sec-esperimento-1-predizione-della-recidiva-parte-a" class="level3" data-number="8.12.1">
+<h3 data-number="8.12.1" class="anchored" data-anchor-id="sec-esperimento-1-predizione-della-recidiva-parte-a"><span class="header-section-number">8.12.1</span> Esperimento 1: Predizione della recidiva parte A: creazione di un dataset di addestramento e test simulato</h3>
+<p>Vediamo un esempio in Python che implementa il processo predittivo per il caso giuridico di previsione della probabilità di recidiva utilizzando una <strong>Random Forest Regressor</strong>. Questo esempio utilizza diviso in 3 parti si basa su dati simulati per illustrare il flusso completo, dalla generazione dei dati fino alla valutazione del modello.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se non è stato già fatto, installare le librerie necessarie con il seguente comando da eseguire nella shell:</p>
+<pre><code>pip install numpy pandas sklearn matplotlib</code></pre>
+</div>
+</div>
+<p>In questa primo esperimento l’obiettivo principale è generare dati dall’aspetto realistico su persone che sono in libertà vigilata (rilascio supervisionato dopo un reato) e calcolare il loro rischio di recidiva. Questi dati simulati verranno successivamente utilizzati per addestrare e testare un modello predittivo, che è una pratica comune nel machine learning quando si vuole sperimentare prima di utilizzare dati reali e sensibili. Il codice non riceve input esterni dagli utenti. Invece, genera i propri dati utilizzando la generazione di numeri casuali. Tuttavia, utilizza diversi parametri predefiniti per controllare la simulazione:</p>
+<ul>
+<li>Numero di campioni (1000 persone)</li>
+<li>Fasce d’età (da 18 a 70 anni)</li>
+<li>Durata della libertà vigilata (da 1 a 60 mesi)</li>
+<li>Tipi di reati precedenti (furto, reato violento, omicidio)</li>
+<li>Stato lavorativo (lavoro stabile o no)</li>
+<li>Supporto familiare (presente o assente)</li>
+</ul>
+<p>Il codice segue una sequenza chiara: genera caratteristiche individuali casualmente, poi le combina usando una formula ponderata per calcolare il rischio. Un passaggio cruciale è il “clipping” del punteggio di rischio finale per assicurarsi che rimanga tra 0 e 1, poiché le probabilità non possono essere negative o maggiori del 100%.</p>
+<p>Il seed casuale (impostato a 42) garantisce che ogni volta che esegui questo codice, ottieni esattamente gli stessi dati “casuali”, il che è importante per esperimenti scientifici riproducibili. Infine, tutti i dati generati vengono organizzati in un DataFrame pandas (pensalo come un foglio di calcolo digitale) e visualizza le prime righe così puoi vedere com’è fatto il dataset simulato.</p>
+<p>Questo approccio permette a ricercatori e sviluppatori di testare i loro algoritmi di predizione su dati realistici senza problemi di privacy, prima di applicarli a veri fascicoli giudiziari.</p>
+<div id="d23c61f4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulazione dei dati con relazioni realistiche</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>num_samples <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generazione delle variabili</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> np.random.randint(<span class="dv">18</span>, <span class="dv">70</span>, size<span class="op">=</span>num_samples)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>durata_liberta_vigilata <span class="op">=</span> np.random.randint(<span class="dv">1</span>, <span class="dv">60</span>, size<span class="op">=</span>num_samples)  <span class="co"># Durata in mesi</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>reato_precedente <span class="op">=</span> np.random.choice([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>], size<span class="op">=</span>num_samples, p<span class="op">=</span>[<span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>])  <span class="co"># Furto, violenza privata, omicidio</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>lavoro_stabile <span class="op">=</span> np.random.choice([<span class="dv">0</span>, <span class="dv">1</span>], size<span class="op">=</span>num_samples, p<span class="op">=</span>[<span class="fl">0.6</span>, <span class="fl">0.4</span>])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>supporto_familiare <span class="op">=</span> np.random.choice([<span class="dv">0</span>, <span class="dv">1</span>], size<span class="op">=</span>num_samples, p<span class="op">=</span>[<span class="fl">0.4</span>, <span class="fl">0.6</span>])</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcolo del rischio di recidiva basato su regole</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>rischio_recidiva <span class="op">=</span> (</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.6</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> lavoro_stabile) <span class="op">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.5</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> supporto_familiare) <span class="op">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.4</span> <span class="op">*</span> (reato_precedente <span class="op">/</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.3</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">/</span> durata_liberta_vigilata) <span class="op">+</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.2</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">/</span> (eta <span class="op">-</span> <span class="dv">17</span>))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>rischio_recidiva <span class="op">=</span> np.clip(rischio_recidiva, <span class="dv">0</span>, <span class="dv">1</span>)  <span class="co"># Limitare il rischio tra 0 e 1</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Creazione del DataFrame</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">'eta'</span>: eta,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">'durata_liberta_vigilata'</span>: durata_liberta_vigilata,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'reato_precedente'</span>: reato_precedente,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lavoro_stabile'</span>: lavoro_stabile,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'supporto_familiare'</span>: supporto_familiare,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'rischio_recidiva'</span>: rischio_recidiva</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizzazione iniziale dei dati</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Esempio di dati simulati:"</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Esempio di dati simulati:
+   eta  durata_liberta_vigilata  reato_precedente  lavoro_stabile  \
+0   56                       35                 2               0   
+1   69                       51                 1               0   
+2   46                       15                 0               1   
+3   32                       25                 1               0   
+4   60                       55                 1               1   
+
+   supporto_familiare  rischio_recidiva  
+0                   0          1.000000  
+1                   0          1.000000  
+2                   0          0.526897  
+3                   0          1.000000  
+4                   0          0.710106  </code></pre>
+</div>
+</div>
+<p>Si noti che i dati generati sono memorizzati in una struttura dati chiamata Dataframe. Si tratta di una particolare struttura dati fornita dalla libreria pandas di Python che rappresenta essenzialmente una tabella, molto simile a un foglio di calcolo di Excel o a una tabella di un database. Possiamo immaginarla come una griglia con righe e colonne: ogni riga rappresenta un record (in questo caso, una persona) e ogni colonna rappresenta una caratteristica o variabile (come età, tipo di reato, ecc.). Questa struttura dati è diventata molto popolare nel mondo del machine learning perché è molto flessibile e può gestire una grande quantità di dati in modo efficiente. Con questa struttura dati, è possibile eseguire operazioni come la selezione di righe o colonne specifiche, la manipolazione dei dati, la creazione di nuovi dati basati su quelli esistenti e molto altro. Inoltre, le librerie di machine learning come scikit-learn richiedono spesso che i dati siano organizzati in questo formato per poter essere utilizzati.</p>
+</section>
+<section id="esperimento-2-predizione-della-recidiva-parte-b-addestramento-e-test-del-modello" class="level3" data-number="8.12.2">
+<h3 data-number="8.12.2" class="anchored" data-anchor-id="esperimento-2-predizione-della-recidiva-parte-b-addestramento-e-test-del-modello"><span class="header-section-number">8.12.2</span> Esperimento 2: Predizione della recidiva parte B: Addestramento e test del modello</h3>
+<p>In questo esperimento, il modello Random Forest Regressor viene addestrato utilizzando i dati simulati e quindi viene utilizzato per fare previsioni sui dati di test. Per prima cosa, i dati sono divisi in input (X) e output (y), dove X contiene tutte le caratteristiche (ad esempio, età, tipo di reato precedente, ecc.) e y contiene il rischio di recidiva. Successivamente, i dati sono divisi in set di addestramento e test utilizzando la funzione train_test_split di scikit-learn. Il modello Random Forest Regressor viene addestrato utilizzando i dati di addestramento e quindi viene utilizzato per fare previsioni sui dati di test.</p>
+<div id="470569e9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Divisione dei dati in input (X) e output (y)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(<span class="st">'rischio_recidiva'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'rischio_recidiva'</span>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Divisione in training e test set</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Creazione e addestramento del modello Random Forest Regressor</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>rf_model <span class="op">=</span> RandomForestRegressor(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>rf_model.fit(X_train, y_train)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Predizione sui dati di test</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> rf_model.predict(X_test)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Valutazione del modello</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>mse <span class="op">=</span> mean_squared_error(y_test, y_pred)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> r2_score(y_test, y_pred)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Risultati del modello:"</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean Squared Error (MSE): </span><span class="sc">{</span>mse<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R^2 Score: </span><span class="sc">{</span>r2<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Risultati del modello:
+Mean Squared Error (MSE): 0.0004
+R^2 Score: 0.9966</code></pre>
+</div>
+</div>
+</section>
+<section id="esperimento-3-predizione-della-recidiva-parte-c-ottimizzazione-degli-iperparametri-del-modello-e-visualizzazione-dei-risultati" class="level3" data-number="8.12.3">
+<h3 data-number="8.12.3" class="anchored" data-anchor-id="esperimento-3-predizione-della-recidiva-parte-c-ottimizzazione-degli-iperparametri-del-modello-e-visualizzazione-dei-risultati"><span class="header-section-number">8.12.3</span> Esperimento 3: Predizione della recidiva parte C: Ottimizzazione degli iperparametri del modello e visualizzazione dei risultati</h3>
+<p>In questa parte dell’esperimento, viene visualizzato un grafico per confrontare i valori reali di rischio di recidiva con i valori predetti dal modello. Inoltre, viene utilizzato GridSearchCV per ottimizzare gli iperparametri del modello Random Forest Regressor. Questo processo di ottimizzazione è importante perché aiuta a trovare la combinazione migliore di parametri che migliorano le prestazioni del modello. Infine, i risultati dell’ottimizzazione vengono visualizzati in un grafico.</p>
+<div id="cd90e638" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizzazione dei risultati</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test, y_pred, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], <span class="st">'--'</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Predizione Perfetta'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Valori Reali di Rischio di Recidiva"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Valori Predetti di Rischio di Recidiva"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Confronto tra Valori Reali e Predetti"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Ottimizzazione degli iperparametri con GridSearchCV</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'n_estimators'</span>: [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>],</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_depth'</span>: [<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>],</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'min_samples_split'</span>: [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>grid_search <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>rf_model, param_grid<span class="op">=</span>param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'neg_mean_squared_error'</span>, verbose<span class="op">=</span><span class="dv">1</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>grid_search.fit(X_train, y_train)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Migliori parametri trovati con GridSearchCV:"</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grid_search.best_params_)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Addestramento del modello ottimizzato</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>best_rf_model <span class="op">=</span> grid_search.best_estimator_</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Predizione e valutazione con il modello ottimizzato</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>y_pred_optimized <span class="op">=</span> best_rf_model.predict(X_test)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>optimized_mse <span class="op">=</span> mean_squared_error(y_test, y_pred_optimized)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>optimized_r2 <span class="op">=</span> r2_score(y_test, y_pred_optimized)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizzazione dei risultati</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>plt.scatter(y_test, y_pred_optimized, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], <span class="st">'--'</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Predizione Perfetta'</span>)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Valori Reali di Rischio di Recidiva"</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Valori Predetti di Rischio di Recidiva"</span>)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Confronto tra Valori Reali e Predetti  con parametri ottimizzati"</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Risultati del modello ottimizzato:"</span>)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean Squared Error (MSE): </span><span class="sc">{</span>optimized_mse<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R^2 Score: </span><span class="sc">{</span>optimized_r2<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2-6-algoritmi-predittivi_files/figure-html/cell-4-output-1.png" width="663" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting 5 folds for each of 27 candidates, totalling 135 fits
+
+Migliori parametri trovati con GridSearchCV:
+{'max_depth': 10, 'min_samples_split': 2, 'n_estimators': 300}</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="2-6-algoritmi-predittivi_files/figure-html/cell-4-output-3.png" width="663" height="523" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Risultati del modello ottimizzato:
+Mean Squared Error (MSE): 0.0003
+R^2 Score: 0.9967</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="esercizi" class="level2" data-number="8.13">
+<h2 data-number="8.13" class="anchored" data-anchor-id="esercizi"><span class="header-section-number">8.13</span> Esercizi</h2>
+<section id="esercizio-1-analisi-delle-variabili-significative" class="level3" data-number="8.13.1">
+<h3 data-number="8.13.1" class="anchored" data-anchor-id="esercizio-1-analisi-delle-variabili-significative"><span class="header-section-number">8.13.1</span> Esercizio 1: Analisi delle variabili significative</h3>
+<p><strong>Obiettivo</strong>: Identificare le variabili più importanti nel determinare il rischio di recidiva.</p>
+<p>Supponendo di avere un modello di <strong>Random Forest Regressor</strong> già addestrato con i dati di rischio di recidiva:</p>
+<ol type="1">
+<li>Utilizza la funzione <code>feature_importances_</code> della Random Forest per identificare l’importanza relativa delle variabili di input.</li>
+<li>Ordina le variabili in base alla loro importanza decrescente.</li>
+<li>Rispondi alle seguenti domande:
+<ul>
+<li>Quali sono le tre variabili più significative?</li>
+<li>Come pensi che queste variabili influenzino il rischio di recidiva?</li>
+</ul></li>
+</ol>
+</section>
+<section id="esercizio-2-creazione-di-un-dataset-realistico" class="level3" data-number="8.13.2">
+<h3 data-number="8.13.2" class="anchored" data-anchor-id="esercizio-2-creazione-di-un-dataset-realistico"><span class="header-section-number">8.13.2</span> Esercizio 2: Creazione di un dataset realistico</h3>
+<p><strong>Obiettivo</strong>: Simulare un dataset che rifletta il comportamento reale di imputati in libertà vigilata.</p>
+<ol type="1">
+<li>Simula un dataset di almeno 500 imputati includendo le seguenti variabili:
+<ul>
+<li>Età.</li>
+<li>Tipo di reato precedente (furto, violenza, omicidio).</li>
+<li>Durata della libertà vigilata (in mesi).</li>
+<li>Presenza di un lavoro stabile (sì/no).</li>
+<li>Supporto familiare (sì/no).</li>
+</ul></li>
+<li>Assegna il rischio di recidiva utilizzando una funzione che tenga conto delle variabili sopra indicate (ad esempio, un punteggio più alto per imputati senza lavoro stabile o con reati più gravi).</li>
+<li>Visualizza la distribuzione del rischio di recidiva nel dataset utilizzando un grafico.</li>
+</ol>
+</section>
+<section id="esercizio-3-valutazione-di-un-modello-predittivo" class="level3" data-number="8.13.3">
+<h3 data-number="8.13.3" class="anchored" data-anchor-id="esercizio-3-valutazione-di-un-modello-predittivo"><span class="header-section-number">8.13.3</span> Esercizio 3: Valutazione di un modello predittivo</h3>
+<p><strong>Obiettivo</strong>: Valutare le prestazioni di un modello predittivo per il rischio di recidiva.</p>
+<ol type="1">
+<li>Addestra un modello di <strong>Random Forest Regressor</strong> utilizzando un dataset simulato.</li>
+<li>Dividi i dati in training e test set con una proporzione 80/20.</li>
+<li>Valuta il modello utilizzando le seguenti metriche:
+<ul>
+<li><strong>Mean Squared Error (MSE)</strong>.</li>
+<li><strong>R² Score</strong>.</li>
+</ul></li>
+<li>Interpreta i risultati:
+<ul>
+<li>Il modello è efficace? Quali sono i possibili miglioramenti?</li>
+<li>Quali interventi (ad esempio, ottimizzazione degli iperparametri) potresti fare per migliorare le prestazioni?</li>
+</ul></li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bishop2006pattern" class="csl-entry" role="listitem">
+Bishop, Christopher M. 2006. <em>Pattern Recognition and Machine Learning</em>. Springer.
+</div>
+<div id="ref-hastie2009elements" class="csl-entry" role="listitem">
+Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>. Springer.
+</div>
+<div id="ref-compas" class="csl-entry" role="listitem">
+Inc., Northpointe. 2018. <em>Correctional Offender Management Profiling for Alternative Sanctions (COMPAS)</em>. <a href="https://bja.ojp.gov/sites/g/files/xyckuh186/files/media/document/compas.pdf">https://bja.ojp.gov/sites/g/files/xyckuh186/files/media/document/compas.pdf</a>.
+</div>
+<div id="ref-james2013introduction" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2013. <em>An Introduction to Statistical Learning</em>. Springer.
+</div>
+<div id="ref-kuhn2013applied" class="csl-entry" role="listitem">
+Kuhn, Max, and Kjell Johnson. 2013. <em>Applied Predictive Modeling</em>. Springer.
+</div>
+<div id="ref-murphy2012ml" class="csl-entry" role="listitem">
+Murphy, Kevin P. 2012. <em>Machine Learning: A Probabilistic Perspective</em>. MIT Press.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "capitanio/laboratorio-ia";
+    script.dataset.repoId = "";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./2-5-algoritmi-equitativi.html" class="pagination-link" aria-label="Algoritmi Equitativi">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algoritmi Equitativi</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./3-machine learning.html" class="pagination-link" aria-label="Machine learning">
+        <span class="nav-page-text">Machine learning</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Laboratorio di Intelligenza Artificiale (1e) scritto da Luciano Capitanio.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Draft - Licenza Apache ver. 2</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

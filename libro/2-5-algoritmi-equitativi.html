@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Algoritmi Equitativi – Laboratorio di Intelligenza Artificiale</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./2-6-algoritmi-predittivi.html" rel="next">
+<link href="./2-4-algoritmi-di-ricerca.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-254d8caa02a4f51d576d86802a86f2db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e5911a59318b73639a72866017db9c42.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-254d8caa02a4f51d576d86802a86f2db.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="epub.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2-algoritmi.html">Algoritmi</a></li><li class="breadcrumb-item"><a href="./2-5-algoritmi-equitativi.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algoritmi Equitativi</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Laboratorio di Intelligenza Artificiale</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefazione dell’autore{.unnumbered}</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0-introduzione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduzione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-Turing-vs-Searle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Turing vs Searle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./2-algoritmi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Algoritmi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-1-inferenza-logica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Inferenza Logica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-2-inferenza-probabilistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferenza Probabilistica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-3-inferenza-bayesiana.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inferenza Bayesiana</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-4-algoritmi-di-ricerca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmi di Ricerca</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-5-algoritmi-equitativi.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algoritmi Equitativi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-6-algoritmi-predittivi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algoritmi Predittivi</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./3-machine learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-1-apprendimento-supervisionato.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Apprendimento Supervisionato</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-2-apprendimento-non-supervisionato.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Apprendimento Non Supervisionato</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-3-bias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-4-regressione-lineare-e-logistica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regressione Lineare e Logistica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-5-perceptrone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Percetptrone</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-6-deep-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Deep learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-7-elaborazione-linguaggio-naturale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Elaborazione del Linguaggio Naturale</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bibliografia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Bibliografia</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduzione" id="toc-introduzione" class="nav-link active" data-scroll-target="#introduzione"><span class="header-section-number">7.1</span> Introduzione</a></li>
+  <li><a href="#glossario-regole-e-assunzioni" id="toc-glossario-regole-e-assunzioni" class="nav-link" data-scroll-target="#glossario-regole-e-assunzioni"><span class="header-section-number">7.2</span> glossario, regole e assunzioni</a>
+  <ul class="collapse">
+  <li><a href="#glossario" id="toc-glossario" class="nav-link" data-scroll-target="#glossario"><span class="header-section-number">7.2.1</span> glossario</a></li>
+  <li><a href="#sec-regole" id="toc-sec-regole" class="nav-link" data-scroll-target="#sec-regole"><span class="header-section-number">7.2.2</span> Regole</a></li>
+  <li><a href="#sec-assunzioni" id="toc-sec-assunzioni" class="nav-link" data-scroll-target="#sec-assunzioni"><span class="header-section-number">7.2.3</span> Assunzioni</a></li>
+  </ul></li>
+  <li><a href="#algoritmi-di-ripartizione-equitativa" id="toc-algoritmi-di-ripartizione-equitativa" class="nav-link" data-scroll-target="#algoritmi-di-ripartizione-equitativa"><span class="header-section-number">7.3</span> Algoritmi di Ripartizione Equitativa</a>
+  <ul class="collapse">
+  <li><a href="#sec-divisioneequasemplice" id="toc-sec-divisioneequasemplice" class="nav-link" data-scroll-target="#sec-divisioneequasemplice"><span class="header-section-number">7.3.1</span> Il problema della divisione equa</a></li>
+  <li><a href="#valore-soggettivo-di-un-bene" id="toc-valore-soggettivo-di-un-bene" class="nav-link" data-scroll-target="#valore-soggettivo-di-un-bene"><span class="header-section-number">7.3.2</span> Valore soggettivo di un bene</a></li>
+  <li><a href="#mitigazione-dellinvidia" id="toc-mitigazione-dellinvidia" class="nav-link" data-scroll-target="#mitigazione-dellinvidia"><span class="header-section-number">7.3.3</span> Mitigazione dell’invidia</a></li>
+  </ul></li>
+  <li><a href="#laboratorio-python" id="toc-laboratorio-python" class="nav-link" data-scroll-target="#laboratorio-python"><span class="header-section-number">7.4</span> Laboratorio Python</a>
+  <ul class="collapse">
+  <li><a href="#sec-divisioneequasempliceinPython" id="toc-sec-divisioneequasempliceinPython" class="nav-link" data-scroll-target="#sec-divisioneequasempliceinPython"><span class="header-section-number">7.4.1</span> Esperimento 1: Algoritmo di divisione equa semplice</a></li>
+  <li><a href="#sec-divisioneequaenvyfreeinPython" id="toc-sec-divisioneequaenvyfreeinPython" class="nav-link" data-scroll-target="#sec-divisioneequaenvyfreeinPython"><span class="header-section-number">7.4.2</span> Esperimento 2: Algoritmo di divisione equa senza invidia</a></li>
+  </ul></li>
+  <li><a href="#esercizi" id="toc-esercizi" class="nav-link" data-scroll-target="#esercizi"><span class="header-section-number">7.5</span> esercizi</a>
+  <ul class="collapse">
+  <li><a href="#esercizio-1-divisione-equa-di-una-torta" id="toc-esercizio-1-divisione-equa-di-una-torta" class="nav-link" data-scroll-target="#esercizio-1-divisione-equa-di-una-torta"><span class="header-section-number">7.5.1</span> Esercizio 1: divisione equa di una torta</a></li>
+  <li><a href="#esercizio-2-divisione-beni-indivisibili-con-valori-soggettivi" id="toc-esercizio-2-divisione-beni-indivisibili-con-valori-soggettivi" class="nav-link" data-scroll-target="#esercizio-2-divisione-beni-indivisibili-con-valori-soggettivi"><span class="header-section-number">7.5.2</span> Esercizio 2: divisione beni indivisibili con valori soggettivi</a></li>
+  <li><a href="#esercizio-3-divisione-di-beni-indivisibili-con-valutazioni-soggettive" id="toc-esercizio-3-divisione-di-beni-indivisibili-con-valutazioni-soggettive" class="nav-link" data-scroll-target="#esercizio-3-divisione-di-beni-indivisibili-con-valutazioni-soggettive"><span class="header-section-number">7.5.3</span> Esercizio 3: divisione di beni indivisibili con valutazioni soggettive</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2-algoritmi.html">Algoritmi</a></li><li class="breadcrumb-item"><a href="./2-5-algoritmi-equitativi.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algoritmi Equitativi</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Algoritmi Equitativi</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduzione" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="introduzione"><span class="header-section-number">7.1</span> Introduzione</h2>
+<p>In questo capitolo, esploreremo gli algoritmi di ripartizione equitativa, utili per garantire che le risorse o i beni siano distribuiti in modo equo tra le parti interessate in vari scenari, dalla divisione dei beni durante un divorzio alla distribuzione di fondi di emergenza in situazioni di crisi.</p>
+<p>I criteri di equità applicabili possono variare in base al contesto e alle esigenze specifiche. Alcuni criteri comuni esposti in <span class="citation" data-cites="BramsTaylor1996">(<a href="#ref-BramsTaylor1996" role="doc-biblioref">Brams and Taylor 1996</a>)</span> includono:</p>
+<ul>
+<li><strong>Proporzionalità</strong>: Ogni partecipante riceve una quota proporzionale alle proprie pretese o contributi.</li>
+<li><strong>Invidia-zero</strong>: Nessun partecipante deve preferire la parte assegnata a un altro partecipante alla propria parte.</li>
+<li><strong>Efficienza Pareto</strong>: Non è possibile riassegnare le risorse in modo che qualcuno sia in una situazione migliore senza che qualcun altro sia in una situazione peggiore.</li>
+<li><strong>Equità equitativa</strong>: Ogni partecipante percepisce di aver ricevuto una parte equa in base a criteri specifici.</li>
+</ul>
+<p>Gli algoritmi di suddivisione equa cercano di trovare soluzioni che bilancino questi criteri, a seconda delle specifiche esigenze del contesto in cui vengono applicati come descritto da <span class="citation" data-cites="RobertsonWebb1998">(<a href="#ref-RobertsonWebb1998" role="doc-biblioref">Robertson and Webb 1998</a>)</span>.</p>
+</section>
+<section id="glossario-regole-e-assunzioni" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="glossario-regole-e-assunzioni"><span class="header-section-number">7.2</span> glossario, regole e assunzioni</h2>
+<section id="glossario" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="glossario"><span class="header-section-number">7.2.1</span> glossario</h3>
+<ul>
+<li><strong>agenti partecipanti :</strong> gli agenti o partecipanti che devono mettersi d’accordo sulla divisione di un certo numero di beni.</li>
+<li><strong>beni :</strong> gli oggetti o le risorse che devono essere suddivisi tra gli agenti.</li>
+<li><strong>Beni divisibili :</strong> beni che possono essere suddivisi in parti più piccole senza perdere il loro valore intrinseco (es. cibo, denaro o immobili).</li>
+<li><strong>Beni indivisibili :</strong> beni che non possono essere suddivisi senza perdere il loro valore o funzionalità (es. un’auto, un’opera d’arte o un ruolo o incarico specifico).</li>
+<li><strong>Beni Combinati :</strong> beni che sono una combinazione di elementi divisibili e indivisibili (es. un’azienda, un’iniziativa di beneficenza o un’organizzazione).</li>
+<li><strong>Beni con Valore Soggettivo</strong>: come oggetti con valore sentimentale o elementi artistici o culturali, il cui valore può dipendere dal gusto personale.</li>
+<li><strong>Beni con Valore Complesso</strong>: come proprietà immobiliari o attività commerciali, che possono avere un valore complesso che dipende dalla loro funzionalità e dalla loro posizione.</li>
+<li><strong>Beni Temporanei :</strong> beni che possono essere utilizzati per un certo periodo di tempo e poi riassegnati (es. uso di risorse comuni, servizi o turni di lavoro).</li>
+<li><strong>Beni Digitali :</strong> beni che possono essere duplicati e condivisi senza perdere valore (es. software, contenuti digitali).</li>
+</ul>
+</section>
+<section id="sec-regole" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="sec-regole"><span class="header-section-number">7.2.2</span> Regole</h3>
+<p>Affinché la divisione di un bene S sia equa in <span class="citation" data-cites="Moulin2003">(<a href="#ref-Moulin2003" role="doc-biblioref">Moulin 2003</a>)</span> si osserva che devono essere soddisfatte le seguenti condizioni:</p>
+<ul>
+<li>i giocatori devono essere partecipanti volontari e accettare le regole del gioco come vincolanti.</li>
+<li>I giocatori devono agire razionalmente secondo il loro sistema di credenze.</li>
+<li>Le regole della matematica si applicano quando si assegnano valori agli oggetti in S.</li>
+<li>Solo i giocatori sono coinvolti nel gioco, non ci sono agenti esterni come avvocati o altri intermediari.</li>
+</ul>
+<p>Se i giocatori seguono le regole, il gioco terminerà dopo un numero finito di mosse dei giocatori e risulterà in una divisione di S.</p>
+</section>
+<section id="sec-assunzioni" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="sec-assunzioni"><span class="header-section-number">7.2.3</span> Assunzioni</h3>
+<p>Gli algoritmi si basano sulle seguenti assunzionimere quanto segue:</p>
+<ul>
+<li>Tutti i giocatori giocano in modo corretto.</li>
+<li>Non hanno informazioni precedenti sui gusti o le avversioni degli altri giocatori.</li>
+<li>Non assegnano valori in modo da manipolare il gioco.</li>
+<li>Tutti i giocatori hanno uguali diritti nella condivisione dell’insieme S. In altre parole, se ci sono tre giocatori, ogni giocatore ha diritto ad almeno 1/3 di S.</li>
+</ul>
+<p>Se queste assunzioni non sono soddisfatte, la divisione potrebbe non essere completamente equa.</p>
+</section>
+</section>
+<section id="algoritmi-di-ripartizione-equitativa" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="algoritmi-di-ripartizione-equitativa"><span class="header-section-number">7.3</span> Algoritmi di Ripartizione Equitativa</h2>
+<section id="sec-divisioneequasemplice" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="sec-divisioneequasemplice"><span class="header-section-number">7.3.1</span> Il problema della divisione equa</h3>
+<p>Un problema tipico di ripartizione equa può essere formulato come segue: Alice, Bruno, Carla e Davide hanno una torta. La torta è divisa in 4 parti non necessariamente uguali e non con la stessa farcitura e/o copertura. In questo caso le porzioni di torta si intendono indivisibili. Questa assunzione è importante perché se le porzioni di torta fossero divisibili, allora la soluzione sarebbe banale. Ognuno dei 4 partecipanti ha una sua preferenza per ognuna delle quattro parti. Le preferenze sono riassunte nella seguente tabella:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td>50%</td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>30%</td>
+<td>30%</td>
+<td>10%</td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>40%</td>
+<td>20%</td>
+<td>20%</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>La domanda che ci si pone è: Quale porzione di torta considererebbe equa ogni giocatore? È importante ricordare che un algoritmo di ripartizione equa si basa sulle assunzioni del paragrafo <a href="#sec-assunzioni" class="quarto-xref"><span>7.2.3</span></a>. Pertanto, ogni giocatore ha espresso la propria preferenza senza conoscere le preferenze degli altri partecipanti.</p>
+<p>Un semplice algoritmo di ripartizione equa descritto in <span class="citation" data-cites="BramsTaylor1996">(<a href="#ref-BramsTaylor1996" role="doc-biblioref">Brams and Taylor 1996</a>)</span>può essere descritto come segue:</p>
+<pre><code>1. **Preparazione:**
+   - Prendi le preferenze di ogni partecipante.
+   - Crea una lista dei partecipanti e una lista delle loro preferenze per ogni porzione.
+
+2. **Assegnazione:**
+   - Per ogni porzione disponibile:
+     - Trova il partecipante che preferisce di più quella porzione tra quelli che non hanno ancora ricevuto una porzione.
+     - Assegna quella porzione a quel partecipante.
+
+3. **Risultato:**
+   - Crea un elenco dove ogni partecipante è associato alla porzione che ha ricevuto.
+</code></pre>
+<p>Questo algoritmo assegna le porzioni di torta in base alle preferenze dei partecipanti, garantendo che ogni partecipante riceva almeno una porzione. Applicando questo semplice algoritmo al esempio sopra descritto si ottiene la soluzione illustrata nella tabella seguente, dove è evidenziata in grassetto la porzione assegnata a ciascun giocatore, rispettando le preferenze manifestate.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td><strong>50%</strong></td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>30%</td>
+<td>30%</td>
+<td>10%</td>
+<td><strong>30%</strong></td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td><strong>40%</strong></td>
+<td>20%</td>
+<td>20%</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td><strong>25%</strong></td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>Si veda il paragrafo <a href="#sec-divisioneequasempliceinPython" class="quarto-xref"><span>7.4.1</span></a> per una implementazione in Python di questo algoritmo.</p>
+<p>Evidentemente, l’algoritmo proposto non è l’unica soluzione possibile e può dare origine a situazioni di iniquità o di conflitti. Ad esempio se le preferenze dei partecipanti sono:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td>50%</td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>30%</td>
+<td>30%</td>
+<td>10%</td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>20%</td>
+<td>40%</td>
+<td>20%</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>Si noti il conflitto tra Alice e Carla per la porzione 2. La soluzione a cui arriva l’algoritmo visto è:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td><strong>50%</strong></td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td><strong>30%</strong></td>
+<td>30%</td>
+<td>10%</td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>40%</td>
+<td>20%</td>
+<td>20%</td>
+<td><strong>20%</strong></td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td><strong>25%</strong></td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>In questo caso, Carla riceve una porzione per la quale ha espresso un interesse minore e potrebbe invidiare Alice, che ha ottenuto proprio la porzione che lei avrebbe preferito.</p>
+</section>
+<section id="valore-soggettivo-di-un-bene" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="valore-soggettivo-di-un-bene"><span class="header-section-number">7.3.2</span> Valore soggettivo di un bene</h3>
+<p>Prima di trattare l’argomento dell’invidia, c’è un altro aspetto interessante da approfondire: il valore soggettivo del bene. Ad esempio, nella suddivisione esaminata, se la torta costa 18 €, quale sarebbe il valore economico di ogni porzione di torta per ciascun partecipante? Tenendo conto che le preferenze sono le seguenti:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td>50%</td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>30%</td>
+<td>30%</td>
+<td>10%</td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>40%</td>
+<td>20%</td>
+<td>20%</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p>Alice ha il 50% di prefernenze per la porzione 2 quindi per lei la porzione 2 vale il 50% di 18€ = 9€ e così via. La tabella dei valori delle singole perzioni per ogni partecipante è la seguente:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>porzione 1</th>
+<th>porzione 2</th>
+<th>porzione 3</th>
+<th>porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>1,80€</td>
+<td>9,00€</td>
+<td>5,40€</td>
+<td>1,80€</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>5,40€</td>
+<td>5,40€</td>
+<td>1,80€</td>
+<td>5,40€</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>7,20€</td>
+<td>3,60€</td>
+<td>3,60€</td>
+<td>3,60€</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>4,50€</td>
+<td>4,50€</td>
+<td>4,50€</td>
+<td>4,50€</td>
+</tr>
+</tbody>
+</table>
+<p>Vediamo un altro esempio di calcolo del valore soggettivo di un bene. Alice vede una torta che costa 18€ di cui una metà al cioccolato e l’altra al pistacchio. Ad Alice piace il cioccolato molto più che il pistacchio. Quindi, Alice valuta la porzione al cioccolato al 90% e la porzione al pistacchio al 10%. Quindi Alice valuta la metà al cioccolato al 90% di 18€ = 16,20€ e la metà al pistacchio al 10% di 18€ = 1,80€.</p>
+<p>In generale, il valore soggettivo di un bene può essere influenzato da una varietà di fattori, che riflettono le percezioni individuali e le circostanze specifiche. Ecco alcuni degli aspetti principali che possono influenzare il valore soggettivo:</p>
+<ul>
+<li><em>Scarsità</em> : Un bene raro o difficile da reperire tende ad avere un valore soggettivo più elevato1. Domanda: La popolarità o la desiderabilità di un bene possono aumentarne il valore percepito1.</li>
+<li><em>Preferenze personali</em> : Gli interessi, i gusti e le preferenze individuali giocano un ruolo significativo nel determinare il valore di un bene per una persona1.</li>
+<li><em>Significato culturale</em> : Il valore di un bene può essere influenzato dal suo significato o dalla sua importanza in una determinata cultura.</li>
+<li><em>Circostanze situazionali</em> : Eventi specifici o situazioni particolari possono alterare il valore di un bene. Ad esempio, l’acqua potrebbe avere un valore molto più alto in un deserto rispetto a una città2.</li>
+<li><em>Affinità personale</em> : Il legame emotivo o la storia personale con un bene possono aumentarne il valore per un individuo2.</li>
+<li><em>Incertezza e mancanza di conoscenza</em> : A volte le persone possono valutare l’importanza di un bene in modo non conforme alla sua reale importanza a causa dell’incertezza o della mancanza di informazioni.</li>
+</ul>
+<p>Questi fattori dimostrano che il valore di un bene non è fisso o intrinseco, ma è piuttosto determinato dalle percezioni e dalle circostanze individuali. La teoria del valore soggettivo sostiene che il valore di un bene dipende dall’ambiente e dalle persone che lo percepiscono, piuttosto che dai costi di produzione o dal lavoro necessario per crearlo1.</p>
+</section>
+<section id="mitigazione-dellinvidia" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="mitigazione-dellinvidia"><span class="header-section-number">7.3.3</span> Mitigazione dell’invidia</h3>
+<p>Come anticipato, è necessario approfondire il problema della divisione equa senza invidia affrontato nel dettaglio in <span class="citation" data-cites="Procaccia2013">(<a href="#ref-Procaccia2013" role="doc-biblioref">Procaccia 2013</a>)</span> al quale si rimanda per ulteriori approfondimenti sul tema. Immaginiamo due amici, Alice e Bruno, che devono dividersi una serie di oggetti di valore in modo che nessuno dei due si senta invidioso dell’altro. Ad esempio, supponiamo che Alice e Bruno debbano dividersi i seguenti beni indivisibili con le rispettive valutazioni avendo ognuno a disposizione 10 punti da assegnare in totale:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Oggetto</th>
+<th>Alice</th>
+<th>Bruno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>orologio</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>libro</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>penna</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>quadro</td>
+<td>2</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Per tenere conto dell’invidia l’algoritmo proposto nel precedente paragrafo <a href="#sec-divisioneequasemplice" class="quarto-xref"><span>7.3.1</span></a> non è sufficiente e può essere modificato come segue come discusso in <span class="citation" data-cites="Lipton2004">(<a href="#ref-Lipton2004" role="doc-biblioref">Lipton et al. 2004</a>)</span>:</p>
+<pre><code>1. **Preparazione:**
+   - Prendi le preferenze di ogni partecipante.
+   - Ordina le preferenze di ogni partecipante in ordine decrescente.
+
+2. **Processo Iterativo:**
+   - **Prima Fase - Assegnazione Tentativa:**
+     - Inizia con la porzione che ha il punteggio più alto per ogni partecipante.
+     - Ogni partecipante "propone" la sua porzione preferita.
+     - Se una porzione è proposta da più partecipanti, scegli quello che la preferisce di più (in caso di pari merito, scegli arbitrariamente).
+
+   - **Seconda Fase - Risoluzione delle invidie:**
+     - Controlla se esiste invidia:
+       - Per ogni partecipante, confronta la sua porzione assegnata con quella di ogni altro partecipante. Se preferisce la porzione di un altro, si dice che "invidia" quell'altro partecipante.
+     - Se c'è invidia:
+       - Il partecipante invidioso "prova" a prendere la porzione invidiata.
+       - Se il possessore attuale della porzione preferisce ancora la sua attuale porzione rispetto a quella che potrebbe ottenere, mantiene la sua.
+       - Altrimenti, scambiano le porzioni.
+     - Ripeti questo processo finché non ci sono più invidie.
+
+3. **Risultato:**
+   - L'allocazione finale è dove nessuna persona invidia l'altra.</code></pre>
+<p>Applicando questo algoritmo alle preferenze di Alice e Bruno, otteniamo la allocazione descritta dalla seguente tabella, dove 0 e 1 indicano bene non allocato e bene allocato rispettivamente:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>partecipante</th>
+<th>orologio</th>
+<th>libro</th>
+<th>penna</th>
+<th>quadro</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Alice riceve l’orologio e il quadro, mentre Bruno riceve il libro e la penna, garantendo che nessuno dei due si senta invidioso dell’altro. Nel paragrafo <a href="#sec-divisioneequaenvyfreeinPython" class="quarto-xref"><span>7.4.2</span></a> è mostrata l’implementazione di un algoritmo di divisione equa senza invidia in Python.</p>
+<p>Per chi volesse applicare gli algoritmi equitativi in casi reali su una piattaforma online si segnala l’interessante sito web <a href="http://www.spliddit.org/"><strong>Spliddit Algorithms</strong></a> che fornisce un’ampia gamma di algoritmi equitativi <span class="citation" data-cites="goldman2014spliddit">(<a href="#ref-goldman2014spliddit" role="doc-biblioref">Goldman and Procaccia 2014</a>)</span>.</p>
+</section>
+</section>
+<section id="laboratorio-python" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="laboratorio-python"><span class="header-section-number">7.4</span> Laboratorio Python</h2>
+<section id="sec-divisioneequasempliceinPython" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="sec-divisioneequasempliceinPython"><span class="header-section-number">7.4.1</span> Esperimento 1: Algoritmo di divisione equa semplice</h3>
+<p>Il codice che segue è l’implementazione dell’algorimo di divisione equa semplice.</p>
+<div id="baa17d11" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> divisione_equa(preferenze):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. **Inizializzazione** : Converti il dizionario delle preferenze in una lista </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># di tuple per una gestione più semplice</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    partecipanti <span class="op">=</span> <span class="bu">list</span>(preferenze.keys())</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    valori_preferenze <span class="op">=</span> <span class="bu">list</span>(preferenze.values())</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Numero di partecipanti e porzioni</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    num_partecipanti <span class="op">=</span> <span class="bu">len</span>(partecipanti)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    num_porzioni <span class="op">=</span> <span class="bu">len</span>(valori_preferenze[<span class="dv">0</span>])</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inizializza la lista di allocazione</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    allocazione <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> num_partecipanti</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    porzioni_usate <span class="op">=</span> [<span class="va">False</span>] <span class="op">*</span> num_porzioni</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. **Funzione `trova_preferenza_massima`** : Funzione per trovare il partecipante </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># con la preferenza più alta per una data porzione</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> trova_preferenza_massima(porzione):</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        preferenza_massima <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        indice_partecipante <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_partecipanti):</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> valori_preferenze[i][porzione] <span class="op">&gt;</span> preferenza_massima <span class="kw">and</span> allocazione[i] <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>:</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                preferenza_massima <span class="op">=</span> valori_preferenze[i][porzione]</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                indice_partecipante <span class="op">=</span> i</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> indice_partecipante</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. **Assegnazione delle Porzioni** : Assegna le porzioni ai partecipanti</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> porzione <span class="kw">in</span> <span class="bu">range</span>(num_porzioni):</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        indice_partecipante <span class="op">=</span> trova_preferenza_massima(porzione)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        allocazione[indice_partecipante] <span class="op">=</span> porzione</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        porzioni_usate[porzione] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. **Creazione del Risultato** : Crea un dizionario di risultato per mappare </span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># i partecipanti alle loro porzioni allocate</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    risultato <span class="op">=</span> {partecipanti[i]: <span class="ss">f"porzione </span><span class="sc">{</span>allocazione[i] <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="op">\</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_partecipanti)}</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> risultato</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. **Esecuzione del Codice**: Esegui il codice con le preferenze fornite</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Preferenze dei partecipanti</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>preferenze <span class="op">=</span> {</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Alice'</span>: [<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">30</span>, <span class="dv">10</span>],  <span class="co"># Preferenze per le porzioni 1, 2, 3, e 4</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bruno'</span>: [<span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">10</span>, <span class="dv">30</span>],</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Carla'</span>: [<span class="dv">40</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>],</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Davide'</span>: [<span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">25</span>]</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Preferenze dei partecipanti:"</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> preferenze:</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(p, preferenze[p])</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Trova la divisione equa delle porzioni</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>allocazione <span class="op">=</span> divisione_equa(preferenze)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Stampa il risultato</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Una divisione equa delle porzioni è la seguente:"</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> partecipante, porzione <span class="kw">in</span> allocazione.items():</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>partecipante<span class="sc">}</span><span class="ss"> riceve </span><span class="sc">{</span>porzione<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Preferenze dei partecipanti:
+Alice [10, 50, 30, 10]
+Bruno [30, 30, 10, 30]
+Carla [40, 20, 20, 20]
+Davide [25, 25, 25, 25]
+Una divisione equa delle porzioni è la seguente:
+Alice riceve porzione 2
+Bruno riceve porzione 4
+Carla riceve porzione 1
+Davide riceve porzione 3</code></pre>
+</div>
+</div>
+<p>Il semplice codice Python proposto implementa un algoritmpo di divisione equa nel seguente modo:</p>
+<ol type="1">
+<li><strong>Inizializzazione</strong>:
+<ul>
+<li>Convertiamo il dizionario delle preferenze in una lista di tuple per una gestione più semplice.</li>
+<li>Otteniamo i nomi dei partecipanti e le loro preferenze.</li>
+<li>Inizializziamo le liste <code>allocazione</code> e <code>porzioni_usate</code> per tenere traccia delle porzioni assegnate e delle porzioni già utilizzate.</li>
+</ul></li>
+<li><strong>Funzione <code>trova_preferenza_massima</code></strong>:
+<ul>
+<li>Questa funzione trova il partecipante con la preferenza più alta per una data porzione che non ha ancora ricevuto una porzione.</li>
+<li>Scorre tutti i partecipanti e confronta le loro preferenze per la porzione corrente, restituendo l’indice del partecipante con la preferenza massima.</li>
+</ul></li>
+<li><strong>Assegnazione delle Porzioni</strong>:
+<ul>
+<li>Per ogni porzione, troviamo il partecipante con la preferenza più alta utilizzando la funzione <code>trova_preferenza_massima</code>.</li>
+<li>Assegniamo la porzione a quel partecipante e segniamo la porzione come utilizzata.</li>
+</ul></li>
+<li><strong>Creazione del Risultato</strong>:
+<ul>
+<li>Creiamo un dizionario <code>risultato</code> che mappa i partecipanti alle loro porzioni assegnate.</li>
+<li>Restituiamo il dizionario <code>risultato</code>.</li>
+</ul></li>
+<li><strong>Esecuzione del Codice</strong>:
+<ul>
+<li>Definiamo le preferenze dei partecipanti.</li>
+<li>Chiamiamo la funzione <code>divisione_equa</code> per ottenere la divisione delle porzioni.</li>
+<li>Stampiamo il risultato.</li>
+</ul></li>
+</ol>
+</section>
+<section id="sec-divisioneequaenvyfreeinPython" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="sec-divisioneequaenvyfreeinPython"><span class="header-section-number">7.4.2</span> Esperimento 2: Algoritmo di divisione equa senza invidia</h3>
+<p>Nwl seguito si propone una implementazione dell’algoritmo envy free in Python nel caso di beni indivisibili:</p>
+<div id="b0c55099" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> allocazione_senza_invidia(beni, valutazioni):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Algoritmo senza invidia per la divisione di beni indivisibili tra più persone.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    beni: lista di beni da dividere</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    valutazioni: dizionario con le valutazioni dei beni per ciascun partecipante</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    partecipanti <span class="op">=</span> <span class="bu">list</span>(valutazioni.keys())</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inizializzazione delle assegnazioni</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    assegnazione <span class="op">=</span> {p: [] <span class="cf">for</span> p <span class="kw">in</span> partecipanti}</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    valori_totali <span class="op">=</span> {p: <span class="dv">0</span> <span class="cf">for</span> p <span class="kw">in</span> partecipanti}</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ordinamento dei beni in base alla somma delle valutazioni di tutti</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    beni_ordinati <span class="op">=</span> <span class="bu">sorted</span>(beni, </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                          key<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">sum</span>(valutazioni[p][x] <span class="cf">for</span> p <span class="kw">in</span> partecipanti), </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                          reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prima assegnazione dei beni</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bene <span class="kw">in</span> beni_ordinati:</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Trova il partecipante con il valore totale minimo</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        min_partecipante <span class="op">=</span> <span class="bu">min</span>(partecipanti, key<span class="op">=</span><span class="kw">lambda</span> p: valori_totali[p])</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        assegnazione[min_partecipante].append(bene)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        valori_totali[min_partecipante] <span class="op">+=</span> valutazioni[min_partecipante][bene]</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Verifica e correzione delle invidie</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bene <span class="kw">in</span> beni_ordinati:</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> p1 <span class="kw">in</span> partecipanti:</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> p2 <span class="kw">in</span> partecipanti:</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> p1 <span class="op">!=</span> p2 <span class="kw">and</span> bene <span class="kw">in</span> assegnazione[p2]:</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> valutazioni[p1][bene] <span class="op">&gt;</span> valutazioni[p2][bene] <span class="kw">and</span> <span class="op">\</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>                       valori_totali[p1] <span class="op">&lt;</span> valori_totali[p2]:</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>                        assegnazione[p2].remove(bene)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>                        assegnazione[p1].append(bene)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>                        valori_totali[p1] <span class="op">+=</span> valutazioni[p1][bene]</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>                        valori_totali[p2] <span class="op">-=</span> valutazioni[p2][bene]</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> assegnazione</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>L’algoritmo implementa una divisione equa di beni indivisibili tra più persone, cercando di minimizzare l’invidia tra i partecipanti. Analizziamo il codice passo per passo.</p>
+<ol type="1">
+<li><p><strong>Definizione della Funzione</strong>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> allocazione_senza_invidia(beni, valutazioni):</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Definisce una funzione chiamata <code>allocazione_senza_invidia</code> che accetta due parametri:
+<ul>
+<li>beni: lista degli oggetti da dividere</li>
+<li>valutazioni: dizionario con le valutazioni di ogni partecipante per ogni bene</li>
+</ul></li>
+</ul></li>
+<li><p><strong>Inizializzazione delle Assegnazioni</strong>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>partecipanti <span class="op">=</span> <span class="bu">list</span>(valutazioni.keys())</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>assegnazione <span class="op">=</span> {p: [] <span class="cf">for</span> p <span class="kw">in</span> partecipanti}</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>valori_totali <span class="op">=</span> {p: <span class="dv">0</span> <span class="cf">for</span> p <span class="kw">in</span> partecipanti}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Questa fase</p>
+<ul>
+<li>Estrae la lista dei partecipanti</li>
+<li>Crea un dizionario vuoto per tracciare i beni assegnati</li>
+<li>Inizializza a zero i valori totali per ogni partecipante</li>
+</ul></li>
+<li><p><strong>Ordinamento dei Beni</strong>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>beni_ordinati <span class="op">=</span> <span class="bu">sorted</span>(beni, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                       key<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">sum</span>(valutazioni[p][x] <span class="cf">for</span> p <span class="kw">in</span> partecipanti), reverse<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>I beni vengono ordinati in base al loro valore totale (somma delle valutazioni di tutti i partecipanti) in ordine decrescente.</li>
+</ul></li>
+<li><p><strong>Prima assegnazione dei Beni</strong>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bene <span class="kw">in</span> beni_ordinati:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  min_partecipante <span class="op">=</span> <span class="bu">min</span>(partecipanti, key<span class="op">=</span><span class="kw">lambda</span> p: valori_totali[p])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  assegnazione[min_partecipante].append(bene)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  valori_totali[min_partecipante] <span class="op">+=</span> valutazioni[min_partecipante][bene]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Per ogni bene:</p>
+<ul>
+<li>Trova il partecipante con il minor valore totale</li>
+<li>Assegna il bene a quel partecipante</li>
+<li>Aggiorna il valore totale del partecipante</li>
+</ul></li>
+<li><p><strong>Verifica e Correzione delle Invidie</strong>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bene <span class="kw">in</span> beni_ordinati:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p1 <span class="kw">in</span> partecipanti:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p2 <span class="kw">in</span> partecipanti:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> p1 <span class="op">!=</span> p2 <span class="kw">and</span> bene <span class="kw">in</span> assegnazione[p2]:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> valutazioni[p1][bene] <span class="op">&gt;</span> valutazioni[p2][bene] <span class="kw">and</span> <span class="op">\</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>               valori_totali[p1] <span class="op">&lt;</span> valori_totali[p2]:</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                assegnazione[p2].remove(bene)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                assegnazione[p1].append(bene)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                valori_totali[p1] <span class="op">+=</span> valutazioni[p1][bene]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                valori_totali[p2] <span class="op">-=</span> valutazioni[p2][bene]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Questa fase verifica e corregge eventuali invidie:</p>
+<ul>
+<li>Controlla ogni coppia di partecipanti</li>
+<li>Se un partecipante valuta più un bene assegnato a un altro e ha un valore totale minore di quello dell’altro, effettua uno scambio di beni.</li>
+</ul></li>
+<li><p><strong>Ritorno delle Assegnazioni</strong>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> assegnazione</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Restituisce il dizionario delle assegnazioni finali.</li>
+</ul></li>
+</ol>
+<p><strong>Caso d’Uso</strong></p>
+<p>Divisione di una serie di oggetti di valore tra Alice e Bruno, in modo che nessuno dei due si senta invidioso dell’altro. Ad esempio, supponiamo che Alice e Bruno debbano dividersi i seguenti beni con le rispettive valutazioni personali:</p>
+<div id="aafa45db" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>beni <span class="op">=</span> [<span class="st">'orologio'</span>, <span class="st">'libro'</span>, <span class="st">'penna'</span>, <span class="st">'quadro'</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>valutazioni <span class="op">=</span> {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Alice'</span>: {<span class="st">'orologio'</span>: <span class="dv">4</span>, <span class="st">'libro'</span>: <span class="dv">2</span>, <span class="st">'penna'</span>: <span class="dv">2</span>, <span class="st">'quadro'</span>: <span class="dv">2</span>},</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bruno'</span>: {<span class="st">'orologio'</span>: <span class="dv">2</span>, <span class="st">'libro'</span>: <span class="dv">3</span>, <span class="st">'penna'</span>: <span class="dv">3</span>, <span class="st">'quadro'</span>: <span class="dv">2</span>}</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Utilizzando la funzione <code>allocazione_senza_invidia</code>, possiamo ottenere una divisione equa:</p>
+<div id="9647a204" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>risultato <span class="op">=</span> allocazione_senza_invidia(beni, valutazioni)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Allocazione finale:"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> persona, oggetti <span class="kw">in</span> risultato.items():</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>persona<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>oggetti<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Allocazione finale:
+Alice: ['orologio', 'quadro']
+Bruno: ['libro', 'penna']</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="esercizi" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="esercizi"><span class="header-section-number">7.5</span> esercizi</h2>
+<section id="esercizio-1-divisione-equa-di-una-torta" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="esercizio-1-divisione-equa-di-una-torta"><span class="header-section-number">7.5.1</span> Esercizio 1: divisione equa di una torta</h3>
+<p>Hai quattro partecipanti (Alice, Bruno, Carla, e Davide) che devono dividersi una torta con quattro porzioni, ciascuna con percentuali di preferenza diverse:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Partecipante</th>
+<th>Porzione 1</th>
+<th>Porzione 2</th>
+<th>Porzione 3</th>
+<th>Porzione 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Alice</td>
+<td>10%</td>
+<td>50%</td>
+<td>30%</td>
+<td>10%</td>
+</tr>
+<tr class="even">
+<td>Bruno</td>
+<td>30%</td>
+<td>30%</td>
+<td>10%</td>
+<td>30%</td>
+</tr>
+<tr class="odd">
+<td>Carla</td>
+<td>40%</td>
+<td>20%</td>
+<td>20%</td>
+<td>20%</td>
+</tr>
+<tr class="even">
+<td>Davide</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Assegna le porzioni usando l’algoritmo semplice di ripartizione equa descritto nel testo.</li>
+<li>Analizza la distribuzione ottenuta e discuti se i partecipanti potrebbero sentirsi invidiosi delle porzioni assegnate.</li>
+<li>Proponi una soluzione alternativa per mitigare eventuali invidie.</li>
+</ol>
+</section>
+<section id="esercizio-2-divisione-beni-indivisibili-con-valori-soggettivi" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="esercizio-2-divisione-beni-indivisibili-con-valori-soggettivi"><span class="header-section-number">7.5.2</span> Esercizio 2: divisione beni indivisibili con valori soggettivi</h3>
+<p>Un gruppo di tre amici deve dividersi un insieme di beni con valori soggettivi assegnati a ciascun bene da ogni partecipante. I beni e le rispettive valutazioni sono:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Bene</th>
+<th>Valore per Alice</th>
+<th>Valore per Bruno</th>
+<th>Valore per Carla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Laptop</td>
+<td>€900</td>
+<td>€850</td>
+<td>€1000</td>
+</tr>
+<tr class="even">
+<td>Smartphone</td>
+<td>€700</td>
+<td>€750</td>
+<td>€700</td>
+</tr>
+<tr class="odd">
+<td>Tablet</td>
+<td>€400</td>
+<td>€300</td>
+<td>€350</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Calcola il valore totale dei beni assegnati a ciascun partecipante se si utilizza un algoritmo semplice basato su massimizzazione delle preferenze individuali.</li>
+<li>Valuta se l’assegnazione è equa e giustifica la tua risposta.</li>
+<li>Proponi un’assegnazione alternativa che riduca l’invidia tra i partecipanti.</li>
+</ol>
+</section>
+<section id="esercizio-3-divisione-di-beni-indivisibili-con-valutazioni-soggettive" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="esercizio-3-divisione-di-beni-indivisibili-con-valutazioni-soggettive"><span class="header-section-number">7.5.3</span> Esercizio 3: divisione di beni indivisibili con valutazioni soggettive</h3>
+<p>Due amici, Alice e Bruno, devono dividersi i seguenti beni indivisibili, con un massimo di 10 punti da distribuire in totale come valutazione personale per ogni partecipante:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Bene</th>
+<th>Valutazione di Alice</th>
+<th>Valutazione di Bruno</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bicicletta</td>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>Orologio</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>Libro</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Utilizza l’algoritmo senza invidia descritto nel testo per assegnare i beni.</li>
+<li>Spiega perché la soluzione ottenuta è senza invidia, oppure discuti eventuali problemi riscontrati.</li>
+<li>Calcola l’equità in termini di punti assegnati e confronta con un’assegnazione casuale dei beni.</li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-BramsTaylor1996" class="csl-entry" role="listitem">
+Brams, Steven J., and Alan D. Taylor. 1996. <em>Fair Division: From Cake-Cutting to Dispute Resolution</em>. Cambridge University Press.
+</div>
+<div id="ref-goldman2014spliddit" class="csl-entry" role="listitem">
+Goldman, J., and A. D. Procaccia. 2014. <span>“Spliddit: Unleashing Fair Division Algorithms.”</span> <em>ACM SIGecom Exchanges</em> 13 (2): 41–46.
+</div>
+<div id="ref-Lipton2004" class="csl-entry" role="listitem">
+Lipton, Richard J., Evangelos Markakis, Elchanan Mossel, and Amin Saberi. 2004. <span>“On Approximately Fair Allocations of Indivisible Goods.”</span> <em>Proceedings of the 5th ACM Conference on Electronic Commerce</em>, 125–31.
+</div>
+<div id="ref-Moulin2003" class="csl-entry" role="listitem">
+Moulin, Herv ’e. 2003. <em>Fair Division and Collective Welfare</em>. MIT Press.
+</div>
+<div id="ref-Procaccia2013" class="csl-entry" role="listitem">
+Procaccia, Ariel D. 2013. <span>“Cake Cutting Algorithms.”</span> <em>Handbook of Computational Social Choice</em>, 311–30.
+</div>
+<div id="ref-RobertsonWebb1998" class="csl-entry" role="listitem">
+Robertson, Jack, and William Webb. 1998. <em>Cake-Cutting Algorithms: Be Fair If You Can</em>. A K Peters/CRC Press.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "capitanio/laboratorio-ia";
+    script.dataset.repoId = "";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./2-4-algoritmi-di-ricerca.html" class="pagination-link" aria-label="Algoritmi di Ricerca">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Algoritmi di Ricerca</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./2-6-algoritmi-predittivi.html" class="pagination-link" aria-label="Algoritmi Predittivi">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Algoritmi Predittivi</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Laboratorio di Intelligenza Artificiale (1e) scritto da Luciano Capitanio.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Draft - Licenza Apache ver. 2</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
