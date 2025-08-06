@@ -1,6 +1,22 @@
-# laboratorio-ia
-- Capitolo 2
-    - <a href="https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/2 sistema esperto inferenza logica.ipynb" target="_blank" rel="noopener noreferrer"><img align="left" src="https://colab.research.google.com/assets/colab-badge.svg" alt="Esegui in Colab" title="Apri e esegui in Google Colaboratory">sistema esperto inferenza logica.ipynb</a>
-    - <a href="https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/2 Rete Bayesiana treno.ipynb" target="_blank" rel="noopener noreferrer"><img align="left" src="https://colab.research.google.com/assets/colab-badge.svg" alt="Esegui in Colab" title="Apri e esegui in Google Colaboratory">Rete Bayesiana treno.ipynb</a>
-    - <a href="https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/2 Rete Bayesiana indagine criminale.ipynb" target="_blank" rel="noopener noreferrer"><img align="left" src="https://colab.research.google.com/assets/colab-badge.svg" alt="Esegui in Colab" title="Apri e esegui in Google Colaboratory">Rete Bayesiana indagine criminale</a>
+# Laboratorio di Intelligenza Artificiale
 
+link ai notebook su [COLAB](https://colab.google/) per sperimentare i codici degli esperimenti dei Laboratori Python del testo
+
+## Algoritmi
+
+- [inferenza logica](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/inferenza-logica.ipynb)
+- [Inferenza proabilistica](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/inferenza-probabilistica.ipynb)
+- [inferenza bayesiana](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/inferenza-probabilistica.ipynb)
+- [algoritmi di ricerca](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/algoritmi-di-ricerca.ipynb)
+- [algoritmi equitativi](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/algoritmi-equitativi.ipynb)
+- [algoritmi predittivi](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/algoritmi-predittivi.ipynb)
+
+## Machine learning
+
+- [apprendimento supervisionato](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/apprendimento-supervisionato.ipynb)
+- [apprendimento non supervisionato](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/apprendimento-non-supervisionato.ipynb)
+- [bias](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/bias.ipynb)
+- [regressione lineare e logistica](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/regressione-lineare-e-logistica.ipynb)
+- [perceptrone.ipynb](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/perceptrone.ipynb)
+- [deep learning](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/deep-learning.ipynb)
+- [elaborazione-linguaggio-naturale.ipynb](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/elaborazione-linguaggio-naturale.ipynb)
