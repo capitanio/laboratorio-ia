@@ -4,7 +4,7 @@ link ai notebook su [COLAB](https://colab.google/) per sperimentare i codici deg
 
 ## Algoritmi
 
-- [inferenza logica](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/inferenza-logica.ipynb){:target="_blank"}
+- [inferenza logica](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/inferenza-logica.ipynb)
 - [Inferenza proabilistica](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/inferenza-probabilistica.ipynb)
 - [inferenza bayesiana](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/inferenza-probabilistica.ipynb)
 - [algoritmi di ricerca](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/algoritmi-di-ricerca.ipynb)
