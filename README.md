@@ -1,6 +1,6 @@
 # Laboratorio di Intelligenza Artificiale
 
-[![immagine della pagina Amazon contenete il libro Laboratorio di Intelligenza Artificiale](libro/libro su Amazon.jpg)](https://amzn.to/4eOktmA)
+[![immagine della pagina Amazon contenete il libro Laboratorio di Intelligenza Artificiale](<libro\libro su Amazon.jpg>)](https://amzn.to/4eOktmA)
 
                                              
 link ai notebook su [COLAB](https://colab.google/) per sperimentare i codici degli esperimenti dei Laboratori Python del testo
