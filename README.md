@@ -3,7 +3,7 @@
 [![immagine della pagina Amazon contenete il libro Laboratorio di Intelligenza Artificiale](<libro/libro su Amazon.jpg>)](https://amzn.to/4eOktmA)
 
                                              
-link ai notebook su [COLAB](https://colab.google/) per sperimentare i codici degli esperimenti dei Laboratori Python del testo
+link ai notebook su [COLAB](https://colab.google/) per eseguire, scaricare o modificare i codici degli esperimenti dei Laboratori Python del testo
 
 ## Algoritmi
 
@@ -24,5 +24,6 @@ link ai notebook su [COLAB](https://colab.google/) per sperimentare i codici deg
 - [deep learning](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/deep-learning.ipynb)
 - [elaborazione-linguaggio-naturale.ipynb](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/elaborazione-linguaggio-naturale.ipynb)
 
+Per [segnalare errori](https://github.com/capitanio/laboratorio-ia/issues) o [proporre migliorie](https://github.com/capitanio/laboratorio-ia/pulls) si prega di usare le funzioni di github o scrivere una e-mail a [lcapitanio@luiss.it](mailto:lcapitanio@luiss.it)
 
 [Luciano Capitanio](https://capitanio.github.io/)
