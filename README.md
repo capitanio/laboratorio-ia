@@ -9,7 +9,7 @@ link ai notebook su [COLAB](https://colab.google/) per eseguire, scaricare o mod
 
 - [inferenza logica](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/inferenza-logica.ipynb)
 - [Inferenza proabilistica](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/inferenza-probabilistica.ipynb)
-- [inferenza bayesiana](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/inferenza-probabilistica.ipynb)
+- [inferenza bayesiana](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/inferenza-bayesiana.ipynb)
 - [algoritmi di ricerca](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/algoritmi-di-ricerca.ipynb)
 - [algoritmi equitativi](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/algoritmi-equitativi.ipynb)
 - [algoritmi predittivi](https://colab.research.google.com/github/capitanio/laboratorio-ia/blob/main/libro/algoritmi-predittivi.ipynb)
